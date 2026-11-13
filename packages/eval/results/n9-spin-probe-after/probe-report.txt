@@ -1,0 +1,53 @@
+=== N-9 PROBE: outer loop after an accepted submit_result (docs/179, PL-M16) ===
+node 22.22.2   maxIterations=50
+
+--- scenario A: baseline (current code) ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  -                 function_call           EMPTY    
+   2       4       2  -                 function_call           EMPTY    
+   3       6       2  -                 function_call           EMPTY    
+  rounds=3  gatewayCalls=6  status=succeeded code=- iterations=4
+  rounds requesting submit_result: 0/3  rounds with ZERO model calls: 0/3
+  state.iteration trail: [2,3,4]
+  backend.toolResults (3):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file | round2:read_file | round3:read_file
+
+--- scenario B: counterfactual -- returned message rebuilt WITHOUT tool_calls ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  -                 function_call           EMPTY    
+   2       4       2  -                 function_call           EMPTY    
+   3       6       2  -                 function_call           EMPTY    
+  rounds=3  gatewayCalls=6  status=succeeded code=- iterations=4
+  rounds requesting submit_result: 0/3  rounds with ZERO model calls: 0/3
+  state.iteration trail: [2,3,4]
+  backend.toolResults (3):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file | round2:read_file | round3:read_file
+
+--- scenario C: graph invoked WITHOUT recursionLimit (pre-PL-M14 condition) ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  -                 function_call           EMPTY    
+   2       4       2  -                 function_call           EMPTY    
+   3       6       2  -                 function_call           EMPTY    
+  rounds=3  gatewayCalls=6  status=succeeded code=- iterations=4
+  rounds requesting submit_result: 0/3  rounds with ZERO model calls: 0/3
+  backend.toolResults (3):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file | round2:read_file | round3:read_file
+
+--- VERDICT ---
+  A: 3 rounds, status=succeeded, code=-; all rounds after the first made 0 model calls = false
+  A spins to the guard: false
+  B: 3 rounds, status=succeeded, code=- (fix removes the spin: false)
+  C: 3 rounds, status=succeeded, code=-
+  C died on the framework recursion limit: false (=> N-7 was this same spin cut short: false)

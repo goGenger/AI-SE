@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-10-19T20:42:07.484Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "8bf18fab-b850-4731-9bb8-85924026f9d7",
+      "workflowIds": [
+        "8bf18fab-b850-4731-9bb8-85924026f9d7",
+        "8b4b1811-145d-4a68-944d-1084cd2231c8"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 41,
+      "runCount": 31,
+      "taskStatuses": {
+        "FAILED": 10,
+        "SUCCESS": 21,
+        "PENDING": 7,
+        "READY": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 26056003,
+        "output": 453155
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5877720,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 10
+      },
+      "failureSummary": "Created the pnpm/Node 22 project manifest at the repository root: package.json declares engines.node (>=22.0.0 <23.0.0, covering all 22.x), empty dependencies ({}) and the five required scripts (start -> node src/server.mjs, test -> node --test, lint/typecheck/build -> node scripts/selfcheck.mjs <sub>). Committed a canonical dependency-free pnpm-lock.yaml (lockfileVersion 9.0, single empty importer) so pnpm install --frozen-lockfile has nothing to rewrite, and extended .gitignore additively (node_modules, data, dist/build/coverage) while keeping pnpm-lock.yaml under version control. Verified package.json is valid JSON and npm resolves its scripts (npm run lint printed the taskboard@0.1.0 banner before failing). The minimal start entry (src/server.mjs), scripts/selfcheck.mjs and the test baseline could not be created from this agent: the write sandbox only allows root-level manifests/configs and delivery artifacts (package.json, pnpm-lock.yaml, .gitignore, tsconfig*, Dockerfile, compose, .dockerignore, README.md, infrastructure/); writes to src/ and scripts/ were rejected, so pnpm lint/typecheck/build and pnpm start currently exit 1 with MODULE_NOT_FOUND until the sibling self-check-scripts and test-baseline work lands. pnpm install --frozen-lockfile could not be executed either: run_build only accepts project script commands and blocks pnpm install.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-auth",
+      "taskVerificationDivergence": 10,
+      "verificationFailureCodes": {
+        "CHECK_TIMEOUT": 7
+      },
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 10,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 26056003,
+      "output": 453155
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 10
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 10,
+    "verificationFailureCodes": {
+      "CHECK_TIMEOUT": 7
+    },
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 10,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-auth": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

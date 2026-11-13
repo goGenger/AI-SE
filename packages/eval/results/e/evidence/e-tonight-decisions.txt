@@ -1,0 +1,30 @@
+# E tonight (2026-10-07 evening) — operator decisions & setup
+
+## User decision (verbatim intent)
+"本周的token还足够用，今晚可以把e阶段的所有长耗时任务跑完吗，可以截止到明天早上8点前停止"
+=> Run ALL remaining long-duration E tasks tonight; window may run until ~08:00 CST.
+
+## Decisions recorded
+1. E-1 x3 moves from Monday (next quota window) to TONIGHT — the
+   "one E1 x3 batch per weekly window" discipline is OVERRIDDEN for this window
+   by explicit user decision (console quota confirmed sufficient by user).
+2. Deadline policy: NO NEW RUN starts at/after 2026-10-08 07:45 CST
+   (E1_DEADLINE_EPOCH=1791416700). In-flight runs finish naturally (killing
+   mid-run would waste their tokens); completed runs are safe (split mode).
+   Marker on deadline stop: E1_DEADLINE_STOP.
+3. Automation: e-tonight-chain.sh (detached) waits for E-2b to end, settles
+   120s, then runs e1-launch.sh with the deadline env. Monday cron remains as
+   a safety net (e1-launch now early-exits E1_ALREADY_COMPLETE if all 3 run
+   results exist; e1-split skips completed runs => idempotent re-entry).
+4. Cooldowns unchanged (30 min between E1 runs; rolling 5h window discipline).
+
+## E-2b observations so far (for docs/126)
+- S1 run 1 (replanned plan v4): oracle PASSED (10 assertions) but chain stopped
+  at T3 TEST red-light => FALSE NEGATIVE. Root: the v4 replan wrote NO acKeys
+  into plan tasks (T1..T6 all empty) while the tests carry [AC-xx][FR-x] markers;
+  no sibling implementation evidence => fail-closed flip did not fire.
+  The v2-era plan DID have acKeys but in the FR-xxx namespace (tests then used
+  [FR-xxx]); with the fixed parser that combination WOULD flip. => Planner
+  acKeys gaps/inconsistency (namespace FR vs AC; replan path empty) registered
+  as a platform finding (F-phase), NOT fixed in E-0 scope.
+- S1 run 1 completed in ~7 minutes (fast; two-level plan v4 has 6 tasks/slice).

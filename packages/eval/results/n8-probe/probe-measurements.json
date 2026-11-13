@@ -1,0 +1,57 @@
+{
+  "inputPerCall": 1000,
+  "outputPerCall": 200,
+  "rows": [
+    {
+      "maxIterations": 2,
+      "calls": 2,
+      "inputTokens": 2000,
+      "outputTokens": 400,
+      "expectedInput": 2000,
+      "ratio": 1,
+      "status": "failed",
+      "errorCode": "TOOL_ERROR"
+    },
+    {
+      "maxIterations": 4,
+      "calls": 4,
+      "inputTokens": 4000,
+      "outputTokens": 800,
+      "expectedInput": 4000,
+      "ratio": 1,
+      "status": "failed",
+      "errorCode": "TOOL_ERROR"
+    },
+    {
+      "maxIterations": 8,
+      "calls": 8,
+      "inputTokens": 8000,
+      "outputTokens": 1600,
+      "expectedInput": 8000,
+      "ratio": 1,
+      "status": "failed",
+      "errorCode": "TOOL_ERROR"
+    },
+    {
+      "maxIterations": 16,
+      "calls": 16,
+      "inputTokens": 16000,
+      "outputTokens": 3200,
+      "expectedInput": 16000,
+      "ratio": 1,
+      "status": "failed",
+      "errorCode": "TOOL_ERROR"
+    },
+    {
+      "maxIterations": 50,
+      "calls": 50,
+      "inputTokens": 50000,
+      "outputTokens": 10000,
+      "expectedInput": 50000,
+      "ratio": 1,
+      "status": "failed",
+      "errorCode": "TOOL_ERROR"
+    }
+  ],
+  "verdict": "N8-LINEAR"
+}

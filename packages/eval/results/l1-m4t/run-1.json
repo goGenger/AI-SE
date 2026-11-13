@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-22T03:58:25.429Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "0e843c6e-2221-4906-b65f-3e83cf89f8b6",
+      "workflowIds": [
+        "0e843c6e-2221-4906-b65f-3e83cf89f8b6",
+        "5f06e309-3aab-49fa-b6f6-3257295763eb",
+        "be352ed8-8789-4dfd-82ac-258d9b0c9039"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 47,
+      "runCount": 47,
+      "taskStatuses": {
+        "SUCCESS": 46,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 2,
+      "tokenUsage": {
+        "input": 50392054,
+        "output": 642480
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 7532615,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1
+      },
+      "failureSummary": "Reviewed all slice-2-auth implementation and tests. AC-01/02/03/04/05/06/07/08/09/10/11/12/13 each have tests whose names contain the AC number and the implementations satisfy them: scrypt salt+hash only in DATA_DIR/users.json (0600, temp-file+renameSync atomic writes), no password/hash/salt in responses or stdout logs, registration check+hash+UUID+write serialized in one process-wide promise chain (8-way concurrent burst yields exactly one 201, seven 409, zero 500), HMAC-SHA256 tokens with timingSafeEqual verification and signature-first parsing, and a fail-closed gate that maps missing/non-Bearer/empty/garbage/tampered/truncated tokens to one 401 UNAUTHORIZED envelope. Targeted auth suites: 89 tests, 89 pass, 0 fail. Full suite is not green: 145 tests, 141 pass, 1 fail, 3 skipped; the single failure is the AC-29 plaintext-password-literal scan, which finds three literal password fixtures in src/http/register.contract.test.js (lines 124, 138, 145). That is a test-file defect, not a product behavior defect, so the fix belongs to a TEST task (runtime-generate the fixtures or relocate the suite under test/ without weakening the scan). Review is therefore not approved and needs a TEST follow-up.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-tasks",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 2,
+    "tokenUsage": {
+      "input": 50392054,
+      "output": 642480
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-tasks": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

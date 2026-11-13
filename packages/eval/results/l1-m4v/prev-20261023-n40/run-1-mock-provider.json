@@ -1,0 +1,155 @@
+{
+  "generatedAt": "2026-10-23T11:41:55.371Z",
+  "baseUrl": "http://127.0.0.1:47559",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "38ea2326-7b81-4310-a973-2329f0722f00",
+      "workflowIds": [
+        "38ea2326-7b81-4310-a973-2329f0722f00"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 10,
+      "runCount": 9,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 3,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 989,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Completed TASK-005: Add Todo integration tests",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "SLICE-1",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {
+        "EVIDENCE_MISSING": 3
+      },
+      "verificationUnavailable": 8,
+      "verificationUnavailableByType": {
+        "DATABASE": 1,
+        "BACKEND": 1,
+        "FRONTEND": 1,
+        "TEST": 3,
+        "DEBUG": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 0,
+      "output": 0
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {
+      "EVIDENCE_MISSING": 3
+    },
+    "verificationUnavailable": 8,
+    "verificationUnavailableByType": {
+      "DATABASE": 1,
+      "BACKEND": 1,
+      "FRONTEND": 1,
+      "TEST": 3,
+      "DEBUG": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "SLICE-1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

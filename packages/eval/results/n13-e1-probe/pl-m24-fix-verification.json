@@ -1,0 +1,32 @@
+{
+  "probe": "n13-e1-workspace / PL-M24 fix verification",
+  "generatedAt": "2026-10-20T03:35:00Z",
+  "purpose": "PL-M24 的判据：在【真实 E1 工作区】上按【沙箱条件】（--cpus 1 ⇒ availableParallelism()=1 ⇒ 测试文件串行）跑作用域命令，新取值必须落在 120s 预算内并保住 TAP。",
+  "workspace": "~/Desktop/study/ai-se-eval/E1/run-1（L1-M4m run 3 收尾态）",
+  "measuredOn": "副本 /tmp/n13-e1/run（原工作区未改动）",
+  "host": { "node": "v22.22.2", "cpus": 10, "note": "宿主机 10 核，故必须显式 --test-concurrency=1 才能复现沙箱的串行化" },
+
+  "A_B_sandbox_equivalent": {
+    "command_common": "node --test --test-concurrency=1 --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' <--test-timeout>",
+    "V_old_100000": {
+      "exited": false,
+      "elapsedMs": 130005,
+      "windowMs": 130000,
+      "reading": "130s 窗口内不退出 ⇒ 在生产 120s 预算下必被沙箱 SIGKILL ⇒ CHECK_TIMEOUT（L1-M4m run 3 的形态）"
+    },
+    "V_new_20000": {
+      "exited": true,
+      "code": 1,
+      "elapsedMs": 81707,
+      "tap": { "tests": 29, "pass": 25, "fail": 0, "cancelled": 4, "duration_ms": 81666 },
+      "headroomVsBudgetMs": 38293,
+      "reading": "81.7s < 120s 预算，余量 38s；TAP 完整保住 ⇒ 失败变成【有界 + 可归因】"
+    }
+  },
+
+  "arithmetic": "N=4 个永不结束的文件 × 20s = 80s，加通过项收尾 ⇒ 81.7s。与「预算 / (1 + MAX_NEVER_COMPLETING_TEST_FILES=5)」的取法一致。",
+
+  "whatThisDoesNOTDo": "检查仍然 exit 1、任务仍判 FAILED——本项买到的是【有界 + 可归因】，不是解冻 L1-8。若要「只有挂死、无真实失败 ⇒ 通过」，那是 PL-M24 之外的第二条判定口径，须另行裁定。",
+
+  "reverseControl_rejected": "「按文件内容预筛」被数据否决：login-contract.test.mjs 对 AC-01 的 grep 命中 7 次（全在注释与 [AC-10] 一类串里），匹配的测试名 0 个。"
+}

@@ -1,0 +1,129 @@
+{
+  "generatedAt": "2026-10-13T11:08:55.529Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "fcd0d418-d02d-41ff-be8c-645cefd0dc32",
+      "workflowIds": [
+        "fcd0d418-d02d-41ff-be8c-645cefd0dc32"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 11,
+      "runCount": 2,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 10
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2890,
+      "errorTypes": {
+        "EMPTY_FINAL_ANSWER": 3
+      },
+      "failureSummary": "Agent 未返回结果（连续空回复，重问次数已用尽）。",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-foundation",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 4,
+        "verification": 0,
+        "agent": 5
+      },
+      "planningMetrics": {
+        "autoFixRounds": 44,
+        "llmRepairRounds": 11,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "PLANNING_ERROR": 2,
+          "VALIDATION_ERROR": 2,
+          "TIMEOUT_ERROR": 2
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 0,
+      "output": 0
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "EMPTY_FINAL_ANSWER": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 4,
+      "verification": 0,
+      "agent": 5
+    },
+    "planningRepair": {
+      "autoFixRounds": 44,
+      "llmRepairRounds": 11,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "slice-1-foundation": 1
+    }
+  }
+}

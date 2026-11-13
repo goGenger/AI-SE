@@ -1,0 +1,17 @@
+# E-0(a) red-light replay against real C-6 data (workflow 6c841bd2 / T-13)
+# generated 2026-10-07T05:55:01Z by apps/server/scripts/e0-redlight-replay.ts
+
+workflow=6c841bd2-74a4-4251-8c62-773043b2408e task=T-13 id=39e8cb92-94ff-4ec3-89e6-3343068c6f30 type=TEST
+recorded acResults (passed): AC-01,AC-21,AC-22,AC-24,AC-25,AC-26,AC-29,AC-30
+evidence candidates (dev+SUCCESS): T-04,T-05,T-06,T-07,T-08,T-09,T-10,T-11
+  AC-01 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+  AC-21 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10,T-11
+  AC-22 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10,T-11
+  AC-24 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+  AC-25 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+  AC-26 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+  AC-29 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+  AC-30 <- T-04,T-05,T-06,T-07,T-08,T-09,T-10
+run A: verdict=verified expected=pass passed=true acSummary={"total":8,"passed":8,"failed":0}
+run B: verdict=failed expected=fail passed=false reason=red-light check passed without implementation (vacuous tests): test
+REPLAY_A_OK=true REPLAY_B_OK=true

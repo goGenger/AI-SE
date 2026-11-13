@@ -1,0 +1,7 @@
+{
+  "id": "M3",
+  "tier": "M",
+  "title": "实现配置深合并 mergeConfig",
+  "requirementText": "实现 src/merge.mjs 的 mergeConfig(base, override)，用于合并两个 JSON 配置对象，规则：\n1) 两边都是普通对象时递归合并；\n2) 数组整体用 override 的值替换（不做元素级合并）；\n3) override 中值为 undefined 的键被跳过（保留 base 的值）；\n4) override 中值为 null 的键覆盖为 null；\n5) 其它类型（字符串/数字/布尔）直接覆盖；\n6) base 或 override 不是普通对象时（含数组、null、undefined），返回 override 的深拷贝（override 为 undefined 时返回 base 的深拷贝）；\n7) 不得修改 base 与 override 两个入参（返回全新对象）。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": { "command": "node", "args": ["oracle.mjs"] }
+}

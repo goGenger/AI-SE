@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T11:17:00.536Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "99ef71a3-68c9-4313-b9dd-91ae96026f22",
+      "workflowIds": [
+        "99ef71a3-68c9-4313-b9dd-91ae96026f22"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 57809,
+        "output": 9095
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 247605,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and verified escapeHtmlText, escapeAttrUrl and parseInlineLinks in src/render.mjs (only backend file changed). escapeHtmlText escapes & first, then <, >, \\\" and ', producing &amp; &lt; &gt; &quot; &#39; without treating pre-existing entities specially (matching the spec's sequential-replace contract). escapeAttrUrl escapes only &, \\\" and ', leaving < and > untouched, for href attribute values. parseInlineLinks scans text nodes for the literal [text](url) form with a non-greedy, non-nested capture, escapes link text via escapeHtmlText and url via escapeAttrUrl, and emits <a href=\\\"url\\\">text</a> with a double-quoted href; all surrounding/non-link text is HTML text escaped, multiple links per line are all replaced, and input order is preserved. The module-scoped regex lastIndex is reset at the start of each call so parsing is stateless and re-entrant. No new dependencies, no url validation, no nested-bracket parsing, and no changes to frontmatter.mjs, renderPage or buildSite. Verified: node --check passes for all src files, npm run lint exits 0, and a focused assertion run of the three helpers passes 7/7. The repository test suite still reports 2 failures that belong to the separate renderPage and buildSite tasks and are out of scope here."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 57809,
+      "output": 9095
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

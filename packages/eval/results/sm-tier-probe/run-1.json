@@ -1,0 +1,129 @@
+{
+  "generatedAt": "2026-10-17T09:57:36.257Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "3987886f-8f8c-4aac-93e1-439b614b7052",
+      "workflowIds": [
+        "3987886f-8f8c-4aac-93e1-439b614b7052"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 10,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 9
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 482711992872730600,
+        "output": 114846188544458750
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 118038,
+      "errorTypes": {},
+      "failureSummary": "Analysis complete for slice-1-core-normalization (requirement 744d3321, slugify text to URL slug). Reviewed FUNCTIONAL spec 6b8e980a (FR-1 lowercase, FR-2 trim, FR-3 whitespace run to one hyphen, FR-4 non-letter/number/hyphen to hyphen), TECHNICAL spec 11a10b5f (TR-API-1, TR-NORM-1..4, TR-VAL-1), the empty ARCHITECTURE spec, and the repo. Confirmed package.json defines pnpm-resolvable scripts: test = node --test, build = node --check src/slugify.mjs, lint = node --check src/slugify.mjs, with type=module and no third-party deps. Mapped requirement rules 1-7 to AC-01..AC-08 and designed concrete test cases for each, to be appended to the existing test/slugify.test.mjs (keeping its 3 tests) and run via pnpm test. Produced a red-green test-first implementation plan plus the recommended one-pass implementation. Flagged one HIGH requirement conflict: FR-4 asserts slugify('a__b') == 'a--b' (no collapse) while rule 5 / AC-05 require collapse to 'a-b'.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-core-normalization",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 482711992872730600,
+      "output": 114846188544458750
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-core-normalization": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-31T15:28:57.288Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "d2a760b1-30f4-4737-bbab-dc338d82627e",
+      "workflowIds": [
+        "d2a760b1-30f4-4737-bbab-dc338d82627e",
+        "ff3c6dee-a97d-4e09-9372-9fe97dc2a2e5",
+        "90793123-ddd6-4a03-91f6-551f77f57962",
+        "d626222b-329d-4dac-84ec-2248e64f08c4",
+        "4f0f4ea0-9419-423c-83b3-d12286e197d1"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 28,
+      "runCount": 28,
+      "taskStatuses": {
+        "SUCCESS": 27,
+        "FAILED": 1
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 31566955,
+        "output": 534532
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 8799861,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1
+      },
+      "failureSummary": "Slice-4 verification run against the current working tree: pnpm typecheck exits 0 (vue-tsc --noEmit) and pnpm lint exits 0 (13 files checked, no problems), but pnpm test (vitest run) exits 1 with 82 tests: 77 passed, 5 failed, 0 errors, all in src/__tests__/task-toggle-delete-resilience.test.ts. Failures are product defects, not test/mock-shape issues: (1) [AC-16] at line 189 and [AC-20] toggle-failure at line 383 throw Error: Cannot call trigger on an empty DOMWrapper because TaskItem.vue renders only task-item and task-title, with no data-testid=\"task-done-toggle\"; (2) [AC-18] at line 265 and [AC-20] delete-failure at line 421 throw the same error because there is no data-testid=\"task-delete-button\"; (3) [AC-19] double-click retry at line 352 fails with AssertionError: expected array to have a length of 2 but got 3, i.e. two synchronous clicks on data-testid=\"retry-button\" issued two retry GETs because loadTasks in src/App.vue has no in-flight guard. A repo-wide grep for updateTask and deleteTask returns no matches, so the FR-4 API client methods, store mutation actions and row controls do not exist yet; the console-error spy assertions on toggle-failure, delete-failure and list-load-failure paths cannot even be evaluated on the first two paths since the rows are never rendered (the load-failure path is green). Green already: [AC-17] and [AC-19] retry-recovery. No product file was modified by this task; pnpm-lock.yaml and mock-server.mjs show no diff, and package.json dependencies/devDependencies are byte-identical (diff touches only the typecheck/lint/test script lines). The remaining work is the FR-4 product implementation (Vue components, App shell, API client), which by rule cannot be done inside a TEST task, hence REPLAN with fixTaskType FRONTEND.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-5",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 31566955,
+      "output": 534532
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-5": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

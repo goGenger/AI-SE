@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-22T22:36:16.276Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "b506bd32-5a3e-4fbd-9948-dde72fee4862",
+      "workflowIds": [
+        "b506bd32-5a3e-4fbd-9948-dde72fee4862",
+        "dbd87ab7-fd1c-48b1-9475-3d481e0f50be",
+        "5ee41958-56e2-41c0-acdc-f622a6760ef4",
+        "aff03c39-3c68-4646-a00d-d2b8d0860aec"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 55,
+      "runCount": 55,
+      "taskStatuses": {
+        "SUCCESS": 51,
+        "FAILED": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 67003992,
+        "output": 783574
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 10120703,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 3,
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Reviewed slice-foundation against the PRD, the API/architecture specs and the dependency QA report, inspecting src/config.js, src/store.js, src/atomic.js, src/password.js, src/keyring.js, src/logger.js, src/home.js, src/server.js, Dockerfile, .dockerignore, README.md, package.json, pnpm-lock.yaml and both test suites. Implementation evidence is solid: AC-04 is covered by 5 passing [AC-04] tests that write only into a mkdtemp DATA_DIR, persist db.json via temp-file+rename, store scrypt(salt 16B, N=16384,r=8,p=1) descriptors, survive a store reopen, and scan utf8/base64/hex variants to prove no plaintext password reaches disk; AC-21 is covered by a [AC-21] suite that boots the real server on an ephemeral port and asserts 200, text/html and all four data-testid elements (home-title, task-list, search-input, new-task-button), which src/home.js renders and src/server.js serves with text/html; charset=utf-8. Health endpoints /healthz, /health and /ready all return 200 {\\\"status\\\":\\\"ok\\\"}. Logging is JSON lines to stdout/stderr only, with sensitive-key redaction and registered-secret masking; no passwords or signing keys are logged and only a sha256 keyId prefix is emitted. Dockerfile uses node:22-alpine, creates UID/GID 1001 taskboard, RUNs chown on /data, declares VOLUME /data, ENV DATA_DIR=/data, EXPOSE 3000, USER taskboard and an exec-form CMD to node src/server.js, so container logs stay on stdout. README documents install, start, test, lint/typecheck/build, docker build -t taskboard ., docker run with a named /data volume and port mapping, and restart verification. package.json has dependencies {} and devDependencies {} and pnpm-lock.yaml only imports the empty root, so no third-party runtime dependency exists. Verified commands: pnpm lint exit 0, pnpm typecheck exit 0, pnpm build exit 0, pnpm test exit 0 with 11 tests / 11 pass / 0 fail / 0 errors. Two acceptance gaps block approval and both belong in test files: (1) Must ACs AC-01, AC-24, AC-25, AC-26 and AC-29 have no test whose name contains the AC number, so AC-30/FOUND-TR-13 is unmet even though the implementation exists; (2) the optional AC-22 browser render hook is neither implemented as a gated/skipped test nor documented, and no source, test or README text mentions AC-22 or browser rendering. Docker build/run (AC-24 runtime), container restart (AC-25) and container log scan (AC-29 runtime) could not be executed in this sandbox, so those remain verified only by static inspection. Verdict: REPLAN with fixTaskType TEST.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-tasks-crud-isolation",
+      "taskVerificationDivergence": 5,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 4
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": true
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 67003992,
+      "output": 783574
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 3,
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 5,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 4
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-tasks-crud-isolation": 1
+    },
+    "stagingDeliveryRate": 1
+  }
+}

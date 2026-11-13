@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-10-12T02:37:49.634Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "9c3005a6-43e5-46db-bd9b-b6efe3a354e3",
+      "workflowIds": [
+        "9c3005a6-43e5-46db-bd9b-b6efe3a354e3"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 14,
+      "runCount": 9,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "READY": 3,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 225677,
+        "output": 20874
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 479224,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and exported computeColumnWidths(table, convert = toInlineCell) from src/render.mjs, the only backend file changed. Semantics: for every column (including the last) width = max(3, max converted display length over the header cell plus all data-row cells of that column); when rows is empty widths derive from headers only; widths are computed from the converter output (FR-2 order: newline -> <br>, | -> backslash-pipe, trim) and missing/non-array row cells count as empty, so they never raise a width. Trust-boundary input is validated defensively (null/undefined table, missing or non-array headers, non-array rows) and a non-function convert falls back to toInlineCell, so nothing throws. Evidence: node --test test/render.width.test.mjs is 7/7 green ([AC-03] width cases); test/render.cell.test.mjs [AC-02] 6/6 green and test/parse.test.mjs green, so no T-03/T-04 regression; npm run build and npm run lint both exit 0; full npm run test is 20/21 pass. The single remaining failure is not in this task's code: test/render.padright.test.mjs line 27 asserts padRight(\\\"ab\\\",5).trimStart().length === 2, which is unsatisfiable because line 24 already requires the right-padded string \\\"ab   \\\" (trimStart removes no leading whitespace, so length is 5). It lives in a QA-owned test file outside my backend write scope, so I did not modify it; no change in src/render.mjs can satisfy that assertion.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 7,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 225677,
+      "output": 20874
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 7,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

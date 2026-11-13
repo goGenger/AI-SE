@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:43:16.316Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "4c6009d5-cacf-4e9c-a1db-77e4059afb1e",
+      "workflowIds": [
+        "4c6009d5-cacf-4e9c-a1db-77e4059afb1e"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 72159,
+        "output": 6357
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 520495,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/updated AC-numbered unit tests for the task-2 renderTable implementation in test/render.test.mjs (11 tests). Failing-first was demonstrated without touching product code: the pre-implementation skeleton (HEAD src/render.mjs, which throws renderTable not implemented) was copied into a temporary test/.tmp/skeleton-render.mjs and 3 mirrored AC tests ([AC-01] row count/order, [AC-03] separator columns, [AC-04] empty rows) were run with node --test; all 3 failed (not ok 1-3, tests 3, pass 0, fail 3). TEMP files were then removed (workspace shows only M src/render.mjs from task-2 and ?? test/render.test.mjs). Final command: npm run test (the package.json test script, which pnpm test maps to and is identical to node --test) reports tests 11, pass 11, fail 0, errors 0; src/parse.mjs is unmodified and its existing parse test still passes. Coverage: [AC-01] output line count equals 2 + table.rows.length with order header row, separator row, then data rows following table.rows order; [AC-02] rows joined by a single newline with no leading/trailing newline and no blank-line separators; [AC-03] separator row column count equals table.headers length and every separator column is exactly ---; [AC-04] empty rows returns exactly two lines (header + separator) joined by newline with no data rows; [AC-05] assertions do not depend on the unimplemented options.align variants and renderTable consumes parseTable output unchanged. All task-3 acceptance criteria satisfied; fixTaskType NONE. Note: the pnpm binary is not installed in this sandbox (pnpm test exits 127, pnpm: not found), so the equivalent npm run test / node --test was executed."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 72159,
+      "output": 6357
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

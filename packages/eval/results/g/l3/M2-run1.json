@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-10-14T16:08:51.237Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "86bc3980-b239-4c7c-b614-4ca0e7e39001",
+      "workflowIds": [
+        "86bc3980-b239-4c7c-b614-4ca0e7e39001"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 13,
+      "runCount": 10,
+      "taskStatuses": {
+        "SUCCESS": 8,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 553507,
+        "output": 25169
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1498596,
+      "errorTypes": {},
+      "failureSummary": "Backend work for T-07 is complete: src/render.mjs implements renderTable(table, options) with an internal transformCell helper that coerces header and data cells to strings, replaces CRLF/CR/LF newlines with <br>, escapes every pipe, then trims, strictly in that mandatory order; separator entries are generated rather than transformed; each column width is max(3, longest transformed cell including the header) and every column including the last is right-padded; src/parse.mjs is untouched; npm run build and npm run lint pass. npm run test reports 39 tests with 38 passed and 1 failed. The single failure is a contradictory QA-owned test assertion: in test/render.cells.test.mjs the pipe test requires lines[2].split('|').length - 1 === 2, but a correctly rendered one-column row for cell a|b is pipe-delimited and therefore contains three pipe characters (leading delimiter, the escaped pipe, trailing delimiter), so 2 is impossible without violating AC-01 and AC-05, which require every rendered line to start and end with a pipe. The companion cell assertion in the same test (cellAt(result, 2, 0)) passes, proving the transform pipeline is correct. Per the change-only-backend-files rule I did not edit the QA-owned test; the failure can only be resolved by correcting that test assertion, so the plan must be re-derived.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "render-core",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 553507,
+      "output": 25169
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "render-core": 1
+    }
+  }
+}

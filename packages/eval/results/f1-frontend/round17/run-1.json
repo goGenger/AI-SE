@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-11-02T10:41:02.270Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "b0ae18c6-50c8-410e-a481-0551b0d50d1e",
+      "workflowIds": [
+        "b0ae18c6-50c8-410e-a481-0551b0d50d1e",
+        "9a827a69-7377-480d-9629-7926e5fc3790",
+        "17a6e22e-87a0-43aa-a92c-f25f99024d30",
+        "12ab7e3b-c9f3-4b68-a8bf-27c23d7297fc",
+        "ed086954-9ed0-4a1d-9c55-e88c3e2a511d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 45,
+      "runCount": 43,
+      "taskStatuses": {
+        "SUCCESS": 39,
+        "FAILED": 4,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 43003314,
+        "output": 692591
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 7747506,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "TOOL_ERROR": 2,
+        "DEPLOYMENT_FAILED": 1,
+        "TASK_EXECUTION_ERROR": 1
+      },
+      "failureSummary": "Agent run failed before returning a result (the model call failed).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-5",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 4
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 43003314,
+      "output": 692591
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TOOL_ERROR": 2,
+      "DEPLOYMENT_FAILED": 1,
+      "TASK_EXECUTION_ERROR": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 4
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-5": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

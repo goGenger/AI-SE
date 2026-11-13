@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-21T10:17:15.568Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "5e7b456a-36b7-4c63-90b1-d8903a1130fd",
+      "workflowIds": [
+        "5e7b456a-36b7-4c63-90b1-d8903a1130fd",
+        "77585ba5-f592-48cf-af66-e5d8e159d67b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 23,
+      "runCount": 18,
+      "taskStatuses": {
+        "SUCCESS": 14,
+        "FAILED": 4,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 11306860,
+        "output": 244025
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2200540,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 2,
+        "TOOL_ERROR": 1,
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Review of command/documentation consistency could not approve: README.md is still the 4-line eval placeholder, so none of the documented deliverables exist. Dockerfile and package.json are consistent with the required commands (start=node src/server.js, test=node --test, lint/typecheck/build self-check scripts; FROM node:22-alpine, ENV DATA_DIR=/data, ENV PORT=3000, EXPOSE 3000, VOLUME /data, USER node, CMD node src/server.js with no log redirect), and no plaintext secrets were found in src/, test/, Dockerfile or package.json. However TR-S1-08 / AC-30 need a real README, which is a root delivery artifact owned by backend work, not by a review task, so the task is reported as REPLAN.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S2-auth-persistence",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 11306860,
+      "output": 244025
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 2,
+      "TOOL_ERROR": 1,
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S2-auth-persistence": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

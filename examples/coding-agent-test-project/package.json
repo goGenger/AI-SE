@@ -1,0 +1,11 @@
+{
+  "name": "coding-agent-test-project",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "lint": "node --check --experimental-strip-types src/*.ts",
+    "build": "node --check --experimental-strip-types src/*.ts"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T12:05:21.599Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "6e4d11bc-7321-4e81-9228-8ebf875f2cff",
+      "workflowIds": [
+        "6e4d11bc-7321-4e81-9228-8ebf875f2cff"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 5,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 139736,
+        "output": 15561
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 922525,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Strengthened the AC-numbered test suite in test/persist.test.mjs (temp dirs/temp files, no external services) and produced genuine red-first evidence without modifying product code.\\n\\nRED PHASE: using only the allowed sandbox test tool, I swapped src/persist.mjs and src/store.mjs for the pre-implementation HEAD placeholders (loadData/saveData throw \\\"尚未实现\\\", store.toJSON throws) and ran node --test test/persist.test.mjs -> exit 1, 11/11 failing (not ok 1..11 for AC-01..AC-09). The real files were then restored byte-for-byte (verified with cmp = YES) and the green run gave 11/11 pass.\\n\\nGREEN PHASE: full npm test = 19 tests, 19 passed, 0 failed, 0 errors. npm run build and npm run lint both exit 0.\\n\\nCoverage now maps 1:1 to the acceptance criteria, every test name carries its AC id: [AC-01] loadData missing file (fresh default each call, no shared mutable default), [AC-02] invalid JSON, [AC-03] invalid structure (10 malformed shapes incl. [], null, 42, string, {}, items:{}, nextId as string/null, missing fields), [AC-04] valid data returned as-is, [AC-05] nested parent dirs created recursively, [AC-06] write->loadData round-trip equal to JSON.stringify(data) with only the target file left in the dir, [AC-06] atomic replace of an existing target with no temp leftover, [AC-07] rename failure keeps target intact (non-empty dir sentinel survives), temp file cleaned up, error propagates with a code, [AC-08] fromJSON(toJSON()) preserves observable state and exact {items,nextId} shape, [AC-08] round-trip consistency between store shape and on-disk file shape, [AC-09] fromJSON accepts the loadData fallback {items:[],nextId:1}. The pre-existing test/store.test.mjs is left untouched.\\n\\nNo product code was changed by this task: git diff for src/ is identical to the upstream T3/T4/T5 state, and no stray files remain in the workspace."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 139736,
+      "output": 15561
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

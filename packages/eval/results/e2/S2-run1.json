@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T09:06:18.584Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "1b329286-b97b-4172-b023-927402169087",
+      "workflowIds": [
+        "1b329286-b97b-4172-b023-927402169087"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 5,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 120905,
+        "output": 26390
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1148634,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added the AC-numbered unit-test suite test/duration.acceptance.test.mjs (ESM, node:test + node:assert/strict, same conventions as the existing test/duration.test.mjs) and it is auto-discovered by the existing runner (npm test -> node --test). It holds 8 tests named [AC-01]..[AC-08] covering every required case: [AC-01] single-unit 1h=3600000, 30m=1800000, 45s=45000, 250ms=250 (FR-1); [AC-02] combined 1h30m=5400000 (FR-2); [AC-03] case/space 1H 30M and 1h 30m =5400000 (FR-3); [AC-04] bare 500=500 (FR-4); [AC-05] out-of-order 30m1h=5400000 (TS-3); [AC-06] invalid inputs '' , whitespace-only, '1x', '-1h', '1.5h', '1h1h' all === null (FR-5/TS-7); [AC-07] the same invalid inputs are asserted not to throw and to return null; [AC-08] non-string args (null, undefined, 42, 0, NaN, {}, [], true, Symbol) return null and never throw (TS-2/TS-7). RED-FIRST: product code src/duration.mjs already contained the full implementation when this test task started (upstream BACKEND task, verification SUCCESS), and this task forbids modifying product code, so a live red run was produced instead against a verbatim copy of the git-HEAD baseline body of src/duration.mjs (the stub that did not exist yet). Command: node --test on a mirror of the suite importing that stub -> TAP 1..8, pass 0, fail 8; exact failures: every [AC-01]..[AC-08] test failed with failureType 'testCodeFailure', Error 'parseDuration 尚未实现' (surfaced by [AC-07]/[AC-08] as 'AssertionError: Got unwanted exception. Actual message: parseDuration 尚未实现'), proving the assertions are non-vacuous. GREEN: npm test -> TAP 1..18, pass 18, fail 0, cancelled 0, skipped 0, todo 0 (8 new AC tests + 8 pre-existing + 2 no-op placeholder entries); npm run build exitCode 0; npm run lint exitCode 0. No genuine product failures were observed, so fixTaskType is NONE. Product code src/duration.mjs was not modified by this task. Known outstanding workspace risk: test/duration.test.mjs (protected) is still modified relative to its git baseline from a prior attempt, which previously tripped the protected-test anti-tamper check."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 120905,
+      "output": 26390
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

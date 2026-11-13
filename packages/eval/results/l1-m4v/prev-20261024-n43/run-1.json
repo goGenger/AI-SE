@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-23T18:35:32.666Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "807112bb-f48b-42d8-8732-94ce3fad2c7b",
+      "workflowIds": [
+        "807112bb-f48b-42d8-8732-94ce3fad2c7b",
+        "8a4dcf05-9d0f-4b36-95c6-14384545c349",
+        "d208718d-66e4-403b-8c79-4626abfa9147",
+        "06aafc2f-4178-41c5-803b-6caa8d4e3b39",
+        "a9ba5959-60a9-4327-92b1-e14bd8f11366"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 56,
+      "runCount": 42,
+      "taskStatuses": {
+        "SUCCESS": 34,
+        "FAILED": 8,
+        "PENDING": 11,
+        "READY": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 2,
+      "tokenUsage": {
+        "input": 81975716,
+        "output": 879936
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 10778541,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 3,
+        "VERIFICATION_FAILED": 5
+      },
+      "failureSummary": "Planned and fully authored the repo-root README.md draft (Chinese), and verified every command in it against the existing skeleton. All 7 acceptance criteria are covered by the drafted content: pnpm install --frozen-lockfile; pnpm start with PORT env var and default port 3000; pnpm test plus pnpm lint/typecheck/build; docker build -t taskboard . and a docker run example with -p 3000:3000, -v taskboard-data:/data, -e DATA_DIR=/data and stdout logging via docker logs -f; the six-step build contract listed in the required order; and the test naming rule ([AC-xx] prefix, one test per Must AC, matching PRD numbering). Every script referenced (start, test, lint, typecheck, build) exists in package.json, and every path referenced (package.json, pnpm-lock.yaml, .gitignore, src/server.js, src/scripts/lint.js, src/scripts/typecheck.js, src/scripts/build.js, src/scripts/gate-utils.js, test/baseline.test.js) exists in the workspace; no unimplemented script is mentioned and the not-yet-present Dockerfile is referred to as plain text supplied by the containerization slice rather than as an existing file path. Blocker: this planning run has no write permission at all (writing README.md returned Path is not writable: README.md (allowed: none)), so the file could not be created. The exact, ready-to-apply content is attached as a DOCUMENTATION artifact; applying it is a file-writing task.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-5-ui-deploy",
+      "taskVerificationDivergence": 5,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 3,
+        "verification": 5,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 42,
+        "llmRepairRounds": 7,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "VALIDATION_ERROR": 3
+        }
+      },
+      "stagingSegment": {
+        "ci": "PENDING",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 2,
+    "tokenUsage": {
+      "input": 81975716,
+      "output": 879936
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 3,
+      "VERIFICATION_FAILED": 5
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 5,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 3,
+      "verification": 5,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 42,
+      "llmRepairRounds": 7,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "slice-5-ui-deploy": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

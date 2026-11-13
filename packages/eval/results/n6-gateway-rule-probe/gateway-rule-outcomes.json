@@ -1,0 +1,66 @@
+[
+  {
+    "name": "R0_sanity",
+    "expectation": "accepted (the endpoint works at all)",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "",
+    "networkError": null
+  },
+  {
+    "name": "R1_no_reasoning",
+    "expectation": "the production shape - expected REJECTED if the rule is active now",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "",
+    "networkError": null
+  },
+  {
+    "name": "R2_empty_reasoning",
+    "expectation": "remedy candidate 1: reasoning_content = \"\"",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "done",
+    "networkError": null
+  },
+  {
+    "name": "R3_blank_reasoning",
+    "expectation": "remedy candidate 2: reasoning_content = \" \"",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "",
+    "networkError": null
+  },
+  {
+    "name": "R4_real_reasoning",
+    "expectation": "control: a non-empty reasoning_content - expected accepted",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "done",
+    "networkError": null
+  },
+  {
+    "name": "R5_orphan_tool_msg",
+    "expectation": "remedy candidate 3: tool_calls dropped, tool result kept",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "",
+    "networkError": null
+  },
+  {
+    "name": "R6_drop_pair",
+    "expectation": "remedy candidate 4: tool_calls AND tool result dropped",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": " knee-jerk: I could just say",
+    "networkError": null
+  },
+  {
+    "name": "R7_platform_converter",
+    "expectation": "the platform's own converter, after the fix - expected accepted",
+    "status": 200,
+    "errorMessage": null,
+    "replyPreview": "done",
+    "networkError": null
+  }
+]

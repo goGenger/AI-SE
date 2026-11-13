@@ -1,0 +1,10 @@
+{
+  "$comment": "docs/264 platform Playwright contract. Copy these exact pins into a new product package.json. Do not use caret ranges. Chromium 1248 is baked in ai-se-sandbox:22-pnpm9.",
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "playwright": "1.64.1"
+  },
+  "scripts": {
+    "test:e2e": "playwright test"
+  }
+}

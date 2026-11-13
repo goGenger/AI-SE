@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-18T19:14:34.946Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "88cb8c6d-a0a7-4a87-ac8d-d8ed25130df8",
+      "workflowIds": [
+        "88cb8c6d-a0a7-4a87-ac8d-d8ed25130df8",
+        "8b92fc3e-8526-4d3f-80dd-f33f922986d5"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 36,
+      "runCount": 30,
+      "taskStatuses": {
+        "SUCCESS": 25,
+        "FAILED": 5,
+        "PENDING": 6
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 18446410,
+        "output": 444730
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5123378,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 5
+      },
+      "failureSummary": "Implemented the runtime configuration module (src/config.js) and the structured stdout/stderr logger (src/logger.js) for slice-1-foundation (T-05). config.js validates the environment trust boundary and exposes a normalized, frozen config: port (integer 1-65535, default 3000), dataDir (literal value, default ./data, container injects /data), dataDirPath (absolute, path.resolve of dataDir), logLevel (default info) and a warnings array. Invalid PORT/DATA_DIR/LOG_LEVEL fall back to defaults without crashing. logger.js emits newline-delimited JSON records to stdout (debug/info) and stderr (warn/error) only, uses no fs or file-write API anywhere, and recursively redacts passwords, tokens, secrets, credentials, cookies, sessions, salts and hashes by key plus inline Bearer/JWT/assignment patterns in strings, nested objects, arrays and Errors. Both modules use only Node built-ins (node:path, node:util) so package.json dependencies stay empty. Verified npm run lint and npm run build exit 0.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-auth",
+      "taskVerificationDivergence": 5,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 5,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 18446410,
+      "output": 444730
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 5
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 5,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 5,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-auth": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

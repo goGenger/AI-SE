@@ -1,0 +1,13 @@
+{
+  "maxIterations": 50,
+  "status": "failed",
+  "errorCode": "UNKNOWN_ERROR",
+  "errorMessage": "Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the \"recursionLimit\" config key.\n\nTroubleshooting URL: https://docs.langchain.com/oss/javascript/langgraph/GRAPH_RECURSION_LIMIT/\n",
+  "agentNodeRuns": 13,
+  "toolsNodeRuns": 12,
+  "approxSupersteps": 26,
+  "reportedIterations": 0,
+  "boundTools": 11,
+  "eventCount": 39,
+  "verdict": "N7-PRESENT"
+}

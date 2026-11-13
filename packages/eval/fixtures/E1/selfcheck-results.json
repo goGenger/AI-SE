@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-10-08T11:29:13.513Z",
+  "pass": true,
+  "consistency": {
+    "prdCount": 30,
+    "oracleCount": 30,
+    "missingInOracle": [],
+    "orphanAssertions": []
+  },
+  "fixtureConsistent": true,
+  "reference": {
+    "variant": "reference",
+    "exitCode": 0,
+    "mustPassed": 29,
+    "mustTotal": 29,
+    "failedAc": [],
+    "outputTail": null
+  },
+  "mutants": [
+    {
+      "variant": "no-data-isolation",
+      "exitCode": 1,
+      "mustPassed": 25,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-28",
+        "AC-23",
+        "AC-27",
+        "AC-30"
+      ],
+      "outputTail": null
+    },
+    {
+      "variant": "no-persistence",
+      "exitCode": 1,
+      "mustPassed": 27,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-30",
+        "AC-25"
+      ],
+      "outputTail": null
+    },
+    {
+      "variant": "patch-ignores-unknown-fields",
+      "exitCode": 1,
+      "mustPassed": 27,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-19",
+        "AC-30"
+      ],
+      "outputTail": null
+    },
+    {
+      "variant": "plaintext-passwords",
+      "exitCode": 1,
+      "mustPassed": 27,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-30",
+        "AC-04"
+      ],
+      "outputTail": null
+    },
+    {
+      "variant": "title-off-by-one",
+      "exitCode": 1,
+      "mustPassed": 27,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-15",
+        "AC-30"
+      ],
+      "outputTail": null
+    },
+    {
+      "variant": "wrong-error-codes",
+      "exitCode": 1,
+      "mustPassed": 25,
+      "mustTotal": 29,
+      "failedAc": [
+        "AC-03",
+        "AC-05",
+        "AC-06",
+        "AC-30"
+      ],
+      "outputTail": null
+    }
+  ]
+}

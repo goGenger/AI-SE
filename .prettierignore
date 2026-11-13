@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.env
+.env.*
+.nvmrc
+.node-version
+.DS_Store
+*.log
+docs.zip
+pnpm-lock.yaml
+.playwright-cli

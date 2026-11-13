@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T08:20:42.007Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "16560ecd-2328-429e-a065-60a9577c1de5",
+      "workflowIds": [
+        "16560ecd-2328-429e-a065-60a9577c1de5"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 77338,
+        "output": 13101
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 580913,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Test deliverable test/slugify.test.mjs covers all slice-1 ACs and passes. 14 AC-tagged cases ([FR-001] x2, [FR-002] x2, [FR-003] x3, [FR-004] x4, [FR-008] x3) plus 3 pre-existing smoke tests = 17 cases; runner node --test reports tests 17, pass 17, fail 0, errors 0. All required inputs are asserted: 标题, ١٢٣, abc123, hello   world, hello\\t\\nworld, hello \\t world, a_b, a.b, a/b, a@b. Build and lint (node --check src/slugify.mjs) exit 0. Exact command failure: pnpm test -> sh: 1: pnpm: not found, exit 127 (pnpm absent in sandbox); package.json maps test to node --test, which is what pnpm test would invoke and which passes. Red-first: the committed baseline src/slugify.mjs is the slugify 尚未实现 stub and all 14 AC cases fail against it (14/14 red), so the tests are non-vacuous. No product code was modified. fixTaskType: NONE for code; the remaining gap is environment/ordering, reported as an issue."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 77338,
+      "output": 13101
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

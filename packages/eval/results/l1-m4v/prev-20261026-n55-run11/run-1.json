@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-26T10:19:48.245Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "7c883460-e143-41c4-93a8-83c5b568493d",
+      "workflowIds": [
+        "7c883460-e143-41c4-93a8-83c5b568493d",
+        "50326064-70ba-472a-a25b-b5d6918110b4",
+        "d5d12709-7977-4762-a620-923a67e349da"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 41,
+      "runCount": 35,
+      "taskStatuses": {
+        "SUCCESS": 31,
+        "FAILED": 4,
+        "PENDING": 5,
+        "READY": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 68363524,
+        "output": 687135
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 8975832,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 4
+      },
+      "failureSummary": "Implemented the DATA_DIR persistence store, atomic writes, mutation mutex and signing-secret store, and wired them into the server initialize hook. New src/store/persistence.js: mkdirSync(DATA_DIR, recursive) + load users.json into memory (before listen), records are whitelisted to exactly {id, username, normalizedUsername, passwordHash, salt, kdfParams, createdAt} so an extra caller-supplied password field is dropped and never reaches disk, findByNormalizedUsername / findById return frozen copies, and insertUser does the duplicate check and the insert inside one in-process promise-queue mutex (single runExclusive queue, also exported) so concurrent callers serialize; persistence is write-to-users.json.tmp + fsync + renameSync (+ best-effort directory fsync), with in-memory rollback if the write fails and startup failure (never silent data loss) if users.json is corrupt. New src/store/secret-store.js: reads DATA_DIR/signing-secret on startup, otherwise generates 32 crypto.randomBytes, writes with flag wx and mode 0o600 (chmod as well), fsyncs, keeps the bytes in memory, supports restart reuse (byte-identical), only exposes defensive copies and never logs the value. New src/store/index.js: initializeStores() builds config via src/config.js, creates the stores and loads them, exposing getPersistenceStore/getSecretStore/getSigningSecret/getDataDir for the later register/login/token handlers. src/server.js now defaults its initialize hook to initializeStores(), so DATA_DIR is created, users.json loaded and the signing secret loaded/generated before the port is bound (start() still awaits initialize first and re-runs it after stop()); the store accessors are re-exported from server.js. Evidence: added test/store.test.js with 7 tests, every one named with the [AC-04] marker (recursive DATA_DIR creation + load, exact record fields with no plaintext password in any encoding anywhere under DATA_DIR, mutex serialization with 1 winner and 8 same-username contenders plus 20 concurrent distinct inserts, atomic write with no leftover .tmp and a stale truncated .tmp ignored, 32-byte secret with mode 0600 reused across restart, server initialize hook before listen plus restart persistence through the real start()/stop(), and startup-log hygiene). All 7 new [AC-04] tests pass; the pre-existing [AC-04] secret test in test/persistence.test.js now passes as well. lint, typecheck and build all exit 0. Note: the generic preamble mentions schema/migration files, but the deliverable paths named by this task (src/store/*.js, src/server.js) were accepted by the write policy, and the DATABASE spec for this slice is a JSON document under DATA_DIR (no SQL migrations), so no migration files were needed or produced.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-ui-deploy-docs",
+      "taskVerificationDivergence": 4,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 4,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 2,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "PENDING",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 68363524,
+      "output": 687135
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 4
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 4,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 4,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 2,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-ui-deploy-docs": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

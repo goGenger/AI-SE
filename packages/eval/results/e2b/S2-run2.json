@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T13:44:52.835Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "c38fdb52-3abd-4d01-947d-15df02be3ee7",
+      "workflowIds": [
+        "c38fdb52-3abd-4d01-947d-15df02be3ee7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 57102,
+        "output": 5176
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 248656,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added AC-numbered unit tests for parseDuration core parsing in test/duration.core.test.mjs and ran the suite green. Red-first was demonstrated against the pre-implementation stub (throwing stub mirroring git HEAD) in a temporary scratch test: 4 tests, 0 pass, 4 fail (each failing with 'parseDuration 尚未实现'). The scratch file was then deleted, so only test/duration.core.test.mjs remains as an addition; no product code was modified (src/duration.mjs was already implemented by dependency task T2). Final run: pnpm is not installed in the sandbox, so the equivalent script npm test (same 'node --test') was used - 7 tests, 7 pass, 0 fail (4 new AC tests plus 3 pre-existing tests). Exact red-first failures: all 4 AC tests failed with ERR_TEST_FAILURE / 'parseDuration 尚未实现' before the implementation existed. Exact green result: '# tests 7 / # pass 7 / # fail 0'."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 57102,
+      "output": 5176
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

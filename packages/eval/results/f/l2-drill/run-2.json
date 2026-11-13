@@ -1,0 +1,175 @@
+{
+  "drill": "F1-4 FX-14b L2 planning drill",
+  "requirementId": "a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53",
+  "ranAt": "2026-10-08T09:19:45.047Z",
+  "globalAcKeys": [
+    "AC-24",
+    "AC-25",
+    "AC-26",
+    "AC-29",
+    "AC-30"
+  ],
+  "workflowCountBefore": 18,
+  "workflowCountAfter": 18,
+  "sliceCount": 5,
+  "slices": [
+    {
+      "sliceKey": "S1",
+      "title": "工程骨架、构建契约与质量脚本",
+      "order": 1,
+      "status": "PLANNED",
+      "planningVersion": 14,
+      "isFinal": false,
+      "frKeys": [
+        "FR-9"
+      ],
+      "taskCount": 10,
+      "taskKeys": [
+        "S1-01",
+        "S1-02",
+        "S1-03",
+        "S1-04",
+        "S1-05",
+        "S1-06",
+        "S1-07",
+        "S1-08",
+        "S1-09",
+        "S1-10"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "S2",
+      "title": "数据存储、持久化与密码哈希",
+      "order": 2,
+      "status": "PLANNED",
+      "planningVersion": 15,
+      "isFinal": false,
+      "frKeys": [
+        "FR-7"
+      ],
+      "taskCount": 12,
+      "taskKeys": [
+        "S2-01",
+        "S2-02",
+        "S2-03",
+        "S2-04",
+        "S2-05",
+        "S2-06",
+        "S2-07",
+        "S2-08",
+        "S2-09",
+        "S2-10",
+        "S2-11",
+        "S2-12"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "S3",
+      "title": "健康端点、注册与登录鉴权",
+      "order": 3,
+      "status": "PLANNED",
+      "planningVersion": 16,
+      "isFinal": false,
+      "frKeys": [
+        "FR-1",
+        "FR-2"
+      ],
+      "taskCount": 16,
+      "taskKeys": [
+        "S3-01",
+        "S3-02",
+        "S3-03",
+        "S3-04",
+        "S3-05",
+        "S3-06",
+        "S3-07",
+        "S3-08",
+        "S3-09",
+        "S3-10",
+        "S3-11",
+        "S3-12",
+        "S3-13",
+        "S3-14",
+        "S3-15",
+        "S3-16"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "S4",
+      "title": "任务 CRUD、列表搜索与用户数据隔离",
+      "order": 4,
+      "status": "PLANNED",
+      "planningVersion": 17,
+      "isFinal": false,
+      "frKeys": [
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6"
+      ],
+      "taskCount": 8,
+      "taskKeys": [
+        "S4-ANALYSIS-CONTRACT",
+        "S4-BE-HTTP",
+        "S4-BE-SERVICE",
+        "S4-BE-VALIDATOR",
+        "S4-DB-01",
+        "S4-DESIGN-VALIDATION",
+        "S4-REVIEW-S4",
+        "S4-TEST-INTEGRATION"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "S5",
+      "title": "首页 UI、非 root 容器化部署与交付文档",
+      "order": 5,
+      "status": "PLANNED",
+      "planningVersion": 18,
+      "isFinal": true,
+      "frKeys": [
+        "FR-8",
+        "FR-9"
+      ],
+      "taskCount": 14,
+      "taskKeys": [
+        "T-01",
+        "T-02",
+        "T-03",
+        "T-04",
+        "T-05",
+        "T-06",
+        "T-07",
+        "T-08",
+        "T-09",
+        "T-10",
+        "T-11",
+        "T-12",
+        "T-13",
+        "T-14"
+      ],
+      "deliveryTaskCount": 4,
+      "globalAcRefs": [
+        "AC-24",
+        "AC-26",
+        "AC-29",
+        "AC-25",
+        "AC-30"
+      ]
+    }
+  ],
+  "finalSliceScale": {
+    "taskCount": 14,
+    "deliveryTaskCount": 4,
+    "frCount": 2,
+    "globalAcCount": 5
+  },
+  "violations": []
+}

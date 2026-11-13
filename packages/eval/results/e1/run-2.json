@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-10-07T19:26:50.547Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "a69621a0-2165-4868-9fde-c63290248c22",
+      "workflowIds": [
+        "a69621a0-2165-4868-9fde-c63290248c22"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 14,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "READY": 1,
+        "PENDING": 9,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 122622,
+        "output": 11636
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1055345,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "TIMEOUT": 1
+      },
+      "failureSummary": "Completed task T-08 (engineering scripts, lockfile, README command docs) within its declared AC (AC-30) scope. Verified in-workspace: package.json declares engines.node=22, dependencies={} (zero runtime deps) and the five scripts start/test/lint/typecheck/build, where start='node src/server.js' (reads PORT, default 3000) and test='node --test'. pnpm-lock.yaml is present with lockfileVersion 9.0 and an empty root importer, so pnpm install --frozen-lockfile is supported. scripts/lint.js, scripts/typecheck.js and scripts/build.js are std-lib-only lightweight self-checks that each exit 0 (confirmed: lint_exit=0, typecheck_exit=0, build_exit=0). README.md documents all five command classes: install (pnpm install --frozen-lockfile), start (pnpm start with PORT default 3000), test (pnpm test), build image (docker build -t taskboard .) and run image (docker run with -p 3000:3000 and -v taskboard-data:/data). The AC-30 acceptance test is green. Remaining repo-level failures (AC-21/24/25/26/29) are NOT in this task's deliverable: they require the src/ service entry and the Dockerfile, which are owned by the implementation and container slices and are not yet landed; per the AC-30 contract this task owns only the script/lockfile/README/naming surface, which is complete."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 122622,
+      "output": 11636
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

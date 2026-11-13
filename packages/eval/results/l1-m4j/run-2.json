@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-18T17:18:59.739Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "bb5f0610-eee4-443c-9145-27d221438ed5",
+      "workflowIds": [
+        "bb5f0610-eee4-443c-9145-27d221438ed5"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 17,
+      "runCount": 17,
+      "taskStatuses": {
+        "SUCCESS": 15,
+        "FAILED": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 11703597,
+        "output": 328142
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2935622,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Delivered the runtime configuration and stdout logging foundation modules (backend only: src/config.js, src/logger.js). config.js resolves PORT (default 3000) and DATA_DIR (default ./data; container injects /data) from the environment via a pure loadConfig(env) function, plus a memoized getConfig() and an import-time config snapshot. Environment values are treated as untrusted: PORT is trimmed and validated as an integer in 0..65535 and fails fast with a descriptive ConfigError (code INVALID_CONFIG) when malformed, DATA_DIR is trimmed, defaults on blank input and rejects NUL bytes, and an absolute dataDirPath is derived from the normalized value. The normalized object is frozen and also exposes PORT/DATA_DIR aliases plus named port/dataDir/dataDirPath exports. logger.js emits newline-delimited structured JSON to stdout (debug/info) and stderr (warn/error) only, with injectable streams for verification; it never writes to a file and does not import any fs write API. Every payload is passed through a deep redactor before serialization: field names are matched by word (password, passwd, secret, token, apikey, key, authorization, cookie, session, credential, privatekey, signature, salt, hash, digest, otp, pin, jwt, including camelCase/snake/kebab variants), and free-form strings are scrubbed for Bearer tokens and inline password= [REDACTED] fragments. Errors, arrays, nested objects and circular references are handled. No passwords, tokens or secrets are ever emitted. Dependencies remain empty (Node standard library only); no API contract was changed and existing project scripts are untouched.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-auth",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 11703597,
+      "output": 328142
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-auth": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

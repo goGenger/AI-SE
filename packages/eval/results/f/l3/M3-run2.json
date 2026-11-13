@@ -1,0 +1,129 @@
+{
+  "generatedAt": "2026-10-12T03:22:19.629Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "b3ad8bc1-0270-49a2-bdd4-a240d7b6c6b8",
+      "workflowIds": [
+        "b3ad8bc1-0270-49a2-bdd4-a240d7b6c6b8",
+        "7b907efb-2edb-444a-8636-ce336314c986"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 17,
+      "runCount": 12,
+      "taskStatuses": {
+        "SUCCESS": 10,
+        "FAILED": 1,
+        "READY": 2,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 498365,
+        "output": 37854
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1228854,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Authored/validated test/merge.fallback.test.mjs: 19 tests, every name prefixed with its AC key, covering AC-07 non-plain-object fallback (plain-object base + array override; array/null/undefined/primitive base + plain-object override; null override returns null; undefined override returns a deep copy of base for plain and non-plain base; plus a new AC-07 case for undefined base + array override) and AC-08 immutability (base/override deep-equal to pre-call state, no aliasing of base/override at any nesting level, deep-frozen inputs never written, mutating the result cannot change the inputs and mutating the inputs cannot change the result, in both merge and fallback directions). Runnable via pnpm test; full suite result is 60 tests, 60 passed, 0 failed, 0 errors. The required red-light state (tests failing before the implementation exists) could NOT be produced: src/merge.mjs already carries a complete mergeConfig implementation as an uncommitted working-tree change authored by another slice (HEAD baseline is a stub that throws), and product code is read-only for this QA task, so the stub cannot be restored and no legitimate AC-07/AC-08 assertion fails. No product code was modified by this task; fixTaskType=NONE because no assertion requires a product fix.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "merge-fallback-immutability",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 2,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": false,
+        "failureCodes": {
+          "PLANNING_ERROR": 2
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 498365,
+      "output": 37854
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 2,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "merge-fallback-immutability": 1
+    }
+  }
+}

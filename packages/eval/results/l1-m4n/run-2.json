@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-20T12:16:31.437Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "8b7823d3-0a14-40f6-8c64-81177d8de944",
+      "workflowIds": [
+        "8b7823d3-0a14-40f6-8c64-81177d8de944",
+        "360e19e5-852c-4aa8-b89d-ce737fda7651",
+        "d9f90e7b-3015-43db-9c94-ee10f425276b",
+        "a85a6970-d851-44ca-95ea-15a37ecd24eb"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 48,
+      "runCount": 44,
+      "taskStatuses": {
+        "SUCCESS": 40,
+        "FAILED": 4,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 52991749,
+        "output": 632436
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 7756607,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added the scrypt password hashing unit at src/password-hasher.js plus a new test file src/password-hasher.test.js (7 tests, all passing). hashPassword() uses node:crypto scrypt with a fresh crypto.randomBytes(16) per-user salt, enforces trust-boundary input validation (string, non-empty, at most 1024 code points, validated salt and cost parameters) and returns only algorithm/salt/hash plus scrypt cost parameters and a self-describing storage string scrypt$N=16384,r=8,p=1,keylen=64$<salt>$<hash>; no plaintext, hash or salt is ever logged, and error messages never echo secrets. verifyPassword() verifies in constant time with crypto.timingSafeEqual and returns false (never throws) for malformed records, unsupported algorithms, tampered salt/hash and non-string/empty/oversized candidates, so it cannot turn a corrupted row into a 500. serializePasswordHash()/parsePasswordHash() round-trip the algorithm, salt, derived hash and cost parameters; needsRehash() flags cost drift or unreadable material. The output field names (algorithm/salt/hash) match the aliases accepted by UserStore.addUser, demonstrated by a test that persists hash material into DATA_DIR/users.json and asserts the plaintext password never appears there. Existing test files were left untouched; verification of the full suite shows 52 tests with 38 pass and 14 fail, where all 14 failures are the pre-existing registration-endpoint (POST /api/register returns 404) tests owned by other tasks and unrelated to this change. npm run lint, npm run typecheck and npm run build all exit 0; module is discovered and loaded by the typecheck self-check.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-runtime-deployment-docs",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 3,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 2,
+        "llmRepairRounds": 3,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "VALIDATION_ERROR": 3
+        }
+      },
+      "stagingSegment": {
+        "ci": "FAILED",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 52991749,
+      "output": 632436
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 3,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 2,
+      "llmRepairRounds": 3,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "slice-4-runtime-deployment-docs": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

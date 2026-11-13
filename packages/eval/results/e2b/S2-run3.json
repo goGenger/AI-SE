@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T13:53:29.127Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "52bf00ad-2ed5-40d9-b26d-fcb1ff6fd7eb",
+      "workflowIds": [
+        "52bf00ad-2ed5-40d9-b26d-fcb1ff6fd7eb"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 66295,
+        "output": 8636
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 395069,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/verified AC-numbered unit tests for parseDuration core parsing in test/duration.test.mjs (12 tests) and ran the suite green. Coverage: [AC-01] valid combinations 1h30m=5400000 and 1h30m20s=5420000; [AC-02] individual units 1h=3600000, 1m=60000, 1s=1000, 1ms=1 plus case-insensitivity (1H 30M) and ms not parsed as m+s; [AC-03] spaces between segments 1h 30m=5400000 and 1h 30m 20s=5420000; [AC-04] plain numbers 500=500 and 0=0; [AC-05] unparseable input returns null without throwing. npm test (project script node --test) reports 12 tests, 12 pass, 0 fail, exit 0; npm run build and npm run lint (node --check) exit 0. pnpm test itself exits 127 with sh: 1: pnpm: not found because pnpm is not installed in the sandbox; since package.json defines test as node --test, the underlying command was exercised directly via nm test. No product code was modified; src/duration.mjs was left untouched."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 66295,
+      "output": 8636
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T16:57:47.319Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "c6592db5-e62f-410b-905a-f059d489fd93",
+      "workflowIds": [
+        "c6592db5-e62f-410b-905a-f059d489fd93"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "READY": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 151764,
+        "output": 21333
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1001572,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Added FR2 acceptance tests for the store serialization surface in test/store.test.mjs, named [AC-01]..[AC-06]: toJSON shape (items + nextId), toJSON non-mutation (including immunity to mutation of the returned snapshot), fromJSON restore, per-field []/1 fallbacks for missing/invalid items and nextId, and a toJSON -> fromJSON round trip on a fresh store preserving items and nextId. Red-first: the FR2 ACs are executed against a throwaway pre-implementation copy of the module (toJSON/fromJSON still throwing) in test/red/store.test.mjs, where all six cases fail with pass 0, fail 6 and the error 'toJSON not implemented' at stub.store.mjs:37. Green: against the current src/store.mjs all six FR2 tests pass; exact final run shows ok 12..17 for [AC-01]..[AC-06], with the full suite 1..20, pass 20, fail 0, errors 0. No product code was modified. build and lint (node --check on all four src modules) exit 0. The AC test file is in-memory only and imports createStore from src/store.mjs, touching no filesystem or shared globals. Note the workspace npm test exits 0 because the T4 backend implementation is already present in the working tree; the red evidence therefore comes from the isolated stub harness, not from modifying product code. A pre-existing AC-04 ambiguity is documented: the task text reads as if both fields fall back at once, but TR6 mandates per-field normalization, so a payload with a valid nextId keeps it and only the absent items field falls back to []."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 151764,
+      "output": 21333
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

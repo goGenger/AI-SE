@@ -1,0 +1,39 @@
+# ⚠️ 已被 `packages/sandbox/Dockerfile` 取代（`docs/235` §6.7）：默认镜像现已内置 Chromium 与
+#    playwright，不再需要单独一个 UI 镜像 tag。本文件保留为 `docs/234` 的探针产物与回滚参照。
+#
+# docs/234 §4：UI 栈探针镜像（React + TS + Tailwind，可选 Playwright）。
+#
+# 构建（上下文 = packages/sandbox）：
+#   docker build -f packages/sandbox/Dockerfile.ui -t ai-se-sandbox:22-pnpm9-ui packages/sandbox
+# 含浏览器（docs/234 第 3 步）：
+#   docker build -f packages/sandbox/Dockerfile.ui --build-arg WITH_BROWSER=1 \
+#     -t ai-se-sandbox:22-pnpm9-ui packages/sandbox
+#
+# 与默认沙箱镜像的关系：两者**并存**，SANDBOX_IMAGE 仍指向 ai-se-sandbox:22-pnpm9；
+# 本镜像只服务探针，删除本 tag 即回滚。
+
+# stage 1：按 seed 的 lockfile 精确预热 store（同时产出 playwright 可执行文件）
+FROM node:22-bookworm AS warm
+ARG PNPM_VERSION=9.15.0
+ENV PNPM_STORE_DIR=/opt/pnpm-store
+RUN npm install --global pnpm@${PNPM_VERSION} \
+ && pnpm config set --global store-dir "${PNPM_STORE_DIR}"
+COPY probes/ui-stack/ /seed/
+RUN cd /seed && pnpm install --frozen-lockfile
+
+# stage 2：运行镜像
+FROM node:22-bookworm
+ARG PNPM_VERSION=9.15.0
+ENV PNPM_STORE_DIR=/opt/pnpm-store
+RUN npm install --global pnpm@${PNPM_VERSION} \
+ && pnpm config set --global store-dir "${PNPM_STORE_DIR}"
+COPY --from=warm /opt/pnpm-store /opt/pnpm-store
+
+# 可选：浏览器。playwright 包没有 postinstall，浏览器只能显式安装。
+ARG WITH_BROWSER=0
+ENV PLAYWRIGHT_BROWSERS_PATH=/opt/ms-playwright
+COPY --from=warm /seed /seed
+RUN if [ "$WITH_BROWSER" = "1" ]; then \
+      cd /seed && pnpm exec playwright install --with-deps chromium ; \
+    fi ; \
+    rm -rf /seed

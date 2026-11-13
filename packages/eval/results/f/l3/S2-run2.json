@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-10-09T04:14:42.356Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "6f2f9f90-7034-4332-a209-ee7b7b70db0a",
+      "workflowIds": [
+        "6f2f9f90-7034-4332-a209-ee7b7b70db0a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 3,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 46881,
+        "output": 3327
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 87262,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Created/confirmed src/duration.mjs exporting parseDuration(text) as a named export with a single parameter (length === 1). The skeleton body applies a trust-boundary type guard (non-string input returns null) and returns null as the placeholder for all inputs, so it never throws and always yields number|null. FR-2..FR-5 parsing rules are intentionally not implemented and no runtime dependencies were added. Only the backend file src/duration.mjs was touched. Verification: npm test (node --test) exit 0 with 9 subtests, 3 passed, 0 failed, 6 todo (the 6 rule placeholders remain todo by design); npm run build exit 0; npm run lint exit 0.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-unit-parsing",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 46881,
+      "output": 3327
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-unit-parsing": 1
+    }
+  }
+}

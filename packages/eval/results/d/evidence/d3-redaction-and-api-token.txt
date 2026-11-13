@@ -1,0 +1,38 @@
+# D-3 证据：脱敏复核 + 审批复核 + 部署面 API 最小 Token 鉴权（2026-10-07）
+
+## 五条持久化路径盘点（结论）
+
+| 路径 | 状态 | 依据 |
+| --- | --- | --- |
+| tool_calls 输入/输出 | 已覆盖 | `agentRunService.sanitizeObject` → `sanitizeLogData`（本次升级后含凭证形态串） |
+| agent_runs.output | 已覆盖 | 同上（`agentRunService:494`） |
+| **tasks.output** | **缺口 → 已补** | 引擎 `WorkflowEngine.persistTaskResult` 原样落 `result.output`（:567/:586/:595）→ 新增 `RedactingWorkflowTaskExecutor`（server 出口装饰器） |
+| workflow_events payload | 部分（键名+键值形态）→ 已补强 | 编排器 `event()` 已过 `sanitizeLogData`；升级后同时清凭证形态串（sk-/eyJ/Bearer） |
+| 日志（pino / 部署日志 / 工具执行日志） | 已覆盖 | pino `redact` 路径 + `sanitizeLogData` 出口（升级后增强）；`persistLogs` 同 sink |
+
+## 变更（最小补缺）
+- `packages/observability/src/index.ts`：`sanitizeLogData` 字符串分支升级为 `redactCredentialShapedText(redactString(value))`（键值形态 + 凭证形态串一并打码；全仓 53 处调用点统一增强，函数语义超集）。
+- `apps/server/src/services/redactingTaskExecutor.ts`（新，18 行）：任务结果出口装饰器，仅改写 `output`（过同一 sink），引擎语义零改动。
+- `apps/server/src/index.ts`：`executor: new RedactingWorkflowTaskExecutor(new RoutingWorkflowTaskExecutor(...))`（单点覆盖 agent/交付/验证门全部路径）。
+
+## 测试
+- observability：新增「redacts credential-shaped substrings」用例；3/3 全绿（既有两条行为断言未变）。
+- server：`redactingTaskExecutor.test.ts`（2 用例：形态+键名打码、无 output 原样返回）✓；`apiToken.test.ts`（3 用例）✓；`config.test.ts` 新增 API Token 组 ✓。
+- 端到端覆盖：装饰器用例直接使用 D-2 夹具同款假值（sk-test-redteam / eyJ… / Bearer …），验证「工具输出内容 → 任务结果」链路不再明文落库。
+
+## 审批复核（无缺口，记录证据）
+- 交付工具 riskLevel 声明：`deliveryTools.ts`（run_ci/deploy_release/verify_release/rollback_release 均声明；HIGH×3 + LOW×1）。
+- 生产双闸：`assertPermission`（actor 断言 + production 需 `metadata.approved`）→ `runDeployment` 任务级审批检查（`PRODUCTION_APPROVAL_REQUIRED`）。
+- 引擎自动 `approvalRequired`：`WorkflowEngine.ts:915`（production 交付任务自动置审批）。
+- 既有覆盖：`deliveryTools.test.ts` + `deliveryApi.e2e.test.ts` + `deliveryLifecycle.e2e.test.ts`（D-5/D-6 复跑再引）。
+
+## API Token（新增）
+- `apps/server/src/config.ts`：`API_TOKEN`（optional，空串视为未设置）。
+- `apps/server/src/http/apiToken.ts`：中间件——未配置 = 直通；配置后 `/api/*` 需 `Authorization: Bearer <token>`，否则 401 `UNAUTHORIZED`（既有错误封套）；`/health` `/ready` 天然豁免。
+- `apps/server/src/app.ts`：`app.use("/api", apiTokenGuard(apiToken))` 挂全部 /api 路由之前；`index.ts` 传 `config.apiToken`。
+- web：`apps/web/src/api/auth.ts`（`authHeaders()`）+ 7 个模块 `requestJson` 注入（未设置零行为变化）。
+- 测试：server 3 分支（默认直通 / 401 双态 / 通过+豁免）✓；web `auth.test.ts` 3 用例（未设置 / 设置 / 经 requestJson 实发头）✓；`mcpSecurity.test.ts` 复跑仍绿（未触碰其固定字面量）。
+
+## 已知限制（写入 docs/124）
+- `EventSource` 无法携带自定义头 → token 开启时 SSE 通道不受保护（文档化；不引入 polyfill、不改 stores）。
+- 比较为常量时间外简单比较（最小实现；内网/同机部署形态）。

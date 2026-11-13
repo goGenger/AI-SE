@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-10-14T16:37:18.755Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "be181954-94e2-42e8-a145-28b2b07d2279",
+      "workflowIds": [
+        "be181954-94e2-42e8-a145-28b2b07d2279"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 13,
+      "runCount": 10,
+      "taskStatuses": {
+        "SUCCESS": 8,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 408786,
+        "output": 19224
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1215591,
+      "errorTypes": {},
+      "failureSummary": "FR-1 separator row is implemented in src/render.mjs, the only file changed (src/parse.mjs is untouched per git diff). separatorRow(widths, align) emits exactly one entry per column: left -> :---, right -> ---:, center -> :--:, none -> ---, and then right-pads each entry with spaces to that column's T-08 width, last column included; the row is written as output line 2. Alignment lookup reads options.align only when it is an array, so a missing options object (including null/undefined), a missing align array, a missing per-column entry, an explicit none and any unknown value all default to ---, and align entries beyond the column count are ignored because iteration is bounded by the column count. Token resolution uses a frozen ALIGN_TOKENS table with Object.hasOwn plus a string-type guard, closing a prototype-chain trust-boundary hole (align ['constructor'] no longer resolves to Object and throws on padEnd), while the public renderTable(table, options) contract is preserved. npm run build and npm run lint both exit 0. Full node --test: 39 tests, 38 passed, 1 failed, 0 harness errors; all three AC-06 tests and 8 of 9 AC-07 tests pass. The one remaining failure is not a product defect: the out-of-scope test file test/render.separator.test.mjs uses a local isSeparatorLine helper with the regex ^\\|[:\\- ]+\\|$, which can only match a single-column separator line, so it returns false for the 3-column line-2 separator even though the renderer correctly places the separator on line 2. No multi-column separator string can satisfy that regex (interior pipes are excluded from the character class), so it cannot be fixed by backend code and no backend change can turn the suite green. Because the required fix lives in a test file that this backend task must not modify, I did not edit it and I am escalating for a test-fix task.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "render-core",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 408786,
+      "output": 19224
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "render-core": 1
+    }
+  }
+}

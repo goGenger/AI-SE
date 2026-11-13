@@ -1,0 +1,27 @@
+{
+  "taskCount": 71,
+  "taskStatuses": {
+    "SUCCESS": 63,
+    "FAILED": 7,
+    "WAITING_APPROVAL": 1
+  },
+  "errorTypes": {
+    "TIMEOUT": 3,
+    "VERIFICATION_FAILED": 2
+  },
+  "failureLayers": {
+    "planning": 0,
+    "verification": 2,
+    "agent": 3
+  },
+  "byCode": {
+    "TIMEOUT": {
+      "layer": "agent",
+      "count": 3
+    },
+    "VERIFICATION_FAILED": {
+      "layer": "verification",
+      "count": 2
+    }
+  }
+}

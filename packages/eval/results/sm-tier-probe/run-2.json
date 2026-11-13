@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-10-17T10:32:08.916Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "986ae8a6-c472-4529-873e-c97ca30290b4",
+      "workflowIds": [
+        "986ae8a6-c472-4529-873e-c97ca30290b4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 11,
+      "runCount": 4,
+      "taskStatuses": {
+        "READY": 1,
+        "FAILED": 1,
+        "PENDING": 9
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 79365652690763780,
+        "output": 10648555366645760
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 127005,
+      "errorTypes": {},
+      "failureSummary": "package.json exists and exposes all four required npm scripts: test (node --test), build, lint and typecheck. The only edit is adding the previously missing typecheck script, reusing the same node --check command list as build/lint. Existing script names (test/build/lint) and their semantics were left unchanged and no dependencies were added (the manifest still has no dependencies/devDependencies block). Verified callable: npm test / pnpm test run the test runner (2 tests, 2 passed, exit 0); npm run build, npm run lint and npm run typecheck each exit 0. Downstream TEST tasks can invoke pnpm test / pnpm build / pnpm lint / pnpm typecheck.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S1-store-update-remove",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 79365652690763780,
+      "output": 10648555366645760
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1-store-update-remove": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

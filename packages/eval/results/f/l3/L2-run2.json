@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-10-12T06:14:16.960Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "89ff21cf-2e52-453a-abf3-b99551b69ac4",
+      "workflowIds": [
+        "89ff21cf-2e52-453a-abf3-b99551b69ac4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 7,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 298602,
+        "output": 21198
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1098930,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added test/app.pending.test.mjs holding 20 skipped (pending) cases named for the out-of-slice ACs [AC-04..AC-08]: app persistence integration (AC-04/AC-05), PUT /items/:id overwrite/defaults/404/400 (AC-06), GET /stats (AC-07) and regression of GET/POST/DELETE /items (AC-08). Slice-1 stays green: npm test = 44 tests, 24 passed, 0 failed, 20 skipped, exit 0; npm run build and npm run lint both exit 0. No product code was modified (git status unchanged apart from the pre-existing slice-1 edits). Red evidence was captured by temporarily flipping the skip toggle (const PENDING) to false and running node --test --test-force-exit test/app.pending.test.mjs: 20 tests, 9 passed, 11 failed, exit 1 - PUT /items/:id returns 404 instead of 200/400, GET /stats returns 404, and DELETE aborts with uncaughtException 'remove 尚未实现'; the toggle was then restored to true. Note: the enforce-mode verifier expects the test command to fail (VACUOUS_TEST), which is unsatisfiable while the task requires these out-of-slice tests to be skipped so the slice-1 run stays green; fixTaskType=FEATURE_IMPLEMENTATION.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 298602,
+      "output": 21198
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

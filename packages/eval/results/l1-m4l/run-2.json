@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-19T09:36:30.782Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "b66e2e54-07b2-4757-8a4b-dbbc220ef8f4",
+      "workflowIds": [
+        "b66e2e54-07b2-4757-8a4b-dbbc220ef8f4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 10,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 3,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 4617985,
+        "output": 110505
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1150616,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "DATABASE slice for TaskBoard: the runtime config module (src/config.js) and JSON persistence store (src/store.js) fully satisfy the task acceptance criteria and are verified by focused tests. DATA_DIR parsing defaults to ./data and resolves an explicit override to an absolute path (path.resolve), rejecting NUL bytes; ensureDataDir creates the directory (recursive mkdir), asserts it is a directory and R_OK|W_OK writable. JsonStore keeps a single JSON data file (db.json) strictly inside DATA_DIR, loads it on startup (empty state on ENOENT, StoreError on corrupt JSON), and persists mutations with a same-directory temp file + fsync + rename atomic write so readers never see a half-written file. Restart with the same DATA_DIR reloads persisted users/tasks; only Node stdlib (node:fs, node:path, node:crypto) is used, with zero runtime dependencies. Changes this turn: hardened JsonStore.#writeAtomic so any failure (open/write/fsync/rename) removes the temp file and leaves the previously persisted state untouched, and added a store test proving concurrent updates are serialised into one consistent data file. Verification: node --test src/tests/store.test.js src/tests/config.test.js src/tests/persistence.test.js -> 17 tests, 17 passed, 0 failed, 0 errors; node src/scripts/lint.js -> exit 0. Note: the two new end-to-end [AC-04] HTTP tests in src/tests/ac04-data-security.test.js still fail with 404 because POST /api/register is not wired into createServer; that wiring is a BACKEND task and is out of scope for this DATABASE slice (the storage layer already hashes passwords via scrypt and never persists plaintext).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S2",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 2,
+      "verificationUnavailableByType": {
+        "DATABASE": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 4617985,
+      "output": 110505
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 2,
+    "verificationUnavailableByType": {
+      "DATABASE": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S2": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

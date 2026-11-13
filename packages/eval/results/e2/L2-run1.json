@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-10-07T11:47:55.925Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "d942adf7-ef2d-4407-b3ce-b4a49e87ec26",
+      "workflowIds": [
+        "d942adf7-ef2d-4407-b3ce-b4a49e87ec26"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 5,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 175251,
+        "output": 17696
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 824537,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Delivered AC-numbered unit tests for src/persist.mjs and store serialization in test/persist.test.mjs (18 tests covering AC-01..AC-10) using OS temp dirs/files only, no external services. Red light shown first: the identical test file was run against an isolated pre-implementation baseline (original throwing stubs for loadData/saveData/createStore.toJSON) staged under test/redlight, producing 16 failures/18 (AC-01..AC-06, AC-08..AC-10 all failed with loadData/saveData/toJSON not implemented); the two AC-07 cases turned green early only because their assert.rejects can be satisfied by a stub, while their substantive failure-path assertions only pass on the real atomic implementation. No product code was modified (git status shows only src/persist.mjs and src/store.mjs modified by dependency tasks T3/T4/T5; test/ files are mine). Final verification against the real tree: npm test => 19/19 pass (18 new + 1 pre-existing app test), npm run build clean, npm run lint clean. All scratch/baseline files were removed; test/ contains only app.test.mjs and persist.test.mjs. fixTaskType: NONE (no product defect found; the earlier verification red-light failure was an artifact of the implementation already having landed before this test task ran, not a product bug)."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 175251,
+      "output": 17696
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

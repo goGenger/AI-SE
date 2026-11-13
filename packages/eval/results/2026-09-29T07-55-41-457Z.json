@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-09-29T07:55:41.457Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "7427dae6-ebd6-413c-958e-a138a5c86da3",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 7,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "RUNNING": 1
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 106102,
+        "output": 6173
+      },
+      "estimatedCostUsd": null,
+      "durationMs": null,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "8cd648d9-3468-43e3-9360-80440e12c80a",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 6,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 6
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 4,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 80097,
+        "output": 8642
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 390633,
+      "errorTypes": {},
+      "failureSummary": null
+    }
+  ],
+  "failures": [
+    {
+      "fixtureId": "S2",
+      "stage": "planning",
+      "message": "规划失败：92df0d15-bcec-4131-b1a6-abf2a7d56f74"
+    }
+  ],
+  "summary": {
+    "runs": 2,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.7142857142857143,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 186199,
+      "output": 14815
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 2,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

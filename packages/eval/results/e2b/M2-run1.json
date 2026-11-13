@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T15:07:53.609Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "9e8e42f7-9528-4f3c-9615-0caef1122687",
+      "workflowIds": [
+        "9e8e42f7-9528-4f3c-9615-0caef1122687"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 7,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "READY": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 91390,
+        "output": 14944
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 561338,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/confirmed focused unit tests in test/render.test.mjs (new file only) covering FR-2 normalization and FR-3 column-width/padding as consumed through renderTable in src/render.mjs. Ten tests are named with their AC numbers ([AC-01]..[AC-10]) and cover: newline to <br> in header and data cells; pipe escaped as \\| in header and data cells; trim of leading/trailing whitespace; combined order on ' a\\nb | c ' (newline, then pipe escape, then trim); width = max(3, max normalized length including header); minimum width 3 for short content; a wide data cell driving the width; normalized (not raw) content driving width; right-padding of every column including the last; header-only tables with empty rows producing viable widths. Full suite passed: 11 tests, 11 passed, 0 failed, 0 errors. Since pnpm is not installed in this sandbox (pnpm: not found, exit 127), I ran the equivalent npm test which executes the identical node --test script. Red-light evidence: running the same 10 tests against the original unimplemented renderTable stub (built out-of-tree, workspace untouched) produced 0 passed / 10 failed, proving the tests are non-vacuous and would fail before the implementation. npm run build and npm run lint both pass (node --check clean). No product code was modified; git status shows only the new untracked test/render.test.mjs plus the pre-existing backend T4 change to src/render.mjs."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 91390,
+      "output": 14944
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

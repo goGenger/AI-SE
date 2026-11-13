@@ -1,0 +1,1050 @@
+{
+  "maxIterations": 50,
+  "scenarioA": {
+    "name": "A_baseline",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 4,
+        "inputMessages": 8,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 5,
+        "inputMessages": 10,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 6,
+        "inputMessages": 12,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 7,
+        "inputMessages": 14,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 8,
+        "inputMessages": 16,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 9,
+        "inputMessages": 18,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 10,
+        "inputMessages": 20,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 11,
+        "inputMessages": 22,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 12,
+        "inputMessages": 24,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 13,
+        "inputMessages": 26,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 14,
+        "inputMessages": 28,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 15,
+        "inputMessages": 30,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 16,
+        "inputMessages": 32,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 17,
+        "inputMessages": 34,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 18,
+        "inputMessages": 36,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 19,
+        "inputMessages": 38,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 20,
+        "inputMessages": 40,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 21,
+        "inputMessages": 42,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 22,
+        "inputMessages": 44,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 23,
+        "inputMessages": 46,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 24,
+        "inputMessages": 48,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 25,
+        "inputMessages": 50,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 26,
+        "inputMessages": 52,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 27,
+        "inputMessages": 54,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 28,
+        "inputMessages": 56,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 29,
+        "inputMessages": 58,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 30,
+        "inputMessages": 60,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 31,
+        "inputMessages": 62,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 32,
+        "inputMessages": 64,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 33,
+        "inputMessages": 66,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 34,
+        "inputMessages": 68,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 35,
+        "inputMessages": 70,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 36,
+        "inputMessages": 72,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 37,
+        "inputMessages": 74,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 38,
+        "inputMessages": 76,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 39,
+        "inputMessages": 78,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 40,
+        "inputMessages": 80,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 41,
+        "inputMessages": 82,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 42,
+        "inputMessages": 84,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 43,
+        "inputMessages": 86,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 44,
+        "inputMessages": 88,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 45,
+        "inputMessages": 90,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 46,
+        "inputMessages": 92,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 47,
+        "inputMessages": 94,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 48,
+        "inputMessages": 96,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 49,
+        "inputMessages": 98,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 2,
+    "status": "failed",
+    "errorCode": "TOOL_ERROR",
+    "iterations": 50,
+    "finalAnswerPreview": "",
+    "iterationTrail": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "scenarioB": {
+    "name": "B_counterfactual",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 6,
+    "status": "succeeded",
+    "iterations": 4,
+    "finalAnswerPreview": "",
+    "iterationTrail": [
+      2,
+      3,
+      4
+    ],
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "scenarioC": {
+    "name": "C_framework_default",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 4,
+        "inputMessages": 8,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 5,
+        "inputMessages": 10,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 6,
+        "inputMessages": 12,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 7,
+        "inputMessages": 14,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 8,
+        "inputMessages": 16,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 9,
+        "inputMessages": 18,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 10,
+        "inputMessages": 20,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 11,
+        "inputMessages": 22,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 12,
+        "inputMessages": 24,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 13,
+        "inputMessages": 26,
+        "gatewayCallsInRound": 0,
+        "returnedToolCalls": [
+          "submit_result"
+        ],
+        "additionalKwargKeys": [
+          "function_call",
+          "tool_calls"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 2,
+    "status": "unknown",
+    "finalAnswerPreview": "",
+    "iterationTrail": [],
+    "runError": "Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the \"recursionLimit\" config key.\n\nTroubleshooting URL: https://docs.langchain.com/oss/javascript/langgraph/GRAPH_RECURSION_LIMIT/\n",
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "verdict": {
+    "aSpins": true,
+    "aAllRoundsAfterFirstMadeZeroModelCalls": true,
+    "bRemovesSpin": true,
+    "cIsFrameworkRecursionLimit": true
+  }
+}

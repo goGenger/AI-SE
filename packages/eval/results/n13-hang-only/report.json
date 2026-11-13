@@ -1,0 +1,62 @@
+{
+  "probe": "n13-hang-only",
+  "generatedAt": "2026-10-20T03:46:00Z",
+  "purpose": "PL-M24 (2) 的可行性判定：能否把「文件里零个匹配测试、钩子挂死」与「匹配到的测试自己挂死」机械地分开。",
+  "verdict": "CANNOT — Node 的 TAP 对两者给出**同形**证据，任何「fail 0 + cancelled > 0 ⇒ 通过」的规则都会把「作用域测试真的挂死」一并放行。",
+  "artifacts": ["real-zero-match.txt", "real-matching.txt", "synthetic-test-hang.txt"],
+
+  "decisive_comparison": {
+    "A_realZeroMatch": {
+      "file": "real-zero-match.txt",
+      "workspace": "~/Desktop/study/ai-se-eval/E1/run-1 的副本（L1-M4m run 3 收尾态）",
+      "command": "node --test --test-name-pattern '\\[AC-99\\]' --test-timeout=5000 src/tests/login-contract.test.mjs",
+      "meaning": "该文件里**零个**测试匹配，文件级钩子挂死",
+      "tap": {
+        "entry": "not ok 1 - src/tests/login-contract.test.mjs",
+        "duration_ms": 5003.7,
+        "failureType": "testTimeoutFailure",
+        "plan": "1..1",
+        "tests": 1, "pass": 0, "fail": 0, "cancelled": 1
+      }
+    },
+    "B_syntheticMatchingTestHangs": {
+      "file": "synthetic-test-hang.txt",
+      "fixture": "test(\"[AC-01] a matching test that never returns\", async () => { setInterval(...); await new Promise(() => {}) })",
+      "command": "node --test --test-name-pattern '\\[AC-01\\]' --test-timeout=5000",
+      "meaning": "**匹配到的**测试自己挂死（事件循环被 setInterval 与挂起的 promise 拖住）",
+      "tap": {
+        "entry": "not ok 1 - hang.test.mjs",
+        "duration_ms": 5008.3,
+        "failureType": "testTimeoutFailure",
+        "plan": "1..1",
+        "tests": 1, "pass": 0, "fail": 0, "cancelled": 1
+      }
+    },
+    "difference": "只有条目名（路径不同）与耗时（5003 vs 5008）不同。**AC 标记在两者中都不出现**——匹配到的那个测试的名字 `[AC-01] ...` 根本没有被 Node 报出来，报的是**文件**。"
+  },
+
+  "control_realMatchingPasses": {
+    "file": "real-matching.txt",
+    "command": "node --test --test-name-pattern '\\[AC-10\\]' --test-timeout=5000 src/tests/login-contract.test.mjs",
+    "tap": { "tests": 1, "pass": 1, "fail": 0, "cancelled": 0 },
+    "reading": "同一文件在**有匹配**时不挂死、正常跑完 ⇒ 挂死确实由「零匹配 + 钩子」触发。这条是对照，不是反例。"
+  },
+
+  "why_the_designed_rule_is_unsafe": [
+    "设计中的判据是：`fail === 0` ∧ `cancelled > 0` ∧ `pass > 0` ∧ 解析到的 AC 全部 passed ∧ 至少一条 AC ∧ 存在不带 AC 标记的 `not ok` 条目。",
+    "在 A（零匹配文件挂死）下它成立 —— 这是想要的。",
+    "在 B（匹配测试挂死）下它**同样成立**：B 的 `not ok` 条目也不带 AC 标记，所以「不带 AC 标记的条目」= 文件级挂死**这个前提是假的**。",
+    "⇒ 只要同一任务里还有另一个通过的作用域测试（`pass > 0` ∧ 至少一条 AC passed），B 就会被判通过——**正是 `--test-force-exit` 被否掉的那扇门**（`docs/187` §4 判据 20d）。"
+  ],
+
+  "rejected_discriminators": {
+    "grep_prefilter": "已被数据否决（`login-contract.test.mjs` 对 `AC-01` 的 grep 命中 7 次、匹配测试名 0 个）。",
+    "tap_plan_line": "`1..N` 是**根计划**，不是每文件计划；A 与 B 都是 `1..1`，无区分力。",
+    "failure_type": "两者都是 `testTimeoutFailure`，无区分力。",
+    "duration": "两者都≈`--test-timeout`，无区分力。"
+  },
+
+  "remaining_safe_option": "维持 fail-closed（今天的现状）。PL-M24 (1) 已经保证这种失败是**有界且可归因**的（81.7s 退出、TAP 保住），代价是失败本身仍然发生。要让这一族不再致败，只能从**工作区侧**消除挂死（agent 写的测试文件在文件级 `before` 里 spawn 子进程），那是行为塑造，无法机械验证。",
+
+  "note": "本报告只做**可行性判定**，不含任何 `src/` 改动。"
+}

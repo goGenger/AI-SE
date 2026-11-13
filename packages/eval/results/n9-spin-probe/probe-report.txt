@@ -1,0 +1,106 @@
+=== N-9 PROBE: outer loop after an accepted submit_result (docs/179, PL-M16) ===
+node 22.22.2   maxIterations=50
+
+--- scenario A: baseline (current code) ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  submit_result     function_call,tool_calls  EMPTY    
+   2       4       0  submit_result     function_call,tool_calls  EMPTY    
+   3       6       0  submit_result     function_call,tool_calls  EMPTY    
+   4       8       0  submit_result     function_call,tool_calls  EMPTY    
+   5      10       0  submit_result     function_call,tool_calls  EMPTY    
+   6      12       0  submit_result     function_call,tool_calls  EMPTY    
+   7      14       0  submit_result     function_call,tool_calls  EMPTY    
+   8      16       0  submit_result     function_call,tool_calls  EMPTY    
+   9      18       0  submit_result     function_call,tool_calls  EMPTY    
+  10      20       0  submit_result     function_call,tool_calls  EMPTY    
+  11      22       0  submit_result     function_call,tool_calls  EMPTY    
+  12      24       0  submit_result     function_call,tool_calls  EMPTY    
+  13      26       0  submit_result     function_call,tool_calls  EMPTY    
+  14      28       0  submit_result     function_call,tool_calls  EMPTY    
+  15      30       0  submit_result     function_call,tool_calls  EMPTY    
+  16      32       0  submit_result     function_call,tool_calls  EMPTY    
+  17      34       0  submit_result     function_call,tool_calls  EMPTY    
+  18      36       0  submit_result     function_call,tool_calls  EMPTY    
+  19      38       0  submit_result     function_call,tool_calls  EMPTY    
+  20      40       0  submit_result     function_call,tool_calls  EMPTY    
+  21      42       0  submit_result     function_call,tool_calls  EMPTY    
+  22      44       0  submit_result     function_call,tool_calls  EMPTY    
+  23      46       0  submit_result     function_call,tool_calls  EMPTY    
+  24      48       0  submit_result     function_call,tool_calls  EMPTY    
+  25      50       0  submit_result     function_call,tool_calls  EMPTY    
+  26      52       0  submit_result     function_call,tool_calls  EMPTY    
+  27      54       0  submit_result     function_call,tool_calls  EMPTY    
+  28      56       0  submit_result     function_call,tool_calls  EMPTY    
+  29      58       0  submit_result     function_call,tool_calls  EMPTY    
+  30      60       0  submit_result     function_call,tool_calls  EMPTY    
+  31      62       0  submit_result     function_call,tool_calls  EMPTY    
+  32      64       0  submit_result     function_call,tool_calls  EMPTY    
+  33      66       0  submit_result     function_call,tool_calls  EMPTY    
+  34      68       0  submit_result     function_call,tool_calls  EMPTY    
+  35      70       0  submit_result     function_call,tool_calls  EMPTY    
+  36      72       0  submit_result     function_call,tool_calls  EMPTY    
+  37      74       0  submit_result     function_call,tool_calls  EMPTY    
+  38      76       0  submit_result     function_call,tool_calls  EMPTY    
+  39      78       0  submit_result     function_call,tool_calls  EMPTY    
+  40      80       0  submit_result     function_call,tool_calls  EMPTY    
+  41      82       0  submit_result     function_call,tool_calls  EMPTY    
+  42      84       0  submit_result     function_call,tool_calls  EMPTY    
+  43      86       0  submit_result     function_call,tool_calls  EMPTY    
+  44      88       0  submit_result     function_call,tool_calls  EMPTY    
+  45      90       0  submit_result     function_call,tool_calls  EMPTY    
+  46      92       0  submit_result     function_call,tool_calls  EMPTY    
+  47      94       0  submit_result     function_call,tool_calls  EMPTY    
+  48      96       0  submit_result     function_call,tool_calls  EMPTY    
+  49      98       0  submit_result     function_call,tool_calls  EMPTY    
+  rounds=49  gatewayCalls=2  status=failed code=TOOL_ERROR iterations=50
+  rounds requesting submit_result: 49/49  rounds with ZERO model calls: 48/49
+  state.iteration trail: [2,3,4,5,6,7,...50]
+  backend.toolResults (1):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file
+
+--- scenario B: counterfactual -- returned message rebuilt WITHOUT tool_calls ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  -                 function_call           EMPTY    
+   2       4       2  -                 function_call           EMPTY    
+   3       6       2  -                 function_call           EMPTY    
+  rounds=3  gatewayCalls=6  status=succeeded code=- iterations=4
+  rounds requesting submit_result: 0/3  rounds with ZERO model calls: 0/3
+  state.iteration trail: [2,3,4]
+  backend.toolResults (3):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file | round2:read_file | round3:read_file
+
+--- scenario C: graph invoked WITHOUT recursionLimit (pre-PL-M14 condition) ---
+ rnd  inMsgs  calls  returnedToolCalls  additionalKwargKeys     content  preview
+   1       2       2  submit_result     function_call,tool_calls  EMPTY    
+   2       4       0  submit_result     function_call,tool_calls  EMPTY    
+   3       6       0  submit_result     function_call,tool_calls  EMPTY    
+   4       8       0  submit_result     function_call,tool_calls  EMPTY    
+   5      10       0  submit_result     function_call,tool_calls  EMPTY    
+   6      12       0  submit_result     function_call,tool_calls  EMPTY    
+   7      14       0  submit_result     function_call,tool_calls  EMPTY    
+   8      16       0  submit_result     function_call,tool_calls  EMPTY    
+   9      18       0  submit_result     function_call,tool_calls  EMPTY    
+  10      20       0  submit_result     function_call,tool_calls  EMPTY    
+  11      22       0  submit_result     function_call,tool_calls  EMPTY    
+  12      24       0  submit_result     function_call,tool_calls  EMPTY    
+  13      26       0  submit_result     function_call,tool_calls  EMPTY    
+  rounds=13  gatewayCalls=2  status=unknown code=- iterations=-
+  rounds requesting submit_result: 13/13  rounds with ZERO model calls: 12/13
+  runError: Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the "recursionLimi
+  backend.toolResults (1):
+    toolName=read_file success=true data={"path":"package.json","content":"PROBE_FILE_LINE_ONE\nPROBE
+  custom tools exposed to the inner agent: git_status, git_diff, run_unit_test, run_lint, run_build, submit_result
+  backend tool_call_started events: round1:read_file
+
+--- VERDICT ---
+  A: 49 rounds, status=failed, code=TOOL_ERROR; all rounds after the first made 0 model calls = true
+  A spins to the guard: true
+  B: 3 rounds, status=succeeded, code=- (fix removes the spin: true)
+  C: 13 rounds, status=unknown, code=-, error=Recursion limit of 25 reached without hitting a stop condition. You can increase
+  C died on the framework recursion limit: true (=> N-7 was this same spin cut short: true)

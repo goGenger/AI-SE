@@ -1,0 +1,92 @@
+=== N-6 RECURRENCE PROBE (docs/181, PL-M17) ===
+node 22.22.2   bodies written to packages/eval/results/n6-recurrence-probe-after/captured-bodies.json
+gateway rule: reject when an assistant message has tool_calls but no reasoning_content
+
+--- request #1  scenario=A_all_reasoning  turn=0  accepted ---
+  messages=3
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+
+--- request #2  scenario=A_all_reasoning  turn=1  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=Y reasoning=text   
+    [4] role=tool      tool_calls=n reasoning=absent  1 PROBE_FILE_LINE_ONE 2 PROBE_F
+
+--- request #3  scenario=A_all_reasoning  turn=2  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=n reasoning=text   
+    [4] role=user      tool_calls=n reasoning=absent Your previous reply contained no
+
+--- request #4  scenario=B_reasoning_stops  turn=0  accepted ---
+  messages=3
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+
+--- request #5  scenario=B_reasoning_stops  turn=1  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=Y reasoning=text   
+    [4] role=tool      tool_calls=n reasoning=absent  1 PROBE_FILE_LINE_ONE 2 PROBE_F
+
+--- request #6  scenario=B_reasoning_stops  turn=2  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=n reasoning=absent 
+    [4] role=user      tool_calls=n reasoning=absent Your previous reply contained no
+
+--- request #7  scenario=C_no_reasoning_at_all  turn=0  accepted ---
+  messages=3
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+
+--- request #8  scenario=C_no_reasoning_at_all  turn=1  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=Y reasoning=empty  
+    [4] role=tool      tool_calls=n reasoning=absent  1 PROBE_FILE_LINE_ONE 2 PROBE_F
+
+--- request #9  scenario=C_no_reasoning_at_all  turn=2  accepted ---
+  messages=5
+    [0] role=system    tool_calls=n reasoning=absent [{"type":"text","text":"Change o
+    [1] role=system    tool_calls=n reasoning=absent Change only backend files. Valid
+    [2] role=user      tool_calls=n reasoning=absent probe task
+    [3] role=assistant tool_calls=n reasoning=absent 
+    [4] role=user      tool_calls=n reasoning=absent Your previous reply contained no
+
+=== SCENARIO RESULTS ===
+  A_all_reasoning
+    status=succeeded
+    gatewayCalls=3 rejections=0 requestsHittingRule=0
+
+  B_reasoning_stops
+    status=succeeded
+    gatewayCalls=3 rejections=0 requestsHittingRule=0
+
+  C_no_reasoning_at_all
+    status=succeeded
+    gatewayCalls=3 rejections=0 requestsHittingRule=0
+
+=== VERDICT ===
+  A control (every response carries reasoning): rule predicate met in 0 request(s), gateway rejections 0
+  B reasoning stops mid-conversation: rule predicate met in 0 request(s), gateway rejections 0
+  C no reasoning at all: rule predicate met in 0 request(s), gateway rejections 0
+
+  H-A holds if A meets the predicate 0 times while B/C meet it and are rejected.
+  If H-A holds, the platform cannot fix it by rebuilding a message: the field was
+  never returned by the gateway for that turn, so no rebuild can restore it.
+===============================================

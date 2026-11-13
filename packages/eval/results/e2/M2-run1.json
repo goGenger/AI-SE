@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:32:32.764Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "d1d56cba-989c-4938-b94e-dbe9df3c2077",
+      "workflowIds": [
+        "d1d56cba-989c-4938-b94e-dbe9df3c2077"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 75116,
+        "output": 6488
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 391274,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Hardened the AC-numbered unit tests for renderTable in test/render.test.mjs and proved them red-first against the pre-implementation skeleton, then green against task-2's renderTable. Scope kept to the skeleton slice. Commands: node --test (the exact body of the pnpm test script) reports 8 tests, 8 pass, 0 fail, 0 errors; node --check src/render.mjs && node --check src/parse.mjs (bodies of build/lint) exit 0. pnpm itself is not installed in the sandbox (pnpm test -> sh: pnpm: not found, exit 127), so the pnpm test/build/lint scripts were exercised via their exact underlying commands. Coverage: [AC-01] output row count equals 2 + rows.length with exact order header, separator, then data rows in table.rows order (2-row fixture and 1-row case; index assertions); [AC-02] rows joined by exactly one \\n per join (rows.length + 1 total newlines), no trailing newline, no \\n\\n, exact string match; [AC-03] separator has one column per header.count and every column is exactly --- (2 columns and 3 columns); [AC-04] empty rows yields exactly two lines header+separator joined by \\n, single newline, no data row; [AC-05] default options only (no align variants) and parse.mjs untouched (round-trip via parseTable). TDD red proof: with the original src/render.mjs skeleton (renderTable throwing renderTable 尚未实现) restored in an isolated copy with the same test file, the suite failed 7/7 (ERR_TEST_FAILURE), confirming the tests are non-vacuous and do fail without the implementation. No product code was modified: git status shows only test/render.test.mjs (untracked) plus src/render.mjs (task-2's change), and git diff for src/parse.mjs is empty. No fix required; fixTaskType NONE."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 75116,
+      "output": 6488
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-10-13T18:11:17.625Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "236ff199-c360-4ee2-8ad9-3edf1f30802b",
+      "workflowIds": [
+        "236ff199-c360-4ee2-8ad9-3edf1f30802b",
+        "64cc8e78-0d4d-4a9d-b452-d178ecfe7383",
+        "0fa3089a-f591-48bc-af1b-9cfa5a2c7965"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 38,
+      "runCount": 41,
+      "taskStatuses": {
+        "SUCCESS": 36,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 2582551,
+        "output": 112664
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 6460585,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "TIMEOUT": 1
+      },
+      "failureSummary": "Slice-3 (create + list/search) integration verification and regression re-run completed against the implemented code. (1) Slice-scoped run: node --test over test/ac14-create-task.test.js, ac15-title-length-boundary.test.js, ac16-title-trim-blank.test.js, ac17-title-unicode-emoji.test.js, ac18-due-date-validation.test.js, ac23-list-search-isolation.test.js => 35 tests, 35 passed, 0 failed, 0 errors (AC-14 x3, AC-15 x7, AC-16 x4, AC-17 x5, AC-18 x7, AC-23 x9); all names containing their AC tag are green. (2) Full regression: pnpm test => 67 tests, 67 passed, 0 failed, 0 errors (adds AC-01..AC-13, AC-04 persistence and AC-30 project contract). (3) Temporary DATA_DIR: every slice test file calls fs.mkdtempSync under os.tmpdir(), sets process.env.DATA_DIR plus a fixed TOKEN_SECRET before requiring src/server.js, listens on port 0 on 127.0.0.1 and closes the server and removes the temp dir in after(); so the real service runs against a throwaway data dir. (4) Create plus list/search smoke is exercised by those same real-server suites: register 201 -> login 200 -> POST /api/tasks 201 -> GET /api/tasks 200, asserting the fixed six-field task object (id UUID, title, dueDate, done, createdAt, updatedAt) with ISO 8601 createdAt/updatedAt, case-insensitive q substring filtering over title only, owner-only listing (user B never sees user A tasks, and vice versa), and hostile q (quotes, semicolons, SQL fragments, control characters, malformed percent-encoding) returning 200 or a canonical 4xx and never 5xx. No product code was modified by this task (zero edits, zero new files). No test failure was observed, so no fix is required: fixTaskType NONE. Only caveat recorded: the enforce check for this TEST task compares against expected=fail, so a fully green suite trips the VACUOUS_TEST label; that is a harness expectation mismatch, not a product or test defect.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "slice-3-create-list-search",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 2582551,
+      "output": 112664
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-create-list-search": 1
+    }
+  }
+}

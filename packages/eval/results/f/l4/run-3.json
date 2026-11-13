@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-10-13T19:26:58.891Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "3e264168-27da-4fd5-8c61-b71a8194f1fb",
+      "workflowIds": [
+        "3e264168-27da-4fd5-8c61-b71a8194f1fb",
+        "67781741-b224-4794-8f4d-01fa0ea67e02"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 25,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 12,
+        "READY": 2,
+        "FAILED": 1,
+        "PENDING": 10
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 759859,
+        "output": 57731
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2729410,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "FR-2 contract suite test/ac-09-login-auth-token.test.js exists with one AC-tagged case per AC ([AC-01], [AC-09], [AC-10], [AC-11], [AC-12], [AC-13]) and runs deterministically GREEN, not red: node --test test/ac-09-login-auth-token.test.js -> tests 6, pass 6, fail 0, cancelled 0, skipped 0, todo 0, exit 0 (two identical runs); full pnpm test -> tests 44, pass 44, fail 0, exit 0. The task's only deliverable is a failing test-first baseline, but the FR-2 implementation already exists in this workspace (src/server.js implements POST /api/login and the Bearer auth middleware; src/token-service.js implements HMAC-SHA256 issue/verify), so the suite cannot go red without modifying product code, which is forbidden. The automated red-light gate therefore failed with failureCode VACUOUS_TEST (command pnpm test, expected non-zero exit, observed exit 0, reason: red-light check passed without implementation). I am reporting this honestly instead of claiming a red baseline I could not obtain. No product defect was found for AC-01/09/10/11/12/13; fixTaskType: NONE (the blocker is task sequencing / environment, not code). Exact evidence from the gate: expected = fail, actual exitCode = 0, AC-01/09/10/11/12/13 all passed.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "slice-4-task-lifecycle-isolation",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 759859,
+      "output": 57731
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-task-lifecycle-isolation": 1
+    }
+  }
+}

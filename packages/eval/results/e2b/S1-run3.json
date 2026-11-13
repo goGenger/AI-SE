@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T13:25:45.219Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "f8a9c188-937a-48d9-aaed-65fc3c31e384",
+      "workflowIds": [
+        "f8a9c188-937a-48d9-aaed-65fc3c31e384"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "READY": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 109341,
+        "output": 9848
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 464223,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Authored the AC-numbered unit suite test/slugify.acceptance.test.mjs covering FR-1 (lowercase), FR-2 (outer whitespace trim), FR-3 (contiguous whitespace incl. space/tab/newline to a single hyphen), FR-4 (disallowed symbols _ . / + = to hyphen) and FR-8 (Unicode letters/digits incl. Chinese preserved). It contains 12 tests named [AC-01]..[AC-12], one per acceptance criterion, and asserts the exact expected slug strings. Product code was NOT modified: git status shows only untracked test files, and src/slugify.mjs is unchanged by this task. Red-first evidence: because src/slugify.mjs was already implemented (HEAD baseline is a throwing stub and the working tree already holds the implementation), the suite was executed against a substitution stub by injecting a node loader hook in memory only (no file writes). Exact red run: node --import <in-memory loader mapping slugify.mjs to export function slugify(){throw new Error()} --test test/slugify.acceptance.test.mjs -> tests 12, pass 1, fail 11; AC-01..AC-11 failed with ERR_TEST_FAILURE thrown from the stub, AC-12 passed because it only asserts typeof slugify === 'function' (it does not call the function). Exact green run of the same file unmodified: node --test test/slugify.acceptance.test.mjs -> tests 12, pass 12, fail 0, exit 0. Full project command npm test (node --test) -> tests 39, pass 39, fail 0, cancelled 0, skipped 0, todo 0, exit 0 (12 new + 27 pre-existing). Quality gates: npm run build (node --check src/slugify.mjs) exit 0; npm run lint (node --check src/slugify.mjs) exit 0. No failures, no errors, and no product change is required; fixTaskType: NONE."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 109341,
+      "output": 9848
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

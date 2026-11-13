@@ -1,0 +1,29 @@
+{
+  "name": "@ai-se/agent-core",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/tool-runtime build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/tool-runtime build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/observability": "workspace:*",
+    "@ai-se/sandbox": "workspace:*",
+    "@ai-se/shared": "workspace:*",
+    "@ai-se/tool-runtime": "workspace:*",
+    "@langchain/core": "^1.2.9",
+    "@langchain/langgraph": "^1.4.14",
+    "@langchain/openai": "^1.5.11",
+    "deepagents": "^1.13.3",
+    "pino": "10.3.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@ai-se/visual": "workspace:*",
+    "@types/node": "22.20.1"
+  }
+}

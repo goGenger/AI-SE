@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-10-29T01:39:05.468Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "bb5e495a-941e-40cc-a458-ad165328f324",
+      "workflowIds": [
+        "bb5e495a-941e-40cc-a458-ad165328f324"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 11,
+      "runCount": 9,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 3,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 4977785,
+        "output": 97902
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1352921,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "LLM_ERROR": 3
+      },
+      "failureSummary": "Agent run failed before returning a result (the model call failed).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-scaffold-list",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 4977785,
+      "output": 97902
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "LLM_ERROR": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-scaffold-list": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

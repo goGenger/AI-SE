@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-10-18T03:52:42.723Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "25af2aaf-ee20-4083-9c74-5a0d2dad196b",
+      "workflowIds": [
+        "25af2aaf-ee20-4083-9c74-5a0d2dad196b",
+        "a0434bc9-26ba-4f00-89a0-213511c4834a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 19,
+      "runCount": 24,
+      "taskStatuses": {
+        "SUCCESS": 17,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 13889679,
+        "output": 466028
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3055407,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "EMPTY_FINAL_ANSWER": 1
+      },
+      "failureSummary": "Ran the full suite and audited AC naming / coverage for slice-2 (FR-7 persistence and data security) without modifying any product code. pnpm test (node --test) exits 0: tests 50, suites 0, pass 50, fail 0, cancelled 0, skipped 0, todo 0, duration ~1800 ms. No failures to triage; fixTaskType NONE. [AC-04] naming audit: exactly 25 test case names carry the [AC-04] identifier across test/atomic-write.test.js (6), test/data-dir-persistence.test.js (5), test/persistence/security.test.js (6), test/signing-key-persistence.test.js (4) and src/data-layer.test.js (4); the canonical plaintext-leak guard is named [AC-04][FR-7.3] recursive scan of every file under DATA_DIR finds no occurrence of the plaintext password P. Recursive-coverage verification: that guard uses listFilesRecursively (explicit stack walk that descends every subdirectory and skips symlinks) plus readAllDataFiles (reads every regular file as UTF-8), then filters content.includes(P) and asserts deepEqual(offenders, []), so it scans all files under DATA_DIR rather than only the users file. Red-capability (non-vacuity) verification: the [AC-04] cases statically import src/password-hash.js and src/atomic-store.js, so an absent implementation makes the file error (module not found) and the suite exits non-zero; the assertion is a real predicate, not always-true, so a store that persisted the plaintext would fail it. Demonstrated empirically by the audit probe (node --test qa-ac04-nonvacuity.spec.mjs), which reuses the identical predicate, plants the test plaintext only in a nested file and observes it flagged: 2 passed, 0 failed. Endpoint independence: no test file references /api/ or fetch(, and grep for skip, todo and .only( returned no matches, so no case is masked and none fails because of an unimplemented route. Sensitive-value check: the plaintext fixture occurs only in test source, and the captured stdout plus this summary contain no plaintext password and no signing-key value (only temp paths, uuids and hashes). NOTE / process issue: the engine red-light check runs pnpm test expecting failure and reports VACUOUS_TEST because the slice implementation already exists at audit time while the QA role forbids modifying or reverting product code, so a genuine red-first run cannot be produced from this task; recorded as a HIGH issue with a scheduling recommendation, not a product defect.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 12,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 13889679,
+      "output": 466028
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "EMPTY_FINAL_ANSWER": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 12,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

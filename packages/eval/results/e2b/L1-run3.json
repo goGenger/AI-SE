@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-10-07T16:36:48.624Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "2396738f-dfa5-437d-a5d4-8cfbf5f55f3c",
+      "workflowIds": [
+        "2396738f-dfa5-437d-a5d4-8cfbf5f55f3c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 6,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 160720,
+        "output": 11310
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 876227,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Slice-1 TEST slice complete. Added 13 AC-numbered tests in test/render.test.mjs ([AC-01]..[AC-13]) covering text escaping of & < > \\\" ' in title/heading/paragraph/link text, URL attribute escaping (& and \\\" only, other URL chars preserved), heading extraction, paragraph grouping and single-space joining, inline link conversion, empty/blank body handling, the fixed order (headings->paragraphs->links), and a renderPage document check asserting the escaped title appears in both <title> and <h1> plus the expected body fragment. Fleeting red-first: because backend tasks T2/T3/T4 had already implemented src/render.mjs before this TEST task was scheduled, I demonstrated red against the unimplemented module by pointing a throwaway copy of the AC assertions at a temp stub mirroring HEAD's unimplemented render.mjs (renderPage throws, escape helpers absent); run produced 0 pass / 1 fail (SyntaxError: no export named escapeAttributeUrl). The temp files were then fully deleted and the workspace restored. Product code was never modified (git status shows only the pre-existing src/render.mjs and src/build.mjs backend edits plus test files). Final state: npm test (node --test) = 15 tests, 15 pass, 0 fail; npm run lint = exit 0; npm run build = exit 0. No failing tests, fixTaskType: none."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 160720,
+      "output": 11310
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

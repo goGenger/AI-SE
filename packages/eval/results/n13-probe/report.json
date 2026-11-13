@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-10-20T03:39:06.744Z",
+  "invariants": {
+    "P0_UNSCOPED_EXITS": true,
+    "N13_REPRODUCED": true,
+    "P2_FIX_EXITS": true,
+    "P3_RED_LIGHT_HELD": true
+  },
+  "results": {
+    "P0": {
+      "exited": true,
+      "code": 0,
+      "tail": "\n> test\n> node --test\n\nTAP version 13\n# Subtest: [AC-01] a test that the scoped pattern does not match\nok 1 - [AC-01] a test that the scoped pattern does not match\n  ---\n  duration_ms: 99.958667\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 155.533792\n",
+      "command": "npm run test"
+    },
+    "P1": {
+      "exited": false,
+      "code": null,
+      "tail": "\n> test\n> node --test --test-name-pattern \\[AC-99\\]\n\nTAP version 13\n",
+      "command": "npm run test -- --test-name-pattern '\\[AC-99\\]'"
+    },
+    "P2": {
+      "exited": true,
+      "code": 1,
+      "tail": "\n> test\n> node --test --test-name-pattern \\[AC-99\\] --test-timeout=2000\n\nTAP version 13\n# Subtest: case.test.mjs\nnot ok 1 - case.test.mjs\n  ---\n  duration_ms: 2001.554083\n  type: 'test'\n  location: '/private/var/folders/lr/9nvdlt1x3fdchg9p65rj19rm0000gn/T/n13-probe-B46Em2/hook/case.test.mjs:1:1'\n  failureType: 'testTimeoutFailure'\n  error: 'test timed out after 2000ms'\n  code: 'ERR_TEST_FAILURE'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 0\n# cancelled 1\n# skipped 0\n# todo 0\n# duration_ms 2009.398416\n",
+      "command": "npm run test -- --test-name-pattern '\\[AC-99\\]' --test-timeout=2000"
+    },
+    "P3": {
+      "exited": true,
+      "code": 1,
+      "tail": "-test-timeout=2000\n\nTAP version 13\n# Subtest: [AC-01] a test body that never returns\nnot ok 1 - [AC-01] a test body that never returns\n  ---\n  duration_ms: 2.741791\n  type: 'test'\n  location: '/private/var/folders/lr/9nvdlt1x3fdchg9p65rj19rm0000gn/T/n13-probe-B46Em2/never/case.test.mjs:3:1'\n  failureType: 'cancelledByParent'\n  error: 'Promise resolution is still pending but the event loop has already resolved'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    process.emit (node:events:519:28)\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 0\n# cancelled 1\n# skipped 0\n# todo 0\n# duration_ms 60.158042\n",
+      "command": "npm run test -- --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' --test-timeout=2000"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T08:29:39.527Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "e668402a-834c-4299-b763-00ce64aaa47c",
+      "workflowIds": [
+        "e668402a-834c-4299-b763-00ce64aaa47c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 83885,
+        "output": 10935
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 415206,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/expanded AC-numbered unit tests for the slugify base pipeline in test/slugify.test.mjs, covering every FR of this slice: FR-001 lowercase conversion (incl. case-less Unicode), FR-002 leading/trailing whitespace trim, FR-003 whitespace runs (space/tab/newline and mixtures) to a single hyphen, FR-004 symbols (_ . / @) to hyphens, FR-008 Unicode letter/digit preservation (标题, ١٢٣, abc123). Suite is runnable via the pnpm test script body (node --test) and passes 21/21. Failing-first was shown against a pre-implementation baseline stub: all 17 representative AC cases failed with Error: not implemented yet. No product code was modified."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 83885,
+      "output": 10935
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

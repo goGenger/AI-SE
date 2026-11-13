@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-10-14T19:28:14.722Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "226fe8be-6d24-4679-97de-ed85f82724b9",
+      "workflowIds": [
+        "226fe8be-6d24-4679-97de-ed85f82724b9",
+        "1e122646-984d-442a-b67b-9a6eea5e85a8",
+        "3cd8e320-c493-4a30-b906-a6f51056ace5"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 38,
+      "runCount": 39,
+      "taskStatuses": {
+        "SUCCESS": 38
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 1547242,
+        "output": 79294
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1984225,
+      "errorTypes": {},
+      "failureSummary": null,
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "verify-toolchain",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 1547242,
+      "output": 79294
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "verify-toolchain": 1
+    }
+  }
+}

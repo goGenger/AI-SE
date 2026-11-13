@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: src/tests/login-contract.test.mjs
+not ok 1 - src/tests/login-contract.test.mjs
+  ---
+  duration_ms: 5002.0325
+  type: 'test'
+  location: '/private/tmp/n13-e1/run/src/tests/login-contract.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 5000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 0
+# cancelled 1
+# skipped 0
+# todo 0
+# duration_ms 5007.644375

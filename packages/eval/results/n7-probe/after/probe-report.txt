@@ -1,0 +1,15 @@
+=== N-7 probe: outer AgentGraph step ceiling ===
+maxIterations requested : 50
+status                  : failed
+error code              : TOOL_ERROR
+error message           : Agent reached max iterations
+agentNode executions    : 50   (= provider invocations = loop iterations)
+toolsNode executions    : 50
+approx. supersteps      : 101   (agentNode + toolsNode + START)
+iterations reported     : 50
+bound tools             : 11
+events                  : 152
+
+--- VERDICT ---
+N7-FIXED    the graph ran to the platform's own guard and reported TOOL_ERROR
+            at 50 iterations. The framework limit no longer binds.

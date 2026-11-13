@@ -1,0 +1,89 @@
+{
+  "probe": "n13-e1-workspace",
+  "generatedAt": "2026-10-20T02:47:00Z",
+  "purpose": "PL-M20 / N-13 的缺失产物：在【真实 E1 工作区】上跑带 --test-timeout 的作用域命令，记退出码与耗时。docs/188 E2E 段勘误块指定的收口条件。",
+  "workspace": "~/Desktop/study/ai-se-eval/E1/run-1",
+  "workspaceNote": "L1-M4m run 3 收尾时的真实工作区（mtime 2026-10-20 04:42 CST）。17 个 src/tests/*.test.mjs + src/server.mjs。测量在副本上进行（/tmp/n13-e1/run），原工作区未被改动。",
+  "host": { "node": "v22.22.2", "cpus": 10 },
+  "productionCommandsFromDb": [
+    "pnpm test -- --test-name-pattern '\\[AC-07\\]|\\[AC-7\\]|\\[AC-08\\]|\\[AC-8\\]' --test-timeout=100000",
+    "pnpm test -- --test-name-pattern '\\[AC-09\\]|\\[AC-9\\]|\\[AC-12\\]|\\[AC-13\\]' --test-timeout=100000",
+    "pnpm test -- --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' --test-timeout=100000",
+    "pnpm test -- --test-name-pattern '\\[AC-02\\]|\\[AC-2\\]|\\[AC-03\\]|\\[AC-3\\]|\\[AC-05\\]|\\[AC-5\\]|\\[AC-06\\]|\\[AC-6\\]' --test-timeout=100000"
+  ],
+  "productionCommandsSource": "tasks.output->'verification'->'checks' of workflow 8b4b1811-145d-4a68-944d-1084cd2231c8 (L1-M4m run 3), timedOut=true rows",
+
+  "A1_productionShape_hostConcurrency": {
+    "command": "node --test --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' --test-timeout=100000",
+    "exited": true,
+    "code": 1,
+    "elapsedMs": 100478,
+    "tap": { "tests": 29, "pass": 25, "fail": 0, "cancelled": 4, "duration_ms": 100434 },
+    "cancelledFileEntries": [
+      "src/tests/login-contract.test.mjs (100006.6 ms)",
+      "src/tests/register-concurrency.test.mjs (100006.8 ms)",
+      "src/tests/register-contract.test.mjs (100004.3 ms)",
+      "src/tests/token-integrity.test.mjs (100002.8 ms)"
+    ],
+    "leakedServers": 4,
+    "reading": "在 10 核宿主机上退出（100.5 s < 120 s 预算）——**这就是探针从未发现生产失败的原因**"
+  },
+  "A2_legacyShape_hostConcurrency": {
+    "command": "node --test --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]'",
+    "exited": false,
+    "elapsedMs": 130072,
+    "reading": "剥掉 --test-timeout 后 130 s 窗口内不退出 ⇒ 旧形状确实挂死，A1/A2 的唯一变量就是修复本身"
+  },
+
+  "B_serializationExperiment": {
+    "purpose": "证明 --test-timeout 是【按文件】计，且沙箱 1 CPU 使其【串行】",
+    "B2_defaultConcurrency": { "timeout": 5000, "elapsedMs": 5537 },
+    "B1_concurrency1": { "timeout": 5000, "elapsedMs": 21784 },
+    "ratio": 3.93,
+    "reading": "比值 ≈ 4 = 挂死文件数 ⇒ 每个挂死文件烧掉一整个 --test-timeout，concurrency=1 时串行累加"
+  },
+
+  "containerConfirmation": {
+    "command": "docker run --rm --cpus 1 --memory 512m --pids-limit 128 node:22-alpine node -e \"...os.availableParallelism()...\"",
+    "availableParallelism": 1,
+    "cpusLength": 10,
+    "reading": "沙箱 --cpus 1（packages/sandbox/src/index.ts:50）⇒ 容器内 availableParallelism()=1 ⇒ Node 串行跑测试文件"
+  },
+
+  "N_perScopePattern_serial_3sTimeout": {
+    "note": "在真实工作区上以 --test-concurrency=1 --test-timeout=3000 测量，elapsed/3000 ≈ 挂死文件数",
+    "P7_AC01": { "elapsedMs": 13939, "cancelled": 4, "fail": 0 },
+    "P8_AC07_AC08": { "elapsedMs": 13440, "cancelled": 4, "fail": 0 },
+    "P9_AC02_03_05_06": { "elapsedMs": 10910, "cancelled": 3, "fail": 0 },
+    "P10_AC09_12_13": { "elapsedMs": 10300, "cancelled": 3, "fail": 0 },
+    "reading": "N ∈ {3,4}；**每个作用域 # fail 0** —— 零真实失败，取消全部来自挂死"
+  },
+
+  "legitTestCostBaseline": {
+    "unscopedParallel": { "elapsedMs": 1244, "tests": 106, "pass": 106, "fail": 0 },
+    "unscopedSerial": { "elapsedMs": 4307, "tests": 106, "pass": 106, "fail": 0 },
+    "slowestSingleTestMs": 667,
+    "reading": "整份串行套件 4.3 s、最慢单测 0.67 s ⇒ 缩小每文件超时对正常测试无风险"
+  },
+
+  "grepPrefilterRefutation": {
+    "reading": "login-contract.test.mjs 对 AC-01 的 grep 命中 7 次（全在注释与 [AC-10] 一类串里），匹配的测试名 0 个 ⇒ 按文件内容预筛会原样留下全部挂死文件，该候选否决"
+  },
+
+  "mechanism": [
+    "1. --test-name-pattern 只筛测试名、文件照跑（PL-M20 §1，未变）",
+    "2. 作用域命中 0 个测试的文件仍执行文件级 before（spawn 真实 src/server.mjs），该钩子永不结束 ⇒ **该文件**烧掉一整个 --test-timeout",
+    "3. --test-timeout 是【按文件/按钩子】计，不是按整条命令计",
+    "4. 沙箱 --cpus 1 ⇒ 容器内 availableParallelism()=1 ⇒ Node 串行跑测试文件",
+    "5. ⇒ N 个挂死文件烧 N × 100 s。实测 N=3~4 ⇒ 300~400 s ≫ 120 s 预算 ⇒ CHECK_TIMEOUT",
+    "6. 宿主机 10 核上这些文件并发跑 ⇒ 100.5 s < 120 s ⇒ 退出正常 —— 探针与「E1 工作区实跑」都在宿主机上做，故从未看见生产失败"
+  ],
+
+  "candidatesResolved": {
+    "1_E1 vs synthetic fixture": "部分成立——真实工作区有 3~4 个挂死文件，探针夹具只有 1 个",
+    "2_multiple hanging files accumulate": "**确认**，累加的原因是沙箱 1 CPU 造成的串行化",
+    "3_insufficient margin": "在空闲多核宿主上**证伪**（100.5 s < 120 s）；但在 1 CPU 串行下与候选 2 合流"
+  },
+
+  "consequenceForL1_8": "本项只做到【有界失败】的一半；**检查仍然判失败**（exit 1），任务仍然 FAILED ⇒ 单靠缩小超时**不会**让 L1-8 达标。"
+}

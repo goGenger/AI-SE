@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-10-19T05:03:40.818Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "d9119cf4-13b6-45c5-b363-d742ea4ca177",
+      "workflowIds": [
+        "d9119cf4-13b6-45c5-b363-d742ea4ca177"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 26,
+      "runCount": 19,
+      "taskStatuses": {
+        "FAILED": 8,
+        "PENDING": 5,
+        "SUCCESS": 11,
+        "READY": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 8738573,
+        "output": 273967
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 4353329,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 8
+      },
+      "failureSummary": "Implemented the HTTP server, configuration bootstrap, JSON response/error-envelope utilities, method+path router and unauthenticated health endpoints for slice-1 (AC-01), using only Node standard library modules and logging to stdout only. New modules: src/config.mjs (validates PORT as a decimal port in [0,65535] with default 3000, resolves DATA_DIR with default ./data, rejects NUL-byte paths, ensureDataDir makes the directory recursively and verifies it is a directory), src/http/responses.mjs (sendJson with Content-Type application/json and Content-Length, sendError emitting the {\"error\":{\"code\",\"message\"}} envelope, sendHtml, sendNoContent, sendNotFound), src/http/router.mjs (Router with add/get/post/put/patch/delete, segment matching with :params, safe URL parsing, 8KB URL cap, trailing-slash normalization, HEAD-as-GET, and a JSON 404 NOT_FOUND for unknown paths or unsupported methods on known paths), and src/health.mjs (GET /healthz, /health, /ready all return 200 {\"status\":\"ok\"} with no auth and no DATA_DIR reads). src/server.js now builds the app from config/router/health, ensures DATA_DIR, wires POST /api/register and the home page with its four data-testid elements, maps ApiError to the PRD envelope, adds JSON clientError handling plus header/request/keep-alive timeouts, and keeps exported createApp/start/createRequestHandler for existing consumers. src/config.js and src/http-utils.js were converted to thin re-export shims so prior imports keep working; src/tools/typecheck.mjs now also loads and checks the new modules. No API contract changed: health bodies are byte-for-byte {\"status\":\"ok\"}, JSON responses keep application/json, unknown routes return 404 with the standard envelope, and package.json dependencies remain empty. Verification: pnpm test 37/37 pass (including all [AC-01] health cases and the existing registration suites), pnpm lint ok (14 files), pnpm typecheck ok (13 modules), pnpm build ok.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1",
+      "taskVerificationDivergence": 8,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 8,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 8738573,
+      "output": 273967
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 8
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 8,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 8,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

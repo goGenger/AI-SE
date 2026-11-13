@@ -1,0 +1,31 @@
+# D-1 证据：沙箱出口策略复核 + 出站阻断自动化（2026-10-07）
+
+## 变更
+- `packages/sandbox/src/__tests__/sandbox.test.ts`：+2 真 docker 用例（默认 limits 出站阻断；部分 limits 覆盖下仍阻断）。
+
+## 测试结果（vitest verbose）
+```
+✓ runs a command in a network-disabled docker sandbox 296ms
+✓ returns exit information when a sandbox command fails 169ms
+✓ blocks outbound network access with default limits (network: none) 203ms
+✓ keeps outbound blocked when only unrelated limits are overridden 217ms
+Test Files 1 passed | Tests 4 passed
+```
+
+## 反向对照（证明探针非空转）
+```
+docker run --rm --network bridge node:22-bookworm <EGRESS_PROBE>   -> exit 0（可达）
+docker run --rm --network none   node:22-bookworm <EGRESS_PROBE>   -> exit 3（网络错误）
+EGRESS_PROBE = node -e "const t=setTimeout(()=>process.exit(4),5000);fetch('http://1.1.1.1/').then(()=>{clearTimeout(t);process.exit(0)},()=>{clearTimeout(t);process.exit(3)})"
+```
+
+## 装配路径复核
+- 全仓 `"bridge"` 出现：仅 `packages/sandbox/src/index.ts:13`（类型定义）；无任何生产代码设置 bridge。
+- `packages/sandbox/src/index.ts` 无 `process.env` 使用（无环境变量覆盖通道）。
+- 服务端装配：`apps/server/src/index.ts:138` `new DockerSandbox({ allowedWorkspaceRoot, logger })` —— 不传 limits。
+
+## 门禁
+- `pnpm --filter @ai-se/sandbox typecheck` ✓ / `lint` ✓ / `prettier --check`（改动文件）✓
+
+## 结论
+- 默认 `network:"none"` 恒定；无覆盖路径；**无白名单需求**（交付链在宿主机执行，沙箱无出网场景）。出站阻断有自动化测试 + 反向对照。

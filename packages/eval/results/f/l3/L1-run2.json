@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-10-12T04:38:25.641Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "c46d8f72-7d2e-45fc-a66c-eda6cbc17ad5",
+      "workflowIds": [
+        "c46d8f72-7d2e-45fc-a66c-eda6cbc17ad5",
+        "f30080ff-8856-4c35-81ac-e4caa231d5a8"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 22,
+      "runCount": 23,
+      "taskStatuses": {
+        "SUCCESS": 22
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 1095854,
+        "output": 38188
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2282943,
+      "errorTypes": {
+        "TIMEOUT": 1
+      },
+      "failureSummary": null,
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "build-site",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 1095854,
+      "output": 38188
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "build-site": 1
+    }
+  }
+}

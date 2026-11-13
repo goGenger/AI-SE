@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T11:32:09.915Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "81cb4e63-82d6-4f0f-ba72-536acbad93de",
+      "workflowIds": [
+        "81cb4e63-82d6-4f0f-ba72-536acbad93de"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 62164,
+        "output": 7524
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 362051,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and verified escapeHtmlText, escapeAttrUrl, and parseInlineLinks in src/render.mjs only. escapeHtmlText escapes & first, then < > and both quotes (\" -> &quot;, ' -> &#39;), producing &amp; &lt; &gt; &quot; &#39; and not re-escaping the entities it generates. escapeAttrUrl escapes only & \" ' (ampersand, double quote, single quote) and leaves < and > untouched, for use inside double-quoted href values. parseInlineLinks scans a text node for [text](url) occurrences using a non-nested pattern, escapes surrounding non-link text with escapeHtmlText, renders each match as <a href=\"url\">text</a> with the link text escaped via escapeHtmlText and the url attribute-escaped via escapeAttrUrl, supports multiple links per line in input order, and leaves malformed or nested-bracket input untouched after text escaping. No new dependencies were added; src/frontmatter.mjs and the renderPage stub were left unchanged to preserve the API contract. Build (node --check) and lint both pass; the repo-wide test suite's remaining failures are the out-of-scope renderPage/buildSite stubs owned by other tasks."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 62164,
+      "output": 7524
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

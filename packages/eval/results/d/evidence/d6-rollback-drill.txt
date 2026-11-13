@@ -1,0 +1,35 @@
+# D-6 证据：冒烟失败回滚演练（坏版本）（2026-10-07）
+
+## 坏版本
+- 提交 `fea7e63e5370b84048c21410f4bdcd0e082c3b9f`（"drill: broken release (health failing in production)"）：仅当 `NODE_ENV === "production"` 时 `/healthz` `/health` `/ready` 返回 503。
+- 宿主机（无 NODE_ENV）六步链保持全绿 → CI 通过；容器内（Dockerfile `ENV NODE_ENV=production`）探针红。差异片段已存 `git show HEAD -- src/server.mjs`。
+
+## 工作流
+- workflow `be913755-719b-49f7-b1d6-c8b4b049800c`（plan v2，policy **ROLLBACK**/maxConcurrency=1）→ **SUCCESS**（收敛）。
+- 任务终态：CI:SUCCESS → DEPLOY-STAGING:**FAILED** → `DEPLOY-STAGING-ROLLBACK`:**SUCCESS**（引擎自动创建）。
+
+## CI
+```
+local-…（第 3 行） | SUCCESS | fea7e63e5370 | ai-se-app:fea7e63e5370b84048c21410f4bdcd0e082c3b9f   （坏版本镜像构建成功）
+```
+
+## 部署（两行，回滚语义完整）
+```
+staging | ROLLED_BACK | DEPLOY   | fea7e63e5370 | health_check {"/health": 503}                （失败部署，源行）
+staging | SUCCESS     | ROLLBACK | 2c4e474c5102 | health_check {"/ready": 200, "/health": 200} （回滚部署）
+```
+- 失败任务 output：`{rollbackRecommended: true, deploymentId: fbba6846…}`；源行 `rollback_version=2c4e474…`、`rollback_deployment_id=53be5c6b…`。
+- 断言核对：rollback.version == 2c4e474（上一成功版本）✓；operation=ROLLBACK ✓；status=SUCCESS ✓；源行 ROLLED_BACK ✓。
+
+## 事件序列（19 条）
+```
+WORKFLOW_CREATED → WORKFLOW_STARTED → TASK_READY → TASK_STARTED → CI_STARTED → CI_FINISHED → TASK_COMPLETED
+→ TASK_READY → TASK_STARTED → DEPLOYMENT_STARTED → DEPLOYMENT_FINISHED → TASK_FAILED
+→ ROLLBACK_TASK_CREATED → TASK_READY → TASK_STARTED → DEPLOYMENT_STARTED → DEPLOYMENT_FINISHED
+→ TASK_COMPLETED → WORKFLOW_COMPLETED
+```
+- `TASK_FAILED`（部署失败）→ **`ROLLBACK_TASK_CREATED`** → 恢复链 → `WORKFLOW_COMPLETED`（与 `deliveryLifecycle.e2e` 已证模式一致）。
+
+## 收敛现场
+- staging 容器当前镜像 = `ai-se-app:2c4e474c5102…`（好版本），`/health` 200、`/healthz {"status":"ok"}`。
+- 容器 startedAt 2026-10-07T05:02:05Z（回滚部署时点）。

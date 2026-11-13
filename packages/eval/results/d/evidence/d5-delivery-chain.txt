@@ -1,0 +1,46 @@
+# D-5 证据：交付链闭环演练（好版本）（2026-10-07）
+
+## 工作流
+- workflow `42b226c1-90a5-43b1-8241-fd1f82470eb3`（requirement `616bca59-272c-4cf0-b38d-b752c03027b6`，plan v1，policy FAIL_FAST/maxConcurrency=1）→ **SUCCESS**。
+- 任务终态：CI:SUCCESS → DEPLOY-STAGING:SUCCESS → VERIFY-STAGING:SUCCESS → DEPLOY-PRODUCTION:SUCCESS（经审批）。
+
+## 首次失败与处置（重要发现）
+- 首轮 workflow `32ac879b-0ab3-4f14-964d-a4d90c159dba`：CI:SUCCESS、**DEPLOY-STAGING:FAILED**（`DEPLOYMENT_FAILED /health failed`）。
+- 根因：容器 crash-loop —— `EACCES: permission denied, open '/data/.secret'`（E1 应用启动即写 `DATA_DIR/.secret`；镜像 `VOLUME /data` 的匿名卷为 root 属主，容器以 `node` 运行；平台 `LocalDockerOperations` 的 `docker run` **无卷/环境变量支持**，无法提供可写卷）。
+- 处置（记录为偏差）：演练仓库补一行 Dockerfile 修补（`RUN mkdir -p /data && chown node:node /data`，commit `2c4e474`，"drill: make /data writable for the non-root user"）→ 重跑为新 workflow。**夹具本体未动**；平台缺口登记为发现（见 docs/124，不顺手修）。
+
+## CI（真实本地六步 + 镜像）
+```
+ci_runs:
+  local-8dab7bc4… | SUCCESS | 420731e0ef5a | ai-se-app:420731e0ef5a33803d14686a10b8e102f30e9f32   （首轮，构建成功）
+  local-2354e6e6… | SUCCESS | 2c4e474c5102 | ai-se-app:2c4e474c51029a509f16dafe8b56f54734167c3d   （复跑）
+```
+- 镜像大小 161MB；构建自工作克隆 HEAD（`git rev-parse` 驱动命名）。
+
+## 部署（两环境）
+```
+staging    | SUCCESS | DEPLOY | 2c4e474c5102 | health_check {"/ready": 200, "/health": 200}
+production | SUCCESS | DEPLOY | 2c4e474c5102 | health_check {"/ready": 200, "/health": 200}
+```
+
+## 审批（生产闸门）
+- approvals：`656ea3d2-9212-45cc-a64a-e551cc023637` → **APPROVED**（"Task requires human approval"，任务级）。
+
+## 事件序列（22 条，全链留痕）
+```
+WORKFLOW_CREATED → WORKFLOW_STARTED → TASK_READY → TASK_STARTED → CI_STARTED → CI_FINISHED → TASK_COMPLETED
+→ TASK_READY → TASK_STARTED → DEPLOYMENT_STARTED → DEPLOYMENT_FINISHED → TASK_COMPLETED
+→ TASK_READY → TASK_STARTED → RELEASE_VERIFIED → TASK_COMPLETED
+→ APPROVAL_REQUIRED → APPROVAL_GRANTED → TASK_STARTED → DEPLOYMENT_STARTED → DEPLOYMENT_FINISHED
+→ TASK_COMPLETED → WORKFLOW_COMPLETED
+```
+
+## 端点与容器现场
+```
+staging    http://127.0.0.1:18080: /health 200, /ready 200, /healthz {"status":"ok"}
+production http://127.0.0.1:18081: /health 200, /ready 200
+docker ps: ai-se-e1-staging  (0.0.0.0:18080->3000) ai-se-app:2c4e474c5102…
+           ai-se-e1-production (0.0.0.0:18081->3000) ai-se-app:2c4e474c5102…
+```
+- 部署动作全部由平台触发（deployments 行携带 workflowRunId/taskId/agentRunId 链）；手工操作仅只读证据采集。
+- 观察（登记）：`checkEndpoint` 失败日志出现 `"/health: [object Object]"`（deliveryAdapters 错误对象字符串化欠佳）；`ai-se-app:03e45f23…` 为既存镜像（非本次产生）。

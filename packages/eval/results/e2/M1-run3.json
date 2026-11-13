@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:23:59.384Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "39a20506-9b94-4d37-846c-af1c715f1010",
+      "workflowIds": [
+        "39a20506-9b94-4d37-846c-af1c715f1010"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 3,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 61670,
+        "output": 3808
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 389043,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Verified the store.update/store.remove test suite and demonstrated red-first behavior. test/store.test.mjs contains AC-numbered tests [AC-01]-[AC-07] exercising store.update(id, patch) and store.remove(id) directly through the public store API using only the existing node:test and node:assert/strict (no new framework or dependency). Coverage: update with title only [AC-01], done only [AC-02], both fields [AC-03]; updated object returned with only provided fields changed and other todos isolated [AC-04]; update with a nonexistent id does not throw [AC-05]; remove of an existing id makes the todo unavailable via get and list and removes only the target [AC-06]; remove with a nonexistent id does not throw [AC-07]. To address the prior red-light/vacuous-tests finding, I reproduced the pre-implementation placeholder store in a scratch directory outside the workspace (product code untouched) and ran the same test file against it: 9 tests, 0 passed, 9 failed with errors such as Got unwanted exception. Actual message: remove not implemented, proving the tests genuinely fail without the implementation. Against the current workspace the suite is green: node --test reports 11 tests, 11 passed, 0 failed. npm run lint and npm run build are both clean. pnpm is not installed in this sandbox, so the literal pnpm commands could not run; the identical script bodies were executed via npm run test/lint/build instead. No product code and no existing tests were modified."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 61670,
+      "output": 3808
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

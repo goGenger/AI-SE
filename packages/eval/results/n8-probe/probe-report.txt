@@ -1,0 +1,15 @@
+=== N-8 probe: is the token accounting linear in the iteration count? ===
+constant per-call usage: input=1000 output=200
+
+maxIter  calls  input_tokens        expected    ratio    status   code
+      2      2                 2000         2000   1.000e+0    failed  TOOL_ERROR
+      4      4                 4000         4000   1.000e+0    failed  TOOL_ERROR
+      8      8                 8000         8000   1.000e+0    failed  TOOL_ERROR
+     16     16                16000        16000   1.000e+0    failed  TOOL_ERROR
+     50     50                50000        50000   1.000e+0    failed  TOOL_ERROR
+
+--- VERDICT ---
+N8-LINEAR     every run reported exactly per_call * iterations.
+              The accumulator is NOT doubling; the blow-up seen in production
+              needs another explanation (the guard path itself, or the values
+              handed to it).

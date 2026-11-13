@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-21T23:45:13.208Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "d88b02f1-f138-404d-8923-2bca2c5a8dfa",
+      "workflowIds": [
+        "d88b02f1-f138-404d-8923-2bca2c5a8dfa",
+        "e18828c6-d57d-4b7d-b930-2a9248641b9d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 32,
+      "runCount": 24,
+      "taskStatuses": {
+        "SUCCESS": 18,
+        "FAILED": 6,
+        "PENDING": 7,
+        "READY": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 28834227,
+        "output": 383944
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3321488,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 5,
+        "TOOL_ERROR": 1
+      },
+      "failureSummary": "Persisted/security review of slice-1 (storage + password hashing) is complete; the blocking fix belongs in backend storage code, so a BACKEND task is needed. VERIFIED GOOD: (1) password.mjs uses scrypt N=2^14 r=8 p=1 with a fresh 16-byte crypto.randomBytes salt per hash and a 64-byte key, stored as scrypt$N$r$p$salt$hash, verified with crypto.timingSafeEqual, and parsePasswordHash fails closed on tampered/truncated/oversized parameter sets without throwing. (2) json-store.mjs writes <DATA_DIR>/db.json via a same-directory temp file opened wx 0600 + fsync + fs.rename, cleans the temp file on failure, serialises writes on a per-path promise queue, and loadStorage()/createJsonStore() re-read the same file so data survives a restart. (3) The register-facing path saveUser() strips password/password_plain/plain_password/passwordPlain/plainPassword before persistence, and the AC-04 test (test/ac04-data-dir-persistence.test.mjs, name contains AC-04) registers a user record, recursively scans every file under a temp DATA_DIR for the plaintext password, and reloads the store to assert id/username/username_normalized/password_hash still verify. (4) No secret logging: storage/security modules contain no console calls; server.mjs logs only DATA_DIR path, listen address, signal name and error name/code, and the 500 envelope uses a fixed message. NOT ACCEPTABLE YET: the storage boundary does not enforce the required user record shape and is not the last line of defence for plaintext, and the register write path does not exist yet, so the hash-before-write criterion is unverified. Because the reviewer may not modify files, the concrete fix list is delegated. Checks run: node --test 21/21 pass, lint 42/42, typecheck 9/9, build 53/53.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-auth",
+      "taskVerificationDivergence": 4,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 6
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 28834227,
+      "output": 383944
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 5,
+      "TOOL_ERROR": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 4,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 6
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-auth": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-10-06T12:55:39.065Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "b6712a14-5115-4f65-9829-8f601b6e68fe",
+      "workflowIds": [
+        "b6712a14-5115-4f65-9829-8f601b6e68fe"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 21,
+      "runCount": 17,
+      "taskStatuses": {
+        "SUCCESS": 15,
+        "FAILED": 1,
+        "PENDING": 4,
+        "READY": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 874754,
+        "output": 34591
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 4233624,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.8235294117647058,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 874754,
+      "output": 34591
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

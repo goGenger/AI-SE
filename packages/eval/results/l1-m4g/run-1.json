@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-10-17T14:56:54.672Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "de90fdb0-db45-4dfb-908f-d47bbe6f834d",
+      "workflowIds": [
+        "de90fdb0-db45-4dfb-908f-d47bbe6f834d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 11,
+      "runCount": 3,
+      "taskStatuses": {
+        "PENDING": 10,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 6703146,
+        "output": 1437707
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 297936,
+      "errorTypes": {},
+      "failureSummary": "S1 design specification delivered (engineering structure, route dispatch, container run contract). No business code written. The workspace is read-only for this agent, so the design is returned inline as a DOCUMENTATION artifact intended for docs/design/S1-skeleton.md. It covers all four task acceptance criteria: (1) module split and route dispatch, with /healthz,/health,/ready owned by routes/health, / owned by routes/home + views/home, dispatch in lib/router, and a unified 404 NOT_FOUND JSON envelope; (2) package.json contract with start=node src/server.js reading PORT default 3000, test=node --test, zero-exit lint/typecheck/build self-checks, empty dependencies, engines.node=22.x, CommonJS; (3) DATA_DIR assembly (local default ./data, /data in container, path.resolve, lazily created); (4) Dockerfile run contract (node:22-alpine, non-root USER node, VOLUME /data, ENV DATA_DIR=/data, EXPOSE 3000, CMD node src/server.js, stdout logs, no file redirection); (5) node:test organization with AC numbers embedded in test titles (AC-01 health, AC-21 home, AC-24/25/26/29 static Dockerfile contracts). Also includes a downstream interface list and acceptance mapping.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S1",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 6703146,
+      "output": 1437707
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-19T18:34:02.537Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "4860c374-b0bb-4fbf-9691-cdfe1ccb1974",
+      "workflowIds": [
+        "4860c374-b0bb-4fbf-9691-cdfe1ccb1974",
+        "48cd16a5-5434-4950-b212-bb47a04ae1f4",
+        "f45b6eb9-bc2f-434a-b4d8-cca9666ef044",
+        "716eb98d-c824-421e-9f06-93a2a71d9cd6"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 71,
+      "runCount": 70,
+      "taskStatuses": {
+        "SUCCESS": 63,
+        "FAILED": 7,
+        "WAITING_APPROVAL": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 77874028,
+        "output": 1005246
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 11220002,
+      "errorTypes": {
+        "TIMEOUT": 6,
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Added the fail-first test suite infrastructure/test/verify-contract.test.mjs (8 tests, all titled [FR-9.7]) for the local five-step build-contract runner and ran it: 8 of 8 fail because scripts/verify-contract.mjs does not exist, so the contract cannot yet be verified. No product code was created or modified; only the new test file was added. Full suite: node --test reports 42 tests, 34 pass, 8 fail, exit code 1; npm run typecheck still exits 0 and validates the new test file as syntax-valid with standard-library-only imports. Exact failure for every new test: AssertionError 'scripts/verify-contract.mjs is missing; the build-contract runner must be added at that path' (false !== true) raised in loadRunner at infrastructure/test/verify-contract.test.mjs:59. Required follow-up is a BUILD task that adds scripts/verify-contract.mjs with the contract the tests pin down: CONTRACT_STEPS = install (pnpm install --frozen-lockfile, offline false), lint, typecheck, test, build (each pnpm <script>, offline true) in that exact order; runContract({root, execute}) invoking each step once with context {cwd, env with CI=1, stdin: 'ignore', interactive: false}, returning {ok, exitCode, failedStep, steps:[{name, code}]}, stopping at the first non-zero code so no later step runs, and exitCode 0 only when all five pass; main(argv, options) returning 0 on success and 1 at the first failure while logging the failing step name. Note for the implementer: the root scripts/ directory is the path the tests require, but earlier slices reported that the workspace write policy only allows infrastructure/ plus root manifests; if scripts/ is still unwritable the delivery must either extend the policy or the tests must be updated in the same change. Additionally, the runner itself cannot be executed by this agent because subprocess/tool policy only permits project scripts, so the green phase must be confirmed by the BUILD task running node scripts/verify-contract.mjs (which is exactly what the tests validate in-process).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-runtime-ui",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 6
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": true
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 77874028,
+      "output": 1005246
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 6,
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 6
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-runtime-ui": 1
+    },
+    "stagingDeliveryRate": 1
+  }
+}

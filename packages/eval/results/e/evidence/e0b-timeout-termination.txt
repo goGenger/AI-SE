@@ -1,0 +1,38 @@
+# E-0(b) timeout termination propagation — repro, fix, verification (2026-10-07)
+
+## Symptom (C-6 ghosts, recorded earlier)
+timed_out agent_runs kept issuing tool calls for +2/+4/+10/+23 min past finished_at
+(e.g. run1 T-10 9fa23cee: tool calls 00:23:09 -> 00:37:01, 53 calls; run3 T-08 82220d3c
+still active at capture). timed_out runs also record token_usage = 0.
+
+## Root cause (reproduced deterministically)
+Deep-agent (professional) loops run inside `deepagents` createDeepAgent. The abort
+signal is passed as config.signal to `agent.invoke`, but it is NOT forwarded to the
+model calls inside the deep loop (verified: an abort-aware scripted model never sees
+options.signal and keeps being invoked), and tool dispatch had no abort gate. When the
+run timeout fires, the outer run settles while the inner loop continues orphaned.
+
+Repro (packages/agent-core/src/__tests__/timeoutTermination.test.ts), before fix:
+  AssertionError: expected 18 to be 4
+  - model.invocations frozen at run settle = 4, observed 18 after +900ms (14 leaked calls)
+  (run settles near the 250ms timeout; loop keeps calling the model for minutes)
+
+## Fix (minimal)
+- NEW packages/agent-core/src/professional/abortTermination.ts
+  `createAbortTerminationMiddleware(signal)`:
+    - beforeModel: on aborted -> jumpTo "end" (loop ends at the next model boundary);
+    - wrapToolCall: on aborted -> return a cancelled ToolMessage WITHOUT executing.
+- DeepAgentLLMProvider.invoke: middleware array now always includes the abort middleware
+  (composed with the existing submit-result termination middleware).
+- Semantics: calls already in flight at abort are "started pre-abort" and finish
+  naturally; after abort: zero new model calls, zero new tool executions, zero new
+  persisted receipts. Fallback "recorder rejection" layer NOT needed (root cause fixed).
+
+## Verification
+1) Repro after fix: PASS (settles near timeout; model.invocations, backend.iterations,
+   backend.toolResults all frozen post-timeout).
+2) Full agent-core suite: 21 files / 123 tests all green (includes provider, runner,
+   professional agent, scripted-model tests).
+3) agent-core typecheck / lint: exit 0. Prettier clean.
+4) Production wiring: ProfessionalAgent.ts:461 constructs DeepAgentLLMProvider, so the
+   server path picks up the middleware; server-suite + E1 batch will exercise it live.

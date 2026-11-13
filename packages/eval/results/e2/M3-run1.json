@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:58:31.650Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "a918900f-cb0c-4f78-8717-8c83ac48feff",
+      "workflowIds": [
+        "a918900f-cb0c-4f78-8717-8c83ac48feff"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 5,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 62496,
+        "output": 5824
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 232925,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented src/merge.mjs exporting a named ESM mergeConfig(base, override) plus an exported isPlainObject predicate (non-null, non-array). The previous attempt failed verification only because a protected test file (test/merge.test.mjs) had been edited; that file is now restored to its original content, so the working tree changes only the backend file src/merge.mjs. Merge semantics: both-sides-plain-object keys recurse and assign a newly built object (FR-1); undefined override keys are skipped, preserving base and omitting keys absent from base (FR-3); null override assigns null (FR-4); string/number/boolean and arrays replace directly (FR-5); base-only and override-only keys appear in the result; non-plain-object base/override returns a deep copy of override (deep copy of base when override is undefined). The result is a brand-new structure with deep copies, so neither input is mutated and no mutable nested reference is shared. Untrusted parsed-JSON keys are handled by writing __proto__ as an own data property to avoid prototype pollution while keeping normal-key behavior identical. Only backend files changed. Verified: npm run test (2/2 pass), npm run build (exit 0), npm run lint (exit 0), plus a focused acceptance script covering the subject predicate, FR-1/3/4/5, base-only/override-only keys, deep-copy branches, and no-mutation that printed ALL ACCEPTANCE CHECKS PASS."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 62496,
+      "output": 5824
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

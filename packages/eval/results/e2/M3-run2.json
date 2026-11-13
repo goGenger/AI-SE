@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T11:05:25.589Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "229fd3af-cbce-4c74-b16a-66e5af946da7",
+      "workflowIds": [
+        "229fd3af-cbce-4c74-b16a-66e5af946da7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 5,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 59554,
+        "output": 4341
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 290373,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented mergeConfig(base, override) in src/merge.mjs as an ESM named export. Added a plain-object predicate isPlainObject (non-null, non-array, typeof object) and a per-key merge loop honoring the required decision order: undefined override skipped so base value is preserved and the key is omitted when absent from base (FR-3); null override assigned (FR-4); both-sides-plain-object recurse into a freshly built merged object (FR-1); string/number/boolean override assigned directly (FR-5); base-only and override-only keys preserved. Neither input is mutated: a new object is built and nested objects/arrays are deep-copied so no mutable reference is shared. Non-plain-object inputs (including arrays, null) return a deep copy of override, and undefined override returns a deep copy of base. Only backend file src/merge.mjs was changed; the protected test/merge.test.mjs was restored to its committed original so the anti-tamper gate is clean. npm test exits 0 (2/2 pass), npm run build exits 0, npm run lint exits 0, and a direct node ESM assertion suite covering every acceptance criterion prints ALL_AC_PASS."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 59554,
+      "output": 4341
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

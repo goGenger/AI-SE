@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-11-01T15:33:03.672Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "314cdda0-1171-4ed3-bde3-a3063e85b7f6",
+      "workflowIds": [
+        "314cdda0-1171-4ed3-bde3-a3063e85b7f6",
+        "2133caab-354c-4571-a07f-b5fe4ddf7cf0",
+        "a3193912-28a5-4295-8352-d771b83cf105",
+        "fd76dcec-c0f9-41d3-9be2-82c33413688e",
+        "23a71884-6c7a-4c7b-abef-f3070a0248c2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 43,
+      "runCount": 40,
+      "taskStatuses": {
+        "SUCCESS": 36,
+        "FAILED": 4,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 39585429,
+        "output": 672941
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 11963731,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 2,
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Added src/components/__tests__/listErrorRetry.spec.ts (3 tests, markers [AC-19] [AC-20]) covering FR-4.3/FR-4.4: a stubbed globalThis.fetch holds every request open, the first GET is answered 500 { error: { code: 'INTERNAL' } }, retry GETs are scripted per request; assertions use only data-testid selectors, element containment, data-done/textContent, plus a console.error spy, a process unhandledRejection listener and a window error listener. Results: 2 passed, 1 failed. Passed: [AC-19] [AC-20] first GET 500 shows a visible error-banner that contains exactly one retry-button and renders 0 task-item (no empty-state invented, no loading-indicator left); [AC-19] [AC-20] clicking retry-button issues a second GET on the same list URL and on 200 { items: 3 } hides the banner, renders exactly 3 task-item in payload order and task-count text equal to \\\"3\\\". Failed (exact): 'AssertionError: expected [] to deeply equal [ 保留已有任务 ]' at listErrorRetry.spec.ts:384 in '[AC-19] [AC-20] a retry that fails again keeps error-banner with retry-button and does not clear the task already on the board' - the banner and its retry-button are still rendered, but the task already on the board is gone. Cause is product code, not the test: src/views/TaskBoardView.vue loadTasks() calls taskStore.clearTasks() in its catch block, so a failed list load wipes existing tasks, contradicting TR-4.7 ('失败时不得清空已有 tasks') and the UI state 'list-error-retained' ('重试仍失败时保持 error 状态且不清空已有 tasks') that this task's acceptance criterion 4 restates. I did not modify product code, per the anti-tamper rule, so this needs a FRONTEND task. Also independently of my work, src/__tests__/app-shell-states.spec.ts:274-275 still asserts that a failed load renders NO error-banner and NO retry-button, which is irreconcilable with AC-19 and keeps the full suite red; that stale assertion is a TEST-task fix. lint (exit 0), typecheck (exit 0) and no new dependencies; no real network and no mock control-plane endpoint is touched. The named deliverable path src/components/__tests__/listErrorRetry.spec.ts was accepted by the write policy.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-5-usability-polish",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 39585429,
+      "output": 672941
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 2,
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-5-usability-polish": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

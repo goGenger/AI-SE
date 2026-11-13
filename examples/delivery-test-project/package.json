@@ -1,0 +1,12 @@
+{
+  "name": "ai-se-delivery-test-project",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node checks.mjs",
+    "typecheck": "node checks.mjs",
+    "test": "node --test test.mjs",
+    "build": "node checks.mjs"
+  }
+}

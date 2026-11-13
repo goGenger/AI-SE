@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-10-17T08:29:51.700Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "a6914b77-f9ae-4ee7-a907-ba971851611c",
+      "workflowIds": [
+        "a6914b77-f9ae-4ee7-a907-ba971851611c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 11,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 10
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 80565,
+        "output": 14293
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 239541,
+      "errorTypes": {},
+      "failureSummary": "Delivered the S1 design baseline: repository layout, pnpm project metadata, the five-script contract, and the FR-9 to AC-30 script-determinable acceptance points, with no repository files modified (the workspace still holds only the placeholder .gitignore and README.md). Baseline covers TS-S1-01..13: (1) repository root layout per TS-S1-12 (package.json, pnpm-lock.yaml, README.md, Dockerfile, .gitignore, src/server.js entry, scripts/{lint,typecheck,build}.js self-check scripts, test/engineering.test.js skeleton); (2) pnpm metadata per TS-S1-01/02 (Node 22, engines.node>=22, packageManager pnpm@9, type commonjs, empty dependencies, single pnpm-lock.yaml, no npm/yarn lockfiles); (3) five script semantics per TS-S1-03..08 (start reads PORT default 3000; test is node --test; lint/typecheck/build are Node-standard-library-only self-checks passing on exit code 0); (4) zero-runtime-dependency determination per TS-S1-01 (dependencies deep-equals {} plus a static scan rejecting any non-node:/non-relative require or import); (5) explicit scope boundary per TS-S1-13 (no auth, CRUD, search, or persistence; no DB/ORM/external service; no CI/CD); and (6) the FR-9 to AC-30 mapping with the AC-id test-name convention, the AC-30 meta-test coverage set {AC-01..AC-21, AC-23..AC-29} with AC-22 and AC-30 exempt, and static-contract coverage for deployment ACs AC-24/25/26/29.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S1",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 80565,
+      "output": 14293
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

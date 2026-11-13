@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-10-19T12:48:03.058Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "027c00a2-c0c5-4e1e-841e-999983453db2",
+      "workflowIds": [
+        "027c00a2-c0c5-4e1e-841e-999983453db2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 15,
+      "runCount": 10,
+      "taskStatuses": {
+        "FAILED": 4,
+        "SUCCESS": 6,
+        "READY": 2,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 4985669,
+        "output": 173566
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1404729,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Created the pnpm/Node.js 22 project manifest and committed lockfile at the repository root. package.json declares engines.node \\\">=22.0.0 <23.0.0\\\" (covers 22.x, compatible with node:22-alpine), dependencies as an empty object (zero runtime dependencies), type module, and the five required scripts: start (reads PORT with default 3000 and launches src/server.js), test (node --test), and lint/typecheck/build which invoke the sub-commands of node scripts/selfcheck.mjs. pnpm-lock.yaml uses lockfileVersion 9.0 with a single empty importer so pnpm install --frozen-lockfile resolves nothing and therefore cannot rewrite the lockfile. Verified node --test exits 0 in the current tree. Constraint encountered: the workspace write policy for this agent only permits repository-root manifests/configs (package.json, pnpm-lock.yaml) and deployment artifacts, so src/server.js, scripts/selfcheck.mjs and the test baseline could not be written here; those app-scaffold files are required by sibling slice-1 tasks before pnpm start/lint/typecheck/build can execute end to end. No endpoints, no deployment, no production access were touched.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-foundation",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 2,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 4985669,
+      "output": 173566
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 2,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-foundation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

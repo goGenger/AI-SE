@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:40:25.097Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "c21791ad-ef05-4d09-b006-c8af62a0add9",
+      "workflowIds": [
+        "c21791ad-ef05-4d09-b006-c8af62a0add9"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 6,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 98025,
+        "output": 11555
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 823516,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added test/store.test.mjs with 12 store unit tests named by AC ([AC-S1-1] partial updates title-only/done-only/both, [AC-S1-2] unspecified fields preserved + empty patch + isolation, [AC-S1-3] returned object equals store data, [AC-S1-4] falsy/no-throw on miss for update and remove, [AC-S1-5] remove deletes target and leaves others intact, plus [REG] list/create regression) under the existing node:test framework. Red-first shown: identical test bodies run against a throwaway simulation of the original placeholder store (throwing update/remove), staged under test/.qa-failfirst (which was then deleted), failed 11/12 with errors update/remove 尚未实现; only the [REG] create/list test passed. Real full suite then passes 14/14 (0 fail, includes the 2 pre-existing app tests), so no regression; npm run build (node --check on all three src files) also passes. No product code was modified: the ' M src/store.mjs' in git status is the pre-existing T3/T4 implementation, the only change from this task is the new untracked test/store.test.mjs. pnpm is not installed in this sandbox (pnpm test -> sh: 1: pnpm: not found), so the equivalent npm test / node --test scripts were executed; this is an environment gap, not a code failure. Note: the enforce verification flagged 'red-light check passed without implementation (vacuous tests)' because the harness expects the red step to fail, but update/remove were already implemented by dependency tasks T3/T4 before this TEST task ran, so a green suite is the correct outcome and cannot be made red without editing product code."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 98025,
+      "output": 11555
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

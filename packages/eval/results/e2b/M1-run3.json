@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:54:22.089Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "d41beb5f-6e30-46dc-8962-67e4dfa65f50",
+      "workflowIds": [
+        "d41beb5f-6e30-46dc-8962-67e4dfa65f50"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 6,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 101855,
+        "output": 9876
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 715555,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added store unit tests in test/store.test.mjs for store.update and store.remove under the existing node:test framework. Tests cover all 5 slice-1 acceptance criteria plus a list/create regression test: [AC-S1-1] partial updates (title-only, done-only, both), [AC-S1-2] patch absent fields not overwritten (id, done, other todos, empty patch), [AC-S1-3] update return value deep-equals the value read back from store.get/list, [AC-S1-4] miss on update/remove returns falsy without throwing and leaves data unchanged, [AC-S1-5] remove deletes only the target and keeps remaining items readable/appendable, [REG-list-create] existing list/add behavior unchanged. Red-first evidence: tests were run against the placeholder store (update/remove throwing) before/independent of the implementation, 10/11 failing with errors \\\"update/尚未实现\\\" and \\\"remove 尚未实现\\\" while the regression test passed; the temporary baseline harness was then deleted. Against the current implementation `npm run test` (package.json test script `node --test`) reports 13 tests, 13 pass, 0 fail, 0 errors. `npm run build` and `npm run lint` both exit 0. pnpm is not installed in the sandbox (pnpm: not found, exit 127), so the identical underlying command was invoked. No product code was modified; the only new workspace file is test/store.test.mjs."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 101855,
+      "output": 9876
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

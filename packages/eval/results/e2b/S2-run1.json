@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T13:38:41.061Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "13f565f1-f6eb-4cf4-9da9-d31b34433a44",
+      "workflowIds": [
+        "13f565f1-f6eb-4cf4-9da9-d31b34433a44"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 69327,
+        "output": 10669
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 489583,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Delivered AC-numbered unit tests for parseDuration in test/duration.test.mjs and ran the suite. RED first: the same AC assertions were executed against a faithful throwaway replica of the pre-implementation module (git HEAD stub that throws) in test/.red-probe.test.mjs + test/.red-stub.mjs; result was 4 fail / 0 pass, error 'parseDuration 尚未实现' (ERR_TEST_FAILURE, testCodeFailure), exit 1. Those throwaway files were then deleted so only test/duration.test.mjs remains in test/. GREEN: pnpm is not installed in the sandbox (sh: pnpm: not found, exit 127), so the project script was run via npm test (node --test); 11 tests, 11 pass, 0 fail, 0 errors, exit 0. Coverage maps to the supplied ACs: AC-01 combinations (1h30m=5400000; 1h30m20s=5420000), AC-02 individual units (1h=3600000, 1m=60000, 1s=1000, 1ms=1), AC-03 spaces (1h 30m=5400000; 1h 30m 20s=5420000), AC-04 plain numbers (500=500, 0=0), plus invalid-input null cases (abc, empty, 1h1h, -5s, 1.5s). npm run build and npm run lint (node --check src/duration.mjs) both exit 0. Product code src/duration.mjs was not modified by this task; git status shows only src/duration.mjs (dependency T2) and test/duration.test.mjs (this TEST task) as changed."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 69327,
+      "output": 10669
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

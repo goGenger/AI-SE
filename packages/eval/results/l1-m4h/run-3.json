@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-17T19:13:05.157Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "89d118c8-1cd1-4b6a-b260-1ebd9c0ea426",
+      "workflowIds": [
+        "89d118c8-1cd1-4b6a-b260-1ebd9c0ea426",
+        "4d2a6a31-e1ae-4445-bd64-d74f12acd475",
+        "4d5c9719-dc7c-4d72-9b32-483faffea970"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 29,
+      "runCount": 28,
+      "taskStatuses": {
+        "SUCCESS": 20,
+        "READY": 1,
+        "PENDING": 7,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 13906214,
+        "output": 262189
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3036559,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "EMPTY_FINAL_ANSWER": 3
+      },
+      "failureSummary": "T-04 user repository and data store delivered and verified. The DATA_DIR persistence layer is in place: src/store/data-store.js publishes whole JSON documents with an atomic write-temp-then-fsync-then-rename sequence (0600 file mode, directory fsync for durability, temporary-file cleanup and re-throw on failure), validates every data file name at the trust boundary (plain name only, no separators, no dot prefix, length and NUL checks) and returns a fallback for missing, blank or corrupt files so start-up is never blocked. src/store/user-store.js is the user repository: it loads the whole dataset from DATA_DIR (users.json) at construction, indexes records by a lowercase-folded username_normalized key for case-insensitive lookup, indexes by id for existence checks (hasUserId / findById), rejects duplicates with USERNAME_TAKEN, rolls the in-memory state back and re-throws when the atomic write fails, and persists only the seven whitelisted record fields (id, username, username_normalized, password_algo, password_salt, password_hash, created_at) so a plaintext password field is dropped on both load and write. New in this run: the write path addUser now also rejects a record that carries no hashed credential material with VALIDATION_ERROR, so a caller can never persist a user whose only credential was a plaintext field; the load path intentionally stays tolerant so a hand-edited file cannot block start-up. No API contract changed: createUserStore, getUserStore, resetUserStore, USERS_FILE_NAME, USER_RECORD_FIELDS, normalizeUsername and the data-store exports keep their signatures. Verification: npm run typecheck exits 0 and node --test over the store suites, the AC-04 persistence suite and the register suites (including the AC-06 concurrency suite) ran 37 tests with 37 passed, 0 failed, 0 errors, exit code 0. Remaining red tests in the repository are outside this slice: four AC-30 README documentation tests (README is still the workspace placeholder, owned by the docs slice) and seven login/auth tests AC-09 to AC-13 (login and token slices not yet implemented, POST /api/login and /api/tasks currently answer 404).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-3",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 5,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 13906214,
+      "output": 262189
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "EMPTY_FINAL_ANSWER": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 5,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

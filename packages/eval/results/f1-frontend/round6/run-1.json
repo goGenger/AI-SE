@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-30T08:09:59.499Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "5a3969f9-420e-434a-92ac-b61211c1edf6",
+      "workflowIds": [
+        "5a3969f9-420e-434a-92ac-b61211c1edf6",
+        "5f47e8ee-1937-4196-97bc-2b50893cff71"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 23,
+      "runCount": 15,
+      "taskStatuses": {
+        "SUCCESS": 12,
+        "PENDING": 7,
+        "READY": 1,
+        "FAILED": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 18199565,
+        "output": 344943
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5205886,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Wrote the slice-2 full-chain regression spec at src/__tests__/slice2-regression.spec.ts (21 tests, every name carries its [AC-xx] marker, AC-01..AC-20 all covered) before the slice-2 UI exists, then ran it: 16 of 21 fail, and every failure is a missing data-testid element in product code, not a wrong assertion. The spec drives App.vue only, with globalThis.fetch replaced by an in-memory stand-in for mock-server.mjs (GET/POST/PATCH/DELETE /api/tasks, per-verb 500 injection, holdable responses, request log, server-side task store for the reload case); no port is dialled and /__mock is never touched. Covered statements: AC-01..AC-05 first screen (exact task-item count and the response order, task-title text per row, empty-state with zero rows, loading-indicator visible while the first GET is held then gone); AC-06 dialog opens and contains task-title-input plus save-task-button; AC-07 empty and whitespace-only titles both render form-error, keep the dialog open and produce zero POST (request log holds only the initial GET); AC-08 dialog closes, the new row is appended with the typed title and task-count goes 3 to 4; AC-09 a 500 keeps error-banner visible, dialog open, count at 3 and the typed title retained; AC-10 save-task-button is disabled while the POST is held open and enabled again after it settles (failure release keeps the dialog open so the restored state is observable); AC-11 keyword narrows the visible rows to the matching one; AC-12 no-results shown and empty-state not shown while the source list is non-empty; AC-13 filter-done shows only the done row; AC-14 filter-all restores all three in server order; AC-15 search plus filter compose (Alpha matches two rows, adding filter-done leaves exactly one, dropping the filter keeps the search); AC-16 data-done goes from the string false to the string true for that row with PATCH /api/tasks/task-1 recorded; AC-17 unmount plus fresh mount re-reads GET (2nd GET) and data-done is decided by the done field returned (true, true, false); AC-18 the deleted row disappears, task-count 3 to 2, DELETE /api/tasks/task-2 recorded; AC-19 first GET 500 shows error-banner containing retry-button with no rows, retry triggers a 2nd GET, banner clears and the three rows render in order; AC-20 runs the whole chain (500 plus retry, blank-title validation, successful create, toggle, search, filters, delete, failing save) and asserts console.error call count 0 and unhandledrejection event count 0; plus one [AC-08][AC-18] test pinning task-count to the source list length (3, 4 after create, 4 while searching and filtering, 3 after delete). Exact failures (npm run test, whole suite): 50 tests, 33 passed, 17 failed, 0 errors, exit code 1. Failing: [AC-06] [AC-07] [AC-09] [AC-10] missing element [data-testid=new-task-button]; [AC-08] [AC-18] [AC-08][AC-18] missing element [data-testid=task-count]; [AC-11] [AC-12] [AC-15] missing element [data-testid=search-input]; [AC-13] [AC-14] missing element [data-testid=filter-done]; [AC-16] [AC-17] Cannot call trigger on an empty DOMWrapper (task-done-toggle absent from the row); [AC-19] [AC-20] error-banner not rendered after the 500. Passing: [AC-01]..[AC-05]. Pass/fail boundary matches the current product state exactly: src/App.vue still renders only app-title, loading-indicator, task-list/task-item/task-title with data-done, and empty-state; src/components/TaskItem.vue has no toggle or delete control; there is no dialog, search input, filter buttons, task-count, error-banner or retry-button anywhere in src, and App.vue has no create/toggle/delete state at all. src/__tests__/list.spec.ts (not mine, from another slice) fails on the same missing task-count. npm run typecheck exits 0 and npm run lint exits 0 with the new spec in place, so the file is type-clean and lint-clean; I did not modify any product code or any existing test file. The task's own criterion pnpm test exit code 0 is therefore unreachable from the test side: the missing behavior belongs in product code (FR-2 dialog/validation/saving, FR-3 search+filter, FR-4 toggle/persist/delete/banner+retry, and the derived task-count in src/App.vue), which is a FRONTEND task, not a test edit. No test here needs to change for the implementation to pass.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 8,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 18199565,
+      "output": 344943
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 8,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T08:45:06.766Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "8abc6eb2-f3c1-4dad-8639-6632e7e51666",
+      "workflowIds": [
+        "8abc6eb2-f3c1-4dad-8639-6632e7e51666"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 83026,
+        "output": 11352
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 805103,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Delivered AC-numbered unit tests for the slugify base pipeline in test/slugify.fr.test.mjs (17 tests, no product code modified). Red-first evidence: an isolated harness holding the verbatim pre-implementation stub body from the fixture baseline (throw new Error(\\\"slugify 尚未实现\\\")) plus the exact same 17 assertions reported not ok 1..17 with # tests 17 / # pass 0 / # fail 17, so every test genuinely fails before the implementation exists. The harness was then deleted; after pointing the same suite at the real src/slugify.mjs the full suite is green: npm test (scripts.test = node --test) = 20 tests / 20 pass / 0 fail (17 new + 3 pre-existing). Coverage per FR: FR-001 (2 tests, lowercase plus caseless Unicode 标题, both anchored with exact equals and with startsWith/endsWith negative checks so they are non-vacuous), FR-002 (3 tests), FR-003 (3 tests, incl. hello   world / hello\\\\t\\\\nworld / hello \\\\t world all -> hello-world exactly as required), FR-004 (5 tests, a_b / a.b / a/b / a@b -> a-b), FR-008 (4 tests, 标题, ١٢٣, abc123 with no internal hyphen). FR-005/006/007 are outside this slice and intentionally not asserted. Test names use the [FR-xxx] prefix for mechanical AC traceability. Note: the pnpm binary is absent in the sandbox (sh: pnpm: not found); package.json defines test/build/lint as plain node commands (node --test, node --check src/slugify.mjs), which is exactly what was executed via npm run, so the pnpm test requirement is satisfied through its defined script."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 83026,
+      "output": 11352
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

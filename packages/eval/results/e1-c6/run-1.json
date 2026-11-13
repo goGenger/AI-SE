@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-10-07T00:44:40.754Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "6c841bd2-74a4-4251-8c62-773043b2408e",
+      "workflowIds": [
+        "6c841bd2-74a4-4251-8c62-773043b2408e"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 14,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 13,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 848588,
+        "output": 40684
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3418537,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "TIMEOUT": 1
+      },
+      "failureSummary": "QA build-contract and end-to-end regression for slice-1 (T-13). Ran the ordered local pipeline in this workspace. Steps 2-5 executed through their exact package.json scripts and all exited 0: npm run lint (node scripts/lint.js -> lint OK, 18 JS files, zero runtime dependencies), npm run typecheck (node scripts/typecheck.js -> typecheck OK, 18 modules resolved), npm test (node --test -> 19 tests, 18 pass, 0 fail, 1 skipped optional AC-22), npm run build (node scripts/build.js -> build OK, artifact contract verified). Step 1 (pnpm install --frozen-lockfile) could not be executed: no pnpm binary is on PATH (command -v pnpm -> 127) and corepack cannot download pnpm@9.0.0 because registry.npmjs.org is unreachable (getaddrinfo EAI_AGAIN), so the install step has no exit-0 record in this sandbox. This is an environment limitation, not a product defect: dependencies and devDependencies are empty and pnpm-lock.yaml v9.0 is committed, so the step has nothing to fetch once pnpm exists. Regression re-confirmed separately: node --test test/health.test.js test/home-contract.test.js -> exit 0, 6 tests, 5 pass, 0 fail, 1 skip; [AC-01] confirms /healthz, /health and /ready each return 200 with Content-Type application/json and body {\"status\":\"ok\"}; [AC-21] confirms GET / returns 200 with Content-Type text/html and a full HTML document containing data-testid home-title, task-list, search-input and new-task-button. No product code was modified by this task. One carried-over MEDIUM contract risk remains to route back: the served home document emits a fifth data-testid (task-list-empty) beyond the four contracted hooks, which a strict exactly-four evaluator could flag for AC-21 (fixTaskType=IMPLEMENT). Remaining unverified work is environment-only: the pnpm install step and the Docker build/run deployment ACs (AC-24/25/26/29 are covered here only by static contract tests, which pass) must be re-run in a network- and Docker-enabled clean environment."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 848588,
+      "output": 40684
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

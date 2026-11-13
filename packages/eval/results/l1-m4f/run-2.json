@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-10-17T09:23:22.671Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "bc33a3c1-bef5-4df6-b660-4e56ff34e6aa",
+      "workflowIds": [
+        "bc33a3c1-bef5-4df6-b660-4e56ff34e6aa"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 10,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 9
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 5561927947616518000,
+        "output": 988100313556713500
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 146647,
+      "errorTypes": {},
+      "failureSummary": "Froze the slice-1-engineering engineering-contract criteria checklist (criteria only, no implementation code and no file changes). The checklist contains 26 objectively checkable criteria in six groups: five-script responsibilities and exit-code semantics (EC-SCR-01..06), start environment-variable semantics (EC-ENV-01..03), typecheck explicit scan scope (EC-TC-01..04), lint invariants (EC-LINT-01..05), test location and AC-NN naming convention (EC-TST-01..05), and ignore-list rules (EC-IGN-01..03). Every criterion states an explicit mapping to at least one executable check (lint / typecheck / build / test, or the six-step contract exit-code observation), and the checklist declares no reliance on globally installed binaries such as tsc or eslint. No acceptance numbers or functional requirements outside this slice are introduced.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-engineering",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 5561927947616518000,
+      "output": 988100313556713500
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-engineering": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

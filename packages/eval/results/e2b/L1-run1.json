@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T16:14:30.654Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "468eb6e3-648d-413f-8c65-fe199669559b",
+      "workflowIds": [
+        "468eb6e3-648d-413f-8c65-fe199669559b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 6,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 61791,
+        "output": 7718
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 502637,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and wired the two escaping helpers in src/render.mjs. escapeHtmlText performs a single-pass regex replace of &, <, >, \" and ' with &amp;, &lt;, &gt;, &quot; and &#39; (no double-escaping); escapeAttributeUrl replaces only & with &amp; and \" with &quot;, leaving /, ?, =, :, # and all other URL characters verbatim. Both helpers coerce null/undefined to an empty string and return new strings without mutating input. escapeHtmlText is applied to the page title, headings, paragraph text and link text; escapeAttributeUrl is applied only to the href URL. renderPage returns a complete HTML document with the escaped title in both <title> and <h1>, and renderMarkdownLite applies headings, then paragraph grouping (single-space join), then inline link conversion. Only src/render.mjs changed; src/frontmatter.mjs and src/build.mjs were left untouched. npm run build and npm run lint pass; the renderPage test passes. The remaining test failure is buildSite not implemented in src/build.mjs, which is owned by a separate build task outside this slice."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 61791,
+      "output": 7718
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

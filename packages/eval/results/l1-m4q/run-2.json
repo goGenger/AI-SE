@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-21T09:06:49.376Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "cfc082e1-ebfb-47a3-8717-87eb4d176879",
+      "workflowIds": [
+        "cfc082e1-ebfb-47a3-8717-87eb4d176879"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 11,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "READY": 1,
+        "FAILED": 3,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 2830932,
+        "output": 86855
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 888720,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "REPLAN_REQUESTED": 2
+      },
+      "failureSummary": "Implemented the zero-dependency HTTP skeleton with health endpoints and the data directory resolver. src/server.js now resolves PORT via src/lib/config.js (decimal digits 0-65535, default 3000 with a stdout warning on unusable values), binds 0.0.0.0, prepares DATA_DIR (src/lib/data-dir.js: resolveDataDir defaults to ./data, ensureDataDir does mkdirSync recursive plus directory/read-write verification) and exits 1 with a stderr report when preparation fails. src/app.js owns a (method, pathname) route table with GET /healthz, /health and /ready mapped to one shared handler (src/routes/health.js) returning 200 application/json {\"status\":\"ok\"}; every other method/path returns 404 with {\"error\":{\"code\":\"NOT_FOUND\",\"message\":\"...\"}} through src/lib/responses.js. SIGTERM and SIGINT close the listener gracefully (idle connections closed, in-flight requests drained, forced exit after 10s, exit code 0); uncaughtException is logged to stderr and shut down, unhandledRejection is logged without killing the server. Logging stays on console.log/console.error: startup lines plus per-request method, query-free pathname, status and duration only, with control-character escaping and length limits; request bodies, headers (credentials included), passwords and secrets are never read into a log call. Verification: node src/scripts/lint.mjs exit 0, node src/scripts/typecheck.mjs exit 0 (13 modules), and a new stdlib-only developer smoke check node src/scripts/smoke.mjs exit 0 covering 200/{\"status\":\"ok\"} on all three health paths, the 404 envelope, recursive DATA_DIR creation, non-zero stderr exit for an unusable DATA_DIR, PORT default fallback and SIGTERM exit code 0. node --test currently fails only the pre-existing out-of-scope AC-21 home page test (GET / is not part of this task, so it returns 404); no existing test file was modified. Write policy rejected the test file I drafted at test/ac-01-health-endpoints.test.js, so AC-01 remains covered only by the smoke check for now, and the smoke helper was placed under src/scripts/smoke.mjs instead.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S1-foundation-deploy",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 2830932,
+      "output": 86855
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "REPLAN_REQUESTED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1-foundation-deploy": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

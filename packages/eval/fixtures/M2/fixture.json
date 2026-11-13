@@ -1,0 +1,10 @@
+{
+  "id": "M2",
+  "tier": "M",
+  "title": "实现 markdown 表格渲染 renderTable",
+  "requirementText": "src/parse.mjs 已能把 markdown 表格文本解析成 { headers, rows }（不要改动它）。请实现 src/render.mjs 的 renderTable(table, options)：\n1) 输出 markdown 表格：表头行、分隔行、数据行，行与行之间用 \\n 连接；\n2) 单元格内容：先把换行替换成 <br>，再把 | 转义成 \\|，最后去掉首尾空白；\n3) 每列宽度 = max(3, 该列（含表头）所有单元格的最大显示长度)，所有列（含最后一列）都按该宽度右侧补空格对齐；\n4) 分隔行按 options.align（数组，取值 \"left\" | \"right\" | \"center\" | \"none\"）生成：left 用 :---，right 用 ---:，center 用 :--:，none 用 ---，并同样补足列宽；\n5) options.align 缺省或对应列为 \"none\" 时用 ---；\n6) rows 为空时只输出表头行与分隔行。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": {
+    "command": "node",
+    "args": ["oracle.mjs"]
+  }
+}

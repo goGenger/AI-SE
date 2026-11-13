@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-10-31T12:25:43.354Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "7f2838b8-d3f0-4cf4-81a4-38247fc3029c",
+      "workflowIds": [
+        "7f2838b8-d3f0-4cf4-81a4-38247fc3029c",
+        "8157095b-d7f4-403f-bb9b-e5526e9350b5",
+        "ad8ea47b-08fd-4163-bf5f-e9c466d33606",
+        "14776504-29ac-47b7-b990-7da07fdaa699"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 41,
+      "runCount": 36,
+      "taskStatuses": {
+        "SUCCESS": 33,
+        "FAILED": 3,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 29587414,
+        "output": 559735
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 9583522,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2,
+        "REPLAN_REQUESTED": 1
+      },
+      "failureSummary": "Implemented done-toggle and delete end-to-end for the TaskBoard frontend (AC-16/AC-17/AC-18). TaskItem now keeps data-done=\\\"true\\\"/\\\"false\\\" on the row (unchanged contract, normalized), renders native button task-done-toggle whose aria-pressed always mirrors the done state, and native button task-delete-button whose aria-label now includes the task title (\\\"删除任务：<title>\\\"); clicks only emit toggle/delete. useTaskStore exposes toggleDone(id) and removeTask(id) (toggle/remove kept as compatibility aliases): toggleDone clears the action error, flips done locally so data-done updates immediately, PATCHes /api/tasks/:id with {done}, overwrites the local item with the response task on 200 (so a refresh keeps the value), and on 404/non-2xx/network failure rolls back to the pre-click value and sets an action error instead of throwing; a per-id sequence guard prevents out-of-order PATCH responses from resurrecting/deleting stale state. removeTask calls DELETE /api/tasks/:id and removes the item from the source list on 204 AND on 404 (treated as success), so the task-item disappears and task-count (derived from source list length) decrements; other statuses keep the task and set an action error, never throwing. App.vue surfaces the new action error through the existing data-testid=\\\"error-banner\\\" (messages for load failure / save failure / toggle-delete failure) and clears it on retry and on the next successful operation. No backend, mock-server, dependency, lockfile, /__mock/* usage or external requests were touched. Verification: pnpm test = 185 tests, 184 passed, 1 failed; the single failure is the pre-existing, now-stale assertion in src/__tests__/task-toggle-delete.spec.ts:350 ('[AC-18] DELETE 返回 404 时静默降级：该项保留、task-count 不变') which directly contradicts the API spec / task description (\\\"204 或 404 均从源列表移除\\\"). I did not weaken, edit or delete that file; it must be updated by a separate TEST task. The QA-authored suites tests/toggle.spec.ts and tests/delete.spec.ts now pass 7/7 (previously 1 failed exactly on the 404 case). pnpm typecheck, pnpm lint and pnpm build all exit 0.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-done-delete-resilience",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 29587414,
+      "output": 559735
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2,
+      "REPLAN_REQUESTED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-done-delete-resilience": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

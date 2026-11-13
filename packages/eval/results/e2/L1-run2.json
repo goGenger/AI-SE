@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T11:24:06.502Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "46d4828f-080d-4fcb-bb0f-2df4b9f79a86",
+      "workflowIds": [
+        "46d4828f-080d-4fcb-bb0f-2df4b9f79a86"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 68979,
+        "output": 9818
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 303232,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Verified the render-module helpers in src/render.mjs: escapeHtmlText, escapeAttrUrl and parseInlineLinks all meet the task acceptance criteria. escapeHtmlText replaces & first then <, >, \", ' in a single pass so produced entities are never re-escaped. escapeAttrUrl escapes only &, \" and ' and leaves < and > untouched. parseInlineLinks emits <a href=\"url\">text</a> with the label passed through escapeHtmlText, the url through escapeAttrUrl, a double-quoted href, escapes all non-link text, supports multiple links per line and preserves input order without parsing nested brackets. Input is coerced through an asString guard so non-string/nullish trust-boundary values are handled safely. No files needed changing beyond src/render.mjs; no dependencies added. npm run lint and npm run build both exit 0. The renderPage test passes; the sole failing official test is the buildSite test in test/build.test.mjs, which is out of scope for this task (build.mjs is explicitly excluded by TR-1 and owned by a separate build task)."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 68979,
+      "output": 9818
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

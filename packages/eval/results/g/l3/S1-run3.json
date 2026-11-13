@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-10-14T13:19:35.059Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "b88ff635-d170-4a83-9e26-c37fffa5b388",
+      "workflowIds": [
+        "b88ff635-d170-4a83-9e26-c37fffa5b388"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 10,
+      "runCount": 8,
+      "taskStatuses": {
+        "FAILED": 1,
+        "SUCCESS": 6,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 177097,
+        "output": 11431
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 256068,
+      "errorTypes": {},
+      "failureSummary": "Added FR-1 tests to test/slugify.test.mjs, named with AC numbers: [AC-02] slugify('Hello World') result is all-lowercase and startsWith 'hello'; [AC-03] slugify('  Hello  ') === slugify('Hello'); [AC-03] inputs starting/ending with space/tab/newline produce output with no leading or trailing hyphen. No product code changed: src/slugify.mjs still throws 'slugify 尚未实现' and git diff shows only test/slugify.test.mjs modified. Ran node --test (npm test): 36 tests, 2 pass, 34 fail. All [AC-02]/[AC-03] cases fail RED via testCodeFailure 'slugify 尚未实现' from src/slugify.mjs:2 (expected pre-implementation state). fixTaskType: IMPLEMENTATION - implement slugify per FR-1/TR-2 (toLowerCase then trim before whitespace/symbol conversion); no test changes should be needed.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "SL-2",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 177097,
+      "output": 11431
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "SL-2": 1
+    }
+  }
+}

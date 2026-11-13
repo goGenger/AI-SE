@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T09:13:54.697Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "b2ebfae7-3b1a-462d-b434-b8301defc51a",
+      "workflowIds": [
+        "b2ebfae7-3b1a-462d-b434-b8301defc51a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 5,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 76785,
+        "output": 9600
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 334775,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added AC-numbered unit tests for parseDuration in test/duration.test.mjs, following the existing project convention (node:test + node:assert/strict, auto-discovered by node --test / npm test). The 8 new tests [AC-01]..[AC-08] cover FR-1..FR-5 and TS-7 plus boundaries: single-unit conversion 1h/30m/45s/250ms (AC-01); aggregation 1h30m (AC-02); case/space 1H 30M and 1h 30m (AC-03); unitless 500 (AC-04); invalid inputs '' / whitespace-only / 1x / -1h / 1.5h / 1h1h all explicitly asserted === null (AC-05); out-of-order 30m1h (AC-06); non-string inputs null/undefined/250/{} === null (AC-07); assert.doesNotThrow over all invalid inputs incl. non-strings (AC-08). Red-first was demonstrated for real: the identical test file run against a stub parseDuration that throws (the pre-implementation behavior) failed 11/11 (tests 11, pass 0, fail 11, exit 1), with AC-08 failing as an unwanted-exception assertion; the stub lived only in a scratch dir (/tmp, since removed) and no product code was modified. Against the shipped implementation the suite is green: node --test and npm run test both report tests 11, pass 11, fail 0, errors 0, exit 0. npm run build and npm run lint (node --check src/duration.mjs) also exit 0. fixTaskType: none (no product-code fix required; the only genuine failure was the intentional red-first run, resolved by the existing implementation)."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 76785,
+      "output": 9600
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,398 @@
+/*
+ * AI-SE — Tailwind CSS 4 基础设施 + Design Token + 基础层
+ *
+ * 全站**唯一样式来源**。层级固定为 theme → base → components → utilities，
+ * 工具类可以覆盖基础层。令牌说明与「新页面怎么选」见同目录 README.md。
+ *
+ * 取值优先级：Design System > UI Reference
+ *   · Design System = docs/design/00-design-system.md
+ *   · UI Reference  = docs/ui-reference/ai-se-home.png（视觉母版，仅决定视觉语言）
+ *
+ * 本文件包含：
+ *   1) Tailwind 4 入场（只导入 theme + utilities，**不含 preflight**）
+ *   2) 原始 Token 值：亮色
+ *   3) 原始 Token 值：暗色（prefers-color-scheme）
+ *   4) @layer base —— 全局 reset 与元素默认值（仅此一处）
+ *   5) @theme inline 映射（产出 bg-background / text-muted-foreground / rounded-lg 等工具类）
+ *
+ * 本文件不包含：组件样式、页面样式、cn()、@ 别名。
+ *
+ * 扫描源：本仓库没有 .git，Tailwind 的自动内容探测失去 .gitignore 依据，
+ * 因此用 source(none) 关闭自动探测并显式登记 src/ 与 index.html，避免扫描 dist/。
+ */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+@source "../";
+@source "../../index.html";
+/* 本目录的 README.md 只是文档，里面的示例类名不该被当成真实用法扫描——
+   否则文档写一句 `p-17` 就会凭空生成一条 CSS 规则。 */
+@source not "../styles/README.md";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1 · 原始 Token 值（亮色）
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: light;
+
+  /* ── 表面 ─────────────────────────────────────────────────────────────────
+     纸白石墨 + 信号绿。底色偏冷绿、正文石墨、线灰与纸底同色相；
+     绿色是唯一强调色。 */
+  --background: #f3f7f6; /* 页面底 */
+  --foreground: #1d2b2a; /* 正文 */
+  --card: #ffffff; /* 卡片 / 面板 / 弹层表面 */
+  --card-foreground: #1d2b2a;
+  --muted: #e9f1ef; /* 次级表面：内嵌区块、行 hover、只读区 */
+
+  /* ── 文本三档 ─────────────────────────────────────────────────────────────
+     foreground → 正文与标题
+     muted-foreground → 次级信息（说明、元数据、占位符）
+     foreground-disabled → 禁用态（不承载信息，仅表示不可用）
+     三档均在各自承载面上满足 WCAG AA（见 README「对比度实测」）。 */
+  --muted-foreground: #5a6b69;
+  --foreground-disabled: #b9c7c4;
+
+  /* ── 边框与焦点 ───────────────────────────────────────────────────────────
+     border        日常分隔：卡片、表格行、区块边界（**装饰性**，不承载识别功能）
+     input         表单控件边界（**承载识别功能** —— 控件与所在面同色，边界是唯一的识别依据，
+                   因此 W9 起它是全站唯一需要满足非文本对比度 3:1 的边框令牌）
+     ring          焦点环（全站唯一一档）
+     说明：原 `--border-strong`（零使用）已在 W9 删除 —— 它与 `--input` 同值，
+     留着只会让人把它当作表单边界用，从而把「输入框看不见」这个缺陷带回来。 */
+  --border: #dde7e5;
+  --input: #848d8b;
+  --ring: #15756a;
+
+  /* ── 主色 ─────────────────────────────────────────────────────────────── */
+  --primary: #15756a;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0f5f56;
+  --primary-light: #e0f2ee; /* 选中项底色（Tab 激活、列表项激活） */
+
+  /* ── 语义色 ×5 ────────────────────────────────────────────────────────────
+     每族四档，用途固定：
+       --{name}             墨色。文字、图标、实心填充、需要强对比的边框
+       --{name}-bg          面。徽标与提示条的底色
+       --{name}-border      面的轮廓
+       --{name}-foreground  --{name}-bg 之上的文字
+     徽标/提示条 = bg + border + foreground；需要强对比的单点色（校验态边框、
+     状态圆点）用无后缀的墨色档。 */
+  --success: #137a4e;
+  --success-bg: #e3f5ef;
+  --success-border: #a5d8c9;
+  --success-foreground: #0b4d3b;
+
+  --warning: #975c06;
+  --warning-bg: #fdf4e3;
+  --warning-border: #ecd39a;
+  --warning-foreground: #6b4204;
+
+  --danger: #c81d4a;
+  --danger-bg: #fcebef;
+  --danger-border: #f0b8c8;
+  --danger-foreground: #9c1237;
+
+  --info: #2f6fb0;
+  --info-bg: #e6f0fa;
+  --info-border: #b3d0ea;
+  --info-foreground: #215283;
+
+  --neutral: #5a6b69;
+  --neutral-bg: #e9f1ef;
+  --neutral-border: #c5d3d0;
+  --neutral-foreground: #3f4d4b;
+
+  /* ── 布局常量 ─────────────────────────────────────────────────────────────
+     由 AppShell / PageContainer 引用；不产出工具类。
+     注：UI 参考图实测侧栏 ≈179px、Header ≈53px，与设计文档的 164/52 同量级，
+     按「Design System > UI Reference」采用 164 / 52。 */
+  --app-sidebar-width: 164px;
+  --app-sidebar-width-collapsed: 64px;
+  --app-header-height: 52px;
+  --app-main-padding: 20px;
+
+  /* 内容宽度只有两档（见 styles/README.md §3）：
+     default 给正文 / 表单型页面，wide 给表格 / 多列型页面。
+     内距之外再限宽，宽屏下内容居中而不是拉到屏幕边缘。 */
+  --app-content-width: 1200px;
+  --app-content-width-wide: 1440px;
+
+  /* ── 语义间距（4px 刻度上的两个常用档）─────────────────────────────────────
+     其余间距直接用 Tailwind 数字刻度（p-4 = 16px）。详见 README。 */
+  --card-padding: 20px;
+  --section-gap: 24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2 · 原始 Token 值（暗色）
+   ═══════════════════════════════════════════════════════════════════════════
+
+   跟随系统偏好。暗色不是亮色的反相：表面抬升靠层级差（background < card < muted
+   的明度关系在暗色下与亮色相反），主色抬亮以保证在深底上的对比度。
+   两套的对比度实测值见 README。 */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --background: #0e1614;
+    --foreground: #e3ecea;
+    --card: #151f1d;
+    --card-foreground: #e3ecea;
+    --muted: #1b2624;
+
+    --muted-foreground: #9fb0ac;
+    --foreground-disabled: #44514e;
+
+    --border: #26332f;
+    --input: #626d69;
+    --ring: #4fd3b6;
+
+    --primary: #4fd3b6;
+    --primary-foreground: #06231d;
+    --primary-hover: #6ee0c8;
+    --primary-light: #16332d;
+
+    --success: #5bd3a3;
+    --success-bg: #14322a;
+    --success-border: #27584a;
+    --success-foreground: #b3ead3;
+
+    --warning: #e0b25f;
+    --warning-bg: #33280f;
+    --warning-border: #5e4a1e;
+    --warning-foreground: #f0d9a8;
+
+    --danger: #f4789a;
+    --danger-bg: #3a1622;
+    --danger-border: #6b2b41;
+    --danger-foreground: #f9c2d1;
+
+    --info: #7cb3e8;
+    --info-bg: #132a3f;
+    --info-border: #2a4d6e;
+    --info-foreground: #bcd9f5;
+
+    --neutral: #9fb0ac;
+    --neutral-bg: #1b2624;
+    --neutral-border: #36443f;
+    --neutral-foreground: #cfdad7;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3 · 基础层（@layer base）—— 全局 reset 与元素默认值
+   ═══════════════════════════════════════════════════════════════════════════
+
+   本仓库不引入 Tailwind preflight，下列规则是唯一的全局样式，全部位于 @layer base，
+   因此 @layer utilities 里的任何工具类都能覆盖它们。 */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  :root {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /*
+   * 链接默认「继承颜色 + 无下划线」。
+   *
+   * 有意不沿用旧 `a { color: <品牌色> }`——把品牌色强加给每一个 <a> 会让导航、
+   * 按钮式链接、卡片标题全部变成强调色。需要表现为正文链接的地方在各自位置
+   * 显式加 `text-primary hover:underline`。
+   *
+   * `text-decoration: none` 是必要的默认值：本仓库没有 preflight，否则每个 <a>
+   * （含导航项与 buttonVariants 包裹的链接）都会带上 UA 默认下划线。
+   */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3.5 · 组件层（@layer components）—— 具名的组件级样式
+   ═══════════════════════════════════════════════════════════════════════════
+
+   只放「工具类表达不了、又不是全局 reset」的组件样式：布局模板与伪类变体。
+   页面与组件的视觉优先用工具类；这里每一条都必须是**多处以同一形态重复**的那一种。
+
+   层序保证：utilities 能覆盖这里，调用方仍可用工具类做局部微调。
+   页面自己的 `<style scoped>` 是未分层的，会恒压这里与 utilities（见 §0）。 */
+
+@layer components {
+  /*
+   * 「字段名 / 值」详情行 —— 由 DetailRow 组件消费（W5）。
+   *
+   * 改造前这套写法在 17 处逐字重复（AgentRun 10 / Agents 4 / Requirements 3）：
+   *   grid grid-cols-[110px_minmax(0,1fr)] gap-4 border-t border-border py-3
+   *   first:border-t-0 first:pt-0
+   * 它不是一次性尺寸而是**布局模板**，Tailwind 无法用具名刻度表达，故收成具名组件样式。
+   *
+   * 标签列 112px = 28 × 4px，在 4px 刻度上（原值 110px 不在刻度上，本次顺正 2px，视觉不可辨）。
+   */
+  .detail-row {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    padding-block: 12px;
+  }
+
+  .detail-row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  /*
+   * 语义色调点（tone → 令牌色）—— 执行轨迹与事件时间线共用。
+   *
+   * 改造前这段在 `WorkflowsView`（.workflow-event-dot）与 `AgentRunView`（.trace-dot）
+   * 各自的 scoped 块里**逐字重复**，而且 scoped 是未分层的、会恒压工具类。
+   * 收成一条具名组件样式后：一处定义、可被工具类覆盖（回到 components 层）。
+   *
+   * `[data-tone]` 变体工具类表达不了 —— 同一个 class 要按数据属性取四组不同令牌色，
+   * 这正是 README §0 允许留在手写 CSS 的那一类。
+   */
+  .tone-dot {
+    display: inline-block;
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--muted-foreground);
+  }
+
+  .tone-dot[data-tone="running"] {
+    background: var(--info);
+  }
+
+  .tone-dot[data-tone="success"] {
+    background: var(--success);
+  }
+
+  .tone-dot[data-tone="error"] {
+    background: var(--danger);
+  }
+
+  .tone-dot[data-tone="warning"] {
+    background: var(--warning);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4 · Tailwind 映射（@theme static inline）
+   ═══════════════════════════════════════════════════════════════════════════
+
+   · inline —— 工具类直接内联取值（.text-body{font-size:14px}），不经过 var()。
+   · static —— **强制输出全部令牌变量**，未被工具类引用的也输出。
+
+   为什么必须 static：Tailwind 默认会摇掉「没有任何工具类引用」的主题变量。
+   本仓库的页面仍有手写 scoped CSS，通过 var(--text-body) / var(--radius-lg) 直接
+   消费令牌；若变量被摇掉，那些声明会静默失效（不是报错，是整条属性消失）。
+   加上 static 后，:root 始终是令牌的完整清单，手写 CSS 与工具类引用同一批变量。
+
+   代价：产物多约 1KB 未被引用的变量定义。 */
+
+@theme static inline {
+  /* ── 颜色 → 工具类（bg-* / text-* / border-* / ring-*） ──────────────────── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-foreground-disabled: var(--foreground-disabled);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-success-border: var(--success-border);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-border: var(--warning-border);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-border: var(--danger-border);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-info-border: var(--info-border);
+  --color-info-foreground: var(--info-foreground);
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-neutral-border: var(--neutral-border);
+  --color-neutral-foreground: var(--neutral-foreground);
+
+  /* ── 字体族 ───────────────────────────────────────────────────────────────
+     系统字体栈：不依赖外部 CDN，无 FOUT 与布局抖动。西文与数字走系统 UI 字体，
+     中文依次回落到 PingFang SC / 微软雅黑 / Noto Sans CJK。
+     选型依据见 README「字体」。 */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  /* ── 字号 / 行高 / 字重（text-*）──────────────────────────────────────────
+     六档，各有唯一用途。字重只在高权重档声明；正文三档默认继承（400），
+     需要更重时叠加 font-medium / font-semibold。 */
+  --text-metric: 28px; /* 指标数字：仪表盘等处的关键计数 */
+  --text-metric--line-height: 1.2;
+  --text-metric--font-weight: 600;
+  --text-page-title: 24px; /* 页面标题：每页唯一一个 h1 */
+  --text-page-title--line-height: 1.35;
+  --text-page-title--font-weight: 600;
+  --text-section-title: 16px; /* 区块标题：面板、卡片组、抽屉标题 */
+  --text-section-title--line-height: 1.4;
+  --text-section-title--font-weight: 600;
+  --text-body: 14px; /* 正文：默认文本档，未特别指定时用它 */
+  --text-body--line-height: 1.6;
+  --text-secondary: 13px; /* 次级：说明、元数据、表格单元格中的辅助行 */
+  --text-secondary--line-height: 1.55;
+  --text-caption: 12px; /* 最小档：表格表头、标签、键名、时间戳 */
+  --text-caption--line-height: 1.5;
+
+  /* ── 间距 ─────────────────────────────────────────────────────────────────
+     4px 单一刻度，沿用 Tailwind 默认 --spacing: 0.25rem，不覆写。
+     任意整数即刻度值：p-4 = 16px、gap-6 = 24px、max-h-55 = 220px。
+     --card-padding / --section-gap 是刻度上的两个语义别名（见 §1）。 */
+
+  /* ── 圆角（rounded-sm / rounded-md / rounded-lg）──────────────────────────
+     三档，全站只用这三档 + rounded-full（头像、圆点）。 */
+  --radius-sm: 6px; /* 小控件：复选框、下拉项、徽标 */
+  --radius-md: 10px; /* 控件：按钮、输入框、Tab */
+  --radius-lg: 12px; /* 表面：卡片、面板、弹层、代码块 */
+
+  /* ── 阴影 ─────────────────────────────────────────────────────────────────
+     只有一档。设计文档 §7：「普通 Card 优先使用 border，而不是明显阴影」，
+     故卡片一律描边不投影；本档仅供 Dialog / Drawer / Dropdown 等浮层使用。 */
+  --shadow-overlay: 0 4px 12px rgb(16 24 40 / 0.08), 0 2px 4px rgb(16 24 40 / 0.04);
+}

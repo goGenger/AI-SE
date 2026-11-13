@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T13:15:59.563Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "357206e5-9168-4bcd-8ff4-4dc2a5773c93",
+      "workflowIds": [
+        "357206e5-9168-4bcd-8ff4-4dc2a5773c93"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "READY": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 61148,
+        "output": 7989
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 396191,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added AC-named unit tests in test/slugify.ac.test.mjs (9 tests [AC-01]..[AC-09]) covering FR-1 lowercase (slugify('ABC')=='abc', slugify('Hello World')=='hello-world'), FR-2 trim (slugify('  Hello World  ')=='hello-world', slugify('  hello  ')=='hello'), FR-3 contiguous whitespace runs incl. spaces/tabs/newlines (slugify('Hello   World')=='hello-world', slugify('a\\\\tb')=='a-b', slugify('a\\\\nb')=='a-b'), FR-4 disallowed symbols to hyphen (slugify('a_b.c/d')=='a-b-c-d', slugify('foo+bar=baz')=='foo-bar-baz') and FR-8 Unicode preservation incl. Chinese (slugify('标题 测试')=='标题-测试', slugify('中文123')=='中文123'). Red phase shown first without modifying product code: the identical AC assertions were run against an unimplemented stub in a temporary scratch file (throw new Error) and all 9 failed (not ok 1..9; tests 9, pass 0, fail 9). Scratch was then deleted. Green phase against the existing implementation: 9/9 AC tests pass and the full project suite is 12/12 (fail 0). Gates node --check (lint/build) report no errors. No product code was changed by this task; pnpm is not installed in the sandbox so the script bodies were executed via their underlying node commands."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 61148,
+      "output": 7989
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

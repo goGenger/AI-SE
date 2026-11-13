@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-10-21T04:27:17.747Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "3e08ef4c-4cfc-44db-b623-e7cfac668906",
+      "workflowIds": [
+        "3e08ef4c-4cfc-44db-b623-e7cfac668906"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 21,
+      "runCount": 14,
+      "taskStatuses": {
+        "SUCCESS": 10,
+        "FAILED": 4,
+        "PENDING": 7
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 9563114,
+        "output": 160622
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1998672,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3,
+        "REPLAN_REQUESTED": 1
+      },
+      "failureSummary": "Implemented the HTTP infrastructure slice for TaskBoard with Node standard library only. Files: src/config.js (PORT default 3000 validated as an integer 0-65535, DATA_DIR default ./data resolved to an absolute path, recursive mkdir plus directory and writability checks at startup, no ambient process.env fallback when an explicit env object is passed); src/logger.js (JSON-line stdout-only logger with debug/info/warn/error/child, key-based deep redaction of password/secret/token/authorization/hash/salt/cookie/session fields, free-form scrubbing of Bearer tokens and password= [REDACTED] style text, circular/depth guards, never throws on EPIPE, level configurable via LOG_LEVEL, silent level available); src/errors.js (single envelope {\"error\":{\"code\",\"message\"}}, full PRD allow-list of 8 codes frozen, createErrorBody and HttpError refuse any code outside the list, helpers validationError/unknownFieldError/unauthorizedError/notFoundError, sendJson/sendError/sendNoContent and sendErrorResponse that maps known HttpErrors to their status and hides internal details); src/http/router.js (method plus path-pattern route table with literal and :param segments, decode-safe param extraction, 2048-byte path cap, duplicate-slash and trailing-slash normalisation, route listing for diagnostics); src/http/body.js (256 KiB capped JSON reader that rejects oversized, aborted, malformed and non-object bodies as 400 VALIDATION_ERROR instead of crashing); src/routes/health.js (unauthenticated GET /healthz, /health, /ready returning 200 {\"status\":\"ok\"}); src/server.js (createTaskBoardServer(config, options) preserved as the public factory, builds the route table, registers health routes, owns JSON body parsing helpers in the handler context, returns 404 {\"error\":{\"code\":\"NOT_FOUND\",\"message\":\"Resource not found\"}} for unknown routes and unsupported methods, converts malformed request targets into 400 VALIDATION_ERROR, logs one redacted request line per request with path only (no query, headers or body), keeps clientError handling from killing the process, and main() reads PORT/DATA_DIR, logs the listening line to stdout and shuts down cleanly on SIGTERM/SIGINT). Trust-boundary input is validated: env values, paths, URLs, body size, JSON syntax and error codes are all checked before use, and no credential, token, hash or secret reaches stdout. Verified: node --test test/health.ac01.test.js -> 6/6 pass, exit 0; npm run lint, npm run typecheck, npm run build -> exit 0; npm run build confirms the entrypoint still loads and exports createTaskBoardServer; the login suite run shows an unknown POST /api/register producing exactly the allowed 404 envelope. The auth and task routes are intentionally out of scope for this task and remain for their own backend slices, so the pre-existing register/login/persistence suites are still red for missing endpoints (they were red before this change as well). A new test file test/infra.contract.test.js was attempted to cover unknown-route and body-parsing contracts but the write policy rejected the test/ path for this backend task, so no test file was added and nothing was written elsewhere instead.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "auth-persistence",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 9563114,
+      "output": 160622
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3,
+      "REPLAN_REQUESTED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "auth-persistence": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

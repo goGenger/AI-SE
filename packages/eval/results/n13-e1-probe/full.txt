@@ -1,0 +1,703 @@
+TAP version 13
+# Subtest: [AC-07] USERNAME_PATTERN accepts only the PRD alphabet at its boundary lengths
+ok 1 - [AC-07] USERNAME_PATTERN accepts only the PRD alphabet at its boundary lengths
+  ---
+  duration_ms: 0.548958
+  type: 'test'
+  ...
+# Subtest: [AC-07] USERNAME_PATTERN rejects every trailing line terminator
+ok 2 - [AC-07] USERNAME_PATTERN rejects every trailing line terminator
+  ---
+  duration_ms: 0.097917
+  type: 'test'
+  ...
+# Subtest: [AC-07] validateRegistrationBody maps a trailing newline to 400 VALIDATION_ERROR
+ok 3 - [AC-07] validateRegistrationBody maps a trailing newline to 400 VALIDATION_ERROR
+  ---
+  duration_ms: 0.272542
+  type: 'test'
+  ...
+# Subtest: [AC-07] validateRegistrationBody still accepts a well formed 32 character username
+ok 4 - [AC-07] validateRegistrationBody still accepts a well formed 32 character username
+  ---
+  duration_ms: 0.38625
+  type: 'test'
+  ...
+# Subtest: [UNKNOWN_FIELD] a register body with an unexpected field answers 400 UNKNOWN_FIELD
+ok 5 - [UNKNOWN_FIELD] a register body with an unexpected field answers 400 UNKNOWN_FIELD
+  ---
+  duration_ms: 27.306458
+  type: 'test'
+  ...
+# Subtest: [UNKNOWN_FIELD] a register body with a nested extra field is not silently ignored
+ok 6 - [UNKNOWN_FIELD] a register body with a nested extra field is not silently ignored
+  ---
+  duration_ms: 10.293833
+  type: 'test'
+  ...
+# Subtest: [UNKNOWN_FIELD] the shared credential reader rejects unknown login fields before validation
+ok 7 - [UNKNOWN_FIELD] the shared credential reader rejects unknown login fields before validation
+  ---
+  duration_ms: 0.792667
+  type: 'test'
+  ...
+# Subtest: [VALIDATION_ERROR] malformed JSON and non-object bodies answer the PRD envelope
+ok 8 - [VALIDATION_ERROR] malformed JSON and non-object bodies answer the PRD envelope
+  ---
+  duration_ms: 12.360542
+  type: 'test'
+  ...
+# Subtest: [AC-08] a 72-character password registers while 73 characters answer 400 VALIDATION_ERROR
+ok 9 - [AC-08] a 72-character password registers while 73 characters answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 71.568875
+  type: 'test'
+  ...
+# Subtest: [AC-07] the register validator enforces the username rule and the password rule directly
+ok 10 - [AC-07] the register validator enforces the username rule and the password rule directly
+  ---
+  duration_ms: 0.286291
+  type: 'test'
+  ...
+# Subtest: [ENVELOPE] approved error codes map to 400/401/404/409 and unknown codes are rejected
+ok 11 - [ENVELOPE] approved error codes map to 400/401/404/409 and unknown codes are rejected
+  ---
+  duration_ms: 0.2655
+  type: 'test'
+  ...
+# Subtest: [UNKNOWN_FIELD] assertAllowedFields ignores nothing and rejects the first unknown field
+ok 12 - [UNKNOWN_FIELD] assertAllowedFields ignores nothing and rejects the first unknown field
+  ---
+  duration_ms: 0.136625
+  type: 'test'
+  ...
+# Subtest: [LOGGING] stdout stays free of passwords, bearer tokens and query strings
+ok 13 - [LOGGING] stdout stays free of passwords, bearer tokens and query strings
+  ---
+  duration_ms: 48.509458
+  type: 'test'
+  ...
+# Subtest: [LOGGING] secret-shaped fragments are redacted before they reach a log line
+ok 14 - [LOGGING] secret-shaped fragments are redacted before they reach a log line
+  ---
+  duration_ms: 0.496208
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# Subtest: AC-01 health endpoints return 200 with status ok
+ok 15 - AC-01 health endpoints return 200 with status ok
+  ---
+  duration_ms: 37.992917
+  type: 'test'
+  ...
+# [taskboard] GET /
+# Subtest: AC-21 home page returns HTML containing the four data-testid hooks
+ok 16 - AC-21 home page returns HTML containing the four data-testid hooks
+  ---
+  duration_ms: 11.184125
+  type: 'test'
+  ...
+# Subtest: AC-30 package.json declares the five required script entries
+ok 17 - AC-30 package.json declares the five required script entries
+  ---
+  duration_ms: 11.369917
+  type: 'test'
+  ...
+# Subtest: FR-9.1 package.json has zero runtime dependencies and targets Node.js 22
+ok 18 - FR-9.1 package.json has zero runtime dependencies and targets Node.js 22
+  ---
+  duration_ms: 3.052917
+  type: 'test'
+  ...
+# Subtest: FR-9.1 pnpm-lock.yaml is committed with a lockfile format header
+ok 19 - FR-9.1 pnpm-lock.yaml is committed with a lockfile format header
+  ---
+  duration_ms: 4.515292
+  type: 'test'
+  ...
+# Subtest: FR-9.2 start reads PORT with a default of 3000 and rejects invalid values
+ok 20 - FR-9.2 start reads PORT with a default of 3000 and rejects invalid values
+  ---
+  duration_ms: 0.758958
+  type: 'test'
+  ...
+# Subtest: FR-9.4 the offline test baseline itself is discovered by node --test
+ok 21 - FR-9.4 the offline test baseline itself is discovered by node --test
+  ---
+  duration_ms: 0.191167
+  type: 'test'
+  ...
+# Subtest: FR-9.8 .gitignore ignores node_modules, data and dist while keeping the lockfile tracked
+ok 22 - FR-9.8 .gitignore ignores node_modules, data and dist while keeping the lockfile tracked
+  ---
+  duration_ms: 5.372708
+  type: 'test'
+  ...
+# selfcheck: unknown mode "bogus-mode"
+# selfcheck: usage: node src/selfcheck.mjs <lint|typecheck|build>
+# Subtest: FR-9.6 README documents install, start, test, build-image and run-image commands
+ok 23 - FR-9.6 README documents install, start, test, build-image and run-image commands
+  ---
+  duration_ms: 5.951334
+  type: 'test'
+  ...
+# Subtest: FR-9.3 self-check runner reports non-zero exit codes with readable diagnostics
+ok 24 - FR-9.3 self-check runner reports non-zero exit codes with readable diagnostics
+  ---
+  duration_ms: 2.632917
+  type: 'test'
+  ...
+# Subtest: [FR-9.1] package.json keeps dependencies and devDependencies empty
+ok 25 - [FR-9.1] package.json keeps dependencies and devDependencies empty
+  ---
+  duration_ms: 14.24075
+  type: 'test'
+  ...
+# Subtest: [FR-9.1] engines.node constrains the runtime to Node.js 22.x
+ok 26 - [FR-9.1] engines.node constrains the runtime to Node.js 22.x
+  ---
+  duration_ms: 2.653333
+  type: 'test'
+  ...
+# Subtest: [FR-9.1] pnpm-lock.yaml is committed and well formed
+ok 27 - [FR-9.1] pnpm-lock.yaml is committed and well formed
+  ---
+  duration_ms: 5.220542
+  type: 'test'
+  ...
+# Subtest: [FR-9.2] package.json declares the five required scripts
+ok 28 - [FR-9.2] package.json declares the five required scripts
+  ---
+  duration_ms: 2.888625
+  type: 'test'
+  ...
+# Subtest: [FR-9.2] the start entry defaults to port 3000 when PORT is unset
+ok 29 - [FR-9.2] the start entry defaults to port 3000 when PORT is unset
+  ---
+  duration_ms: 0.443375
+  type: 'test'
+  ...
+# Subtest: [FR-9.4] this suite is discoverable by node --test and needs no installed packages
+ok 30 - [FR-9.4] this suite is discoverable by node --test and needs no installed packages
+  ---
+  duration_ms: 7.408708
+  type: 'test'
+  ...
+# Subtest: [FR-9.4] all project modules import only node: builtins or relative files
+ok 31 - [FR-9.4] all project modules import only node: builtins or relative files
+  ---
+  duration_ms: 72.400583
+  type: 'test'
+  ...
+# Subtest: [FR-9.4] project modules reference only loopback hosts, so tests run offline
+ok 32 - [FR-9.4] project modules reference only loopback hosts, so tests run offline
+  ---
+  duration_ms: 8.330583
+  type: 'test'
+  ...
+# Subtest: [FR-9.1] dependency and engine guards reject non-conforming manifests
+ok 33 - [FR-9.1] dependency and engine guards reject non-conforming manifests
+  ---
+  duration_ms: 2.1545
+  type: 'test'
+  ...
+# Subtest: [FR-9.2] script and start-port guards reject non-conforming manifests
+ok 34 - [FR-9.2] script and start-port guards reject non-conforming manifests
+  ---
+  duration_ms: 1.277333
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+ok 35 - [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 139.299542
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+ok 36 - [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 1.612
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+ok 37 - [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 2.079084
+  type: 'test'
+  ...
+# Subtest: [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+ok 38 - [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+  ---
+  duration_ms: 4.579292
+  type: 'test'
+  ...
+# Subtest: [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+ok 39 - [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+  ---
+  duration_ms: 1.454416
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+ok 40 - [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+  ---
+  duration_ms: 55.641834
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+ok 41 - [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+  ---
+  duration_ms: 25.533
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# Subtest: [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+ok 42 - [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+  ---
+  duration_ms: 9.071917
+  type: 'test'
+  ...
+# [taskboard] HEAD /healthz
+# [taskboard] HEAD /health
+# [taskboard] HEAD /ready
+# Subtest: [AC-01] HEAD probes answer 200 with the JSON headers and no body
+ok 43 - [AC-01] HEAD probes answer 200 with the JSON headers and no body
+  ---
+  duration_ms: 4.869125
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+ok 44 - [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+  ---
+  duration_ms: 95.508666
+  type: 'test'
+  ...
+# Subtest: [AC-01] the router exemption list contains exactly the health paths plus the home page
+ok 45 - [AC-01] the router exemption list contains exactly the health paths plus the home page
+  ---
+  duration_ms: 0.140083
+  type: 'test'
+  ...
+# Subtest: [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+ok 46 - [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+  ---
+  duration_ms: 0.077292
+  type: 'test'
+  ...
+# Subtest: [AC-09] correct credentials answer 200 with a non-empty token and the user object
+ok 47 - [AC-09] correct credentials answer 200 with a non-empty token and the user object
+  ---
+  duration_ms: 200.940375
+  type: 'test'
+  ...
+# Subtest: [AC-10] a wrong password answers 401 INVALID_CREDENTIALS
+ok 48 - [AC-10] a wrong password answers 401 INVALID_CREDENTIALS
+  ---
+  duration_ms: 34.835167
+  type: 'test'
+  ...
+# Subtest: [AC-06] concurrent registration of one username issues at least 5 simultaneous POST /api/register requests
+ok 49 - [AC-06] concurrent registration of one username issues at least 5 simultaneous POST /api/register requests
+  ---
+  duration_ms: 189.843625
+  type: 'test'
+  ...
+# Subtest: [AC-06] exactly one concurrent registration succeeds with 201
+ok 50 - [AC-06] exactly one concurrent registration succeeds with 201
+  ---
+  duration_ms: 0.135125
+  type: 'test'
+  ...
+# Subtest: [AC-06] every losing concurrent registration answers 409 USERNAME_TAKEN
+ok 51 - [AC-06] every losing concurrent registration answers 409 USERNAME_TAKEN
+  ---
+  duration_ms: 0.16175
+  type: 'test'
+  ...
+# Subtest: [AC-06] no concurrent registration answers 500 or any other 5xx
+ok 52 - [AC-06] no concurrent registration answers 500 or any other 5xx
+  ---
+  duration_ms: 0.373541
+  type: 'test'
+  ...
+# Subtest: [AC-02] a fresh valid username registers with 201 and a UUID user.id plus the echoed username
+ok 53 - [AC-02] a fresh valid username registers with 201 and a UUID user.id plus the echoed username
+  ---
+  duration_ms: 132.342875
+  type: 'test'
+  ...
+# Subtest: [AC-02] two registrations of distinct usernames receive distinct UUID user ids
+ok 54 - [AC-02] two registrations of distinct usernames receive distinct UUID user ids
+  ---
+  duration_ms: 77.279791
+  type: 'test'
+  ...
+# Subtest: [AC-03] registering an exact duplicate username answers 409 USERNAME_TAKEN
+ok 55 - [AC-03] registering an exact duplicate username answers 409 USERNAME_TAKEN
+  ---
+  duration_ms: 48.967041
+  type: 'test'
+  ...
+# Subtest: [AC-05] registering alice after Alice answers 409 USERNAME_TAKEN (case-insensitive uniqueness)
+ok 56 - [AC-05] registering alice after Alice answers 409 USERNAME_TAKEN (case-insensitive uniqueness)
+  ---
+  duration_ms: 43.256083
+  type: 'test'
+  ...
+# Subtest: [AC-07] usernames that are too short answer 400 VALIDATION_ERROR
+ok 57 - [AC-07] usernames that are too short answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 5.716541
+  type: 'test'
+  ...
+# Subtest: [AC-07] usernames containing a space answer 400 VALIDATION_ERROR
+ok 58 - [AC-07] usernames containing a space answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 3.826458
+  type: 'test'
+  ...
+# Subtest: [AC-07] non-ASCII usernames answer 400 VALIDATION_ERROR
+ok 59 - [AC-07] non-ASCII usernames answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 3.654
+  type: 'test'
+  ...
+# Subtest: [AC-07] usernames longer than 32 characters answer 400 VALIDATION_ERROR
+ok 60 - [AC-07] usernames longer than 32 characters answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 3.003333
+  type: 'test'
+  ...
+# Subtest: [AC-08] passwords shorter than 8 characters answer 400 VALIDATION_ERROR
+ok 61 - [AC-08] passwords shorter than 8 characters answer 400 VALIDATION_ERROR
+  ---
+  duration_ms: 4.190292
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] pnpm lint exits 0 for the current repository
+ok 62 - [FR-9.3] pnpm lint exits 0 for the current repository
+  ---
+  duration_ms: 245.965167
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] pnpm typecheck exits 0 for the current repository
+ok 63 - [FR-9.3] pnpm typecheck exits 0 for the current repository
+  ---
+  duration_ms: 151.400375
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] pnpm build exits 0 for the current repository
+ok 64 - [FR-9.3] pnpm build exits 0 for the current repository
+  ---
+  duration_ms: 114.698875
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] lint on a temporary fixture with missing required files exits non-zero and prints diagnostics
+ok 65 - [FR-9.3] lint on a temporary fixture with missing required files exits non-zero and prints diagnostics
+  ---
+  duration_ms: 37.609917
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] typecheck on a temporary fixture violating manifest rules exits non-zero and prints diagnostics
+ok 66 - [FR-9.3] typecheck on a temporary fixture violating manifest rules exits non-zero and prints diagnostics
+  ---
+  duration_ms: 38.9925
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] build on a temporary fixture without the build script exits non-zero and prints diagnostics
+ok 67 - [FR-9.3] build on a temporary fixture without the build script exits non-zero and prints diagnostics
+  ---
+  duration_ms: 38.1705
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] a temporary fixture with a broken module yields a located syntax diagnostic
+ok 68 - [FR-9.3] a temporary fixture with a broken module yields a located syntax diagnostic
+  ---
+  duration_ms: 38.222541
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] an unknown self-check mode is rejected with usage diagnostics and exit code 2
+ok 69 - [FR-9.3] an unknown self-check mode is rejected with usage diagnostics and exit code 2
+  ---
+  duration_ms: 33.374208
+  type: 'test'
+  ...
+# Subtest: [FR-9.3] the suite leaves repository files and no temporary fixtures behind
+ok 70 - [FR-9.3] the suite leaves repository files and no temporary fixtures behind
+  ---
+  duration_ms: 18.492
+  type: 'test'
+  ...
+# Subtest: FR-9.2 the start entry boots the HTTP service on the PORT environment value
+ok 71 - FR-9.2 the start entry boots the HTTP service on the PORT environment value
+  ---
+  duration_ms: 108.472417
+  type: 'test'
+  ...
+# Subtest: FR-9.2 the start entry rejects an invalid PORT as untrusted input
+ok 72 - FR-9.2 the start entry rejects an invalid PORT as untrusted input
+  ---
+  duration_ms: 264.480667
+  type: 'test'
+  ...
+# Subtest: [AC-11] a task request without an Authorization header answers 401 UNAUTHORIZED
+ok 73 - [AC-11] a task request without an Authorization header answers 401 UNAUTHORIZED
+  ---
+  duration_ms: 171.356791
+  type: 'test'
+  ...
+# Subtest: [AC-12] a valid token altered by one character answers 401
+ok 74 - [AC-12] a valid token altered by one character answers 401
+  ---
+  duration_ms: 5.964375
+  type: 'test'
+  ...
+# Subtest: [AC-13] a truncated valid token answers 401
+ok 75 - [AC-13] a truncated valid token answers 401
+  ---
+  duration_ms: 8.534875
+  type: 'test'
+  ...
+# Subtest: [AC-09] issueToken rejects a username claim that verification could never accept
+ok 76 - [AC-09] issueToken rejects a username claim that verification could never accept
+  ---
+  duration_ms: 1.364
+  type: 'test'
+  ...
+# Subtest: [AC-09] issueToken treats an omitted or null username as no claim and still verifies
+ok 77 - [AC-09] issueToken treats an omitted or null username as no claim and still verifies
+  ---
+  duration_ms: 0.345917
+  type: 'test'
+  ...
+# Subtest: [AC-09] a non-object identity is rejected instead of being silently coerced
+ok 78 - [AC-09] a non-object identity is rejected instead of being silently coerced
+  ---
+  duration_ms: 0.092667
+  type: 'test'
+  ...
+# Subtest: [AC-09] issued tokens never embed the signing secret and diagnostics never echo it
+ok 79 - [AC-09] issued tokens never embed the signing secret and diagnostics never echo it
+  ---
+  duration_ms: 0.233375
+  type: 'test'
+  ...
+# Subtest: [AC-12] a token minted with another key is rejected by every fresh instance
+ok 80 - [AC-12] a token minted with another key is rejected by every fresh instance
+  ---
+  duration_ms: 0.191875
+  type: 'test'
+  ...
+# Subtest: [AC-09] an issued token is a two-segment signed structure with identity and issued-at
+ok 81 - [AC-09] an issued token is a two-segment signed structure with identity and issued-at
+  ---
+  duration_ms: 1.398542
+  type: 'test'
+  ...
+# Subtest: [AC-09] TOKEN_SECRET is used when present and a random secret is generated otherwise
+ok 82 - [AC-09] TOKEN_SECRET is used when present and a random secret is generated otherwise
+  ---
+  duration_ms: 0.626959
+  type: 'test'
+  ...
+# Subtest: [AC-09] an unusable TOKEN_SECRET is rejected without echoing its value
+ok 83 - [AC-09] an unusable TOKEN_SECRET is rejected without echoing its value
+  ---
+  duration_ms: 0.281
+  type: 'test'
+  ...
+# Subtest: [AC-09] issueToken rejects a missing or unusable user identity
+ok 84 - [AC-09] issueToken rejects a missing or unusable user identity
+  ---
+  duration_ms: 0.169291
+  type: 'test'
+  ...
+# Subtest: [AC-12] a token changed by one character fails verification at every position
+ok 85 - [AC-12] a token changed by one character fails verification at every position
+  ---
+  duration_ms: 2.413625
+  type: 'test'
+  ...
+# Subtest: [AC-12] a swapped payload or a re-signed foreign key is rejected
+ok 86 - [AC-12] a swapped payload or a re-signed foreign key is rejected
+  ---
+  duration_ms: 0.162834
+  type: 'test'
+  ...
+# Subtest: [AC-13] truncated tokens are rejected and the genuine token keeps working
+ok 87 - [AC-13] truncated tokens are rejected and the genuine token keeps working
+  ---
+  duration_ms: 0.201875
+  type: 'test'
+  ...
+# Subtest: [AC-13] malformed credentials are rejected without throwing
+ok 88 - [AC-13] malformed credentials are rejected without throwing
+  ---
+  duration_ms: 0.377334
+  type: 'test'
+  ...
+# Subtest: [AC-13] non-canonical base64url and unsupported claims are rejected
+ok 89 - [AC-13] non-canonical base64url and unsupported claims are rejected
+  ---
+  duration_ms: 0.773667
+  type: 'test'
+  ...
+# Subtest: [AC-02] a stored user carries the persisted record fields and no plaintext password
+ok 90 - [AC-02] a stored user carries the persisted record fields and no plaintext password
+  ---
+  duration_ms: 47.379667
+  type: 'test'
+  ...
+# Subtest: [AC-04] the persisted users document never contains the plaintext password
+ok 91 - [AC-04] the persisted users document never contains the plaintext password
+  ---
+  duration_ms: 0.580542
+  type: 'test'
+  ...
+# Subtest: [AC-02] a fresh store reloads existing users from DATA_DIR (restart persistence)
+ok 92 - [AC-02] a fresh store reloads existing users from DATA_DIR (restart persistence)
+  ---
+  duration_ms: 67.037083
+  type: 'test'
+  ...
+# Subtest: [AC-02] writes are atomic: no temporary files survive a successful create
+ok 93 - [AC-02] writes are atomic: no temporary files survive a successful create
+  ---
+  duration_ms: 0.774542
+  type: 'test'
+  ...
+# Subtest: [AC-03] an exact duplicate is rejected and the document keeps a single record
+ok 94 - [AC-03] an exact duplicate is rejected and the document keeps a single record
+  ---
+  duration_ms: 1.329125
+  type: 'test'
+  ...
+# Subtest: [AC-05] a differently cased duplicate is rejected (case-insensitive uniqueness)
+ok 95 - [AC-05] a differently cased duplicate is rejected (case-insensitive uniqueness)
+  ---
+  duration_ms: 1.445333
+  type: 'test'
+  ...
+# Subtest: [AC-06] concurrent createUser() calls for one username store exactly one record
+ok 96 - [AC-06] concurrent createUser() calls for one username store exactly one record
+  ---
+  duration_ms: 40.171834
+  type: 'test'
+  ...
+# Subtest: [AC-02] password hashing verifies the right password and rejects wrong input
+ok 97 - [AC-02] password hashing verifies the right password and rejects wrong input
+  ---
+  duration_ms: 133.981958
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the contract plan lists the five frozen-lockfile steps in the documented order
+ok 98 - [FR-9.7][AC-1] the contract plan lists the five frozen-lockfile steps in the documented order
+  ---
+  duration_ms: 2.772041
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] runContract executes every step in order and reports exit code 0 when all succeed
+ok 99 - [FR-9.7][AC-1] runContract executes every step in order and reports exit code 0 when all succeed
+  ---
+  duration_ms: 3.993709
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-4] a non-zero step interrupts the contract and later steps never start
+ok 100 - [FR-9.7][AC-4] a non-zero step interrupts the contract and later steps never start
+  ---
+  duration_ms: 1.306083
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-4] a step killed by a signal counts as a failure and aborts the remaining steps
+ok 101 - [FR-9.7][AC-4] a step killed by a signal counts as a failure and aborts the remaining steps
+  ---
+  duration_ms: 2.661292
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-2] every step is spawned without an interactive stdin and with CI prompts disabled
+ok 102 - [FR-9.7][AC-2] every step is spawned without an interactive stdin and with CI prompts disabled
+  ---
+  duration_ms: 1.967167
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-3] only pnpm install may go to the network; the four validation steps carry offline flags
+ok 103 - [FR-9.7][AC-3] only pnpm install may go to the network; the four validation steps carry offline flags
+  ---
+  duration_ms: 1.815917
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything
+ok 104 - [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything
+  ---
+  duration_ms: 37.550541
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile
+ok 105 - [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile
+  ---
+  duration_ms: 667.267875
+  type: 'test'
+  ...
+# Subtest: [FR-9.7] the verification script uses only Node standard-library imports and adds no dependency
+ok 106 - [FR-9.7] the verification script uses only Node standard-library imports and adds no dependency
+  ---
+  duration_ms: 0.565334
+  type: 'test'
+  ...
+1..106
+# tests 106
+# suites 0
+# pass 106
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1190.254917

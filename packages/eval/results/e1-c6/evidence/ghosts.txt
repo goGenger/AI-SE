@@ -1,0 +1,8 @@
+=== C-6 timeout-leak evidence 2026-10-07 11:31:37 CST ===
+run1 T-10 9fa23cee: recorded 00:23:06-00:33:06 timed_out; tool calls 00:23:09 -> 00:37:01 (53 calls, +4min past)
+run2 T-14 424a4851: recorded 01:14:41-01:24:41 timed_out; tool calls 01:14:43 -> 01:26:52 (11 calls, +2min past)
+run3 T-08 82220d3c: recorded 02:57:30-03:07:30 timed_out; tool calls 02:57:32 -> 03:30:39+ (60 calls, +23min past, STILL ACTIVE at capture)
+run3 T-08 c2b91287: recorded 03:07:30-03:17:30 timed_out; tool calls 03:07:33 -> 03:27:34 (54 calls, +10min past)
+-- workspace at capture: 27 files; src LOC:
+     931 total
+-- weekly tokens (recorded) at capture: 7625327 (ghost work unrecorded)

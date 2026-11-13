@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T12:23:32.951Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "7919f407-0d63-4155-9c18-9ad71b65da14",
+      "workflowIds": [
+        "7919f407-0d63-4155-9c18-9ad71b65da14"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 5,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 138873,
+        "output": 12878
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 968855,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Delivered test/persist.store.test.mjs (15 AC-numbered node:test cases) covering persist.mjs and store serialization, using only throwaway temp dirs under os.tmpdir() and no external services. RED phase: the test file was re-pointed at stub (unimplemented) persist/store modules and run; all 15 tests failed (0 pass / 15 fail, exit 1) with the AC-numbered names visible, proving the tests genuinely exercise loadData/saveData/store.toJSON/fromJSON rather than passing vacuously. GREEN phase: against the existing implementation the full suite is 16/16 pass (1 pre-existing app test + 15 new), and npm run build and npm run lint both exit 0. Coverage: [AC-01..03] loadData fallback to { items: [], nextId: 1 } on missing file, invalid JSON, and 8 invalid-shape payloads, asserting a fresh non-shared fallback; [AC-04] valid data returned verbatim; [AC-05] saveData recursive nested parent-dir creation; [AC-06] write then loadData read-back equality plus no leftover .tmp in the target dir; [AC-07] rename overwrite of an existing target with no .tmp residue; [AC-08] failure path (circular payload) keeps an existing target intact and never creates a half-written new target, with no temp residue; [AC-09] fromJSON(toJSON()) round-trip preserves observable state and nextId; [AC-10] toJSON() shape is exactly { items, nextId } with item keys { id, title, done }; [AC-11] fromJSON accepts the loadData fallback; [AC-12] toJSON() output passed to saveData is read back equal by loadData; [AC-13..15] temp-dir-only, loadData is read-only, and mkdir is idempotent. No product code was modified by this task; the src/persist.mjs and src/store.mjs modifications shown by git status are pre-existing from sibling tasks T3/T4/T5. The scratch RED harness was removed, so the tree contains only src/, test/ and package.json."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 138873,
+      "output": 12878
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

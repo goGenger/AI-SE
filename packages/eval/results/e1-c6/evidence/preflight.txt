@@ -1,0 +1,41 @@
+=== C-6 preflight 2026-10-07 07:41:50 CST ===
+-- slices --
+        slice_key        | status | planning_version 
+-------------------------+--------+------------------
+ s1-auth-persistence     | FAILED |                2
+ s2-task-crud            | DONE   |                3
+ s3-home-and-container   | DONE   |                4
+ s4-engineering-contract | FAILED |                5
+(4 rows)
+
+-- workflows --
+                  id                  |  status   |        slice         |          created_at           
+--------------------------------------+-----------+----------------------+-------------------------------
+ b6712a14-5115-4f65-9829-8f601b6e68fe | FAILED    | s1-auth-persistence  | 2026-10-06 11:44:33.057734+00
+ aaa16381-ce02-45f3-bf89-1f4b1d23d090 | CANCELLED | s1-auth-persistence  | 2026-10-06 11:42:14.114458+00
+ 51c515cb-7458-458a-aaa0-214fa0c3c993 | FAILED    | s1-auth-persistence  | 2026-10-05 17:01:29.859573+00
+ b23f536a-289b-4a88-b5b6-4ebcabea38f0 | FAILED    | s4-engineering-contr | 2026-10-05 15:36:56.622001+00
+ b38dc0fb-3fc0-4af8-814c-f5084414b4c3 | SUCCESS   | s3-home-and-containe | 2026-10-05 14:54:31.227563+00
+ c0b4de67-6d80-4259-a692-fa7fa9d214cc | SUCCESS   | s2-task-crud         | 2026-10-05 13:48:43.624868+00
+ d89cf950-54b1-4ca2-9a64-fcf480f991fe | SUCCESS   | s1-auth-persistence  | 2026-10-05 12:25:33.701038+00
+ c06a6eae-570b-4623-bebe-a784cfaffca0 | FAILED    | s4-engineering-contr | 2026-10-01 10:58:56.83083+00
+(8 rows)
+
+-- weekly tokens --
+5809657
+=== C-6 post-replan 2026-10-07 07:47:24 CST ===
+ slice_key | status  | planning_version 
+-----------+---------+------------------
+ slice-1   | PLANNED |                7
+ slice-2   | PENDING |                 
+ slice-3   | PENDING |                 
+ slice-4   | PENDING |                 
+ slice-5   | PENDING |                 
+(5 rows)
+
+30
+=== C-6 batch launch 2026-10-07 07:49:12 CST ===
+batch_pid=3974 (caffeinate) / script e1-c6-split.sh
+run1_workflow_slice1=6c841bd2-74a4-4251-8c62-773043b2408e
+weekly_used_at_start=5809657
+replan: level1 version=6 -> gate1 approved 8f80a9c5-035e-4c75-a36f-17c2fd828b41 -> slice-1 plan v7 (1 validation failure + 1 repair, then passed); AC records=30

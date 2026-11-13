@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-10-23T11:53:54.272Z",
+  "baseUrl": "http://127.0.0.1:47559",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "8ace444f-a2cb-418b-946f-b333e555687d",
+      "workflowIds": [
+        "8ace444f-a2cb-418b-946f-b333e555687d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 19,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 3,
+        "PENDING": 16
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 386155,
+        "output": 24729
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 247241,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Created /package.json as the single-package pnpm manifest: private=true, type=module, version 0.1.0, engines.node \">=22.0.0 <23\", packageManager \"pnpm@9.15.4\", dependencies {} with no optionalDependencies and no devDependencies, and exactly the five conventional scripts: start (node src/server.js), test (node --test), lint (node scripts/lint.js), typecheck (node scripts/typecheck.js), build (node scripts/build.js). No prebuild/postbuild chaining hooks or extra script keys were added. The file was re-read after writing and matches the required shape; inline node-based verification was blocked by the sandbox script-only policy (run_lint accepts only project script commands), so no shell one-liner check was executed.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S1-foundation",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 16,
+        "llmRepairRounds": 2,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 386155,
+      "output": 24729
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 16,
+      "llmRepairRounds": 2,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1-foundation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

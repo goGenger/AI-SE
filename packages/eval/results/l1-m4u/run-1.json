@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-10-22T17:20:47.442Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "a2ef4c99-0f20-41fd-a899-6d8c37ab35c5",
+      "workflowIds": [
+        "a2ef4c99-0f20-41fd-a899-6d8c37ab35c5",
+        "4996e42c-13dd-48d5-9ec1-4e135a8b4e9c",
+        "5cf5e74b-19c0-46df-b5f8-f6da5fa4b260",
+        "88aa62ef-8a30-4873-848b-a10c3ce35487"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 51,
+      "runCount": 51,
+      "taskStatuses": {
+        "SUCCESS": 49,
+        "FAILED": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 2,
+      "tokenUsage": {
+        "input": 85101582,
+        "output": 747369
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 8036674,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 2
+      },
+      "failureSummary": "Slice build-contract commands were executed in the required order and all four exit 0: pnpm lint -> exit 0 (\"lint: ok (12 source file(s) checked)\"); pnpm typecheck -> exit 0 (\"typecheck: ok (7 module(s) verified on Node 22.23.2)\"); pnpm test -> exit 0 (node --test, tests 6, suites 2, pass 6, fail 0, cancelled 0, skipped 0); pnpm build -> exit 0 (\"build: ok (6 artefacts verified, smoke boot passed on port 0)\", smoke GET /healthz 200 and GET / 200). Every AC-named test that exists passes: [AC-04] DATA_DIR persistence and password safety (4 subtests) and [AC-21] GET / home page (2 subtests). No product code was modified and no test files were changed (this task is verification-only and explicitly does not add AC coverage). However the slice's build-contract is not fully verified: per FOUND-08 / FOUND-TR-13, each Must AC in this slice (AC-01, AC-04, AC-21, AC-24, AC-25, AC-26, AC-29) must have at least one automated test whose name contains the AC number. Only test/ac04-persistence.test.js and test/ac21-home.test.js exist, so AC-01 (health endpoints /healthz, /health, /ready), AC-24, AC-25, AC-26, AC-29 have no named test at all, and AC-30's README command contract is unverified automatically. Since the missing work belongs in test files and this task must not add coverage, a TEST task should add: an [AC-01] HTTP test against the running server for the three health endpoints, and static contract tests named [AC-24]/[AC-25]/[AC-26]/[AC-29]/[AC-30] that read Dockerfile and README.md (node:22 base image, non-root USER, VOLUME /data, stdout logging, documented install/start/test/docker build/docker run commands). Note also that no runtime verification of AC-24 to AC-26 may happen here because Docker is not reachable from this agent environment; the static contract tests are the agreed substitute per FOUND-TR-13.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-tasks-crud-isolation",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 5,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": true
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 2,
+    "tokenUsage": {
+      "input": 85101582,
+      "output": 747369
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 5,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-tasks-crud-isolation": 1
+    },
+    "stagingDeliveryRate": 1
+  }
+}

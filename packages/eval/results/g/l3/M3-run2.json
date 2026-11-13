@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-10-14T18:01:13.199Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "eb8688b1-801b-471a-841a-42108d5c8915",
+      "workflowIds": [
+        "eb8688b1-801b-471a-841a-42108d5c8915",
+        "3d007dd7-d5c5-426c-a714-5403a345f91c",
+        "f6438a1b-9dfa-427a-9206-0ce50e2a4568"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 33,
+      "runCount": 28,
+      "taskStatuses": {
+        "SUCCESS": 26,
+        "FAILED": 1,
+        "READY": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 1503107,
+        "output": 62579
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2235742,
+      "errorTypes": {},
+      "failureSummary": "[AC-07] failing-first unit tests were authored in the project test location test/merge.test.mjs (runner: npm test -> node --test) and cover the non-plain-object deep-copy fallback contract for src/merge.mjs: base plain object + override array -> deep-copied array; base plain object + override null -> null; base plain object + override undefined -> deep copy of base; base array/null/undefined/primitive + override plain object -> deep copy of override; override primitive -> that primitive; plus reference-independence assertions proving returned structures (including nested objects and arrays) are not the same references as override, or as base when override is undefined. Run result: 124 tests, 120 passed, 4 failed, 0 errors, exit code 1. The 4 failures are all [AC-07] class-instance cases (Date, Map, custom class) that TECH-2 requires to be excluded from the plain-object predicate: src/merge.mjs isPlainObject only checks non-null and non-array, so class instances are recursively merged instead of taking the non-plain-object deep-copy fallback. Product code was not modified. npm run build and npm run lint both exit 0. fixTaskType: IMPLEMENTATION.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "edge-immutability-validation",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 1503107,
+      "output": 62579
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "edge-immutability-validation": 1
+    }
+  }
+}

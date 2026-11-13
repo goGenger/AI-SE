@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-10-09T04:36:40.326Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "6d48730c-6b19-470f-9f87-5409476a54d0",
+      "workflowIds": [
+        "6d48730c-6b19-470f-9f87-5409476a54d0",
+        "1c741e8c-6c30-44ac-b6f1-e8ee845587de"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 13,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 6
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 167042,
+        "output": 24429
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 668087,
+      "errorTypes": {},
+      "failureSummary": "AC-numbered parseCsvLine suite is in place in the repo canonical test file test/csv.test.mjs (node:test + assert.deepStrictEqual from node:assert/strict): [AC-01] 'a,\"b,c\",d' -> ['a','b,c','d']; [AC-02] '\"a\"\"b\"' -> ['a\"b']; [AC-03] '' -> []; [AC-04] 'a,' -> ['a','']; [AC-05] null/undefined/42/true/{}/[] -> []; [AC-06] ' a , b ' -> [' a ',' b ']; plus the pre-existing basic case 'a,b,c'. No product code was modified by me (only the test file differs from HEAD, and it already carried the required cases). Live results: npm run test = 7 tests, 7 pass, 0 fail, exit 0; npm run build and npm run lint exit 0 (node --check src/csv.mjs). BLOCKER preventing the required red phase: git HEAD still holds src/csv.mjs as the stub whose body is only 'throw new Error(\"parseCsvLine 尚未实现\")', but the sandbox working tree already contains an uncommitted, fully implemented src/csv.mjs, so the tests cannot currently fail and the workflow red-light check (expected fail) observed exit 0 and failed as VACUOUS_TEST. Expected exact failures against the HEAD baseline (deterministic, not re-runnable live from this task because restoring the stub would modify product code and inline node -e snippets are blocked by the script-only policy): all 7 cases report 'not ok - <name>' with 'error: Error: parseCsvLine 尚未实现', node --test would print '# tests 7 / # pass 0 / # fail 7' and exit code 1. fixTaskType: IMPLEMENTATION (the tests correctly require an implementation; no test-side change is needed). Recommended unblock: have the engine/verification reset src/csv.mjs to its committed stub, run pnpm test to capture the red run, then let the implementation task (T-03) re-apply the code.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 167042,
+      "output": 24429
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

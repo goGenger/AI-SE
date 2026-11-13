@@ -1,0 +1,317 @@
+[
+  {
+    "seq": 1,
+    "scenario": "A_all_reasoning",
+    "turnIndex": 0,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      }
+    ]
+  },
+  {
+    "seq": 2,
+    "scenario": "A_all_reasoning",
+    "turnIndex": 1,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": true,
+        "reasoning": "text",
+        "preview": ""
+      },
+      {
+        "role": "tool",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": " 1 PROBE_FILE_LINE_ONE 2 PROBE_F"
+      }
+    ]
+  },
+  {
+    "seq": 3,
+    "scenario": "A_all_reasoning",
+    "turnIndex": 2,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": false,
+        "reasoning": "text",
+        "preview": ""
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Your previous reply contained no"
+      }
+    ]
+  },
+  {
+    "seq": 4,
+    "scenario": "B_reasoning_stops",
+    "turnIndex": 0,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      }
+    ]
+  },
+  {
+    "seq": 5,
+    "scenario": "B_reasoning_stops",
+    "turnIndex": 1,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": true,
+        "reasoning": "text",
+        "preview": ""
+      },
+      {
+        "role": "tool",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": " 1 PROBE_FILE_LINE_ONE 2 PROBE_F"
+      }
+    ]
+  },
+  {
+    "seq": 6,
+    "scenario": "B_reasoning_stops",
+    "turnIndex": 2,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": ""
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Your previous reply contained no"
+      }
+    ]
+  },
+  {
+    "seq": 7,
+    "scenario": "C_no_reasoning_at_all",
+    "turnIndex": 0,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      }
+    ]
+  },
+  {
+    "seq": 8,
+    "scenario": "C_no_reasoning_at_all",
+    "turnIndex": 1,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": true,
+        "reasoning": "empty",
+        "preview": ""
+      },
+      {
+        "role": "tool",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": " 1 PROBE_FILE_LINE_ONE 2 PROBE_F"
+      }
+    ]
+  },
+  {
+    "seq": 9,
+    "scenario": "C_no_reasoning_at_all",
+    "turnIndex": 2,
+    "rejected": false,
+    "violationIndex": null,
+    "messages": [
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "[{\"type\":\"text\",\"text\":\"Change o"
+      },
+      {
+        "role": "system",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Change only backend files. Valid"
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "probe task"
+      },
+      {
+        "role": "assistant",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": ""
+      },
+      {
+        "role": "user",
+        "hasToolCalls": false,
+        "reasoning": "absent",
+        "preview": "Your previous reply contained no"
+      }
+    ]
+  }
+]

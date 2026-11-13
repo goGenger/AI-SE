@@ -1,0 +1,7 @@
+{
+  "id": "S3",
+  "tier": "S",
+  "title": "实现 parseCsvLine CSV 行解析",
+  "requirementText": "实现 src/csv.mjs 中的 parseCsvLine(line)，把一行 CSV 文本解析成字符串数组，规则：\n1) 逗号分隔，字段首尾空白保留在字段内（不做 trim）；\n2) 双引号包裹的字段内部允许逗号，例如 'a,\"b,c\",d' → [\"a\",\"b,c\",\"d\"]；\n3) 双引号字段内的两个连续双引号表示一个字面双引号，例如 '\"a\"\"b\"' → [\"a\"b\"]；\n4) 空行返回空数组；\n5) 行尾逗号表示最后有一个空字段，例如 'a,' → [\"a\",\"\"]；\n6) 输入不是字符串时返回空数组。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": { "command": "node", "args": ["oracle.mjs"] }
+}

@@ -1,0 +1,344 @@
+{
+  "generatedAt": "2026-09-30T18:36:47.582Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "b156ce99-b6d7-4422-b709-51c2077012dc",
+      "workflowIds": [
+        "b156ce99-b6d7-4422-b709-51c2077012dc"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 163981,
+        "output": 10296
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 717534,
+      "errorTypes": {},
+      "failureSummary": "Local quality gate ran. pnpm is not installed in the sandbox (sh: pnpm: not found, exit 127), so the identical package.json scripts were executed via npm. npm run lint and npm run build both exit 0 (node --check on src/render.mjs, src/build.mjs, src/frontmatter.mjs, src/cli.mjs). npm test runs 16 cases: 15 pass, 1 fails. The sole failure is test/build.test.mjs:17 'buildSite 把 content 下的 md 生成 html', failureType testCodeFailure, error 'buildSite 尚未实现', stack src/build.mjs:2 buildSite. All 14 render.test.mjs cases pass and test/build.test.mjs case 1 (renderPage) passes, so render.mjs is correct. src/frontmatter.mjs has no diff (git_diff empty). The remaining failure is caused by the unimplemented stub in src/build.mjs, which is outside this task's allowed edit scope (TR-1: only src/render.mjs), so no fix was applied."
+    },
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 2,
+      "workflowId": "d3d52628-5e62-4778-a1a3-7f7ed73285f8",
+      "workflowIds": [
+        "d3d52628-5e62-4778-a1a3-7f7ed73285f8"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-2",
+      "taskCount": 8,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 5,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 4,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 103237,
+        "output": 11401
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 354787,
+      "errorTypes": {},
+      "failureSummary": "Could not author test/render.test.mjs: every write attempt returns 'Path is not writable' for /test/render.test.mjs and /tmp/render.test.mjs, so no test file can be created in this sandbox. Verified state: npm run lint exits 0 (all four src files pass node --check). npm test runs 2 tests: 1 pass and 1 fail. The pass is the pre-existing 'renderPage 产出含标题的 HTML' in test/build.test.mjs:9 against the already-implemented src/render.mjs. The failure is out-of-scope: 'buildSite 把 content 下的 md 生成 html' at test/build.test.mjs:17 fails with error 'buildSite 尚未实现' thrown from src/build.mjs:2, i.e. the separate build task T7/T? not this render-methods slice. Static review confirms src/render.mjs already exports escapeHtmlText, escapeAttrUrl, parseInlineLinks, markdownLite and renderPage, and its semantics match FR-1/FR-2/FR-3 (text escaping covers & < > \" '; escapeAttrUrl escapes only & \" ' and leaves < > untouched; # lines become h2 with # and surrounding whitespace stripped; blank lines flush paragraphs, repeated blanks emit nothing; consecutive lines join with a single space; inline [text](url) becomes an anchor with text-escaped label and attr-escaped href). The planned test file was fully written and would pass IF the sandbox allowed writing it; blocking factor is purely filesystem write permission. Blocking fixTaskType: ENVIRONMENT_PERMISSION."
+    },
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 3,
+      "workflowId": "24a228e0-4019-42af-ab53-500a6f9c1f54",
+      "workflowIds": [
+        "24a228e0-4019-42af-ab53-500a6f9c1f54"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-3",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 5,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 144630,
+        "output": 10673
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 685573,
+      "errorTypes": {},
+      "failureSummary": "Ran the full local quality gate with the tools available (pnpm is not installed in this sandbox: 'sh: pnpm: not found', exit 127, so the equivalent package.json scripts were executed as npm test / npm run lint / npm run build, i.e. 'node --test' and the exact 'node --check src/render.mjs && node --check src/build.mjs && node --check src/frontmatter.mjs && node --check src/cli.mjs' chains). Lint and build both pass with exit 0. Test suite: 16 tests, 15 pass, 1 fail, 0 errors. The render module is verified correct: all 14 render tests in test/render.test.mjs plus the renderPage case in test/build.test.mjs pass, covering FR-1/FR-2/FR-3 (complete HTML document, escaped title in <title> and <h1>, markdown-lite headings/paragraphs/links, text and URL-attribute escaping). The only failing case is test/build.test.mjs:17 'buildSite 把 content 下的 md 生成 html' with failureType testCodeFailure and error 'buildSite 尚未实现' (ERR_TEST_FAILURE), caused by src/build.mjs still throwing. That is the build slice, outside this TEST task's allowed scope (acceptance criteria limit fixes to src/render.mjs or render tests; TR-1 forbids implementing buildSite here), so no product code was modified and src/frontmatter.mjs is untouched (git status shows only ' M src/render.mjs' from dependency task T5 and untracked '?? test/render.test.mjs' from T6). The gate cannot be green until buildSite is implemented and this verification is re-run."
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 2,
+      "workflowId": "e954f1a5-191a-496f-98a8-efb5d2c3c254",
+      "workflowIds": [
+        "e954f1a5-191a-496f-98a8-efb5d2c3c254"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-2",
+      "taskCount": 8,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "RUNNING": 1,
+        "READY": 2,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 1,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 17957,
+        "output": 5182
+      },
+      "estimatedCostUsd": null,
+      "durationMs": null,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "d0f092e3-a322-4ab0-8ca8-3c9379075acb",
+      "workflowIds": [
+        "d0f092e3-a322-4ab0-8ca8-3c9379075acb"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 3,
+      "runCount": 2,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1713822,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 2,
+      "workflowId": "20c9e095-2f22-4717-8f70-87437f1ddacb",
+      "workflowIds": [
+        "20c9e095-2f22-4717-8f70-87437f1ddacb"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-2",
+      "taskCount": 3,
+      "runCount": 2,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1947790,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 3,
+      "workflowId": "6c793d72-3d48-454e-ad17-88c038d524c2",
+      "workflowIds": [
+        "6c793d72-3d48-454e-ad17-88c038d524c2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-3",
+      "taskCount": 3,
+      "runCount": 2,
+      "taskStatuses": {
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1761776,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 2,
+      "workflowId": "c6836d26-62b6-4df3-925f-0ff0ee1c0cd7",
+      "workflowIds": [
+        "c6836d26-62b6-4df3-925f-0ff0ee1c0cd7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-2",
+      "taskCount": 4,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 6574,
+        "output": 1297
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1699879,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 3,
+      "workflowId": "197f769d-4a55-41f7-be19-e46536e0eb01",
+      "workflowIds": [
+        "197f769d-4a55-41f7-be19-e46536e0eb01"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-3",
+      "taskCount": 4,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 1,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 6562,
+        "output": 2722
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2064829,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    }
+  ],
+  "failures": [
+    {
+      "fixtureId": "L2",
+      "stage": "run",
+      "message": "fetch failed"
+    },
+    {
+      "fixtureId": "L2",
+      "stage": "run",
+      "message": "fetch failed"
+    },
+    {
+      "fixtureId": "M2",
+      "stage": "run",
+      "message": "fetch failed"
+    }
+  ],
+  "summary": {
+    "runs": 9,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.425,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 442941,
+      "output": 41571
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 18
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 5,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 4,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

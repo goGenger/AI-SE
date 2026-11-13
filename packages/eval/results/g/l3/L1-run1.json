@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-10-14T18:19:02.492Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "e3078e9e-638d-46c1-9170-382050155d8c",
+      "workflowIds": [
+        "e3078e9e-638d-46c1-9170-382050155d8c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 10,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 215957,
+        "output": 19070
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 453929,
+      "errorTypes": {},
+      "failureSummary": "Implemented and exported escapeHtml and escapeAttr in src/render.mjs (only backend file changed). escapeHtml is a single-pass replace over &, <, >, double quote and single quote mapping to &amp;, &lt;, &gt;, &quot;, &#39;, which escapes ampersand first and therefore never double-escapes generated entities. escapeAttr coerces input via String() and escapes & then the double quote for URL values placed in href. npm run build and npm run lint both exit 0. Scoped run of the [AC-05]/[AC-06] tests gives 12 tests, 9 pass, 3 fail: all 3 AC-06 tests pass and 5 of 6 AC-05 escaping tests pass. Two blockers remain and both are outside this backend task's write scope: (1) test/render.test.mjs line 54 asserts escapeHtml leaves single quotes raw inside a combined string, which contradicts line 39 (single quote must become &#39; or &apos;) and the title (line 151), heading (lines 210-213) and link-text (line 324) escaping tests, so no single correct escapeHtml can satisfy both; (2) two tests named [AC-05] (lines 126, 154) call renderPage, which is still the stub owned by another task in the render-core slice. Per the change-only-backend-files constraint I did not edit or weaken the test or the helper. Replan needed: correct the contradictory line-54 expectation (or remove that combined assertion) so the T-02 escaping set can go green; AC-05 then becomes green once the renderPage task lands. API contracts preserved and trust-boundary input coerced safely; no existing signatures changed.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "render-core",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 215957,
+      "output": 19070
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "render-core": 1
+    }
+  }
+}

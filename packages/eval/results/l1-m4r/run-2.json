@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-10-21T12:23:13.309Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "ce596365-cea6-426a-848e-5fcbef77929a",
+      "workflowIds": [
+        "ce596365-cea6-426a-848e-5fcbef77929a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 14,
+      "runCount": 12,
+      "taskStatuses": {
+        "SUCCESS": 9,
+        "FAILED": 3,
+        "READY": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 8073807,
+        "output": 174882
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1472104,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 3
+      },
+      "failureSummary": "Verified the slice: package.json has dependencies {} and devDependencies {}, engines >=22 <23, and start/test/lint/typecheck/build scripts (test = node --test); pnpm-lock.yaml is lockfileVersion 9.0 with importers .: {}; pnpm test passes 3/3 including the [AC-04] DATA_DIR plaintext-password scan and the two [AC-21] home page assertions; pnpm build exits 0. FR-7 checks pass: DATA_DIR is created and write-probed, taskboard.json is written atomically with mode 0600, users store only a scrypt structure (algorithm/N/r/p/keylen/salt/hash), no plaintext password reaches storage, the signing key is persisted 0600 and never logged, and the logger redacts password/token/authorization/secret/salt/hash. FR-8 checks pass by static review: health routers serve GET/HEAD /healthz /health /ready as 200 {\"status\":\"ok\"}; home.js renders exactly one element for each of home-title, task-list, search-input and new-task-button with Content-Type text/html and no external assets; Dockerfile uses node:22-alpine, ENV DATA_DIR=/data and PORT=3000, chowns /data to user app (uid 10001), declares VOLUME /data, ends with USER app and CMD [\"node\",\"src/server.js\"] with no output redirection. Not approved for two Must gaps: README.md is still the placeholder with no install/start/test/build-image/run-image commands (PRD section 2.8, TECH-13, AC-30), and no test names contain [AC-24], [AC-25], [AC-26] or [AC-29] even though FR-9/AC-30 requires at least one AC-numbered test per Must AC with deployment ACs covered by static contract tests; [AC-01] and the optional [AC-22] are also absent. A TEST task should add the missing contract tests, and a separate documentation/backend task should replace README.md.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-foundation",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 8073807,
+      "output": 174882
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-foundation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

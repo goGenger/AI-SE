@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-25T06:27:59.283Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "54e2c390-1724-4f8d-b80d-9ce9eceee4f5",
+      "workflowIds": [
+        "54e2c390-1724-4f8d-b80d-9ce9eceee4f5",
+        "27948ccd-7ab1-4ca3-995f-c03d6bdb53d4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 26,
+      "runCount": 24,
+      "taskStatuses": {
+        "SUCCESS": 21,
+        "FAILED": 3,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 35264809,
+        "output": 401724
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 4909555,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Implementation review of the task CRUD/isolation slice is positive, but the full suite is not green: 1 of 136 tests fails because of a stale assertion in a test file, so the fix belongs to a TEST task. Verified code review: (1) owner identity is only read from getCurrentUser(req), which the auth middleware populates from the verified Bearer token payload userId resolved against the user store; request bodies/query/path are never consulted for identity; (2) every store operation is owner-scoped at query time - listByOwner(ownerId), findById(ownerId,id), updateTaskById(ownerId,id,changes) and deleteTaskById(ownerId,id) match id AND ownerId inside one mutex critical section, so there is no post-hoc permission check and no 403 path anywhere (grep found the literal 403 only in comments); (3) serialization always goes through toPublicTask, which copies exactly id/title/dueDate/done/createdAt/updatedAt, so ownerId cannot leak; (4) strict validation rejects unknown fields before any value check (POST allows title/dueDate, PATCH allows title/dueDate/done), title is trimmed then counted in Unicode code points 1-100, dueDate must be a real YYYY-MM-DD, done must be boolean; (5) errors use the standard envelope with only the eight contract codes and statuses 400/401/404/204, and ?q is filtered with toLowerCase + includes, with a catch that answers 400 instead of any 5xx. Test evidence: node --test and npm test both report 136 tests, 135 pass, 1 fail, 0 errors; every AC-numbered test for AC-14 (6), AC-15 (4), AC-16 (4), AC-17 (3), AC-18 (4), AC-19 (3), AC-20 (3), AC-23 (11), AC-27 (9) and AC-28 (6) is green. The single failure is test/auth-middleware.test.js:198, \"[AC-11] the protected /api/tasks prefix answers 401 without a token and 404 NOT_FOUND with a valid one\", which still asserts the old placeholder behaviour (authenticated GET /api/tasks must be 404) and now contradicts AC-23 (200 with {\"items\":[...]}); it fails with 200 !== 404 and cannot be fixed from product code. lint, typecheck and build all exit 0. Because the change needed is confined to test files and unblocks the Must criterion that pnpm test is fully green, this review is REPLAN with fixTaskType TEST.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-task-crud-isolation",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 35264809,
+      "output": 401724
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-task-crud-isolation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

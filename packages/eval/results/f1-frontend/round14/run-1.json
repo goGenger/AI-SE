@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-11-02T04:15:53.296Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "ea45a49f-118f-4bd8-9596-9ef32df58a77",
+      "workflowIds": [
+        "ea45a49f-118f-4bd8-9596-9ef32df58a77",
+        "193a7788-dff9-4d5f-926a-4ef9a429fc10",
+        "b95eba14-5fbf-4198-844e-44ac78a806e6",
+        "3389075a-fe64-40e0-a9ca-fef31c665d58"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 31,
+      "runCount": 31,
+      "taskStatuses": {
+        "SUCCESS": 29,
+        "FAILED": 2
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 34244340,
+        "output": 536906
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 8769688,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "FR-1 slice review: implementation satisfies AC-01..AC-05 and the testid/ordering/constraint contract, and pnpm lint, pnpm typecheck and pnpm build exit 0. pnpm test however exits 1 solely because of the pre-existing scaffold case in src/smoke.test.ts:34 (expect(wrapper.find(\\\"[data-testid]\\\").exists()).toBe(false)), which structurally contradicts AC-01 and cannot be satisfied without regressing the shell. All 18 AC-marked FR-1 tests pass (src/App.test.ts 5/5, src/task-list.test.ts 5/5, src/app-shell.test.ts 6/6); the scaffold assertion is the only failure. The fix is confined to a test file, so a TEST task should rewrite that case, after which the suite goes fully green.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-complete-delete-resilience",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 34244340,
+      "output": 536906
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-complete-delete-resilience": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,37 @@
+# E-2b results (2026-10-07/08) — replanned fixtures under completed E-0(a), 23 data runs
+
+## Batch
+- Script: e2b-sml-split.sh (--replan on run 1 per fixture), 01:32 CST complete, ~2.04M in.
+- M3 run 1 = PLANNING FAILURE (replan of M3 went to FAILED; run 2 auto-recovered by
+  re-analyzing) => 23 data runs + 1 planning-failure sample. results/e2b/M3-run1.json
+  has records:[] + failures:[{stage:planning}].
+
+## Headline (23 runs)
+- reported success 0/23 | oracle pass 8/23 | false positive 0/23 | in 2.04M
+  (S 9 runs 0.61M / M 8 runs 0.73M / L 6 runs 0.69M)
+- EVERY run's chain stopped at exactly one FAILED task. The E-0(a) flip fired
+  ZERO times (TEST tasks with expected=pass: 0).
+
+## Failure modes (24 failed tasks)
+- red-light on TEST tasks: 19 runs (L1 r3, L2 x3, M1 x3, M2 x3, S1 x3, S2 x3).
+  All fail-closed: the replanned plans (v4-era) carry NO input.acKeys on any task
+  (verified: all plan rows + runtime clones empty), and no sibling AC-marked test
+  results exist => no implementation evidence => red-light stands. NOTE: with the
+  fixed parser the OLD v2-era S1 plan (FR-xxx acKeys + [FR-xxx] markers) WOULD flip;
+  the replan lost acKeys => planner acKeys gap/inconsistency (registered, F-phase).
+- BACKEND "checks failed: test": 4 runs (L1 r1/r2 T2, S3 x3 T3) — suite genuinely
+  red (later-task stubs / unimplemented features) => gate correctly failed.
+- agent-level: M3 r2 T-002/T-004 no verdict (EMPTY_FINAL_ANSWER x3 in run3 record),
+  L1 r3 + M2 r3 INVALID_AGENT_RESULT — registered.
+
+## False negatives (oracle pass, platform stop): 8 runs
+S1 x3, S2 x3, M3 r2, L1 r3 — deliverable satisfied the oracle while the platform
+reported failure (chains stopped early). Before/after story: false positives stay 0;
+the gate's cost = these false negatives, whose main source tonight is the planner
+acKeys gap (fixable at the planner layer, F-phase).
+
+## Notes
+- Deadline/planning: no replan retry loop in the harness; M3 run2 replanned implicitly
+  because requirement status != ANALYZED after the failure.
+- New plan generations differ per fixture (task counts/mixes changed vs round 1):
+  S1 6, S2 4, S3 7, M1 6, M2 7, M3 5, L1 6, L2 8 tasks.

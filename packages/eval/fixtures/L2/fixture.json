@@ -1,0 +1,10 @@
+{
+  "id": "L2",
+  "tier": "L",
+  "title": "给内存 todo API 加文件持久化与统计接口",
+  "requirementText": "这是一个 node:http 写的 todo API（src/store.mjs 内存实现 + src/app.mjs 路由 + src/persist.mjs 占位 + src/cli.mjs 启动脚本，cli 支持 `node src/cli.mjs --data <file> --port <n>`）。需要实现：\n1) src/persist.mjs 的 loadData(file) 与 saveData(file, data)：loadData 在文件不存在或内容损坏时返回 { items: [], nextId: 1 }；saveData 原子化写入（先写临时文件再改名）并确保父目录存在；\n2) store 增加 toJSON() 与 fromJSON(data)，app 在启动时用 loadData 初始化、在每次写操作（POST/PUT/DELETE）成功后调用 saveData；\n3) 新增 PUT /items/:id —— 请求体 { title, done } 整体覆盖该条（缺省字段用空串/false），id 不存在返回 404，非法 JSON 返回 400；\n4) 新增 GET /stats —— 返回 { count, doneCount }；\n5) 既有 GET /items、POST /items、DELETE /items/:id 行为不变。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": {
+    "command": "node",
+    "args": ["oracle.mjs"]
+  }
+}

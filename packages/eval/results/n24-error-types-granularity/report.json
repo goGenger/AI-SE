@@ -1,0 +1,63 @@
+{
+  "phase": "N-20",
+  "title": "errorTypes 双粒度相加（失败原因分布翻倍）",
+  "date": "2026-10-20",
+  "status": "已修复（包内门禁全绿 + 库内数据复算 A/B 成立）；未在真实批次验证",
+  "defect": {
+    "statement": "EvalRunRecord.errorTypes 把两个不相交的口径相加：任务级（每个任务一次）与 agent run 级（每次运行一次），报表按一个扁平列表打印，失败原因分布因此翻倍。",
+    "root_cause_proof": [
+      "apps/server/src/services/workflowTaskExecutor.ts:355-389 —— 组装出的同一个 `output` 对象（含 `errorType`，第 361 行）既在 380-389 行写进 agent_runs，又在 396-402 行作为任务的 TaskExecutionResult 返回 ⇒ tasks.output 与 agent_runs.output 是同一份 outcome.metadata。",
+      "packages/eval/src/harness.ts:73-74 —— 任务级：对每个 output.errorType 非空的任务计 1。",
+      "packages/eval/src/harness.ts:782（修复前）—— run 级：对每个 output.errorType 非空的 agent run 再计 1。",
+      "⇒ 同一份 errorType 两级各计一次，相加正好翻倍。"
+    ],
+    "why_task_level_is_the_right_single_granularity": [
+      "VERIFICATION_FAILED 只写在任务上：apps/server/src/services/verifyingTaskExecutor.ts:81 用 {...output, errorType: VERIFICATION_FAILED} 覆盖任务 output，agent run 保留 agent 自己的码（通常是空）。只取 run 级会让 failureLayers.verification 恒为 0——全库 122 次 VERIFICATION_FAILED 全部丢失。",
+      "collectFailureLayers（harness.ts:236-249）的分类表里 VERIFICATION_FAILED 是 verification 层的唯一来源（classifyFailureLayer，harness.ts:221-233），保留任务级才能保住这一层。",
+      "run 级计的是「尝试」而不是「任务结果」：全库有 51 个 agent run 带 errorType 而其任务最终是 SUCCESS（TIMEOUT 27 / INVALID_AGENT_RESULT 11 / EMPTY_FINAL_ANSWER 10 / 其余 3），它们不是该 run 的失败原因。",
+      "记录本身的任务单位是任务：taskStatuses / taskCount / reportedSuccess / falsePositive / chainCompleted 全部按任务计。"
+    ]
+  },
+  "ab_replay": {
+    "note": "旧口径取自批次产物 packages/eval/results/l1-m4m/run-2.json（修复前落盘）；新口径由 packages/eval/scripts/verify-error-types-granularity.mjs 用**当前库内同一批任务行**经修复后的真实代码复算。",
+    "same_state_check": "复算的 taskStatuses = SUCCESS 63 / FAILED 7 / WAITING_APPROVAL 1，与 run-2.json 逐项相同（71 个任务）⇒ 库内状态即批次当时状态，复算可信。",
+    "old": { "errorTypes": { "TIMEOUT": 6, "VERIFICATION_FAILED": 2 }, "failureLayers": { "planning": 0, "verification": 2, "agent": 6 } },
+    "new": { "errorTypes": { "TIMEOUT": 3, "VERIFICATION_FAILED": 2 }, "failureLayers": { "planning": 0, "verification": 2, "agent": 3 } },
+    "db_census_same_batch": { "task_level": { "TIMEOUT": 3, "VERIFICATION_FAILED": 2 }, "run_level": { "TIMEOUT": 3 } },
+    "verdict": "旧口径 agent 层 6 = 任务级 3 + run 级 3，正好翻倍；verification 层 2 因 VERIFICATION_FAILED 只在任务级而恰好正确。"
+  },
+  "census": {
+    "whole_db_task_level": {
+      "FAILED|VERIFICATION_FAILED": 122,
+      "FAILED|TIMEOUT": 25,
+      "READY|VERIFICATION_FAILED": 11,
+      "FAILED|EMPTY_FINAL_ANSWER": 10,
+      "READY|EMPTY_FINAL_ANSWER": 7,
+      "READY|TIMEOUT": 3,
+      "FAILED|INVALID_AGENT_RESULT": 2,
+      "CANCELLED|VERIFICATION_FAILED": 2
+    },
+    "whole_db_run_level_by_task_status": {
+      "FAILED|timed_out|TIMEOUT": 44,
+      "SUCCESS|timed_out|TIMEOUT": 27,
+      "FAILED|failed|EMPTY_FINAL_ANSWER": 26,
+      "SUCCESS|succeeded|INVALID_AGENT_RESULT": 11,
+      "SUCCESS|failed|EMPTY_FINAL_ANSWER": 10,
+      "READY|failed|EMPTY_FINAL_ANSWER": 7,
+      "CANCELLED|cancelled|EMPTY_FINAL_ANSWER": 4,
+      "FAILED|succeeded|INVALID_AGENT_RESULT": 3,
+      "READY|timed_out|TIMEOUT": 3,
+      "SUCCESS|timed_out|INVALID_AGENT_RESULT": 2,
+      "CANCELLED|cancelled|INVALID_AGENT_RESULT": 1,
+      "SUCCESS|succeeded|EMPTY_FINAL_ANSWER": 1
+    },
+    "observations_not_fixed": [
+      "collectTaskMetrics 对**任意任务状态**的 output.errorType 计数，含 READY（全库 21）与 CANCELLED（2）。一个「验证失败后被排队重试、但 run 预算用尽没跑成」的任务当前被计入失败原因分布。是否应限定为 status=FAILED 属口径判断，本次未改，留待裁定。"
+    ]
+  },
+  "artifacts": [
+    "packages/eval/results/n24-error-types-granularity/census.sql（三条只读普查 SQL）",
+    "packages/eval/results/n24-error-types-granularity/tasks-l1-m4m-run2.json（71 行任务状态 + errorType）",
+    "packages/eval/results/n24-error-types-granularity/replay.json（新口径复算输出）"
+  ]
+}

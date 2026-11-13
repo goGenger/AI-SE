@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-10-17T17:49:51.602Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "0ec0e82d-7e25-4622-9cb8-a03564b8d0cc",
+      "workflowIds": [
+        "0ec0e82d-7e25-4622-9cb8-a03564b8d0cc",
+        "cbda92f1-1501-4cd8-8cf2-8321f522c25b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 17,
+      "runCount": 19,
+      "taskStatuses": {
+        "SUCCESS": 12,
+        "READY": 2,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 8727934,
+        "output": 223238
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3915548,
+      "errorTypes": {
+        "TIMEOUT": 2,
+        "VERIFICATION_FAILED": 2,
+        "EMPTY_FINAL_ANSWER": 2
+      },
+      "failureSummary": "Implemented the scrypt password-hashing module for the TaskBoard backend. Added src/password.js (node:crypto only): hashPassword() draws a fresh per-user salt from crypto.randomBytes(16) and derives a 64-byte key via crypto.scryptSync with explicit frozen cost parameters (N=16384, r=8, p=1, maxmem=64MiB), returning only the persistable fields password_algo ('scrypt'), password_salt (hex) and password_hash (hex) - never the plaintext. Added isValidPasswordHash() (structural validation of untrusted stored records) and verifyPassword() (constant-time timingSafeEqual comparison) so the stored record can be revalidated by a later login slice. All functions treat arguments as untrusted: non-string, empty or malformed input yields a generic TypeError or false without echoing any value. Refactored src/register.js to consume the shared module and re-export PASSWORD_ALGO/hashPassword/verifyPassword, preserving the existing export surface and API contract. Remaining failure in the full suite is the 8 pre-existing README/docs tests in test/docs.test.js (AC-30 documentation slice), which is outside this task's scope; every register/auth/data-safety test is green.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 4
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 8727934,
+      "output": 223238
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 2,
+      "VERIFICATION_FAILED": 2,
+      "EMPTY_FINAL_ANSWER": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 4
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

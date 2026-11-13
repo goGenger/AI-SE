@@ -1,0 +1,439 @@
+{
+  "generatedAt": "2026-10-01T06:55:50.089Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "8140d6d1-6950-4a1f-897d-ef2f77f4321f",
+      "workflowIds": [
+        "8140d6d1-6950-4a1f-897d-ef2f77f4321f"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 4,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 149762,
+        "output": 8376
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 627542,
+      "errorTypes": {},
+      "failureSummary": "Quality gate executed. Verbatim pnpm is not installed in the sandbox (sh: pnpm: not found), so the exact underlying script commands were run: node --test for the test script and the node --check chain for lint/build. lint PASS (node --check on src/render.mjs, src/build.mjs, src/frontmatter.mjs, src/cli.mjs, exit 0, no errors). build PASS (same chain, exit 0, no errors). tests: 17 total, 16 passed, 1 failed. The single failure is test/build.test.mjs:17 'buildSite 把 content 下的 md 生成 html', failing with error 'buildSite 尚未实现' because src/build.mjs is still an unimplemented stub that throws. All 15 render-module tests plus the renderPage assertion embedded at test/build.test.mjs:9 pass, so src/render.mjs is complete and correct and the failure is not a render.mjs defect. The failing code is outside this task's allowed change set (TR-1 permits edits only to src/render.mjs or new render tests and forbids implementing buildSite), so no product code was modified; git status still shows only src/render.mjs modified and test/render.test.mjs untracked. Acceptance criterion 'pnpm test all pass' cannot be met until buildSite is implemented by its owning task; fixTaskType is CODE_FIX targeting src/build.mjs."
+    },
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 2,
+      "workflowId": "f5bf1410-f430-4ab0-8b25-42bc3bc5cda2",
+      "workflowIds": [
+        "f5bf1410-f430-4ab0-8b25-42bc3bc5cda2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-2",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 5,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 142209,
+        "output": 12083
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 565841,
+      "errorTypes": {},
+      "failureSummary": "Ran the local quality gate from /workspace. pnpm is not installed and corepack cannot fetch it (registry.npmjs.org unreachable, EAI_AGAIN), so the identical package.json scripts were executed via npm. lint (node --check on all 4 src files) exits 0 with no errors. build (same node --check set) exits 0 with no errors. Tests: 17 total, 16 passed, 1 failed. The single failure is test/build.test.mjs:17 \"buildSite 把 content 下的 md 生成 html\", which throws \"buildSite 尚未实现\" from src/build.mjs:2. All 15 render tests pass and src/frontmatter.mjs is byte-identical/untouched; no product code was modified. The failing failure is not caused by render.mjs and cannot be fixed under this task's scope (acceptance criteria restrict fixes to src/render.mjs or render tests, and TR-1 explicitly forbids implementing buildSite here), so the overall gate cannot pass until build.mjs is implemented by its own task."
+    },
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 3,
+      "workflowId": "a725efb4-4cdf-484c-b3b7-b598b7365601",
+      "workflowIds": [
+        "a725efb4-4cdf-484c-b3b7-b598b7365601",
+        "fe8d1950-e728-4414-b8e2-c4fd78944bce"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-3",
+      "taskCount": 13,
+      "runCount": 13,
+      "taskStatuses": {
+        "SUCCESS": 13
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 10,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 262630,
+        "output": 20728
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 752425,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "794ea264-6c2a-4a90-9695-2fd2f38751b7",
+      "workflowIds": [
+        "794ea264-6c2a-4a90-9695-2fd2f38751b7",
+        "5ba31f57-066f-45c9-bd4d-10c45f18388e",
+        "580af82a-15cb-40d8-ba87-735d350598e5",
+        "95cc5091-9662-4644-ac81-5a3ba4a3fe22"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 33,
+      "runCount": 29,
+      "taskStatuses": {
+        "SUCCESS": 27,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 24,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 760133,
+        "output": 47818
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3407054,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 2,
+      "workflowId": "141c99c7-532b-4779-a394-d8b662b4d66b",
+      "workflowIds": [
+        "141c99c7-532b-4779-a394-d8b662b4d66b",
+        "4e572665-d1e4-418c-bc6a-eae473526680",
+        "e65031e0-cd37-4471-b9c9-a6cbb47147c0",
+        "a059c752-99ca-4861-9699-7138740ca9ca"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-2",
+      "taskCount": 33,
+      "runCount": 31,
+      "taskStatuses": {
+        "SUCCESS": 29,
+        "READY": 1,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 27,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 863135,
+        "output": 77845
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3187439,
+      "errorTypes": {},
+      "failureSummary": "Ran the quality gate for the test command. The project test suite itself is fully green: the exact script configured in package.json (node --test \"test/**/*.test.mjs\") exits 0 with 45/45 tests passing, 0 failures, 0 cancelled, 0 skipped, 0 todo, and no .skip/.only/todo markers anywhere under test/. However the literal acceptance command `pnpm test` cannot be executed in this sandbox: the pnpm binary is not on PATH, so the shell returns `pnpm: command not found` with exit code 127, which violates the acceptance criterion 'pnpm test exit code is 0'. This is an environment/tooling gap, not a product-code or test-logic defect. Verified independently: node v22.23.2 and npm 10.9.8 are present, corepack 0.34.6 exists at /usr/local/bin/corepack but has no cached pnpm (corepack pnpm --version fails with 'Error when performing the request to https://registry.npmjs.org/pnpm/latest'), no project node_modules exists, no pnpm tarball or offline mirror is present anywhere on the filesystem, and the npm registry is unreachable (npm view pnpm version times out with no output). Consequently node_modules/.bin is absent, so `eslint` (used by the lint gate) is also unresolvable (exit 127), while `node scripts/check-syntax.mjs` (build gate) exits 0 and reports 4 modules checked. No test or source change is required or made; the fix is to provision pnpm in the runner image."
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 3,
+      "workflowId": "b0343d12-c5ec-4cf8-a026-6bd1dd4f81f5",
+      "workflowIds": [
+        "b0343d12-c5ec-4cf8-a026-6bd1dd4f81f5",
+        "2c2c8535-2cda-4ee9-9975-b62a0c474964",
+        "997300e5-fa1b-4557-8c0c-e55b1f6dc543",
+        "362b9328-b8e3-4930-a660-e74cc6a72cdd"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-3",
+      "taskCount": 33,
+      "runCount": 29,
+      "taskStatuses": {
+        "SUCCESS": 27,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 23,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 789293,
+        "output": 56419
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3216797,
+      "errorTypes": {
+        "TIMEOUT": 3
+      },
+      "failureSummary": "Agent 运行超时（600s），未返回结果。"
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "b2a62a9d-3ecb-4715-820c-ac06b58e6bb2",
+      "workflowIds": [
+        "b2a62a9d-3ecb-4715-820c-ac06b58e6bb2",
+        "e6d954e1-13c3-440a-83f2-fcdb807a4aff",
+        "933fc289-f9cc-4f21-a749-c58293357263",
+        "2907654d-706b-474e-b697-f03553b90ebb",
+        "a4bcb1ef-cf5b-4d25-9f14-30800ee68d1d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 29,
+      "runCount": 23,
+      "taskStatuses": {
+        "SUCCESS": 21,
+        "PENDING": 7,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 20,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 477919,
+        "output": 37498
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1531737,
+      "errorTypes": {},
+      "failureSummary": "Unable to deliver the TEST artifact: both write_file and edit_file are rejected in this sandbox with \"Path is not writable\" (reproduced on /test/get-no-params.test.mjs and /test/app.test.mjs), so no new regression test file could be created. Verification runs: node --test (the exact package.json test script, since pnpm is not installed: `pnpm test` -> sh: 1: pnpm: not found, exit 127) reports 33 tests, 33 passed, 0 failed, 0 errors, 0 skipped, exit 0; build and lint (node --check src/app.mjs src/store.mjs src/serve.mjs) both exit 0. Separately, the acceptance criteria conflict with the frozen baseline: the spec demands each item be id/string and the response body be a bare JSON array, but the unchanged service (src/app.mjs line 74, src/store.mjs line 9) returns an envelope {items:[...]} with id:number, and existing tests lock that baseline (test/app.test.mjs via deepEqual on the envelope; test/delete.test.mjs line 82 and test/post-contract.test.mjs lines 52/67/79-80 assert typeof id === 'number'). Satisfying the id/string and bare-array criteria would require changing product code and would break existing passing tests, which contradicts the task's own rule that existing GET/POST behaviour and existing cases must not change. Existing bare-param coverage that IS consistent with the baseline already exists: test/get-filter.test.mjs asserts 200 + application/json + all items in insertion order; test/delete.test.mjs asserts empty store -> 200 + {items:[]}; exact key sets are enforced via deepEqual. No product code was modified; no test was deleted, skipped, or rewritten."
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 2,
+      "workflowId": "031facc2-7bf1-47c8-aabf-3440e8ff1d6b",
+      "workflowIds": [
+        "031facc2-7bf1-47c8-aabf-3440e8ff1d6b",
+        "1f4f96a0-30d9-4aff-80f1-3d2eb7aadff0",
+        "f9ea05f1-835b-48b3-a89c-d45b837c7e7b",
+        "5a3bc20c-d934-4582-ab31-40c23f170660"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-2",
+      "taskCount": 19,
+      "runCount": 19,
+      "taskStatuses": {
+        "SUCCESS": 17,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 345064,
+        "output": 21431
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1015375,
+      "errorTypes": {},
+      "failureSummary": "Task-4 (GET /todos done 过滤测试) could not be completed in this sandbox because the workspace is read-only and pnpm is absent. write_file and edit_file both returned 'Path is not writable' for test/app.filter.test.mjs, so the test file could not be supplemented with the required Content-Type assertion, exact array content/order assertions, and the done=1 TR-3 regression case. The mandated commands fail: pnpm test, pnpm build and pnpm lint all exit 127 with stderr 'sh: 1: pnpm: not found'. Equivalent underlying checks were run: node --test passes 25/25 (0 fail) and node --check on src/app.mjs, src/store.mjs, src/serve.mjs exits 0. The pre-existing test/app.filter.test.mjs covers done=true, done=false, no-param and an invalid value (done=other) but only asserts status 200 and array length/first item done flag; it lacks the Content-Type application/json assertion, deepEqual content plus insertion-order assertions, and the requested done=1 regression value. No product code was modified and no build/lint configuration was touched."
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 3,
+      "workflowId": "a463b855-837f-4c88-8f47-920cec6a0534",
+      "workflowIds": [
+        "a463b855-837f-4c88-8f47-920cec6a0534",
+        "38af0613-84dd-45f9-b89d-268435a32514",
+        "71cf32b1-a891-425a-bc4b-6f281f26c4f6",
+        "affd710c-c0c7-468b-86f6-526439053e1b",
+        "e62727c2-b423-4965-88b5-6a9d1cdb1b0a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-3",
+      "taskCount": 29,
+      "runCount": 23,
+      "taskStatuses": {
+        "SUCCESS": 20,
+        "PENDING": 7,
+        "READY": 1,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 16,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 452907,
+        "output": 30394
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2037845,
+      "errorTypes": {},
+      "failureSummary": "Read-only workspace blocks adding the POST /todos regression file, but the existing suite was executed and analysd. `node --test` runs 19/19 pass (exit 0), and `node --check` on src/app.mjs, src/store.mjs, src/serve.mjs passes (exit 0). No code was modified. The requested new regression coverage for POST /todos (illegal JSON 400 body, missing/invalid title baseline semantics, default done) could not be committed because every write/edit call returns 'Path is not writable' for /test/post-contract.test.mjs, /workspace/test/post-contract.test.mjs, /tmp/probe.txt and the artifacts directory. This is an environment permission issue outside this agent's control."
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "a6b739a0-cfe7-47ce-8064-cfad79552d5c",
+      "workflowIds": [
+        "a6b739a0-cfe7-47ce-8064-cfad79552d5c",
+        "556d3a7c-f760-43f2-862a-ccfa69ba09ad",
+        "a7d91a61-4ba9-4494-9347-fe2a396b4ba7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 19,
+      "runCount": 19,
+      "taskStatuses": {
+        "SUCCESS": 17,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 13,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 412127,
+        "output": 28693
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1447525,
+      "errorTypes": {},
+      "failureSummary": "Ran the full verification for slice-3-T5. pnpm is not installed in this sandbox (sh: 1: pnpm: not found, exit 127), so the identical package.json scripts were executed via npm. npm run build PASS (exit 0: node --check src/render.mjs && node --check src/parse.mjs). npm run lint PASS (exit 0: same two node --check commands). npm test = node --test: 55 tests, 54 pass, 1 fail, 0 errors, 0 cancelled, 0 skipped. The single failure is a stale test expectation, not product code: case 43 at test/render.test.mjs:62 (now named 传入 options 时行结构不变（不依赖 align 变体）) renders with align [left, center] and asserts separator cells [---, ---], but the required FR-5/FR-6 behavior correctly produces [:---, :--:]. Error: AssertionError ERR_ASSERTION deepStrictEqual, actual [:---, :--:] vs expected [---, ---]. All 20 FR-5/FR-6 cases in test/render-separator.test.mjs pass, and the other 17 cases in test/render.test.mjs pass, so this is the only red test. src/parse.mjs is unmodified: sha256 0ae8d86fe30d2b76a7017f5367e335347e05aac8d7435ee669711987e1075b73, git diff for src/parse.mjs is empty. Acceptance criterion pnpm test 全部通过 is NOT met, so this verification task fails and must be routed back for a test-only fix. The QA agent could not edit test/render.test.mjs (path reported not writable), so the correction must be applied by the appropriate agent."
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 2,
+      "workflowId": "5f3fce56-3d03-4b68-98a5-5cea7b587a81",
+      "workflowIds": [
+        "5f3fce56-3d03-4b68-98a5-5cea7b587a81",
+        "0967ab1f-8247-4148-a0e0-93ae4be7fe40",
+        "7bac2c83-b510-4f0a-b889-1b95af2ecf8d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-2",
+      "taskCount": 19,
+      "runCount": 19,
+      "taskStatuses": {
+        "SUCCESS": 15,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 379881,
+        "output": 34230
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2596584,
+      "errorTypes": {
+        "TIMEOUT": 2
+      },
+      "failureSummary": "分隔行单元测试交付已在 test/separator.test.mjs 中完成（23 个新增用例），连同既有 test/parse.test.mjs 与 test/render.test.mjs 共 45 个用例。真实验证结果：33 通过、12 失败、0 错误。全部 12 个失败集中在本任务范围的分隔行断言上，根因是 src/render.mjs 的 renderTable 首行 \"void options;\" 完全忽略 options，分隔行恒为 '---'，未实现 options.align 的 left/right/center/none 标记生成，也未做数组越界/非法值回退。测试文件本身未改动 src/parse.mjs 与 src/render.mjs 产品代码；parse.mjs 相关回归断言（用例 43/44）全部通过，git status 显示 parse.mjs 未被改动。修复点为 src/render.mjs，属 BUG_FIX。"
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 3,
+      "workflowId": "63c186b4-78c4-4d69-9f09-94a1b1e7043a",
+      "workflowIds": [
+        "63c186b4-78c4-4d69-9f09-94a1b1e7043a",
+        "5c609d70-9da0-408f-8ce5-b5908b1e1865",
+        "24b7bb2d-ded7-40ea-b08c-6d94b484a088"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-3",
+      "taskCount": 19,
+      "runCount": 19,
+      "taskStatuses": {
+        "SUCCESS": 19
+      },
+      "reportedSuccess": true,
+      "oraclePassed": false,
+      "falsePositive": true,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 425925,
+        "output": 29064
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1674357,
+      "errorTypes": {},
+      "failureSummary": null
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 12,
+    "trueSuccessRate": 0.5833333333333334,
+    "reportedSuccessRate": 0.16666666666666666,
+    "falsePositiveRate": 0.08333333333333333,
+    "parseRecoveryRate": 0.7666666666666667,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 5460985,
+      "output": 404579
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 8
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 6,
+        "trueSuccessRate": 0.5,
+        "falsePositiveRate": 0.16666666666666666
+      },
+      "L": {
+        "runs": 6,
+        "trueSuccessRate": 0.6666666666666666,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

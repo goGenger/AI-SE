@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-10-07T09:51:12.560Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "423b0692-e6f0-418b-bb26-db3260f69faf",
+      "workflowIds": [
+        "423b0692-e6f0-418b-bb26-db3260f69faf"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 62971,
+        "output": 11891
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 537506,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Delivered the slice-1 subset of parseCsvLine in src/csv.mjs. The named ESM export guards non-string input (FR-6) and the empty string (FR-4) by returning [], then performs a single-pass comma scan preserving each field's leading/trailing whitespace verbatim (FR-1) and always pushes the final field so a trailing comma yields a trailing empty string (FR-5). No quoted-field parsing (FR-2/FR-3) was added, no dependencies were introduced, and build/lint configuration was left unchanged. Verified: build (node --check src/csv.mjs) exit 0, lint (node --check src/csv.mjs) exit 0, and node --test 2 passed / 1 failed where the single failure is the pre-existing quoted-field test that is explicitly out of scope for this slice."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 62971,
+      "output": 11891
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

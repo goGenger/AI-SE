@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-09-29T12:10:22.891Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "1fc75b24-fee9-402c-a3fb-bce6119e444e",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 7,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 7
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 84811,
+        "output": 8229
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 272635,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "e08d9c4b-7616-4fb4-91ce-b0a89ed9f7f4",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 5,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 74497,
+        "output": 6857
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 534223,
+      "errorTypes": {},
+      "failureSummary": "Test task is complete and correct; the suite cannot go green because it exposes a real product defect that this TEST task is forbidden to fix. test/duration.test.mjs (node:test + node:assert/strict) contains 22 tests covering every acceptance criterion: combined '1h30m'->5400000, case-insensitive '1H 30M'->5400000, unitless '500'->500 and '0'->0, each unit factor (h=3600000, m=60000, s=1000, ms=1 plus non-1 coefficients), single and multiple spaces between fragments, mixed case, and invalid inputs (empty string, unknown unit, negative, decimal, repeated same-unit, trailing unitless fragment, whitespace-only, non-string) returning null with explicit assert.doesNotThrow checks. Ran the project test command: 22 tests, 20 passed, 2 failed, 0 errors. pnpm is not installed in this sandbox ('sh: 1: pnpm: not found'), so npm test was used; package.json defines test as 'node --test', the identical command pnpm test would run. npm run build and npm run lint both pass. Product code was not modified."
+    },
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "0c7f5137-f838-44e8-a142-651a2f34d75d",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 6,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 6
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 77660,
+        "output": 8305
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 294378,
+      "errorTypes": {},
+      "failureSummary": null
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 3,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0.6666666666666666,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.9444444444444444,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 236968,
+      "output": 23391
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 3,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,2684 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-SE 平台架构与工作流</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        background: #020617;
+        min-height: 100vh;
+        padding: 28px 24px 36px;
+        color: #e2e8f0;
+      }
+      .container {
+        max-width: 1260px;
+        margin: 0 auto;
+      }
+      .header {
+        margin-bottom: 22px;
+      }
+      .header-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+      .pulse-dot {
+        width: 12px;
+        height: 12px;
+        background: #22d3ee;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        color: #94a3b8;
+        font-size: 12px;
+        margin-left: 24px;
+      }
+      .panel {
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid #1e293b;
+        border-radius: 14px;
+        padding: 14px 14px 6px;
+        margin-bottom: 18px;
+        overflow-x: auto;
+      }
+      .panel-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin: 4px 2px 10px;
+      }
+      .panel-title span {
+        color: #64748b;
+        font-weight: 400;
+        font-size: 11px;
+      }
+      svg {
+        width: 100%;
+        min-width: 1080px;
+        display: block;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 14px;
+        margin-top: 6px;
+      }
+      .card {
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid #1e293b;
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .card-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .card-dot.cyan {
+        background: #22d3ee;
+      }
+      .card-dot.emerald {
+        background: #34d399;
+      }
+      .card-dot.amber {
+        background: #fbbf24;
+      }
+      .card-dot.rose {
+        background: #fb7185;
+      }
+      .card h3 {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .card ul {
+        list-style: none;
+        color: #94a3b8;
+        font-size: 11px;
+        line-height: 1.75;
+      }
+      .card li::before {
+        content: "• ";
+        color: #475569;
+      }
+      .card b {
+        color: #cbd5e1;
+        font-weight: 600;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 18px;
+        color: #475569;
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-row">
+          <div class="pulse-dot"></div>
+          <h1>AI-SE 平台 · 架构与工作流</h1>
+        </div>
+        <p class="subtitle">
+          as-built（以仓库代码为准）· 13 packages + apps/server + apps/web · 2026-09-28 · C/D 增补 2026-10-08
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          ① 系统架构
+          <span
+            >— 分层：控制台 → HTTP API → 应用服务 → 工作流引擎 → Agent 运行时 → 工具与治理 → 沙箱 →
+            数据 / 外部系统</span
+          >
+        </div>
+        <svg viewBox="0 0 1240 1268">
+          <defs>
+            <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+            </marker>
+            <marker id="ar-c" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee" />
+            </marker>
+            <marker id="ar-o" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c" />
+            </marker>
+            <marker id="ar-v" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa" />
+            </marker>
+            <marker id="ar-r" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185" />
+            </marker>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          <line
+            x1="180"
+            y1="868"
+            x2="180"
+            y2="1032"
+            stroke="#fb7185"
+            stroke-width="1.5"
+            marker-end="url(#ar-r)"
+          />
+          <line
+            x1="476"
+            y1="772"
+            x2="476"
+            y2="1032"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="486" y="890" fill="#34d399" font-size="8.5">MCP SDK（stdio / remote）</text>
+          <line
+            x1="1046"
+            y1="628"
+            x2="1046"
+            y2="1032"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="1056" y="1002" fill="#fbbf24" font-size="8.5">
+            LLM API（OpenAI 兼容 / DeepSeek）
+          </text>
+          <line
+            x1="1066"
+            y1="474"
+            x2="1066"
+            y2="918"
+            stroke="#a78bfa"
+            stroke-width="1.5"
+            marker-end="url(#ar-v)"
+          />
+          <text x="1010" y="500" fill="#a78bfa" font-size="8.5">仓储 SQL · 事件</text>
+          <line
+            x1="620"
+            y1="128"
+            x2="620"
+            y2="146"
+            stroke="#22d3ee"
+            stroke-width="1.5"
+            marker-end="url(#ar-c)"
+          />
+          <text x="632" y="142" fill="#94a3b8" font-size="8.5">HTTP / JSON</text>
+          <line
+            x1="620"
+            y1="232"
+            x2="620"
+            y2="250"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="632" y="246" fill="#94a3b8" font-size="8.5">调用</text>
+          <line
+            x1="620"
+            y1="352"
+            x2="620"
+            y2="370"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="632" y="366" fill="#94a3b8" font-size="8.5">create · start · retry</text>
+          <line
+            x1="620"
+            y1="486"
+            x2="620"
+            y2="504"
+            stroke="#fb923c"
+            stroke-width="1.5"
+            marker-end="url(#ar-o)"
+          />
+          <text x="632" y="502" fill="#94a3b8" font-size="8.5">resolveTask → execute</text>
+          <line
+            x1="620"
+            y1="640"
+            x2="620"
+            y2="658"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="632" y="656" fill="#94a3b8" font-size="8.5">tool calls</text>
+          <line
+            x1="620"
+            y1="784"
+            x2="620"
+            y2="826"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="632" y="800" fill="#94a3b8" font-size="8.5">执行</text>
+          <rect
+            x="24"
+            y="44"
+            width="1192"
+            height="84"
+            rx="12"
+            fill="rgba(8,51,68,0.06)"
+            stroke="#22d3ee"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="62" fill="#22d3ee" font-size="10" font-weight="600">
+            apps/web · 控制台（Vue 3 + Vite + Pinia + Tailwind 4 + shadcn-vue/reka-ui）
+          </text>
+          <rect x="40" y="70" width="430" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="70"
+            width="430"
+            height="50"
+            rx="6"
+            fill="rgba(8,51,68,0.4)"
+            stroke="#22d3ee"
+            stroke-width="1.5"
+          />
+          <text
+            x="255.0"
+            y="89"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Vue 3 控制台 · views/（11 页）
+          </text>
+          <text x="255.0" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            Dashboard · Projects · Requirements · Workflows · Agents
+          </text>
+          <text x="255.0" y="117" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            AgentRuns · Deployments · MCP（一页一文件）
+          </text>
+          <rect x="486" y="70" width="250" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="486"
+            y="70"
+            width="250"
+            height="50"
+            rx="6"
+            fill="rgba(8,51,68,0.4)"
+            stroke="#22d3ee"
+            stroke-width="1.5"
+          />
+          <text
+            x="611.0"
+            y="89"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            api/ REST 客户端
+          </text>
+          <text x="611.0" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            fetch 封装 · 一资源一文件
+          </text>
+          <rect x="752" y="70" width="210" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="752"
+            y="70"
+            width="210"
+            height="50"
+            rx="6"
+            fill="rgba(8,51,68,0.4)"
+            stroke="#22d3ee"
+            stroke-width="1.5"
+          />
+          <text
+            x="857.0"
+            y="89"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            stores/（Pinia）
+          </text>
+          <text x="857.0" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            状态 · 动作 · 与 api 对接
+          </text>
+          <rect x="978" y="70" width="226" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="978"
+            y="70"
+            width="226"
+            height="50"
+            rx="6"
+            fill="rgba(8,51,68,0.4)"
+            stroke="#22d3ee"
+            stroke-width="1.5"
+          />
+          <text
+            x="1091.0"
+            y="89"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            viewmodels/
+          </text>
+          <text x="1091.0" y="104" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            展示逻辑（可测纯逻辑）
+          </text>
+          <rect
+            x="24"
+            y="148"
+            width="1192"
+            height="84"
+            rx="12"
+            fill="rgba(6,78,59,0.05)"
+            stroke="#34d399"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="166" fill="#34d399" font-size="10" font-weight="600">
+            apps/server · HTTP API（Express）
+          </text>
+          <rect x="40" y="174" width="300" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="174"
+            width="300"
+            height="50"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="190.0"
+            y="193"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            app.ts 装配
+          </text>
+          <text x="190.0" y="208" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            中间件 · 统一响应
+          </text>
+          <rect x="356" y="174" width="520" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="356"
+            y="174"
+            width="520"
+            height="50"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="616.0"
+            y="193"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            routes/（8 资源）
+          </text>
+          <text x="616.0" y="208" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            projects · planning · workflows · agents · agentRuns
+          </text>
+          <text x="616.0" y="221" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            deployments · evidence · mcp
+          </text>
+          <rect x="892" y="174" width="312" height="50" rx="6" fill="#0f172a" />
+          <rect
+            x="892"
+            y="174"
+            width="312"
+            height="50"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="1048.0"
+            y="193"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            http/
+          </text>
+          <text x="1048.0" y="208" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            errors · requestLogger · response
+          </text>
+          <rect
+            x="24"
+            y="252"
+            width="1192"
+            height="100"
+            rx="12"
+            fill="rgba(6,78,59,0.05)"
+            stroke="#34d399"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="270" fill="#34d399" font-size="10" font-weight="600">
+            apps/server · 应用服务（services/ · 业务逻辑集中层）
+          </text>
+          <rect x="40" y="278" width="280" height="62" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="278"
+            width="280"
+            height="62"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="180.0"
+            y="297"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            规划
+          </text>
+          <text x="180.0" y="312" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            planningService
+          </text>
+          <text x="180.0" y="325" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            需求 → 规格 → 计划
+          </text>
+          <rect x="336" y="278" width="380" height="62" rx="6" fill="#0f172a" />
+          <rect
+            x="336"
+            y="278"
+            width="380"
+            height="62"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="526.0"
+            y="297"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            工作流
+          </text>
+          <text x="526.0" y="312" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            workflowService · workflowTaskExecutor
+          </text>
+          <text x="526.0" y="325" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            taskContextBuilder · cancellationStore
+          </text>
+          <rect x="732" y="278" width="472" height="62" rx="6" fill="#0f172a" />
+          <rect
+            x="732"
+            y="278"
+            width="472"
+            height="62"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="968.0"
+            y="297"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            交付 · 运行时 · 治理服务
+          </text>
+          <text x="968.0" y="312" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            deploymentOrchestrator · RoutingWorkflowTaskExecutor
+          </text>
+          <text x="968.0" y="325" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            agentRunService · evidenceService · visualFixLoop · mcpService
+          </text>
+          <rect
+            x="24"
+            y="372"
+            width="1192"
+            height="114"
+            rx="12"
+            fill="rgba(251,146,60,0.05)"
+            stroke="#fb923c"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="390" fill="#fb923c" font-size="10" font-weight="600">
+            packages/workflow-engine · 工作流引擎（业务生命周期唯一编排者）
+          </text>
+          <rect x="40" y="398" width="280" height="76" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="398"
+            width="280"
+            height="76"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="180.0"
+            y="417"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            WorkflowEngine
+          </text>
+          <text x="180.0" y="432" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            状态机 · 调度器
+          </text>
+          <text x="180.0" y="445" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            依赖图 · 并发控制
+          </text>
+          <text x="180.0" y="465" fill="#fdba74" font-size="8" text-anchor="middle">
+            advanceOnce / claim
+          </text>
+          <rect x="336" y="398" width="280" height="76" rx="6" fill="#0f172a" />
+          <rect
+            x="336"
+            y="398"
+            width="280"
+            height="76"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="476.0"
+            y="417"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            原子领取（claim）
+          </text>
+          <text x="476.0" y="432" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            FOR UPDATE
+          </text>
+          <text x="476.0" y="445" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            SKIP LOCKED
+          </text>
+          <text x="476.0" y="465" fill="#fdba74" font-size="8" text-anchor="middle">
+            多实例安全 · 唯一认领
+          </text>
+          <rect x="632" y="398" width="280" height="76" rx="6" fill="#0f172a" />
+          <rect
+            x="632"
+            y="398"
+            width="280"
+            height="76"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="772.0"
+            y="417"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            失败策略
+          </text>
+          <text x="772.0" y="432" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            FAIL_FAST · RETRY
+          </text>
+          <text x="772.0" y="445" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            REPLAN · HUMAN
+          </text>
+          <text x="772.0" y="465" fill="#fdba74" font-size="8" text-anchor="middle">
+            动态任务：DEBUG + fix
+          </text>
+          <rect x="928" y="398" width="276" height="76" rx="6" fill="#0f172a" />
+          <rect
+            x="928"
+            y="398"
+            width="276"
+            height="76"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="1066.0"
+            y="417"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            控制面
+          </text>
+          <text x="1066.0" y="432" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            审批 · 暂停 / 恢复 / 取消
+          </text>
+          <text x="1066.0" y="445" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            重启恢复 · 手动重试
+          </text>
+          <text x="1066.0" y="465" fill="#fdba74" font-size="8" text-anchor="middle">
+            retry()：重排未解决失败
+          </text>
+          <rect
+            x="24"
+            y="506"
+            width="1192"
+            height="134"
+            rx="12"
+            fill="rgba(120,53,15,0.06)"
+            stroke="#fbbf24"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="524" fill="#fbbf24" font-size="10" font-weight="600">
+            packages/agent-core · Agent 运行时（单次 Agent Run · LangGraph）
+          </text>
+          <rect x="40" y="532" width="250" height="96" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="532"
+            width="250"
+            height="96"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="165.0"
+            y="551"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            AgentRegistry
+          </text>
+          <text x="165.0" y="566" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            Resolver
+          </text>
+          <text x="165.0" y="579" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            TASK_AGENT_TYPES
+          </text>
+          <text x="165.0" y="592" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            DEBUG → targetTaskType
+          </text>
+          <text x="165.0" y="619" fill="#fcd34d" font-size="8" text-anchor="middle">
+            professional/
+          </text>
+          <rect x="306" y="532" width="250" height="96" rx="6" fill="#0f172a" />
+          <rect
+            x="306"
+            y="532"
+            width="250"
+            height="96"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="431.0"
+            y="551"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            PlanningAgent（LLM 规划）
+          </text>
+          <text x="431.0" y="566" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            planning/ 规划图 · 8 个 LLM 阶段
+          </text>
+          <text x="431.0" y="579" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            需求分析 → 6 规格 → TaskPlan
+          </text>
+          <text x="431.0" y="592" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            prompts/ 一域一文件
+          </text>
+          <text x="431.0" y="619" fill="#fcd34d" font-size="8" text-anchor="middle">
+            结构化输出 · 修复轮 ≤ 2
+          </text>
+          <rect x="572" y="532" width="300" height="96" rx="6" fill="#0f172a" />
+          <rect
+            x="572"
+            y="532"
+            width="300"
+            height="96"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="722.0"
+            y="551"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            AgentRunner + AgentGraph
+          </text>
+          <text x="722.0" y="566" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            LangGraph StateGraph
+          </text>
+          <text x="722.0" y="579" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            迭代 ≤ 50 · 工具循环
+          </text>
+          <text x="722.0" y="592" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            空回复重问 ≤ 2 · abort 不重试
+          </text>
+          <text x="722.0" y="619" fill="#fcd34d" font-size="8" text-anchor="middle">
+            graph/ · 内存 checkpoint
+          </text>
+          <rect x="888" y="532" width="316" height="96" rx="6" fill="#0f172a" />
+          <rect
+            x="888"
+            y="532"
+            width="316"
+            height="96"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="1046.0"
+            y="551"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            ProfessionalAgent × 7
+          </text>
+          <text x="1046.0" y="566" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            planner · frontend · backend · database
+          </text>
+          <text x="1046.0" y="579" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            qa · reviewer · devops
+          </text>
+          <text x="1046.0" y="592" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            DeepAgentLLMProvider（llm/）
+          </text>
+          <text x="1046.0" y="619" fill="#fcd34d" font-size="8" text-anchor="middle">
+            解析：repairNearJson · salvageOutcome
+          </text>
+          <rect
+            x="912"
+            y="660"
+            width="304"
+            height="124"
+            rx="12"
+            fill="rgba(136,19,55,0.06)"
+            stroke="#fb7185"
+            stroke-width="1"
+            stroke-dasharray="4,4"
+          />
+          <text x="926" y="678" fill="#fb7185" font-size="10" font-weight="600">治理 / 安全</text>
+          <rect
+            x="24"
+            y="660"
+            width="1192"
+            height="124"
+            rx="12"
+            fill="rgba(6,78,59,0.05)"
+            stroke="#34d399"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="678" fill="#34d399" font-size="10" font-weight="600">
+            工具与治理 · Tool Runtime 是唯一执行路径
+          </text>
+          <rect x="40" y="686" width="280" height="86" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="686"
+            width="280"
+            height="86"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="180.0"
+            y="705"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Tool Runtime
+          </text>
+          <text x="180.0" y="720" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            packages/tool-runtime
+          </text>
+          <text x="180.0" y="733" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            shell · file · git · test · build
+          </text>
+          <text x="180.0" y="746" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            normalizeRuntimeError
+          </text>
+          <text x="180.0" y="763" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            能力适配 · 边界检查
+          </text>
+          <rect x="336" y="686" width="280" height="86" rx="6" fill="#0f172a" />
+          <rect
+            x="336"
+            y="686"
+            width="280"
+            height="86"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="476.0"
+            y="705"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            MCP Adapter
+          </text>
+          <text x="476.0" y="720" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            packages/mcp
+          </text>
+          <text x="476.0" y="733" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            contracts · client · registry
+          </text>
+          <text x="476.0" y="746" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            integration · security
+          </text>
+          <text x="476.0" y="763" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            MCP Apps（resources / prompts）
+          </text>
+          <rect x="632" y="686" width="264" height="86" rx="6" fill="#0f172a" />
+          <rect
+            x="632"
+            y="686"
+            width="264"
+            height="86"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="764.0"
+            y="705"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Browser
+          </text>
+          <text x="764.0" y="720" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            packages/browser
+          </text>
+          <text x="764.0" y="733" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            CDP 计算机使用
+          </text>
+          <text x="764.0" y="746" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            观察 · 交互 · 视觉修复回路
+          </text>
+          <text x="764.0" y="763" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            visualFixLoop
+          </text>
+          <rect x="928" y="686" width="276" height="86" rx="6" fill="#0f172a" />
+          <rect
+            x="928"
+            y="686"
+            width="276"
+            height="86"
+            rx="6"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="1066.0"
+            y="705"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            治理（不变量）
+          </text>
+          <text x="1066.0" y="720" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            action-policy 权限·策略·审批·审计
+          </text>
+          <text x="1066.0" y="733" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            evidence 证据 · failure-recovery 失败分类
+          </text>
+          <text x="1066.0" y="746" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            visual 视觉评估
+          </text>
+          <text x="1066.0" y="763" fill="#fda4af" font-size="8" text-anchor="middle">
+            无第二套 Permission / Audit / 错误码
+          </text>
+          <rect
+            x="24"
+            y="804"
+            width="1192"
+            height="72"
+            rx="12"
+            fill="rgba(136,19,55,0.06)"
+            stroke="#fb7185"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="822" fill="#fb7185" font-size="10" font-weight="600">
+            packages/sandbox · 沙箱（所有代码执行的唯一出口）
+          </text>
+          <rect x="40" y="828" width="1164" height="40" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="828"
+            width="1164"
+            height="40"
+            rx="6"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="622.0"
+            y="847"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            DockerSandbox
+          </text>
+          <text x="622.0" y="862" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            工作区白名单（AGENT_WORKSPACE_ROOT） · 容器内执行 · 路径归一 · 超时与输出上限
+          </text>
+          <rect
+            x="24"
+            y="896"
+            width="1192"
+            height="94"
+            rx="12"
+            fill="rgba(76,29,149,0.06)"
+            stroke="#a78bfa"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="914" fill="#a78bfa" font-size="10" font-weight="600">数据层</text>
+          <rect x="40" y="922" width="800" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="922"
+            width="800"
+            height="56"
+            rx="6"
+            fill="rgba(76,29,149,0.4)"
+            stroke="#a78bfa"
+            stroke-width="1.5"
+          />
+          <text
+            x="440.0"
+            y="941"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            PostgreSQL 16 · packages/database（仓储 + SQL migrations）
+          </text>
+          <text x="440.0" y="956" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            workflow · task · agent_run · tool_call · artifact · evidence
+          </text>
+          <text x="440.0" y="969" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            approval · deployment · mcp · planning（真实验证：postgres:16-alpine）
+          </text>
+          <rect x="856" y="922" width="348" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="856"
+            y="922"
+            width="348"
+            height="56"
+            rx="6"
+            fill="rgba(76,29,149,0.4)"
+            stroke="#a78bfa"
+            stroke-width="1.5"
+          />
+          <text
+            x="1030.0"
+            y="941"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Redis 7
+          </text>
+          <text x="1030.0" y="956" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            跨进程取消 · 健康检查
+          </text>
+          <text x="1030.0" y="969" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            agent-run cancel · 1h TTL · 250ms 轮询
+          </text>
+          <rect
+            x="24"
+            y="1010"
+            width="1192"
+            height="94"
+            rx="12"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="1028" fill="#94a3b8" font-size="10" font-weight="600">
+            外部系统（一律经 Tool Runtime / 适配器，Agent 不直连）
+          </text>
+          <rect x="40" y="1036" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="1036"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="180.0"
+            y="1055"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            GitHub · Actions
+          </text>
+          <text x="180.0" y="1070" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            CI：LocalCi / GitHubActions
+          </text>
+          <text x="180.0" y="1083" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            本地管线 + 镜像
+          </text>
+          <rect x="336" y="1036" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="336"
+            y="1036"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="476.0"
+            y="1055"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            MCP Servers
+          </text>
+          <text x="476.0" y="1070" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            stdio · remote
+          </text>
+          <text x="476.0" y="1083" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            官方 SDK · 契约冻结
+          </text>
+          <rect x="632" y="1036" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="632"
+            y="1036"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="772.0"
+            y="1055"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Docker 引擎 · Registry
+          </text>
+          <text x="772.0" y="1070" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            镜像构建 · 容器
+          </text>
+          <text x="772.0" y="1083" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            staging / production 部署目标
+          </text>
+          <rect x="928" y="1036" width="276" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="928"
+            y="1036"
+            width="276"
+            height="56"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="1066.0"
+            y="1055"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            LLM API
+          </text>
+          <text x="1066.0" y="1070" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            DeepSeek / OpenAI 兼容
+          </text>
+          <text x="1066.0" y="1083" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            思考模型 · token/成本计量
+          </text>
+          <rect
+            x="24"
+            y="1124"
+            width="1192"
+            height="64"
+            rx="12"
+            fill="rgba(30,41,59,0.35)"
+            stroke="#475569"
+            stroke-width="1"
+            stroke-dasharray="8,4"
+          />
+          <text x="38" y="1142" fill="#475569" font-size="10" font-weight="600">横切关注点</text>
+          <rect x="40" y="1148" width="560" height="30" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="1148"
+            width="560"
+            height="30"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#64748b"
+            stroke-width="1.5"
+          />
+          <text
+            x="320.0"
+            y="1167"
+            fill="#e2e8f0"
+            font-size="9"
+            font-weight="600"
+            text-anchor="middle"
+          ></text>
+          <text x="320.0" y="1166" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            packages/shared — 跨包契约：TaskType · TaskPlan · ProfessionalOutcome · DeliveryTask
+          </text>
+          <rect x="616" y="1148" width="588" height="30" rx="6" fill="#0f172a" />
+          <rect
+            x="616"
+            y="1148"
+            width="588"
+            height="30"
+            rx="6"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#64748b"
+            stroke-width="1.5"
+          />
+          <text
+            x="910.0"
+            y="1167"
+            fill="#e2e8f0"
+            font-size="9"
+            font-weight="600"
+            text-anchor="middle"
+          ></text>
+          <text x="910.0" y="1166" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            packages/observability — pino 日志 · 脱敏 sanitize · 请求日志 · token/成本指标
+          </text>
+          <text x="40" y="1212" fill="#e2e8f0" font-size="10" font-weight="600">Legend</text>
+          <rect
+            x="110"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(8,51,68,0.4)"
+            stroke="#22d3ee"
+            stroke-width="1"
+          />
+          <text x="132" y="1212" fill="#94a3b8" font-size="8.5">控制台</text>
+          <rect
+            x="188"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1"
+          />
+          <text x="210" y="1212" fill="#94a3b8" font-size="8.5">服务 / 工具</text>
+          <rect
+            x="302"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1"
+          />
+          <text x="324" y="1212" fill="#94a3b8" font-size="8.5">工作流引擎</text>
+          <rect
+            x="398"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1"
+          />
+          <text x="420" y="1212" fill="#94a3b8" font-size="8.5">Agent 运行时 / LLM</text>
+          <rect
+            x="556"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1"
+          />
+          <text x="578" y="1212" fill="#94a3b8" font-size="8.5">沙箱 / 治理</text>
+          <rect
+            x="670"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(76,29,149,0.4)"
+            stroke="#a78bfa"
+            stroke-width="1"
+          />
+          <text x="692" y="1212" fill="#94a3b8" font-size="8.5">数据层</text>
+          <rect
+            x="748"
+            y="1203"
+            width="16"
+            height="10"
+            rx="2"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1"
+          />
+          <text x="770" y="1212" fill="#94a3b8" font-size="8.5">外部系统 / 横切</text>
+          <line
+            x1="888"
+            y1="1208"
+            x2="920"
+            y2="1208"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#ar)"
+          />
+          <text x="928" y="1212" fill="#94a3b8" font-size="8.5">调用 / 数据流（自上而下）</text>
+          <text x="40" y="1244" fill="#475569" font-size="8.5">
+            架构不变量：① Tool Runtime 是唯一执行路径（Agent / MCP / MCP Apps 都不得绕过）；②
+            所有代码执行必须经 Sandbox；③ 禁止第二套 Permission / Approval / Audit / 错误码；④
+            Workflow 必须可恢复、可取消。
+          </text>
+        </svg>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          ② 工作流生命周期
+          <span
+            >— 规划 → 调度 → 领取 → 执行 → 判定 → 失败策略 / 交付链；右侧为控制面与人工入口</span
+          >
+        </div>
+        <svg viewBox="0 0 1240 1300">
+          <defs>
+            <marker id="far" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+            </marker>
+            <marker id="far-g" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#34d399" />
+            </marker>
+            <marker id="far-r" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185" />
+            </marker>
+            <marker id="far-o" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c" />
+            </marker>
+            <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid2)" />
+          <line
+            x1="430"
+            y1="92"
+            x2="430"
+            y2="110"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="180"
+            x2="430"
+            y2="194"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <path
+            d="M 290 234 L 210 234 L 210 142 L 286 142"
+            fill="none"
+            stroke="#fb7185"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#far-r)"
+          />
+          <text x="96" y="204" fill="#fb7185" font-size="8.5">否：修复轮 ≤ 2</text>
+          <text x="96" y="216" fill="#fb7185" font-size="8.5">（带校验错误重规划）</text>
+          <line
+            x1="430"
+            y1="272"
+            x2="430"
+            y2="298"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#far-g)"
+          />
+          <text x="442" y="290" fill="#94a3b8" font-size="8.5">通过</text>
+          <line
+            x1="430"
+            y1="356"
+            x2="430"
+            y2="382"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="440"
+            x2="430"
+            y2="466"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="524"
+            x2="430"
+            y2="550"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="608"
+            x2="430"
+            y2="634"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="692"
+            x2="430"
+            y2="718"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#far)"
+          />
+          <line
+            x1="430"
+            y1="796"
+            x2="430"
+            y2="1046"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#far-g)"
+          />
+          <text x="442" y="900" fill="#34d399" font-size="8.5">是：继续交付链</text>
+          <path
+            d="M 300 758 L 190 758 L 190 876"
+            fill="none"
+            stroke="#fb7185"
+            stroke-width="1.5"
+            marker-end="url(#far-r)"
+          />
+          <text x="58" y="742" fill="#fb7185" font-size="8.5">否：任务 FAILED</text>
+          <path
+            d="M 320 898 L 700 898 L 700 496 L 574 496"
+            fill="none"
+            stroke="#fb923c"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#far-o)"
+          />
+          <text x="596" y="890" fill="#fb923c" font-size="8.5">RETRY（≤ maxRetries）→ 回领取</text>
+          <path
+            d="M 320 916 L 860 916 L 860 404 L 574 404"
+            fill="none"
+            stroke="#fb923c"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#far-o)"
+          />
+          <text x="596" y="908" fill="#fb923c" font-size="8.5">
+            REPLAN → 动态任务（DEBUG + fix）→ 回调度
+          </text>
+          <path
+            d="M 320 934 L 1050 934 L 1050 680"
+            fill="none"
+            stroke="#fb7185"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#far-r)"
+          />
+          <text x="596" y="926" fill="#fb7185" font-size="8.5">
+            FAIL_FAST → 工作流 FAILED（终态）
+          </text>
+          <path
+            d="M 560 1074 L 780 1074 L 780 424 L 574 424"
+            fill="none"
+            stroke="#34d399"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#far-g)"
+          />
+          <text x="596" y="1066" fill="#34d399" font-size="8.5">是：回到调度器继续下一个任务</text>
+          <line
+            x1="430"
+            y1="1100"
+            x2="430"
+            y2="1138"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#far-g)"
+          />
+          <line
+            x1="430"
+            y1="1196"
+            x2="430"
+            y2="1222"
+            stroke="#34d399"
+            stroke-width="1.5"
+            marker-end="url(#far-g)"
+          />
+          <rect x="300" y="44" width="260" height="48" rx="24" fill="#0f172a" />
+          <rect
+            x="300"
+            y="44"
+            width="260"
+            height="48"
+            rx="24"
+            fill="rgba(30,41,59,0.5)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="66"
+            fill="#e2e8f0"
+            font-size="11.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            需求 Requirement
+          </text>
+          <text x="430.0" y="82" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            控制台创建 · 关联项目 / 仓库
+          </text>
+          <rect x="290" y="112" width="280" height="68" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="112"
+            width="280"
+            height="68"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="131"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            PlanningAgent 规划（LLM 阶段）
+          </text>
+          <text x="430.0" y="146" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            需求分析（LLM）→ 6 规格 → TaskPlan（Task DAG）
+          </text>
+          <text x="430.0" y="159" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            8 个阶段 · 每阶段一次结构化输出调用
+          </text>
+          <text x="430.0" y="172" fill="#fcd34d" font-size="8" text-anchor="middle">
+            校验失败带错误重规划（≤ 2）
+          </text>
+          <line
+            x1="570"
+            y1="146"
+            x2="588"
+            y2="146"
+            stroke="#fbbf24"
+            stroke-width="1"
+            stroke-dasharray="3,3"
+          />
+          <rect
+            x="590"
+            y="108"
+            width="306"
+            height="84"
+            rx="8"
+            fill="rgba(120,53,15,0.12)"
+            stroke="#fbbf24"
+            stroke-width="1"
+            stroke-dasharray="4,4"
+          />
+          <text
+            x="743.0"
+            y="126"
+            fill="#fcd34d"
+            font-size="9"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            8 个 LLM 阶段（每阶段一次结构化输出调用）
+          </text>
+          <text x="743.0" y="142" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            ① 需求分析　② functional　③ technical
+          </text>
+          <text x="743.0" y="155" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            ④ architecture　⑤ api　⑥ database　⑦ ui
+          </text>
+          <text x="743.0" y="168" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            ⑧ task_planning → TaskPlan（Task DAG）
+          </text>
+          <text x="743.0" y="183" fill="#fbbf24" font-size="8" text-anchor="middle">
+            注：PLANNER 专业 Agent 只执行任务，不做需求分析
+          </text>
+          fill="#0f172a" />
+          <polygon
+            points="430,196 570,234 430,272 290,234"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="430"
+            y="230"
+            fill="#e2e8f0"
+            font-size="10.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            计划校验通过？
+          </text>
+          <text x="430" y="245" fill="#94a3b8" font-size="8" text-anchor="middle">
+            结构 + 可执行性守卫
+          </text>
+          <rect x="290" y="300" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="300"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="319"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            WorkflowRun + Tasks 落库
+          </text>
+          <text x="430.0" y="334" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            计划项 → 运行时任务（PENDING）
+          </text>
+          <text x="430.0" y="347" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            策略：failureStrategy · maxRetries · 并发
+          </text>
+          <rect x="290" y="384" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="384"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="403"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            调度器：依赖就绪 → READY
+          </text>
+          <text x="430.0" y="418" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            依赖图 · 并行 ≤ max_concurrency
+          </text>
+          <text x="430.0" y="431" fill="#fdba74" font-size="8" text-anchor="middle">
+            PAUSED / CANCELLED 时不推进
+          </text>
+          <rect x="290" y="468" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="468"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(251,146,60,0.3)"
+            stroke="#fb923c"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="487"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            原子领取 + 解析 Agent
+          </text>
+          <text x="430.0" y="502" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            claim：FOR UPDATE SKIP LOCKED
+          </text>
+          <text x="430.0" y="515" fill="#fdba74" font-size="8" text-anchor="middle">
+            resolveTask（DEBUG 靠 target）
+          </text>
+          <rect x="290" y="552" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="552"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="571"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Agent Run（见 ③）
+          </text>
+          <text x="430.0" y="586" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            LLM ⇄ 工具 ⇄ 沙箱 · 预算 600s / ≤ 50 迭代
+          </text>
+          <text x="430.0" y="599" fill="#fcd34d" font-size="8" text-anchor="middle">
+            事件：run_started / tool_call / run_finished
+          </text>
+          <rect x="290" y="636" width="280" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="290"
+            y="636"
+            width="280"
+            height="56"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="655"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            结果解析 → ProfessionalOutcome
+          </text>
+          <text x="430.0" y="670" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            原始 → 围栏 → repairNearJson → salvage
+          </text>
+          <text x="430.0" y="683" fill="#fcd34d" font-size="8" text-anchor="middle">
+            超时 / 空回复 → TIMEOUT / EMPTY_FINAL_ANSWER
+          </text>
+          <polygon points="430,720 560,758 430,796 300,758" fill="#0f172a" />
+          <polygon
+            points="430,720 560,758 430,796 300,758"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="430"
+            y="754"
+            fill="#e2e8f0"
+            font-size="10.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            任务 SUCCESS？
+          </text>
+          <text x="430" y="769" fill="#94a3b8" font-size="8" text-anchor="middle">
+            以 Agent 自报结果为准
+          </text>
+          <rect x="60" y="880" width="260" height="64" rx="6" fill="#0f172a" />
+          <rect
+            x="60"
+            y="880"
+            width="260"
+            height="64"
+            rx="6"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="190.0"
+            y="899"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            失败策略（workflow.policy）
+          </text>
+          <text x="190.0" y="914" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            FAIL_FAST · RETRY · REPLAN · HUMAN
+          </text>
+          <text x="190.0" y="935" fill="#fda4af" font-size="8" text-anchor="middle">
+            失败处理一次性（failure_handled）
+          </text>
+          <rect x="300" y="1048" width="260" height="52" rx="6" fill="#0f172a" />
+          <rect
+            x="300"
+            y="1048"
+            width="260"
+            height="52"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="1067"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            全部任务完成？
+          </text>
+          <text x="430.0" y="1082" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            仍有 PENDING / READY / RUNNING 则继续
+          </text>
+          <rect x="250" y="1140" width="360" height="56" rx="6" fill="#0f172a" />
+          <rect
+            x="250"
+            y="1140"
+            width="360"
+            height="56"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="1159"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            交付链
+          </text>
+          <text x="430.0" y="1174" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            CI BUILD → staging DEPLOY → staging VERIFY
+          </text>
+          <text x="430.0" y="1187" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            → 人工审批 → production DEPLOY
+          </text>
+          <rect x="270" y="1222" width="320" height="52" rx="26" fill="#0f172a" />
+          <rect
+            x="270"
+            y="1222"
+            width="320"
+            height="52"
+            rx="26"
+            fill="rgba(6,78,59,0.5)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="430.0"
+            y="1244"
+            fill="#e2e8f0"
+            font-size="11.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            工作流 SUCCESS
+          </text>
+          <text x="430.0" y="1260" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            事件留痕 · 证据记录 · 可审计
+          </text>
+          <rect x="900" y="620" width="300" height="56" rx="28" fill="#0f172a" />
+          <rect
+            x="900"
+            y="620"
+            width="300"
+            height="56"
+            rx="28"
+            fill="rgba(136,19,55,0.35)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="1050.0"
+            y="642"
+            fill="#e2e8f0"
+            font-size="11.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            工作流 FAILED（终态）
+          </text>
+          <text x="1050.0" y="658" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            等待人工重试：POST /api/workflows/:id/retry
+          </text>
+          <rect
+            x="900"
+            y="44"
+            width="316"
+            height="520"
+            rx="12"
+            fill="rgba(136,19,55,0.06)"
+            stroke="#fb7185"
+            stroke-width="1"
+            stroke-dasharray="4,4"
+          />
+          <text x="914" y="64" fill="#fb7185" font-size="10" font-weight="600">
+            控制面 / 人工入口（随时可用）
+          </text>
+          <rect x="916" y="78" width="284" height="58" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="78"
+            width="284"
+            height="58"
+            rx="6"
+            fill="rgba(30,41,59,0.6)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="97"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            暂停 / 恢复 / 取消
+          </text>
+          <text x="1058.0" y="112" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            RUNNING → PAUSED → RUNNING
+          </text>
+          <text x="1058.0" y="125" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            取消：中止在跑任务 + 作废未跑任务
+          </text>
+          <rect x="916" y="148" width="284" height="58" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="148"
+            width="284"
+            height="58"
+            rx="6"
+            fill="rgba(30,41,59,0.6)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="167"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            重启恢复
+          </text>
+          <text x="1058.0" y="182" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            服务重启 → recover()
+          </text>
+          <text x="1058.0" y="195" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            RUNNING 任务重排 · 工作流可继续
+          </text>
+          <rect x="916" y="218" width="284" height="86" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="218"
+            width="284"
+            height="86"
+            rx="6"
+            fill="rgba(136,19,55,0.35)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="237"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            人工重试失败工作流
+          </text>
+          <text x="1058.0" y="252" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            重排：未解决失败 + BLOCKED → PENDING
+          </text>
+          <text x="1058.0" y="265" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            SUCCESS 任务零触碰
+          </text>
+          <text x="1058.0" y="278" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            入口：POST /api/workflows/:id/retry
+          </text>
+          <text x="1058.0" y="295" fill="#fda4af" font-size="8" text-anchor="middle">
+            ＝ 跳过已完成，不重烧 token
+          </text>
+          <rect x="916" y="316" width="284" height="72" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="316"
+            width="284"
+            height="72"
+            rx="6"
+            fill="rgba(136,19,55,0.35)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="335"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            审批（HUMAN / 生产部署）
+          </text>
+          <text x="1058.0" y="350" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            WAITING_APPROVAL → 批准 / 拒绝
+          </text>
+          <text x="1058.0" y="363" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            批准后重跑 · 拒绝则整单不可重试
+          </text>
+          <text x="1058.0" y="376" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            （审批实体复用 · 审计留痕）
+          </text>
+          <rect x="916" y="400" width="284" height="72" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="400"
+            width="284"
+            height="72"
+            rx="6"
+            fill="rgba(30,41,59,0.6)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="419"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            动态任务（REPLAN 链）
+          </text>
+          <text x="1058.0" y="434" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            失败 → 新建 DEBUG + fix 任务
+          </text>
+          <text x="1058.0" y="447" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            origin=DYNAMIC · 继承 fixTaskType
+          </text>
+          <text x="1058.0" y="460" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            回滚任务（部署失败时自动创建）
+          </text>
+          <rect x="916" y="484" width="284" height="66" rx="6" fill="#0f172a" />
+          <rect
+            x="916"
+            y="484"
+            width="284"
+            height="66"
+            rx="6"
+            fill="rgba(30,41,59,0.6)"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+          />
+          <text
+            x="1058.0"
+            y="503"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            事件与证据（全程）
+          </text>
+          <text x="1058.0" y="518" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            workflow_events：TASK_* · AGENT_* · APPROVAL_*
+          </text>
+          <text x="1058.0" y="531" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            tool_calls / agent_runs / artifacts 全留痕
+          </text>
+          <text x="1058.0" y="544" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            证据记录可回放失败原因
+          </text>
+          <text x="916" y="586" fill="#475569" font-size="8.5">
+            控制面动作都走既有引擎入口（无旁路），
+          </text>
+          <text x="916" y="600" fill="#475569" font-size="8.5">
+            因此审计 / 事件 / 状态机语义保持一致。
+          </text>
+        </svg>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          ③ 单次 Agent Run 内循环
+          <span>— 一次任务的执行细节：LLM ⇄ 工具循环 → 最终答案 → 结果解析管线</span>
+        </div>
+        <svg viewBox="0 0 1240 432">
+          <defs>
+            <marker id="car" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+            </marker>
+            <marker id="car-a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24" />
+            </marker>
+            <pattern id="grid3" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid3)" />
+          <line
+            x1="320"
+            y1="105"
+            x2="358"
+            y2="105"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="640"
+            y1="105"
+            x2="688"
+            y2="105"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="830"
+            y1="105"
+            x2="868"
+            y2="105"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="760"
+            y1="150"
+            x2="760"
+            y2="184"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <text x="770" y="176" fill="#94a3b8" font-size="8.5">是</text>
+          <path
+            d="M 600 224 L 500 224 L 500 152"
+            fill="none"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+            stroke-dasharray="5,4"
+            marker-end="url(#car-a)"
+          />
+          <text x="352" y="228" fill="#fbbf24" font-size="8.5">结果回填 → 继续迭代（≤ 50）</text>
+          <text x="836" y="98" fill="#94a3b8" font-size="8.5">否</text>
+          <line
+            x1="1035"
+            y1="150"
+            x2="1035"
+            y2="266"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="868"
+            y1="313"
+            x2="852"
+            y2="313"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="558"
+            y1="313"
+            x2="542"
+            y2="313"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <line
+            x1="248"
+            y1="313"
+            x2="232"
+            y2="313"
+            stroke="#64748b"
+            stroke-width="1.5"
+            marker-end="url(#car)"
+          />
+          <rect x="40" y="60" width="280" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="60"
+            width="280"
+            height="90"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="180.0"
+            y="79"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            任务 Prompt
+          </text>
+          <text x="180.0" y="94" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            目标 · 验收标准 · 上下文
+          </text>
+          <text x="180.0" y="107" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            预算：600s / ≤ 50 迭代
+          </text>
+          <text x="180.0" y="141" fill="#fcd34d" font-size="8" text-anchor="middle">
+            收敛规则 · JSON 卫生
+          </text>
+          <rect x="360" y="60" width="280" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="360"
+            y="60"
+            width="280"
+            height="90"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="500.0"
+            y="79"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            LLM 调用
+          </text>
+          <text x="500.0" y="94" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            工具绑定 · 流式 / 一次性
+          </text>
+          <text x="500.0" y="107" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            错误重试 1 次
+          </text>
+          <text x="500.0" y="141" fill="#fcd34d" font-size="8" text-anchor="middle">
+            中止（超时/取消）不重试
+          </text>
+          <polygon points="760,60 830,105 760,150 690,105" fill="#0f172a" />
+          <polygon
+            points="760,60 830,105 760,150 690,105"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="760"
+            y="101"
+            fill="#e2e8f0"
+            font-size="10.5"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            有工具调用？
+          </text>
+          <text x="760" y="116" fill="#94a3b8" font-size="8" text-anchor="middle">tool_calls</text>
+          <rect x="870" y="60" width="330" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="870"
+            y="60"
+            width="330"
+            height="90"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="1035.0"
+            y="79"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            最终答案（无工具调用）
+          </text>
+          <text x="1035.0" y="94" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            应为：一个结果 JSON 对象
+          </text>
+          <text x="1035.0" y="107" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            实况：常夹散文 / 围栏 / 破损
+          </text>
+          <text x="1035.0" y="141" fill="#fcd34d" font-size="8" text-anchor="middle">
+            空回复 → 图内重问 ≤ 2
+          </text>
+          <rect x="600" y="186" width="320" height="76" rx="6" fill="#0f172a" />
+          <rect
+            x="600"
+            y="186"
+            width="320"
+            height="76"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="760.0"
+            y="205"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            Tool Runtime → 策略 → Sandbox
+          </text>
+          <text x="760.0" y="220" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            权限 / 审批 / 审计（action-policy）
+          </text>
+          <text x="760.0" y="233" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            DockerSandbox 内执行（工作区白名单）
+          </text>
+          <text x="760.0" y="253" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            ToolResult 回填 → 下一轮迭代
+          </text>
+          <rect x="870" y="268" width="330" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="870"
+            y="268"
+            width="330"
+            height="90"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="1035.0"
+            y="287"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            结果解析管线
+          </text>
+          <text x="1035.0" y="302" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            ① 原始 JSON　② 围栏 / 首个平衡对象
+          </text>
+          <text x="1035.0" y="315" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            ③ 容错修复 repairNearJson
+          </text>
+          <text x="1035.0" y="349" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            ④ 锚点抢救 salvageOutcome
+          </text>
+          <rect x="560" y="268" width="290" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="560"
+            y="268"
+            width="290"
+            height="90"
+            rx="6"
+            fill="rgba(136,19,55,0.4)"
+            stroke="#fb7185"
+            stroke-width="1.5"
+          />
+          <text
+            x="705.0"
+            y="287"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            如实失败语义
+          </text>
+          <text x="705.0" y="302" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            TIMEOUT（运行超时）
+          </text>
+          <text x="705.0" y="315" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            EMPTY_FINAL_ANSWER（连续空回复）
+          </text>
+          <text x="705.0" y="349" fill="#fda4af" font-size="8" text-anchor="middle">
+            INVALID_AGENT_RESULT（不可解析）
+          </text>
+          <rect x="250" y="268" width="290" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="250"
+            y="268"
+            width="290"
+            height="90"
+            rx="6"
+            fill="rgba(120,53,15,0.3)"
+            stroke="#fbbf24"
+            stroke-width="1.5"
+          />
+          <text
+            x="395.0"
+            y="287"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            ProfessionalOutcome
+          </text>
+          <text x="395.0" y="302" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            status：SUCCESS / FAILED / RETRY / REPLAN
+          </text>
+          <text x="395.0" y="315" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            summary · artifacts · issues · metadata
+          </text>
+          <text x="395.0" y="349" fill="#fcd34d" font-size="8" text-anchor="middle">
+            metadata.errorType 记录真实原因
+          </text>
+          <rect x="40" y="268" width="190" height="90" rx="6" fill="#0f172a" />
+          <rect
+            x="40"
+            y="268"
+            width="190"
+            height="90"
+            rx="6"
+            fill="rgba(6,78,59,0.4)"
+            stroke="#34d399"
+            stroke-width="1.5"
+          />
+          <text
+            x="135.0"
+            y="287"
+            fill="#e2e8f0"
+            font-size="11"
+            font-weight="600"
+            text-anchor="middle"
+          >
+            任务判定 → 引擎
+          </text>
+          <text x="135.0" y="302" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            SUCCESS → 后继解锁
+          </text>
+          <text x="135.0" y="315" fill="#94a3b8" font-size="8.5" text-anchor="middle">
+            FAILED → 失败策略（见 ②）
+          </text>
+          <text x="135.0" y="349" fill="#6ee7b7" font-size="8" text-anchor="middle">
+            run / tool_call / artifact 留痕
+          </text>
+          <text x="40" y="392" fill="#475569" font-size="8.5">
+            关键点：默认（gate=off）以 Agent 自报结果为任务判定依据（docs/97）；C-1 起验证门（enforce）
+            可用客观检查覆盖自报结论（见 ④）；解析层只负责"如实还原"，不改变结论；超时 /
+            空回复 / 破损三类失败都有可读原因与回归用例（docs/101–104）。
+          </text>
+          <text x="40" y="412" fill="#475569" font-size="8.5">
+            注：图为 as-built（2026-09-28），与 docs/02
+            分层一致；结果解析管线、预算配置（TASK_TIMEOUT_MS）与计划期守卫为近期新增能力。
+          </text>
+        </svg>
+      </div>
+
+            <div class="panel">
+        <div class="panel-title">
+          ④ C/D 阶段加固能力
+          <span>— 验证门 / submit_result / AC 追溯 / 脱敏 / API Token / 交付链演练（2026-10-08 增补）</span>
+        </div>
+        <svg viewBox="0 0 1240 343">
+          <defs>
+            <pattern id="grid4" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid4)" />
+          <rect x="30" y="24" width="380" height="127" rx="8" fill="#0f172a" />
+          <rect x="30" y="24" width="380" height="127" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5" />
+          <text x="220.0" y="46" fill="#22d3ee" font-size="11" font-weight="600" text-anchor="middle">验证门（C-1 / C-3 / C-4）</text>
+          <text x="220.0" y="68" fill="#94a3b8" font-size="8.5" text-anchor="middle">VERIFICATION_GATE = off | observe | enforce（默认 off）</text>
+          <text x="220.0" y="83" fill="#94a3b8" font-size="8.5" text-anchor="middle">客观检查：build / test / migrate（npm 脚本探测）</text>
+          <text x="220.0" y="98" fill="#94a3b8" font-size="8.5" text-anchor="middle">红灯检查：TEST 任务先红后绿；证据化翻转（E-0 修复）</text>
+          <text x="220.0" y="113" fill="#94a3b8" font-size="8.5" text-anchor="middle">防篡改：保护测试文件快照（开发任务不可改动）</text>
+          <text x="220.0" y="128" fill="#94a3b8" font-size="8.5" text-anchor="middle">落库：task.output.verification（verdict / checks / acResults）</text>
+          <rect x="430" y="24" width="380" height="127" rx="8" fill="#0f172a" />
+          <rect x="430" y="24" width="380" height="127" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5" />
+          <text x="620.0" y="46" fill="#34d399" font-size="11" font-weight="600" text-anchor="middle">submit_result（C-2）</text>
+          <text x="620.0" y="68" fill="#94a3b8" font-size="8.5" text-anchor="middle">结构化提交：{ status, summary, artifacts, issues, metadata }</text>
+          <text x="620.0" y="83" fill="#94a3b8" font-size="8.5" text-anchor="middle">status ∈ SUCCESS | FAILED | RETRY | REPLAN</text>
+          <text x="620.0" y="98" fill="#94a3b8" font-size="8.5" text-anchor="middle">解析降级率：B 期 76–78% → E 期 0%（E-3 实测）</text>
+          <text x="620.0" y="113" fill="#94a3b8" font-size="8.5" text-anchor="middle">自由文本解析降为兜底路径</text>
+          <rect x="830" y="24" width="380" height="127" rx="8" fill="#0f172a" />
+          <rect x="830" y="24" width="380" height="127" rx="8" fill="rgba(69,26,3,0.35)" stroke="#fbbf24" stroke-width="1.5" />
+          <text x="1020.0" y="46" fill="#fbbf24" font-size="11" font-weight="600" text-anchor="middle">AC 追溯（N5 / C-5）</text>
+          <text x="1020.0" y="68" fill="#94a3b8" font-size="8.5" text-anchor="middle">FR → AC → 测试 → 执行结果 → 证据（命令 / 退出码 / 摘要）</text>
+          <text x="1020.0" y="83" fill="#94a3b8" font-size="8.5" text-anchor="middle">GET /api/requirements/:id/traceability（?format=markdown）</text>
+          <text x="1020.0" y="98" fill="#94a3b8" font-size="8.5" text-anchor="middle">判定口径：绿灯证据优先；红灯证据不参与最终判定</text>
+          <text x="1020.0" y="113" fill="#94a3b8" font-size="8.5" text-anchor="middle">数据源：N3 AC 记录 + 任务 acKeys + 逐条 acResults</text>
+          <rect x="30" y="177" width="380" height="112" rx="8" fill="#0f172a" />
+          <rect x="30" y="177" width="380" height="112" rx="8" fill="rgba(76,5,25,0.35)" stroke="#fb7185" stroke-width="1.5" />
+          <text x="220.0" y="199" fill="#fb7185" font-size="11" font-weight="600" text-anchor="middle">脱敏（D-2）</text>
+          <text x="220.0" y="221" fill="#94a3b8" font-size="8.5" text-anchor="middle">@ai-se/observability sanitize（日志出口统一脱敏）</text>
+          <text x="220.0" y="236" fill="#94a3b8" font-size="8.5" text-anchor="middle">server 出口层：redactingTaskExecutor（证据落库前）</text>
+          <text x="220.0" y="251" fill="#94a3b8" font-size="8.5" text-anchor="middle">明文凭据零进入 Prompt / State / Task / Log / Result</text>
+          <text x="220.0" y="266" fill="#94a3b8" font-size="8.5" text-anchor="middle">注入红队 e2e：投毒 README + 伪凭据全量检出</text>
+          <rect x="430" y="177" width="380" height="112" rx="8" fill="#0f172a" />
+          <rect x="430" y="177" width="380" height="112" rx="8" fill="rgba(46,16,101,0.35)" stroke="#a78bfa" stroke-width="1.5" />
+          <text x="620.0" y="199" fill="#a78bfa" font-size="11" font-weight="600" text-anchor="middle">API Token（D-3）</text>
+          <text x="620.0" y="221" fill="#94a3b8" font-size="8.5" text-anchor="middle">部署面最小鉴权：API_TOKEN（可选，默认关）</text>
+          <text x="620.0" y="236" fill="#94a3b8" font-size="8.5" text-anchor="middle">HTTP 层统一守卫 apiTokenGuard；未授权 → 401</text>
+          <text x="620.0" y="251" fill="#94a3b8" font-size="8.5" text-anchor="middle">覆盖 staging / production 暴露面（D-5/D-6 演练环境）</text>
+          <rect x="830" y="177" width="380" height="112" rx="8" fill="#0f172a" />
+          <rect x="830" y="177" width="380" height="112" rx="8" fill="rgba(124,45,18,0.35)" stroke="#fb923c" stroke-width="1.5" />
+          <text x="1020.0" y="199" fill="#fb923c" font-size="11" font-weight="600" text-anchor="middle">交付链演练（D-4 / D-5 / D-6）</text>
+          <text x="1020.0" y="221" fill="#94a3b8" font-size="8.5" text-anchor="middle">CI（本地六步 + 镜像）→ staging（容器 + 健康检查）</text>
+          <text x="1020.0" y="236" fill="#94a3b8" font-size="8.5" text-anchor="middle">→ 人工审批 → production（真实容器）→ 回滚演练</text>
+          <text x="1020.0" y="251" fill="#94a3b8" font-size="8.5" text-anchor="middle">证据：results/d/evidence/d4–d6（工作流 42b226c1 / be913755）</text>
+          <text x="30" y="319" fill="#475569" font-size="8.5">
+            注：①②③ 为 2026-09-28 版；本面板为 C/D 阶段增补（验证门 / submit_result / 追溯 / 脱敏 / 鉴权 / 交付演练）——代码权威（apps/server · packages/agent-core · docs/116–124）。
+          </text>
+        </svg>
+      </div>
+
+<div class="cards">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-dot cyan"></div>
+            <h3>分层职责（谁管什么）</h3>
+          </div>
+          <ul>
+            <li>
+              <b>Workflow Engine</b>：业务生命周期唯一编排者 ——
+              需求→规格→任务图、依赖与并行、重试/失败恢复、动态任务、重规划、审批/暂停/恢复/取消、交付编排。
+            </li>
+            <li>
+              <b>Agent Runtime（LangGraph）</b>：只负责<b>单次 Agent Run</b> ——
+              状态、模型调用、工具循环、条件路由、checkpoint；<b>禁止</b>把业务生命周期做成一个大
+              LangGraph。
+            </li>
+            <li>
+              <b>应用服务层</b>：规划、工作流、交付、运行时/治理四组服务；HTTP
+              路由薄，业务逻辑集中于此。
+            </li>
+            <li>
+              <b>控制台</b>：api（fetch）→ stores（Pinia）→ viewmodels（可测纯逻辑）→ views（11
+              页，一页一文件）。
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-dot rose"></div>
+            <h3>架构不变量（红线）</h3>
+          </div>
+          <ul>
+            <li><b>Tool Runtime 是唯一执行路径</b>：Agent / MCP / MCP Apps 均不得绕过。</li>
+            <li><b>所有代码执行必须经 Sandbox</b>（工作区白名单 + 容器内执行）。</li>
+            <li><b>禁止第二套</b> Permission / Approval / Audit / Secret / 错误码体系。</li>
+            <li><b>Workflow 必须可恢复、可取消</b>；授权验证须证明"无过期授权"。</li>
+            <li>
+              <b>凭据零明文</b>：不进入 Prompt / State / Task / Log / Result；日志走 observability
+              脱敏。
+            </li>
+            <li>Agent 不直接访问外部系统（LLM 之外的 GitHub / Docker / MCP 一律经适配器）。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-dot amber"></div>
+            <h3>数据与外部依赖</h3>
+          </div>
+          <ul>
+            <li>
+              <b>PostgreSQL 16</b>：全部业务实体与执行留痕（workflow / task / agent_run / tool_call
+              / artifact / evidence / approval / deployment / mcp / planning）+ SQL migrations。
+            </li>
+            <li><b>Redis 7</b>：唯一职责 = 跨进程取消（agent-run:&lt;id&gt;:cancel，1h TTL，250ms 轮询）+ 健康检查；与 PostgreSQL 无重叠（G5/T9 审计）。</li>
+            <li><b>LLM</b>：DeepSeek / OpenAI 兼容（思考模型 · token 与成本计量）。</li>
+            <li>
+              <b>交付</b>：LocalCi / GitHubActions + Docker（镜像构建 → staging → 生产审批）。
+            </li>
+            <li><b>MCP</b>：stdio + remote 两种传输，契约冻结（docs/25）。</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer">
+        AI-SE · as-built architecture &amp; workflow · 13 packages + apps/server + apps/web · 生成于 2026-09-28 · C/D 增补 2026-10-08 · 代码权威于文档
+      </p>
+    </div>
+  </body>
+</html>

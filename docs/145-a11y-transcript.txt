@@ -1,0 +1,1828 @@
+# 可访问性朗读转录（screen-reader transcript）· http://localhost:5173
+# 说明：以下是从 Chromium 无障碍树推导出的朗读顺序，不是 VoiceOver / NVDA 的录音；
+#       真机走查仍需人耳确认。跳过 generic / none / ignored 容器节点。
+# 后端：http://localhost:3000　真实 id 发现：成功
+
+========================================================================
+状态 1/10：列表页 /projects
+URL：http://localhost:5173/projects
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/projects)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "构建"
+      StaticText "项目"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "项目" (level=1)
+        StaticText "项目"
+      button "新建项目" (focusable, hasPopup=dialog)
+        StaticText "新建项目"
+    table ""
+      rowgroup ""
+        row ""
+          columnheader "项目名称"
+            button "项目名称" (focusable)
+              StaticText "项目名称"
+          columnheader "描述"
+            StaticText "描述"
+          columnheader "仓库"
+            StaticText "仓库"
+          columnheader "状态"
+            button "状态" (focusable)
+              StaticText "状态"
+          columnheader "创建时间"
+            button "创建时间" (focusable)
+              StaticText "创建时间"
+          columnheader "操作"
+            StaticText "操作"
+      row ""
+        cell "G2 规划成本实测"
+          link "G2 规划成本实测" (focusable, url=http://localhost:5173/projects/f16af318-b46d-49d3-8973-ca33a0fe2657)
+            StaticText "G2 规划成本实测"
+        cell "无持久化 CLI 工具（跳过实验）"
+          StaticText "无持久化 CLI 工具（跳过实验）"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年10月14日 11:22"
+          StaticText "2026年10月14日 11:22"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/f16af318-b46d-49d3-8973-ca33a0fe2657)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] S1"
+          link "[eval] S1" (focusable, url=http://localhost:5173/projects/e8800662-cc7d-467e-b0ea-94ab63073ff5)
+            StaticText "[eval] S1"
+        cell "P0 评测夹具 S1（实现 slugify 文本转 slug）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 S1（实现 slugify 文本转 slug）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年10月07日 16:08"
+          StaticText "2026年10月07日 16:08"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/e8800662-cc7d-467e-b0ea-94ab63073ff5)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] E1"
+          link "[eval] E1" (focusable, url=http://localhost:5173/projects/f72e8999-55a7-4cc5-bcde-0719a4d13c40)
+            StaticText "[eval] E1"
+        cell "P0 评测夹具 E1（TaskBoard 任务看板（PRD 级端到端夹具））—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 E1（TaskBoard 任务看板（PRD 级端到端夹具））—— 由 packages/eval 自动创建"
+        cell "file:///Users/shixianbao/Desktop/study/ai-se-eval/repos/e1-taskboard.git"
+          StaticText "file:///Users/shixianbao/Desktop/study/ai-se-eval/repos/e1-taskboard.git"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年10月01日 02:03"
+          StaticText "2026年10月01日 02:03"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/f72e8999-55a7-4cc5-bcde-0719a4d13c40)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] S3"
+          link "[eval] S3" (focusable, url=http://localhost:5173/projects/1e2548e0-16bc-4ec9-bd1e-4e8286bf1682)
+            StaticText "[eval] S3"
+        cell "P0 评测夹具 S3（实现 parseCsvLine CSV 行解析）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 S3（实现 parseCsvLine CSV 行解析）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 19:50"
+          StaticText "2026年9月30日 19:50"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/1e2548e0-16bc-4ec9-bd1e-4e8286bf1682)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] S2"
+          link "[eval] S2" (focusable, url=http://localhost:5173/projects/45333ac6-5c49-4369-bf5d-0c2f357bf68e)
+            StaticText "[eval] S2"
+        cell "P0 评测夹具 S2（实现 parseDuration 时长解析）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 S2（实现 parseDuration 时长解析）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 19:25"
+          StaticText "2026年9月30日 19:25"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/45333ac6-5c49-4369-bf5d-0c2f357bf68e)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] M3"
+          link "[eval] M3" (focusable, url=http://localhost:5173/projects/eaf6b5e9-d476-4eca-a1b2-1eb4a3d15484)
+            StaticText "[eval] M3"
+        cell "P0 评测夹具 M3（实现配置深合并 mergeConfig）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 M3（实现配置深合并 mergeConfig）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 18:07"
+          StaticText "2026年9月30日 18:07"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/eaf6b5e9-d476-4eca-a1b2-1eb4a3d15484)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] M2"
+          link "[eval] M2" (focusable, url=http://localhost:5173/projects/80ea3c68-020c-446f-8cfe-2d5bdae1cca5)
+            StaticText "[eval] M2"
+        cell "P0 评测夹具 M2（实现 markdown 表格渲染 renderTable）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 M2（实现 markdown 表格渲染 renderTable）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 16:23"
+          StaticText "2026年9月30日 16:23"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/80ea3c68-020c-446f-8cfe-2d5bdae1cca5)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] M1"
+          link "[eval] M1" (focusable, url=http://localhost:5173/projects/dbffc2d5-8ed3-475c-92bf-810f20bcc7d3)
+            StaticText "[eval] M1"
+        cell "P0 评测夹具 M1（补齐 todo 服务的 PATCH / DELETE / 过滤）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 M1（补齐 todo 服务的 PATCH / DELETE / 过滤）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 14:39"
+          StaticText "2026年9月30日 14:39"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/dbffc2d5-8ed3-475c-92bf-810f20bcc7d3)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] L2"
+          link "[eval] L2" (focusable, url=http://localhost:5173/projects/447d42fe-8cc1-471c-9041-66766c365a8c)
+            StaticText "[eval] L2"
+        cell "P0 评测夹具 L2（给内存 todo API 加文件持久化与统计接口）—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 L2（给内存 todo API 加文件持久化与统计接口）—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 09:06"
+          StaticText "2026年9月30日 09:06"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/447d42fe-8cc1-471c-9041-66766c365a8c)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+      row ""
+        cell "[eval] L1"
+          link "[eval] L1" (focusable, url=http://localhost:5173/projects/7e9e882c-01b1-463d-b1e2-1227c32ef241)
+            StaticText "[eval] L1"
+        cell "P0 评测夹具 L1（实现静态站点生成器（frontmatter + markdown-lite + 构建））—— 由 packages/eval 自动创建"
+          StaticText "P0 评测夹具 L1（实现静态站点生成器（frontmatter + markdown-lite + 构建））—— 由 packages/eval 自动创建"
+        cell "未配置"
+          StaticText "未配置"
+        cell "启用"
+          StaticText "启用"
+        cell "2026年9月30日 08:33"
+          StaticText "2026年9月30日 08:33"
+        cell "打开 删除"
+          link "打开" (focusable, url=http://localhost:5173/projects/7e9e882c-01b1-463d-b1e2-1227c32ef241)
+            StaticText "打开"
+          button "删除" (focusable)
+            StaticText "删除"
+    paragraph ""
+      StaticText "共 11 条"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "Page 2" (focusable)
+        StaticText "2"
+      button "下一页" (focusable)
+      button "末页" (focusable)
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 2/10：列表页 /requirements
+URL：http://localhost:5173/requirements
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/requirements)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "构建"
+      StaticText "需求"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "需求" (level=1)
+        StaticText "需求"
+      button "新建需求" (focusable, hasPopup=dialog)
+        StaticText "新建需求"
+    heading "需求列表" (level=2)
+      StaticText "需求列表"
+    StaticText "1"
+    LabelText ""
+      StaticText "项目"
+    combobox "项目" (focusable, hasPopup=listbox)
+      StaticText "G2 规划成本实测"
+    table ""
+      rowgroup ""
+        row ""
+          columnheader "标题"
+            button "标题" (focusable)
+              StaticText "标题"
+          columnheader "状态"
+            button "状态" (focusable)
+              StaticText "状态"
+          columnheader "创建时间"
+            button "创建时间" (focusable)
+              StaticText "创建时间"
+          columnheader "操作"
+            StaticText "操作"
+      row ""
+        cell "文本统计 CLI"
+          strong ""
+            StaticText "文本统计 CLI"
+        cell "已分析"
+          StaticText "已分析"
+        cell "10月14日 11:22:59"
+          StaticText "10月14日 11:22:59"
+        cell "详情 分析"
+          button "详情" (focusable)
+            StaticText "详情"
+          button "分析" (focusable)
+            StaticText "分析"
+    paragraph ""
+      StaticText "共 1 条"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "下一页" (disabled)
+      button "末页" (disabled)
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 3/10：列表页 /workflows
+URL：http://localhost:5173/workflows
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/workflows)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "构建"
+      StaticText "工作流"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "工作流" (level=1)
+        StaticText "工作流"
+      button "新建工作流" (focusable, hasPopup=dialog)
+        StaticText "新建工作流"
+    heading "工作流列表" (level=2)
+      StaticText "工作流列表"
+    combobox "按项目筛选" (focusable, hasPopup=listbox)
+      StaticText "全部项目"
+    combobox "按状态筛选" (focusable, hasPopup=listbox)
+      StaticText "全部状态"
+    table ""
+      rowgroup ""
+        row ""
+          columnheader "状态"
+            button "状态" (focusable)
+              StaticText "状态"
+          columnheader "需求"
+            button "需求" (focusable)
+              StaticText "需求"
+          columnheader "项目"
+            button "项目" (focusable)
+              StaticText "项目"
+          columnheader "进度"
+            button "进度" (focusable)
+              StaticText "进度"
+          columnheader "更新时间"
+            button "更新时间" (focusable)
+              StaticText "更新时间"
+          columnheader "操作"
+            StaticText "操作"
+      row ""
+        cell "失败 v37"
+          StaticText "失败"
+          StaticText "v37"
+        cell "E1 复制 ID e5d00888-bb96-4938-bd0e-c795f056fa2f"
+          strong ""
+            StaticText "E1"
+          button "复制 ID e5d00888-bb96-4938-bd0e-c795f056fa2f" (focusable)  // desc: "点击复制完整 ID：e5d00888-bb96-4938-bd0e-c795f056fa2f"
+            StaticText "ID e5d00888"
+        cell "[eval] E1"
+          StaticText "[eval] E1"
+        cell "进度 12 / 19 开始 10/15 07:49 · 用时 43m 32s"
+          StaticText "进度 12 / 19"
+          StaticText "开始 10/15 07:49 · 用时 43m 32s"
+        cell "10/15 08:33"
+          StaticText "10/15 08:33"
+        cell "详情 重试失败任务"
+          button "详情" (focusable)
+            StaticText "详情"
+          button "重试失败任务" (focusable)
+            StaticText "重试失败任务"
+      row ""
+        cell "成功 v36"
+          StaticText "成功"
+          StaticText "v36"
+        cell "E1 复制 ID 6e03149f-46f4-4fe7-8cf9-d4830ad20ddc"
+          strong ""
+            StaticText "E1"
+          button "复制 ID 6e03149f-46f4-4fe7-8cf9-d4830ad20ddc" (focusable)  // desc: "点击复制完整 ID：6e03149f-46f4-4fe7-8cf9-d4830ad20ddc"
+            StaticText "ID 6e03149f"
+        cell "[eval] E1"
+          StaticText "[eval] E1"
+        cell "进度 15 / 15 开始 10/15 07:09 · 用时 39m 53s"
+          StaticText "进度 15 / 15"
+          StaticText "开始 10/15 07:09 · 用时 39m 53s"
+        cell "10/15 07:49"
+          StaticText "10/15 07:49"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v17"
+          StaticText "成功"
+          StaticText "v17"
+        cell "L2 复制 ID 8a015b91-c9df-4c71-83f0-d83387ed5cd8"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 8a015b91-c9df-4c71-83f0-d83387ed5cd8" (focusable)  // desc: "点击复制完整 ID：8a015b91-c9df-4c71-83f0-d83387ed5cd8"
+            StaticText "ID 8a015b91"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 13 / 13 开始 10/15 06:52 · 用时 16m 53s"
+          StaticText "进度 13 / 13"
+          StaticText "开始 10/15 06:52 · 用时 16m 53s"
+        cell "10/15 07:09"
+          StaticText "10/15 07:09"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v16"
+          StaticText "成功"
+          StaticText "v16"
+        cell "L2 复制 ID a8fb9f97-790e-41c5-a6a8-444cfe93ae5a"
+          strong ""
+            StaticText "L2"
+          button "复制 ID a8fb9f97-790e-41c5-a6a8-444cfe93ae5a" (focusable)  // desc: "点击复制完整 ID：a8fb9f97-790e-41c5-a6a8-444cfe93ae5a"
+            StaticText "ID a8fb9f97"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 8 / 8 开始 10/15 06:39 · 用时 11m 25s"
+          StaticText "进度 8 / 8"
+          StaticText "开始 10/15 06:39 · 用时 11m 25s"
+        cell "10/15 06:51"
+          StaticText "10/15 06:51"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v15"
+          StaticText "成功"
+          StaticText "v15"
+        cell "L2 复制 ID 497f7122-cbae-4344-b20e-bae9cb6f5c08"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 497f7122-cbae-4344-b20e-bae9cb6f5c08" (focusable)  // desc: "点击复制完整 ID：497f7122-cbae-4344-b20e-bae9cb6f5c08"
+            StaticText "ID 497f7122"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 18 / 18 开始 10/15 06:13 · 用时 25m 14s"
+          StaticText "进度 18 / 18"
+          StaticText "开始 10/15 06:13 · 用时 25m 14s"
+        cell "10/15 06:38"
+          StaticText "10/15 06:38"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v14"
+          StaticText "成功"
+          StaticText "v14"
+        cell "L2 复制 ID 83899642-34c2-437b-96c3-a6acd6fd8b71"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 83899642-34c2-437b-96c3-a6acd6fd8b71" (focusable)  // desc: "点击复制完整 ID：83899642-34c2-437b-96c3-a6acd6fd8b71"
+            StaticText "ID 83899642"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 18 / 18 开始 10/15 05:45 · 用时 27m 29s"
+          StaticText "进度 18 / 18"
+          StaticText "开始 10/15 05:45 · 用时 27m 29s"
+        cell "10/15 06:13"
+          StaticText "10/15 06:13"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v13"
+          StaticText "成功"
+          StaticText "v13"
+        cell "L2 复制 ID 3ee319cc-afbd-4349-be23-27cab76531d7"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 3ee319cc-afbd-4349-be23-27cab76531d7" (focusable)  // desc: "点击复制完整 ID：3ee319cc-afbd-4349-be23-27cab76531d7"
+            StaticText "ID 3ee319cc"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 14 / 14 开始 10/15 05:20 · 用时 25m 16s"
+          StaticText "进度 14 / 14"
+          StaticText "开始 10/15 05:20 · 用时 25m 16s"
+        cell "10/15 05:45"
+          StaticText "10/15 05:45"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "失败 v15"
+          StaticText "失败"
+          StaticText "v15"
+        cell "L2 复制 ID 1664bbb5-19bf-45f9-a301-494fe7092bc6"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 1664bbb5-19bf-45f9-a301-494fe7092bc6" (focusable)  // desc: "点击复制完整 ID：1664bbb5-19bf-45f9-a301-494fe7092bc6"
+            StaticText "ID 1664bbb5"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 16 / 18 开始 10/15 04:47 · 用时 32m 28s"
+          StaticText "进度 16 / 18"
+          StaticText "开始 10/15 04:47 · 用时 32m 28s"
+        cell "10/15 05:20"
+          StaticText "10/15 05:20"
+        cell "详情 重试失败任务"
+          button "详情" (focusable)
+            StaticText "详情"
+          button "重试失败任务" (focusable)
+            StaticText "重试失败任务"
+      row ""
+        cell "成功 v14"
+          StaticText "成功"
+          StaticText "v14"
+        cell "L2 复制 ID 8e3992b8-0183-467a-9012-55be95af2d22"
+          strong ""
+            StaticText "L2"
+          button "复制 ID 8e3992b8-0183-467a-9012-55be95af2d22" (focusable)  // desc: "点击复制完整 ID：8e3992b8-0183-467a-9012-55be95af2d22"
+            StaticText "ID 8e3992b8"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 18 / 18 开始 10/15 04:17 · 用时 28m 10s"
+          StaticText "进度 18 / 18"
+          StaticText "开始 10/15 04:17 · 用时 28m 10s"
+        cell "10/15 04:45"
+          StaticText "10/15 04:45"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "成功 v13"
+          StaticText "成功"
+          StaticText "v13"
+        cell "L2 复制 ID cb8d650b-52df-4ec6-bd47-e5ef4bb087ae"
+          strong ""
+            StaticText "L2"
+          button "复制 ID cb8d650b-52df-4ec6-bd47-e5ef4bb087ae" (focusable)  // desc: "点击复制完整 ID：cb8d650b-52df-4ec6-bd47-e5ef4bb087ae"
+            StaticText "ID cb8d650b"
+        cell "[eval] L2"
+          StaticText "[eval] L2"
+        cell "进度 14 / 14 开始 10/15 03:55 · 用时 19m 34s"
+          StaticText "进度 14 / 14"
+          StaticText "开始 10/15 03:55 · 用时 19m 34s"
+        cell "10/15 04:14"
+          StaticText "10/15 04:14"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+    paragraph ""
+      StaticText "共 285 条"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "Page 2" (focusable)
+        StaticText "2"
+      button "Page 3" (focusable)
+        StaticText "3"
+      button "下一页" (focusable)
+      button "末页" (focusable)
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 4/10：列表页 /deployments
+URL：http://localhost:5173/deployments
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/deployments)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "构建"
+      StaticText "部署"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "部署" (level=1)
+        StaticText "部署"
+      button "环境设置" (focusable, hasPopup=dialog)
+        StaticText "环境设置"
+    heading "历史" (level=2)
+      StaticText "历史"
+    button "预发 · 成功 86ae7de6fde5 · 2026/10/14 19:14:00" (focusable)
+      strong ""
+        StaticText "预发 · 成功"
+      StaticText "86ae7de6fde5 · 2026/10/14 19:14:00"
+    button "预发 · 成功 86ae7de6fde5 · 2026/10/14 19:13:59" (focusable)
+      strong ""
+        StaticText "预发 · 成功"
+      StaticText "86ae7de6fde5 · 2026/10/14 19:13:59"
+    button "预发 · 成功 2c4e474c5102 · 2026/10/7 13:02:05" (focusable)
+      strong ""
+        StaticText "预发 · 成功"
+      StaticText "2c4e474c5102 · 2026/10/7 13:02:05"
+    button "预发 · 已回滚 fea7e63e5370 · 2026/10/7 13:01:55" (focusable)
+      strong ""
+        StaticText "预发 · 已回滚"
+      StaticText "fea7e63e5370 · 2026/10/7 13:01:55"
+    button "生产 · 成功 2c4e474c5102 · 2026/10/7 12:59:54" (focusable)
+      strong ""
+        StaticText "生产 · 成功"
+      StaticText "2c4e474c5102 · 2026/10/7 12:59:54"
+    button "预发 · 成功 2c4e474c5102 · 2026/10/7 12:59:37" (focusable)
+      strong ""
+        StaticText "预发 · 成功"
+      StaticText "2c4e474c5102 · 2026/10/7 12:59:37"
+    button "预发 · 失败 420731e0ef5a · 2026/10/7 12:56:40" (focusable)
+      strong ""
+        StaticText "预发 · 失败"
+      StaticText "420731e0ef5a · 2026/10/7 12:56:40"
+    paragraph ""
+      StaticText "请选择部署。"
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 5/10：列表页 /agent-run
+URL：http://localhost:5173/agent-run
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/agent-run)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "运行"
+      StaticText "Agent 运行"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "Agent 运行" (level=1)
+        StaticText "Agent 运行"
+      button "新建运行" (focusable, hasPopup=dialog)
+        StaticText "新建运行"
+    heading "运行列表" (level=2)
+      StaticText "运行列表"
+    StaticText "3034"
+    table ""
+      rowgroup ""
+        row ""
+          columnheader "状态"
+            button "状态" (focusable)
+              StaticText "状态"
+          columnheader "任务"
+            button "任务" (focusable)
+              StaticText "任务"
+          columnheader "来源"
+            StaticText "来源"
+          columnheader "尝试 · 用时"
+            button "尝试 · 用时" (focusable)
+              StaticText "尝试 · 用时"
+          columnheader "操作"
+            StaticText "操作"
+      row ""
+        cell "已成功 10月15日 08:30:12"
+          StaticText "已成功"
+          StaticText "10月15日 08:30:12"
+        cell "实现 HMAC-SHA256 签名令牌签发与校验 Agent：backend-agent 后端 项目：[eval] E1 复制 ID 06275fa6-e52e-4c0a-8add-3dfaae00e0db"
+          strong ""
+            StaticText "实现 HMAC-SHA256 签名令牌签发与校验"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID 06275fa6-e52e-4c0a-8add-3dfaae00e0db" (focusable)  // desc: "点击复制完整 ID：06275fa6-e52e-4c0a-8add-3dfaae00e0db"
+            StaticText "ID 06275fa6"
+        cell "工作流：E1 任务：AUTH-BE-06 · 实现 HMAC-SHA256 签名令牌签发与校验"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-06 · 实现 HMAC-SHA256 签名令牌签发与校验"
+        cell "尝试 第 1 次尝试 · 用时 167.8s"
+          StaticText "尝试 第 1 次尝试 · 用时 167.8s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:27:15"
+          StaticText "已成功"
+          StaticText "10月15日 08:27:15"
+        cell "实现 HMAC-SHA256 签名令牌签发与校验 Agent：backend-agent 后端 项目：[eval] E1 复制 ID 6a0248f5-9256-4f50-bf72-913bdaf25131"
+          strong ""
+            StaticText "实现 HMAC-SHA256 签名令牌签发与校验"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID 6a0248f5-9256-4f50-bf72-913bdaf25131" (focusable)  // desc: "点击复制完整 ID：6a0248f5-9256-4f50-bf72-913bdaf25131"
+            StaticText "ID 6a0248f5"
+        cell "工作流：E1 任务：AUTH-BE-06 · 实现 HMAC-SHA256 签名令牌签发与校验"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-06 · 实现 HMAC-SHA256 签名令牌签发与校验"
+        cell "尝试 第 1 次尝试 · 用时 170.8s"
+          StaticText "尝试 第 1 次尝试 · 用时 170.8s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:25:01"
+          StaticText "已成功"
+          StaticText "10月15日 08:25:01"
+        cell "实现密码 scrypt 哈希与常量时间校验 Agent：backend-agent 后端 项目：[eval] E1 复制 ID 2bc8b1d0-0f39-459d-bbcd-2c0fe184fda1"
+          strong ""
+            StaticText "实现密码 scrypt 哈希与常量时间校验"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID 2bc8b1d0-0f39-459d-bbcd-2c0fe184fda1" (focusable)  // desc: "点击复制完整 ID：2bc8b1d0-0f39-459d-bbcd-2c0fe184fda1"
+            StaticText "ID 2bc8b1d0"
+        cell "工作流：E1 任务：AUTH-BE-03 · 实现密码 scrypt 哈希与常量时间校验"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-03 · 实现密码 scrypt 哈希与常量时间校验"
+        cell "尝试 第 1 次尝试 · 用时 128.7s"
+          StaticText "尝试 第 1 次尝试 · 用时 128.7s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:22:14"
+          StaticText "已成功"
+          StaticText "10月15日 08:22:14"
+        cell "实现注册/登录严格字段校验 Agent：backend-agent 后端 项目：[eval] E1 复制 ID b0f2d78b-5a3e-459b-94f0-f448e26e17e2"
+          strong ""
+            StaticText "实现注册/登录严格字段校验"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID b0f2d78b-5a3e-459b-94f0-f448e26e17e2" (focusable)  // desc: "点击复制完整 ID：b0f2d78b-5a3e-459b-94f0-f448e26e17e2"
+            StaticText "ID b0f2d78b"
+        cell "工作流：E1 任务：AUTH-BE-02 · 实现注册/登录严格字段校验"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-02 · 实现注册/登录严格字段校验"
+        cell "尝试 第 1 次尝试 · 用时 164.3s"
+          StaticText "尝试 第 1 次尝试 · 用时 164.3s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:15:10"
+          StaticText "已成功"
+          StaticText "10月15日 08:15:10"
+        cell "实现 HTTP 服务、路由分发与健康端点 Agent：backend-agent 后端 项目：[eval] E1 复制 ID ddbd5c20-2b4e-4c23-a87d-f2b6dbbd5a5e"
+          strong ""
+            StaticText "实现 HTTP 服务、路由分发与健康端点"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID ddbd5c20-2b4e-4c23-a87d-f2b6dbbd5a5e" (focusable)  // desc: "点击复制完整 ID：ddbd5c20-2b4e-4c23-a87d-f2b6dbbd5a5e"
+            StaticText "ID ddbd5c20"
+        cell "工作流：E1 任务：AUTH-BE-01 · 实现 HTTP 服务、路由分发与健康端点"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-01 · 实现 HTTP 服务、路由分发与健康端点"
+        cell "尝试 第 1 次尝试 · 用时 421.2s"
+          StaticText "尝试 第 1 次尝试 · 用时 421.2s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:08:39"
+          StaticText "已成功"
+          StaticText "10月15日 08:08:39"
+        cell "实现 HTTP 服务、路由分发与健康端点 Agent：backend-agent 后端 项目：[eval] E1 复制 ID b63581f5-8af8-462b-8270-de8276a2a5a7"
+          strong ""
+            StaticText "实现 HTTP 服务、路由分发与健康端点"
+          StaticText "Agent：backend-agent"
+          StaticText "后端"
+          StaticText "项目：[eval] E1"
+          button "复制 ID b63581f5-8af8-462b-8270-de8276a2a5a7" (focusable)  // desc: "点击复制完整 ID：b63581f5-8af8-462b-8270-de8276a2a5a7"
+            StaticText "ID b63581f5"
+        cell "工作流：E1 任务：AUTH-BE-01 · 实现 HTTP 服务、路由分发与健康端点"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-BE-01 · 实现 HTTP 服务、路由分发与健康端点"
+        cell "尝试 第 1 次尝试 · 用时 149.7s"
+          StaticText "尝试 第 1 次尝试 · 用时 149.7s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:03:27"
+          StaticText "已成功"
+          StaticText "10月15日 08:03:27"
+        cell "实现 DATA_DIR 用户存储与密钥持久化 Agent：database-agent 数据库 项目：[eval] E1 复制 ID d4a01b53-5cff-46e5-9527-075ec2bef07b"
+          strong ""
+            StaticText "实现 DATA_DIR 用户存储与密钥持久化"
+          StaticText "Agent：database-agent"
+          StaticText "数据库"
+          StaticText "项目：[eval] E1"
+          button "复制 ID d4a01b53-5cff-46e5-9527-075ec2bef07b" (focusable)  // desc: "点击复制完整 ID：d4a01b53-5cff-46e5-9527-075ec2bef07b"
+            StaticText "ID d4a01b53"
+        cell "工作流：E1 任务：AUTH-DB-01 · 实现 DATA_DIR 用户存储与密钥持久化"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-DB-01 · 实现 DATA_DIR 用户存储与密钥持久化"
+        cell "尝试 第 1 次尝试 · 用时 310.6s"
+          StaticText "尝试 第 1 次尝试 · 用时 310.6s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 08:01:14"
+          StaticText "已成功"
+          StaticText "10月15日 08:01:14"
+        cell "[AC-01][AC-02][AC-03][AC-05][AC-06][AC-07][AC-08][AC-09][AC-10][AC-11][AC-12][AC-13] 认证切片端到端验收测试套件 Agent：qa-agent QA 项目：[eval] E1 复制 ID ea3e3b24-fd40-41a7-bd64-9d3bd7a4c1bc"
+          strong ""
+            StaticText "[AC-01][AC-02][AC-03][AC-05][AC-06][AC-07][AC-08][AC-09][AC-10][AC-11][AC-12][AC-13] 认证切片端到端验收测试套件"
+          StaticText "Agent：qa-agent"
+          StaticText "QA"
+          StaticText "项目：[eval] E1"
+          button "复制 ID ea3e3b24-fd40-41a7-bd64-9d3bd7a4c1bc" (focusable)  // desc: "点击复制完整 ID：ea3e3b24-fd40-41a7-bd64-9d3bd7a4c1bc"
+            StaticText "ID ea3e3b24"
+        cell "工作流：E1 任务：AUTH-TST-07 · [AC-01][AC-02][AC-03][AC-05][AC-06][AC-07][AC-08][AC-09][AC-10][AC-11][AC-12][AC-13] 认证切片端到端验收测试套件"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-TST-07 · [AC-01][AC-02][AC-03][AC-05][AC-06][AC-07][AC-08][AC-09][AC-10][AC-11][AC-12][AC-13] 认证切片端到端验收测试套件"
+        cell "尝试 第 1 次尝试 · 用时 130.2s"
+          StaticText "尝试 第 1 次尝试 · 用时 130.2s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 07:59:03"
+          StaticText "已成功"
+          StaticText "10月15日 07:59:03"
+        cell "[AC-12][AC-13] 令牌篡改与截断测试 Agent：qa-agent QA 项目：[eval] E1 复制 ID cb750a6b-8942-4fc7-a53f-0058927a52d7"
+          strong ""
+            StaticText "[AC-12][AC-13] 令牌篡改与截断测试"
+          StaticText "Agent：qa-agent"
+          StaticText "QA"
+          StaticText "项目：[eval] E1"
+          button "复制 ID cb750a6b-8942-4fc7-a53f-0058927a52d7" (focusable)  // desc: "点击复制完整 ID：cb750a6b-8942-4fc7-a53f-0058927a52d7"
+            StaticText "ID cb750a6b"
+        cell "工作流：E1 任务：AUTH-TST-06 · [AC-12][AC-13] 令牌篡改与截断测试"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-TST-06 · [AC-12][AC-13] 令牌篡改与截断测试"
+        cell "尝试 第 1 次尝试 · 用时 128.1s"
+          StaticText "尝试 第 1 次尝试 · 用时 128.1s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "已成功 10月15日 07:57:31"
+          StaticText "已成功"
+          StaticText "10月15日 07:57:31"
+        cell "[AC-09][AC-10][AC-11] 登录与鉴权测试 Agent：qa-agent QA 项目：[eval] E1 复制 ID bff77c80-176b-49d1-bc6c-53baaf0b2563"
+          strong ""
+            StaticText "[AC-09][AC-10][AC-11] 登录与鉴权测试"
+          StaticText "Agent：qa-agent"
+          StaticText "QA"
+          StaticText "项目：[eval] E1"
+          button "复制 ID bff77c80-176b-49d1-bc6c-53baaf0b2563" (focusable)  // desc: "点击复制完整 ID：bff77c80-176b-49d1-bc6c-53baaf0b2563"
+            StaticText "ID bff77c80"
+        cell "工作流：E1 任务：AUTH-TST-05 · [AC-09][AC-10][AC-11] 登录与鉴权测试"
+          StaticText "工作流：E1"
+          StaticText "任务：AUTH-TST-05 · [AC-09][AC-10][AC-11] 登录与鉴权测试"
+        cell "尝试 第 1 次尝试 · 用时 90.1s"
+          StaticText "尝试 第 1 次尝试 · 用时 90.1s"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+    paragraph ""
+      StaticText "共 3034 条"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "Page 2" (focusable)
+        StaticText "2"
+      button "Page 3" (focusable)
+        StaticText "3"
+      button "下一页" (focusable)
+      button "末页" (focusable)
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 6/10：列表页 /agents
+URL：http://localhost:5173/agents
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/agents)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "运行"
+      StaticText "专业 Agent"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "专业 Agent" (level=1)
+        StaticText "专业 Agent"
+    StaticText "Agent 成功率"
+    strong ""
+      StaticText "95%"
+    StaticText "任务成功率"
+    strong ""
+      StaticText "90%"
+    StaticText "工具成功率"
+    strong ""
+      StaticText "91%"
+    StaticText "测试通过率"
+    strong ""
+      StaticText "89%"
+    StaticText "评审通过率"
+    strong ""
+      StaticText "97%"
+    StaticText "修复成功率"
+    strong ""
+      StaticText "100%"
+    heading "注册表" (level=2)
+      StaticText "注册表"
+    table ""
+      rowgroup ""
+        row ""
+          columnheader "名称"
+            button "名称" (focusable)
+              StaticText "名称"
+          columnheader "类型"
+            button "类型" (focusable)
+              StaticText "类型"
+          columnheader "状态"
+            button "状态" (focusable)
+              StaticText "状态"
+          columnheader "操作"
+            StaticText "操作"
+      row ""
+        cell "planner-agent"
+          strong ""
+            StaticText "planner-agent"
+        cell "规划"
+          StaticText "规划"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "frontend-agent"
+          strong ""
+            StaticText "frontend-agent"
+        cell "前端"
+          StaticText "前端"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "backend-agent"
+          strong ""
+            StaticText "backend-agent"
+        cell "后端"
+          StaticText "后端"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "database-agent"
+          strong ""
+            StaticText "database-agent"
+        cell "数据库"
+          StaticText "数据库"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "qa-agent"
+          strong ""
+            StaticText "qa-agent"
+        cell "QA"
+          StaticText "QA"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "reviewer-agent"
+          strong ""
+            StaticText "reviewer-agent"
+        cell "评审"
+          StaticText "评审"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+      row ""
+        cell "devops-agent"
+          strong ""
+            StaticText "devops-agent"
+        cell "运维"
+          StaticText "运维"
+        cell "可用"
+          StaticText "可用"
+        cell "详情"
+          button "详情" (focusable)
+            StaticText "详情"
+    paragraph ""
+      StaticText "共 7 条"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "下一页" (disabled)
+      button "末页" (disabled)
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 7/10：列表页 /mcp
+URL：http://localhost:5173/mcp
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/mcp)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "运行"
+      StaticText "MCP 服务器"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "MCP 服务器" (level=1)
+        StaticText "MCP 服务器"
+      button "刷新" (focusable)
+        StaticText "刷新"
+    paragraph ""
+      StaticText "注册表数据由 AI-SE 后端提供。浏览器不会直接连接 MCP 服务器，也不会持有 MCP 凭据。"
+    paragraph ""
+      StaticText "暂无已注册的 MCP 服务器。"
+    button "刷新" (focusable)
+      StaticText "刷新"
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 8/10：详情页 /projects/:id（真实数据）
+URL：http://localhost:5173/projects/f16af318-b46d-49d3-8973-ca33a0fe2657
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/projects/f16af318-b46d-49d3-8973-ca33a0fe2657)
+  complementary ""
+    link "AI-SE" (focusable, url=http://localhost:5173/)
+      StaticText "AI-SE"
+    button "收起侧栏" (focusable, expanded)
+    navigation ""
+      link "仪表盘" (focusable, url=http://localhost:5173/)
+        StaticText "仪表盘"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      link "需求" (focusable, url=http://localhost:5173/requirements)
+        StaticText "需求"
+      link "工作流 146" (focusable, url=http://localhost:5173/workflows)
+        StaticText "工作流"
+        StaticText "146"
+      link "部署" (focusable, url=http://localhost:5173/deployments)
+        StaticText "部署"
+      StaticText "运行"
+      link "Agent" (focusable, url=http://localhost:5173/agents)
+        StaticText "Agent"
+      link "Agent 运行" (focusable, url=http://localhost:5173/agent-run)
+        StaticText "Agent 运行"
+      link "MCP 服务器" (focusable, url=http://localhost:5173/mcp)
+        StaticText "MCP 服务器"
+      StaticText "系统"
+      link "设置" (focusable, url=http://localhost:5173/settings)
+        StaticText "设置"
+  banner ""
+    navigation "面包屑"
+      StaticText "构建"
+      link "项目" (focusable, url=http://localhost:5173/projects)
+        StaticText "项目"
+      StaticText "G2 规划成本实测"
+    button "搜索… ⌘K" (focusable, keyshortcuts=Meta+K)
+      StaticText "搜索…"
+      StaticText "⌘K"
+  main ""
+    sectionheader ""
+      heading "G2 规划成本实测" (level=1)
+        StaticText "G2 规划成本实测"
+      link "返回" (focusable, url=http://localhost:5173/projects)
+        StaticText "返回"
+      button "删除项目" (focusable)
+        StaticText "删除项目"
+    paragraph ""
+      StaticText "G2 规划成本实测"
+    paragraph ""
+      StaticText "未配置"
+    StaticText "启用"
+    DescriptionList ""
+      term "仓库"
+        StaticText "仓库"
+      definition ""
+        StaticText "未配置"
+      term "描述"
+        StaticText "描述"
+      definition ""
+        StaticText "无持久化 CLI 工具（跳过实验）"
+      term "创建时间"
+        StaticText "创建时间"
+      definition ""
+        StaticText "2026年10月14日 11:22"
+      term "更新时间"
+        StaticText "更新时间"
+      definition ""
+        StaticText "2026年10月14日 11:22"
+    form ""
+      LabelText ""
+        StaticText "绑定 Git 仓库"
+      textbox "绑定 Git 仓库" (focusable, editable=plaintext, settable, required)
+      button "绑定" (focusable)
+        StaticText "绑定"
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 9/10：对话框：/projects 新建项目
+URL：http://localhost:5173/projects
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/projects)
+  dialog "新建项目" (focusable, describedby=reka-dialog-description-v-2)  // desc: "项目是需求、工作流与部署的归属单位；仓库地址可以留空，之后在项目详情页绑定。"
+    banner ""
+      heading "新建项目" (level=2)
+        StaticText "新建项目"
+      paragraph ""
+        StaticText "项目是需求、工作流与部署的归属单位；仓库地址可以留空，之后在项目详情页绑定。"
+      button "关闭" (focusable, focused)
+    form ""
+      LabelText ""
+        StaticText "名称"
+      textbox "名称" (focusable, editable=plaintext, settable, required)
+      LabelText ""
+        StaticText "仓库地址（可选）"
+      textbox "仓库地址（可选）" (focusable, editable=plaintext, settable)
+      paragraph ""
+        StaticText "留空则先基于本地工作区开发，之后可在项目详情页绑定 Git 仓库。"
+      LabelText ""
+        StaticText "描述"
+      textbox "描述" (focusable, editable=plaintext, settable, multiline)
+      button "创建" (focusable)
+        StaticText "创建"
+------------------------------------------------------------------------
+命名问题：0
+
+========================================================================
+状态 10/10：抽屉：/workflows/:id 工作流详情（真实数据）
+URL：http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf
+数据：已加载（真实数据）
+AX 来源：CDP Accessibility.getFullAXTree（推导，非 VoiceOver / NVDA 录音）
+------------------------------------------------------------------------
+RootWebArea "AI-SE 控制台" (focusable, focused, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf)
+  dialog "工作流详情" (focusable)
+    banner ""
+      heading "工作流详情" (level=2)
+        StaticText "工作流详情"
+      button "关闭" (focusable, focused)
+    heading "57f98bf9-3f99-480f-b2b1-371bf6f139bf" (level=2)
+      StaticText "57f98bf9-3f99-480f-b2b1-371bf6f139bf"
+    StaticText "等待审批"
+    button "暂停" (focusable)
+      StaticText "暂停"
+    button "取消" (focusable)
+      StaticText "取消"
+    DescriptionList ""
+      term "项目"
+        StaticText "项目"
+      definition ""
+        StaticText "[eval] E1"
+      term "需求"
+        StaticText "需求"
+      definition ""
+        StaticText "E1"
+      term "任务进度"
+        StaticText "任务进度"
+      definition ""
+        StaticText "12 / 14"
+      term "并发"
+        StaticText "并发"
+      definition ""
+        StaticText "1"
+      term "重试"
+        StaticText "重试"
+      definition ""
+        StaticText "1"
+      term "策略"
+        StaticText "策略"
+      definition ""
+        StaticText "重试"
+      term "预算：成本 / Token / 时长"
+        StaticText "预算：成本 / Token / 时长"
+      definition ""
+        StaticText "不限制 / 不限制 / 不限制"
+    heading "审批" (level=2)
+      StaticText "审批"
+    strong ""
+      StaticText "生产环境部署（需人工审批）"
+    paragraph ""
+      StaticText "Task requires human approval"
+    button "批准" (focusable)
+      StaticText "批准"
+    button "拒绝" (focusable)
+      StaticText "拒绝"
+    heading "工作流图" (level=2)
+      StaticText "工作流图"
+    article ""
+      StaticText "T-09"
+      strong ""
+        StaticText "HTTP 服务入口与健康检查端点（AC-24 前置）"
+      StaticText "后端"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19"
+      paragraph ""
+        StaticText "执行 Agent：backend-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=7deaa8b4-ea80-45ad-9656-e0e1666fc53b)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-10"
+      strong ""
+        StaticText "路由分发器与首页路由 GET /"
+      StaticText "后端"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19、T-11"
+      paragraph ""
+        StaticText "执行 Agent：backend-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=8176a290-e160-4933-a2f8-4b3aa01b37a3)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-11"
+      strong ""
+        StaticText "首页静态 HTML 资源 home.html（四个 data-testid）"
+      StaticText "前端"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19"
+      paragraph ""
+        StaticText "执行 Agent：frontend-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=e7397f43-7206-4fdc-9013-7de892ada264)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-12"
+      strong ""
+        StaticText "Dockerfile 容器化：非 root 用户、VOLUME /data 与 stdout 日志"
+      StaticText "构建"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19、T-09、T-11"
+      paragraph ""
+        StaticText "执行 Agent：devops-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=b20fab87-da48-466c-a73c-f7f2838f1c35)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-13"
+      strong ""
+        StaticText "stdout 日志器（无敏感信息）"
+      StaticText "后端"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19"
+      paragraph ""
+        StaticText "执行 Agent：backend-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=de3ab212-0d85-47fd-9ccb-9d31cf57d046)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-15"
+      strong ""
+        StaticText "工程脚本与 README 文档化（AC-30 交付）"
+      StaticText "构建"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-20"
+      paragraph ""
+        StaticText "执行 Agent：devops-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=d7874bfc-4aa0-4b2d-b3f3-51b8c4d7a947)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-18"
+      strong ""
+        StaticText "容器与日志安全复核"
+      StaticText "评审"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-19、T-13、T-12"
+      paragraph ""
+        StaticText "执行 Agent：reviewer-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=1defae9d-e626-4d0d-8c3d-29109cbb94aa)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-19"
+      strong ""
+        StaticText "部署与容器契约测试（[AC-21][AC-24][AC-25][AC-26][AC-29]）"
+      StaticText "测试"
+      StaticText "成功"
+      paragraph ""
+        StaticText "执行 Agent：qa-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=ac8e703d-8dff-4f1f-b840-715a8d2a3ae2)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-20"
+      strong ""
+        StaticText "工程与文档契约测试（[AC-30]）"
+      StaticText "测试"
+      StaticText "成功"
+      paragraph ""
+        StaticText "执行 Agent：qa-agent"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=fc98f076-e58b-4bcb-aedb-a89bf3a4abdb)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-21"
+      strong ""
+        StaticText "可选无头浏览器渲染检查（[AC-22]）"
+      StaticText "测试"
+      StaticText "就绪"
+    article ""
+      StaticText "T-22"
+      strong ""
+        StaticText "CI 构建：六步契约与镜像构建"
+      StaticText "构建"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-09、T-11、T-10、T-13、T-12、T-15、T-18"
+      paragraph ""
+        StaticText "执行 Agent：DeliveryOrchestrator"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=08c8d720-1939-425d-b962-9b69d5f01ecc)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-23"
+      strong ""
+        StaticText "部署至 staging 环境"
+      StaticText "部署"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-22"
+      paragraph ""
+        StaticText "执行 Agent：DeliveryOrchestrator"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=53fbf71c-ed4d-4c7f-9ece-5157bfffdd82)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-24"
+      strong ""
+        StaticText "staging 运行形态验证（含容器重启持久化）"
+      StaticText "部署"
+      StaticText "成功"
+      paragraph ""
+        StaticText "前置：T-23"
+      paragraph ""
+        StaticText "执行 Agent：DeliveryOrchestrator"
+      link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=480d8558-8aeb-4985-8cbc-14a4bc055442)
+        StaticText "查看 Agent 运行"
+    article ""
+      StaticText "T-25"
+      strong ""
+        StaticText "生产环境部署（需人工审批）"
+      StaticText "部署"
+      StaticText "等待审批"
+      paragraph ""
+        StaticText "前置：T-24"
+    heading "事件时间线" (level=2)
+      StaticText "事件时间线"
+    list ""
+      listitem "" (level=1)
+        strong ""
+          StaticText "需要审批"
+        time ""
+          StaticText "10/14 19:14:01"
+        paragraph ""
+          StaticText "「生产环境部署（需人工审批）」需要人工审批"
+        StaticText "任务：生产环境部署（需人工审批）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-4fa345a7-60ed-4e55-ae8b-f5ab1cabb475)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务完成"
+        time ""
+          StaticText "10/14 19:14:01"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 完成「staging 运行形态验证（含容器重启持久化）」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：staging 运行形态验证（含容器重启持久化）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-b7f379b1-b6a9-4183-a904-b50d20df2d8d)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=480d8558-8aeb-4985-8cbc-14a4bc055442)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "部署完成"
+        time ""
+          StaticText "10/14 19:14:01"
+        paragraph ""
+          StaticText "部署结束：SUCCESS"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：staging 运行形态验证（含容器重启持久化）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-b7f379b1-b6a9-4183-a904-b50d20df2d8d)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=480d8558-8aeb-4985-8cbc-14a4bc055442)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "部署开始"
+        time ""
+          StaticText "10/14 19:14:00"
+        paragraph ""
+          StaticText "开始部署到 staging"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：staging 运行形态验证（含容器重启持久化）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-b7f379b1-b6a9-4183-a904-b50d20df2d8d)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=480d8558-8aeb-4985-8cbc-14a4bc055442)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务开始"
+        time ""
+          StaticText "10/14 19:14:00"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 开始执行「staging 运行形态验证（含容器重启持久化）」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：staging 运行形态验证（含容器重启持久化）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-b7f379b1-b6a9-4183-a904-b50d20df2d8d)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务就绪"
+        time ""
+          StaticText "10/14 19:14:00"
+        paragraph ""
+          StaticText "「staging 运行形态验证（含容器重启持久化）」已就绪"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：staging 运行形态验证（含容器重启持久化）"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-b7f379b1-b6a9-4183-a904-b50d20df2d8d)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务完成"
+        time ""
+          StaticText "10/14 19:14:00"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 完成「部署至 staging 环境」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：部署至 staging 环境"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-d83d45cc-dc27-48da-a9db-04372897e323)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=53fbf71c-ed4d-4c7f-9ece-5157bfffdd82)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "部署完成"
+        time ""
+          StaticText "10/14 19:14:00"
+        paragraph ""
+          StaticText "部署结束：SUCCESS"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：部署至 staging 环境"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-d83d45cc-dc27-48da-a9db-04372897e323)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=53fbf71c-ed4d-4c7f-9ece-5157bfffdd82)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "部署开始"
+        time ""
+          StaticText "10/14 19:13:59"
+        paragraph ""
+          StaticText "开始部署到 staging"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：部署至 staging 环境"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-d83d45cc-dc27-48da-a9db-04372897e323)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=53fbf71c-ed4d-4c7f-9ece-5157bfffdd82)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务开始"
+        time ""
+          StaticText "10/14 19:13:59"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 开始执行「部署至 staging 环境」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：部署至 staging 环境"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-d83d45cc-dc27-48da-a9db-04372897e323)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务就绪"
+        time ""
+          StaticText "10/14 19:13:59"
+        paragraph ""
+          StaticText "「部署至 staging 环境」已就绪"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：部署至 staging 环境"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-d83d45cc-dc27-48da-a9db-04372897e323)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务完成"
+        time ""
+          StaticText "10/14 19:13:59"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 完成「CI 构建：六步契约与镜像构建」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：CI 构建：六步契约与镜像构建"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-0c15bb8d-1d17-4676-9e5f-bba13a22f416)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=08c8d720-1939-425d-b962-9b69d5f01ecc)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "CI 完成"
+        time ""
+          StaticText "10/14 19:13:59"
+        paragraph ""
+          StaticText "CI 结束：SUCCESS"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：CI 构建：六步契约与镜像构建"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-0c15bb8d-1d17-4676-9e5f-bba13a22f416)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=08c8d720-1939-425d-b962-9b69d5f01ecc)
+          StaticText "查看 Agent 运行"
+        DescriptionList ""
+          term "CI 运行"
+            StaticText "CI 运行"
+          definition ""
+            StaticText "5906db3e"
+      listitem "" (level=1)
+        strong ""
+          StaticText "CI 开始"
+        time ""
+          StaticText "10/14 19:13:52"
+        paragraph ""
+          StaticText "CI 已开始"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：CI 构建：六步契约与镜像构建"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-0c15bb8d-1d17-4676-9e5f-bba13a22f416)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=08c8d720-1939-425d-b962-9b69d5f01ecc)
+          StaticText "查看 Agent 运行"
+        DescriptionList ""
+          term "CI 运行"
+            StaticText "CI 运行"
+          definition ""
+            StaticText "5906db3e"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务开始"
+        time ""
+          StaticText "10/14 19:13:52"
+        paragraph ""
+          StaticText "DeliveryOrchestrator 开始执行「CI 构建：六步契约与镜像构建」"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：CI 构建：六步契约与镜像构建"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-0c15bb8d-1d17-4676-9e5f-bba13a22f416)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务就绪"
+        time ""
+          StaticText "10/14 19:13:52"
+        paragraph ""
+          StaticText "「CI 构建：六步契约与镜像构建」已就绪"
+        StaticText "Agent：DeliveryOrchestrator"
+        StaticText "任务：CI 构建：六步契约与镜像构建"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-0c15bb8d-1d17-4676-9e5f-bba13a22f416)
+          StaticText "查看任务"
+      listitem "" (level=1)
+        strong ""
+          StaticText "任务完成"
+        time ""
+          StaticText "10/14 19:13:52"
+        paragraph ""
+          StaticText "reviewer-agent 完成「容器与日志安全复核」"
+        StaticText "Agent：reviewer-agent"
+        StaticText "任务：容器与日志安全复核"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-5b7e4b82-bcfc-4947-bad0-b637d835a10e)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=1defae9d-e626-4d0d-8c3d-29109cbb94aa)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "TASK_VERIFICATION"
+        time ""
+          StaticText "10/14 19:13:52"
+        paragraph ""
+          StaticText "已记录"
+        StaticText "Agent：reviewer-agent"
+        StaticText "任务：容器与日志安全复核"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-5b7e4b82-bcfc-4947-bad0-b637d835a10e)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=1defae9d-e626-4d0d-8c3d-29109cbb94aa)
+          StaticText "查看 Agent 运行"
+      listitem "" (level=1)
+        strong ""
+          StaticText "产出物已创建"
+        time ""
+          StaticText "10/14 19:13:51"
+        paragraph ""
+          StaticText "已产出工件「run_build」"
+        StaticText "Agent：reviewer-agent"
+        StaticText "任务：容器与日志安全复核"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-5b7e4b82-bcfc-4947-bad0-b637d835a10e)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=1defae9d-e626-4d0d-8c3d-29109cbb94aa)
+          StaticText "查看 Agent 运行"
+        DescriptionList ""
+          term "类型"
+            StaticText "类型"
+          definition ""
+            StaticText "BUILD_RESULT"
+      listitem "" (level=1)
+        strong ""
+          StaticText "产出物已创建"
+        time ""
+          StaticText "10/14 19:13:51"
+        paragraph ""
+          StaticText "已产出工件「npm-test-deploy-contract」"
+        StaticText "Agent：reviewer-agent"
+        StaticText "任务：容器与日志安全复核"
+        link "查看任务" (focusable, url=http://localhost:5173/workflows/57f98bf9-3f99-480f-b2b1-371bf6f139bf#task-5b7e4b82-bcfc-4947-bad0-b637d835a10e)
+          StaticText "查看任务"
+        link "查看 Agent 运行" (focusable, url=http://localhost:5173/agent-run?run=1defae9d-e626-4d0d-8c3d-29109cbb94aa)
+          StaticText "查看 Agent 运行"
+        DescriptionList ""
+          term "类型"
+            StaticText "类型"
+          definition ""
+            StaticText "TEST_RESULT"
+    StaticText "共 756 条 · 第 1 / 38 页"
+    navigation ""
+      button "首页" (disabled)
+      button "上一页" (disabled)
+      button "Page 1" (focusable)
+        StaticText "1"
+      button "Page 2" (focusable)
+        StaticText "2"
+      button "Page 3" (focusable)
+        StaticText "3"
+      button "下一页" (focusable)
+      button "末页" (focusable)
+------------------------------------------------------------------------
+命名问题：0
+

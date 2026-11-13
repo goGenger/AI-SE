@@ -1,0 +1,476 @@
+{
+  "generatedAt": "2026-10-08T11:27:59.377Z",
+  "batches": [
+    {
+      "id": "B",
+      "desc": "B 出口基线（09-29 ~ 10-01 时间戳批次文件）",
+      "runs": 45,
+      "oraclePassed": 25,
+      "chainCompletedProxy": 16,
+      "deliveredSuccess": 14,
+      "falseNegativeCount": 11,
+      "falseNegatives": [
+        {
+          "fixture": "S1",
+          "run": 1,
+          "reportedSuccess": true,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "L2",
+          "run": 2,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 2,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "L2",
+          "run": 3,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 2,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "M3",
+          "run": 2,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 2,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "L2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 4,
+          "errorTypes": {
+            "TIMEOUT": 3
+          }
+        },
+        {
+          "fixture": "L2",
+          "run": 2,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 4,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "L2",
+          "run": 3,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 4,
+          "errorTypes": {
+            "TIMEOUT": 3
+          }
+        },
+        {
+          "fixture": "M1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 5,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "M1",
+          "run": 2,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 4,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "M1",
+          "run": 3,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 5,
+          "errorTypes": {}
+        }
+      ],
+      "errorTypes": {
+        "TIMEOUT": 26
+      },
+      "slicesExecutedDistribution": {
+        "1 片": 26,
+        "2 片": 8,
+        "3 片": 5,
+        "4 片": 4,
+        "5 片": 2
+      },
+      "failures": [
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-29T07-55-41-457Z.json",
+          "message": "S2（planning）：规划失败：92df0d15-bcec-4131-b1a6-abf2a7d56f74"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "L1（run）：切片 build-module 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "L1（run）：切片 build-module 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "L2（run）：切片 quality-gates 失败"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "M1（run）：切片 slice-patch-todo 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "M1（run）：切片 slice-patch-todo 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "M2（run）：切片 slice-2 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T12-17-53-138Z.json",
+          "message": "M2（run）：切片 slice-2 未被链式编排启动"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T18-36-47-582Z.json",
+          "message": "L2（run）：fetch failed"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T18-36-47-582Z.json",
+          "message": "L2（run）：fetch failed"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T18-36-47-582Z.json",
+          "message": "M2（run）：fetch failed"
+        },
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/2026-09-30T18-53-41-496Z.json",
+          "message": "E1（planning）：规划失败：a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53"
+        }
+      ]
+    },
+    {
+      "id": "C-6",
+      "desc": "C-6 对比批次（E1 夹具）",
+      "runs": 3,
+      "oraclePassed": 0,
+      "chainCompletedProxy": 0,
+      "deliveredSuccess": 0,
+      "falseNegativeCount": 0,
+      "falseNegatives": [],
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "TIMEOUT": 5
+      },
+      "slicesExecutedDistribution": {
+        "1 片": 3
+      },
+      "failures": []
+    },
+    {
+      "id": "E-1",
+      "desc": "E-1 基线批（E1 夹具 ×3）",
+      "runs": 3,
+      "oraclePassed": 1,
+      "chainCompletedProxy": 0,
+      "deliveredSuccess": 0,
+      "falseNegativeCount": 1,
+      "falseNegatives": [
+        {
+          "fixture": "E1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "EMPTY_FINAL_ANSWER": 2,
+            "TIMEOUT": 2
+          }
+        }
+      ],
+      "errorTypes": {
+        "EMPTY_FINAL_ANSWER": 2,
+        "TIMEOUT": 6,
+        "VERIFICATION_FAILED": 1
+      },
+      "slicesExecutedDistribution": {
+        "1 片": 3
+      },
+      "failures": []
+    },
+    {
+      "id": "E-2",
+      "desc": "E-2（S/M/L + E1 档，验证门 observe 轮）",
+      "runs": 24,
+      "oraclePassed": 6,
+      "chainCompletedProxy": 0,
+      "deliveredSuccess": 0,
+      "falseNegativeCount": 6,
+      "falseNegatives": [
+        {
+          "fixture": "M3",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "M3",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "M3",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {}
+        }
+      ],
+      "errorTypes": {
+        "VERIFICATION_FAILED": 23,
+        "INVALID_AGENT_RESULT": 2
+      },
+      "slicesExecutedDistribution": {
+        "1 片": 24
+      },
+      "failures": []
+    },
+    {
+      "id": "E-2b",
+      "desc": "E-2b（次轮）",
+      "runs": 23,
+      "oraclePassed": 8,
+      "chainCompletedProxy": 0,
+      "deliveredSuccess": 0,
+      "falseNegativeCount": 8,
+      "falseNegatives": [
+        {
+          "fixture": "L1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1,
+            "INVALID_AGENT_RESULT": 1
+          }
+        },
+        {
+          "fixture": "M3",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {}
+        },
+        {
+          "fixture": "S1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 2
+          }
+        },
+        {
+          "fixture": "S1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S1",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 2
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        },
+        {
+          "fixture": "S2",
+          "run": 1,
+          "reportedSuccess": false,
+          "oraclePassed": true,
+          "chainCompletedProxy": false,
+          "deliveredSuccess": false,
+          "falseNegative": true,
+          "slicesExecuted": 1,
+          "errorTypes": {
+            "VERIFICATION_FAILED": 1
+          }
+        }
+      ],
+      "errorTypes": {
+        "VERIFICATION_FAILED": 25,
+        "INVALID_AGENT_RESULT": 2,
+        "EMPTY_FINAL_ANSWER": 3
+      },
+      "slicesExecutedDistribution": {
+        "1 片": 23
+      },
+      "failures": [
+        {
+          "file": "/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/e2b/M3-run1.json",
+          "message": "M3（planning）：规划失败：0194bf8d-7602-4c06-80c7-18324fc33e66"
+        }
+      ]
+    }
+  ]
+}

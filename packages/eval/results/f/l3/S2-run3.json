@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-10-09T04:19:08.218Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "cb399751-f316-414c-acb7-9b23391d6cb9",
+      "workflowIds": [
+        "cb399751-f316-414c-acb7-9b23391d6cb9"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 3,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 70302,
+        "output": 4800
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 143812,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Verified and finalized the slice-1 deliverable: src/duration.mjs provides a named export `parseDuration(text)` (function.length === 1) whose body is an entry-point skeleton. A first-line type guard (`typeof text !== \\\"string\\\"` -> return null) short-circuits before any implicit stringification, so non-string inputs such as Symbol, null, undefined, numbers, booleans, arrays and objects never throw; string inputs fall through to `return null` as the placeholder. No FR-2..FR-5 parsing rules are implemented (a single TODO marker documents the later landing point) and no runtime dependency or I/O/global state was introduced, keeping the module a pure function and preserving the API contract (named export, single parameter, return number|null or placeholder null). Only the backend product file src/duration.mjs is part of this change; test files were not modified. Evidence: npm run test -> 10 tests, 4 passed, 0 failed, 6 todo, exit 0 (the 4 active skeleton-contract assertions AC-01..AC-04 all green); npm run build -> exit 0; npm run lint -> exit 0.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-unit-parsing",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 70302,
+      "output": 4800
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-unit-parsing": 1
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-10-12T05:53:55.202Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "d0afcf5f-a295-4d7a-b21a-6f0798cd4b00",
+      "workflowIds": [
+        "d0afcf5f-a295-4d7a-b21a-6f0798cd4b00",
+        "89e34e95-c738-4d1f-967d-30904e3af32c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 20,
+      "runCount": 20,
+      "taskStatuses": {
+        "SUCCESS": 16,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 1303195,
+        "output": 42718
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 2526775,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "AC-09 satisfied: `pnpm test` (node --test) runs the full suite and reports 112 tests, 112 pass, 0 fail, 0 skipped, 0 cancelled, exit code 0. The suite spans unit (store, persist), integration (app, startup, persistence wiring, PUT, stats, ac09) and regression (AC-08 GET/POST/DELETE) coverage. No failing test was found, so there was nothing to fix in the persistence wiring; no product code was modified. The one concrete gap found was that AC-09 had no test tagged [AC-09] (only AC-01..AC-08 existed), so I authored test/ac09.test.mjs with 3 non-vacuous end-to-end tests that re-drive the wired stack (startApp -> loadData -> store.fromJSON -> HTTP POST/PUT/GET -> saveData) across a simulated restart and assert the persistence modules expose the API the startup path wires. Focused run of the new file: 3 tests, 3 pass, 0 fail. `pnpm build` and `pnpm lint` both exit 0 (node --check clean). fixTaskType: NONE. Note on the recorded VACUOUS_TEST rejection: AC-09 is a green-only meta-criterion, so the harness red-light gate (expected fail) is inherently unsatisfiable here because slice-2 implementation is already present in the working tree (src/persist.mjs is a placeholder only at HEAD 1f6cf2c; the wired version is uncommitted), and making the suite red would violate AC-09.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 1303195,
+      "output": 42718
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

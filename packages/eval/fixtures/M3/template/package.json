@@ -1,0 +1,10 @@
+{
+  "name": "fixture-m3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/merge.mjs && node --check src/cli.mjs",
+    "lint": "node --check src/merge.mjs && node --check src/cli.mjs"
+  }
+}

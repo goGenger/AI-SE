@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T15:22:53.799Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "f056b2d3-0ec1-4573-bc59-33cca2c2b475",
+      "workflowIds": [
+        "f056b2d3-0ec1-4573-bc59-33cca2c2b475"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 7,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "READY": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 134690,
+        "output": 10581
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 777432,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/verified focused unit tests in test/render.test.mjs covering FR-2 normalization and FR-3 width calculation through renderTable in src/render.mjs. Nine tests named [AC-01]..[AC-09]: newline to <br> in header and data cells; pipe escaped as backslash-pipe; trim of leading/trailing whitespace; combined order newline then pipe-escape then trim on ' a\\nb | c ' plus the '\\nq\\n' trim-keeps-<br> edge case; width equals max(3, max normalized length including header) for both header-driven and data-driven widths; minimum width 3 for short content; a wide data cell driving the width; every column including the last right-padded (all lines end with ' |' and share equal length); header-only tables with empty rows still producing viable widths and only two lines. RED-first evidence is preserved in the task record: the same assertions bound to a pre-implementation stub that threw 'renderTable 尚未实现' failed 9/9, and the stub harness was deleted before GREEN. pnpm is not installed in this sandbox (exit 127, sh: 1: pnpm: not found, pre-existing env limitation), so the identical script body was run instead. GREEN: node --test test/render.test.mjs reports 9 tests, 9 pass, 0 fail, 0 errors; npm run test reports 10 tests, 10 pass, 0 fail, 0 errors (1 pre-existing parse test + 9 new); npm run lint and npm run build exit 0. fixTaskType: NONE (no defect found; implementation satisfies FR-2/FR-3). Only test/render.test.mjs is the QA deliverable; src/render.mjs and src/parse.mjs were not modified by this task."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 134690,
+      "output": 10581
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

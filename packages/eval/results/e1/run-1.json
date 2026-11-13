@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-10-07T18:38:41.378Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "faf19923-fca4-417a-88c5-f77d7a1a8c3c",
+      "workflowIds": [
+        "faf19923-fca4-417a-88c5-f77d7a1a8c3c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 14,
+      "runCount": 15,
+      "taskStatuses": {
+        "SUCCESS": 12,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 740326,
+        "output": 28862
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 3812117,
+      "errorTypes": {
+        "EMPTY_FINAL_ANSWER": 2,
+        "TIMEOUT": 2
+      },
+      "failureSummary": "Agent 未返回结果（连续空回复，重问次数已用尽）。"
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 740326,
+      "output": 28862
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "EMPTY_FINAL_ANSWER": 2,
+      "TIMEOUT": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

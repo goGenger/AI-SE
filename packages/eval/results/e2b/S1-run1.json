@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T13:07:20.723Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "380ec04e-31ab-440f-b544-04e5041a3760",
+      "workflowIds": [
+        "380ec04e-31ab-440f-b544-04e5041a3760"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "READY": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 110505,
+        "output": 9401
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 476840,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Delivered test/slugify.normalization.test.mjs with 11 AC-numbered unit tests covering FR-1 (lowercase: ABC -> abc, Hello World -> hello-world), FR-2 (outer trim), FR-3 (contiguous whitespace incl. space run, tab and newline -> single hyphen), FR-4 (disallowed symbols _ . / and + = -> hyphen), and FR-8 (Unicode letters/digits incl. Chinese 标题 测试 -> 标题-测试 and 中文123 -> 中文123). Tests were written first and shown failing (RED): a temporary stand-in module for the pre-implementation state produced 11 failing subtests out of 11, each with the exact expected error 'slugify not implemented' (e.g. AC-01 'ABC', AC-03 tab 'a\\\\tb', AC-04 'a_b.c/d', AC-05 '标题 测试'). The temporary red-phase scaffolding files were then removed using the test runner command, and no product code was modified (product implementation in src/slugify.mjs was pre-existing, not changed by this task). Against the current implementation the delivered suite passes 11/11, and the full project command npm test passes 27/27 (11 new normalization tests plus 13 pre-existing edge-case tests plus 3 pre-existing basic tests). No failures remain, so no fix task is required; fixTaskType is NONE. The observed red-phase failures map to a BACKEND fix type but were already satisfied by the existing implementation."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 110505,
+      "output": 9401
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

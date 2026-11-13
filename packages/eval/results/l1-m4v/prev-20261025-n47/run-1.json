@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-10-24T18:03:47.096Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "af88348b-93bf-4db5-a2c9-6999f0cfd80f",
+      "workflowIds": [
+        "af88348b-93bf-4db5-a2c9-6999f0cfd80f",
+        "fe241c77-d6e0-44fd-8f46-8f7ffd49536d",
+        "0fccba0d-40d9-4bd7-ab4b-16fe9a52a764"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 32,
+      "runCount": 25,
+      "taskStatuses": {
+        "SUCCESS": 22,
+        "FAILED": 3,
+        "PENDING": 7
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 47443431,
+        "output": 590812
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5511655,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Implemented the owner-scoped DATA_DIR task persistence layer and DTO serializer, plus a database test suite that covers AC-14, AC-15, AC-16, AC-17, AC-18 and AC-23. New src/tasks/repository.mjs exposes createTask(ownerId, fields), listTasksByOwner(ownerId) and readTasks(options); it persists to ${DATA_DIR}/tasks.json (DATA_DIR default ./data, relative values resolved, blank -> default, control characters rejected), creates DATA_DIR when missing, and writes with a real atomic sequence: temporary file '.tasks.json.<random>.tmp' created with O_EXCL mode 0600 in the same directory, write + fsync, close, then rename over the document, with best-effort directory fsync and temp-file cleanup on every failure path. Records carry exactly {id (UUID from node:crypto randomUUID), ownerId, title, dueDate|null, done, createdAt, updatedAt}; done defaults to false and both timestamps default to one ISO 8601 value that the caller may override. The repository is its own trust boundary: titles are trimmed and counted in Unicode code points (1-100, TITLE_INVALID otherwise, so astral emoji count once), supplied due dates must be real calendar dates in YYYY-MM-DD (DATE_INVALID otherwise, so 2026-02-30 / 2026-13-01 / 2026-02-29 / 2026/01/01 / numeric are refused), invalid input is rejected before any filesystem write, and rows read back from disk are validated field by field with malformed or duplicate entries skipped instead of served. New src/tasks/dto.mjs projects a record onto exactly {id,title,dueDate,done,createdAt,updatedAt} through an explicit key allowlist (never a spread), normalising dueDate to null and done to a boolean, so ownerId or any other internal field cannot leak; src/tasks/dto.js now re-exports that single implementation so the existing controller import keeps working. Node standard library only; no dependencies added. New test/tasks-repository.test.js has 6 tests, each named with its acceptance-criterion marker: [AC-14] persisted UUID record shape with done=false/ISO timestamps, ${DATA_DIR} resolution and default ./data, DTO field allowlist with ownerId absent, and no temporary file leftovers; [AC-15] 100 code points (including 100 astral code points) stored unchanged while 101 fails TITLE_INVALID and writes nothing; [AC-16] padded titles stored trimmed and whitespace-only / non-string titles fail TITLE_INVALID; [AC-17] Chinese+emoji title survives the DATA_DIR round trip into a fresh module instance; [AC-18] invalid and malformed due dates fail DATE_INVALID with no document created, while a real leap day, an omitted date and an explicit null are stored; [AC-23] listTasksByOwner returns only the caller records in creation order, other owners and unknown owners never see them, the records survive a restart through a fresh module instance, and the same holds when DATA_DIR comes from the environment. All 6 new tests pass; pnpm lint, pnpm typecheck and pnpm build all exit 0; the previously existing controller-level task tests (test/tasks.test.js) still pass unchanged. Two reporting notes: (1) the standing instruction says to change only schema/migration files, but the deliverables named in this task are runtime modules, so I wrote src/tasks/repository.mjs, src/tasks/dto.mjs and one re-export shim in src/tasks/dto.js, all inside the permitted src/ path — no path was rejected by the write policy. (2) The full suite still has 6 pre-existing failures in the read-only test/tasks-create.test.mjs (it asserts HTTP 201/400 for POST /api/tasks while the router still answers the placeholder 404); the identical 6 failures were present before I wrote anything, they are outside a persistence-layer task, and I left every existing test file untouched.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "s3-task-create-list",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 47443431,
+      "output": 590812
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "s3-task-create-list": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

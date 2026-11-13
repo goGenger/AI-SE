@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-18T13:21:14.756Z",
+  "variants": {
+    "p0": {
+      "label": "P0 current eval L1 (RETRY, allowReplan=false)",
+      "policy": {
+        "failureStrategy": "RETRY",
+        "allowRetry": true,
+        "maxRetries": 2,
+        "allowReplan": false
+      },
+      "workflowStatus": "FAILED",
+      "executedAttempts": 3,
+      "tasks": [
+        {
+          "taskKey": "T-S4-R2",
+          "type": "REVIEW",
+          "status": "FAILED",
+          "retryCount": 2,
+          "origin": "RUNTIME"
+        }
+      ],
+      "dynamicTaskKeys": [],
+      "fixTasksCreated": 0,
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_FAILED",
+        "TASK_RETRYING",
+        "TASK_READY",
+        "WORKFLOW_FAILED"
+      ]
+    },
+    "p1": {
+      "label": "P1 ruled eval L1 (REPLAN, allowReplan=true)",
+      "policy": {
+        "failureStrategy": "REPLAN",
+        "allowRetry": true,
+        "maxRetries": 2,
+        "allowReplan": true
+      },
+      "workflowStatus": "FAILED",
+      "executedAttempts": 4,
+      "tasks": [
+        {
+          "taskKey": "T-S4-R2",
+          "type": "REVIEW",
+          "status": "SUCCESS",
+          "retryCount": 0,
+          "origin": "RUNTIME"
+        },
+        {
+          "taskKey": "T-S4-R2-DEBUG-1",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        },
+        {
+          "taskKey": "T-S4-R2-REPLAN-1",
+          "type": "REVIEW",
+          "status": "SUCCESS",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        },
+        {
+          "taskKey": "T-S4-R2-DEBUG-1-DEBUG-2",
+          "type": "DEBUG",
+          "status": "FAILED",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        },
+        {
+          "taskKey": "T-S4-R2-DEBUG-1-REPLAN-2",
+          "type": "DEBUG",
+          "status": "READY",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        },
+        {
+          "taskKey": "T-S4-R2-REPLAN-1-DEBUG-2",
+          "type": "DEBUG",
+          "status": "READY",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        },
+        {
+          "taskKey": "T-S4-R2-REPLAN-1-REPLAN-2",
+          "type": "REVIEW",
+          "status": "READY",
+          "retryCount": 0,
+          "origin": "DYNAMIC"
+        }
+      ],
+      "dynamicTaskKeys": [
+        "T-S4-R2-DEBUG-1",
+        "T-S4-R2-REPLAN-1",
+        "T-S4-R2-DEBUG-1-DEBUG-2",
+        "T-S4-R2-DEBUG-1-REPLAN-2",
+        "T-S4-R2-REPLAN-1-DEBUG-2",
+        "T-S4-R2-REPLAN-1-REPLAN-2"
+      ],
+      "fixTasksCreated": 6,
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_FAILED",
+        "REPLAN_STARTED",
+        "TASK_CREATED",
+        "REPLAN_COMPLETED",
+        "WORKFLOW_FAILED"
+      ]
+    },
+    "p2": {
+      "label": "P2 control (REVIEW succeeds)",
+      "policy": {
+        "failureStrategy": "RETRY",
+        "allowRetry": true,
+        "maxRetries": 2,
+        "allowReplan": false
+      },
+      "workflowStatus": "SUCCESS",
+      "executedAttempts": 1,
+      "tasks": [
+        {
+          "taskKey": "T-S4-R2",
+          "type": "REVIEW",
+          "status": "SUCCESS",
+          "retryCount": 0,
+          "origin": "RUNTIME"
+        }
+      ],
+      "dynamicTaskKeys": [],
+      "fixTasksCreated": 0,
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_COMPLETED",
+        "WORKFLOW_COMPLETED"
+      ]
+    }
+  },
+  "expectations": {
+    "P0_NO_PATH": true,
+    "P1_HAS_PATH": false,
+    "P2_CONTROL_OK": true
+  }
+}

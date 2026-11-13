@@ -1,0 +1,48 @@
+# E-1 batch results (2026-10-08) — E1 full-chain acceptance, v7 plan reuse, enforce
+
+## Batch
+- Started 01:34 CST via chain from E-2b; 30-min cooldowns; deadline 07:45 (no new runs).
+- E1_ALL_COMPLETE 05:07 (runs 1-2 + run-3 attempted); run-3 re-run launched 05:26
+  (deadline env kept; guard watches the current window; runs 1-2 skipped via idempotency).
+- Weekly window usage: 11.67M before batch -> 13.25M at re-run launch (limit 20M).
+
+## run-1 (63.5 min, 740K in / 29K out) — TRUE SUCCESS (oracle)
+- slice-1 only (chain stopped): SUCCESS x12 / FAILED x1 (T-12 REVIEW: "Agent 未返回结果
+  （连续空回复，重问次数已用尽）") / PENDING x1.
+- **oracle E1: Must 29/29 通过** => trueSuccess=1, reported=0 (false negative), fp=0.
+- errorTypes: EMPTY_FINAL_ANSWER x2, TIMEOUT x2.
+
+## run-2 (17.6 min, 123K in) — stopped early
+- slice-1 task 5 area: SUCCESS x3 / READY x1 / FAILED x1 / PENDING x9.
+- oracle: Must 0/29 通过. No false positive.
+
+## run-3 (original attempt; preserved as run-3-slice2-failure.*)
+- **slice-1 FULL SUCCESS (ba500ded; all tasks)** — first fully successful slice.
+  Milestone: **E-0(a) flip fired live** — T-13 test check `expected=pass, passed=true`
+  (C-6's misfire scenario now resolves as regression; replay predicted, live confirmed).
+- Then slice-2: level-2 planning (planningVersion 8) FAILED with
+  "Task DAG validation failed: Task T-022 is a DEPLOY task without a deployable
+  delivery block (action DEPLOY or ROLLBACK); Implementation task T-005 must depend
+  on test task T-019 (shared ACs: AC-04) to keep tests first.; T-006 same."
+  => slice-2 FAILED (no workflow) => harness threw "切片 slice-2 失败" => isolated as a
+  fixture-level failure (no run record; recorded in run-3-slice2-failure.json).
+- Notes: the DEPLOY-block + test-first validators fire only when tasks carry acKeys;
+  S1's v4 replan slipped the test-first check because its acKeys were empty (same
+  root as the E-2b evidence gap). qa-agent (T-13) worked around the known E1 sandbox
+  gap (no pnpm/network) by running the underlying node commands (L1#1 confirmed live).
+
+## run-3 (re-run, 05:26-05:58, 27.0 min, 77K in)
+- reported=F, oracle=F (Must 5/29), tasks=14, ran=5, {SUCCESS x3, READY x1, FAILED x1, PENDING x9},
+  errorTypes TIMEOUT x3; stopped at an agent 600s timeout ("Agent 运行超时（600s），未返回结果").
+
+## Final E-1 numbers (3 recorded runs)
+- true success 1/3 (run-1: oracle Must 29/29) | reported 0/3 | false positive 0/3 | degrade 0%.
+- tokens 0.94M in (740K + 123K + 77K) | avg 36.0 min.
+- Acceptance target ">=1x [5 slices all SUCCESS + oracle Must]": oracle Must ACHIEVED (run-1);
+  5-slice full success NOT achieved (best chain = slice-1 fully SUCCESS in the run-3 original
+  attempt). Blockers: agent-level reliability (empty final answers, 600s timeouts) and the
+  slice-2 planning DAG-validation failure. Reported honestly; F-phase inputs (docs/126 sec 7).
+
+## Comparison anchors
+- C-6 (pre-E-0): run-1 Must 5/29, run-2 7/29, run-3 28/29 (ghost snapshot); 真成功 0/3.
+- B baseline (pre-C): run-1 oracle 100% (true success 1/3 = 33.3%).

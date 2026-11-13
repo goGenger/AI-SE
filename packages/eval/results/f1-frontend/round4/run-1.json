@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-10-29T07:54:42.016Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "82063a67-fb08-40d8-9f1d-f61754febbf5",
+      "workflowIds": [
+        "82063a67-fb08-40d8-9f1d-f61754febbf5",
+        "9594531d-eb3b-4917-af0a-db9d265f2b60",
+        "f5e0554b-c587-4a27-a1e4-6b708dc16031",
+        "1a1dc5a4-2066-4cc7-933e-96034b68aea3"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 57,
+      "runCount": 55,
+      "taskStatuses": {
+        "SUCCESS": 51,
+        "FAILED": 3,
+        "RUNNING": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 71789676,
+        "output": 1090327
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 16945131,
+      "incompleteWorkflows": 1,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "REPLAN_REQUESTED": 2
+      },
+      "failureSummary": "Implemented completion-toggle and delete for TaskBoard (frontend only), turning [AC-16], [AC-17] and [AC-18] green without editing the T-04 spec. Product changes: (1) src/components/TaskItem.vue now exposes the AC-named testids - the toggle button is data-testid=\"ta[REDACTED]\" (was the invented \"toggle-task-button\") and the delete button is data-testid=\"ta[REDACTED]\" (was \"delete-task-button\"); data-done still maps task.done to the literal \"true\"/\"false\". These names were confirmed against the T-04 spec by running it (it went from 3 red to 8/8 green). (2) src/App.vue toggle(): optimistic flip, then PATCH ${VITE_API_BASE}/api/tasks/:id with body {\"done\": !done}; on success the returned task replaces the entry via replaceTask (so data-done comes from the server response, order and task-count untouched) and pageError is cleared; on failure the previous done is rolled back and a message goes into pageError (reuses error-banner). The whole call is inside try/catch, so no unhandled rejection and no console.error. (3) src/App.vue remove(): optimistic removal of the id, DELETE ${VITE_API_BASE}/api/tasks/:id (204 handled in the api client before any JSON parse), task-count auto -1 because it is derived from tasks.length; on failure the pre-delete snapshot is restored and pageError is set, again inside try/catch. (4) Initial load keeps rendering data-done from the GET payload only - loadTasks writes the items as returned, with no local override. State coverage checked: loading/error/empty/success all still behave (banner only from pageError, empty-state from source length, list from visibleTasks). New tests (all marker-prefixed): src/App.toggle-delete.test.ts with [AC-16] x2 (PATCH path+body+data-done flip and flip-back; failing PATCH rolls back, shows error-banner, no unhandled rejection, console.error not called), [AC-17] x2 (real second GET after remount renders done=true; a GET that already reports done=true renders without any PATCH), [AC-18] x2 (DELETE path, row removed, task-count 3->2; failing DELETE restores the row, keeps count 3, rejects nothing). Verification: npm run test => 24 files / 145 tests passed (includes tests/fr3-fr4-list-ops.spec.ts 8/8 and tests/fr1-list.spec.ts, fr2, smoke); npm run lint exit 0; npm run typecheck exit 0; npm run build exit 0 (dist regenerated). Transparent note: the testid rename required updating the stale selector literals in three pre-existing test files (src/App.acceptance.test.ts, src/App.empty-state.test.ts, src/contract.test.ts whitelist) to the same AC names; only the selector/whitelist strings changed - no assertion was weakened, relaxed or deleted, and the T-04 spec file tests/fr3-fr4-list-ops.spec.ts was left untouched.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-toggle-delete-resilience",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 11,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 71789676,
+      "output": 1090327
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "REPLAN_REQUESTED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 11,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-toggle-delete-resilience": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

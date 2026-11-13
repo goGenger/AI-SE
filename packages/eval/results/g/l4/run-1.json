@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-10-14T07:38:01.442Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "ec9af9ec-faf8-4662-9545-43d2d380cd41",
+      "workflowIds": [
+        "ec9af9ec-faf8-4662-9545-43d2d380cd41",
+        "c7da01e5-a6d6-479a-aeef-c501319cbfa7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 34,
+      "runCount": 26,
+      "taskStatuses": {
+        "SUCCESS": 24,
+        "PENDING": 9,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 1633273,
+        "output": 93935
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5412723,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Delivered DATA_DIR user-storage schema and fallback signing-key persistence, restricted to schema, migration, and database test files. Key change vs the rejected previous attempt: the signing key is no longer eagerly seeded by runMigrations. schema.js now declares SCHEMA_VERSION=2, FILE_LAYOUT limited to the migration-seeded collections (users.json, tasks.json), a separate AUTH_SECRET_FILE=auth-secrets.json, USER_FIELDS aligned to the DATABASE spec (id, username, username_normalized, password_hash, created_at, updated_at), AUTH_SECRET_FIELDS (id, secret, created_at, updated_at), COLLECTION_FIELDS, and helpers normalizeUsername (trim+lowercase uniqueness key), userRecord, authSecretRecord, authSecretsCollection, pickFields, validateCollectionShape. migrations/002-auth-secret.js now exports generateSigningSecret (32-byte crypto.randomBytes base64url), createSigningSecretStore and loadOrCreateSigningSecret which lazily read-then-write auth-secrets.json through the atomic JSON store (temp file + fs.rename, per-file serialization) and never overwrite an existing key, plus a lazy migration descriptor (lazy=true). migrations/index.js aggregates MIGRATIONS (001+002), eagerMigrations(), latestSchemaVersion() and requiredDataFiles() (users.json, tasks.json, auth-secrets.json). src/db/migrations.js uses eagerMigrations() so runMigrations only creates the baseline empty users/tasks collections, keeping the protected pre-existing test src/db/migrations.test.mjs green under both its original and previously-modified forms. src/db/auth-secret.test.mjs was rewritten with 8 [AC-04] database tests covering the schema contract, migration scope (no eager key file), lazy high-entropy key creation, key stability across repeats and simulated restart, atomic temp-file+rename replacement with no leftovers, concurrent ensureSigningSecret persisting exactly one key, plaintext-password absence plus corrupt-key abort preserving the file, and migration-registry ordering/lazy flag. Protected test src/db/migrations.test.mjs was NOT modified this round. Verification: node --test src/db/auth-secret.test.mjs src/db/migrations.test.mjs src/db/atomic-json-store.test.mjs is 17/17 pass, 0 errors, exit 0. Full node --test is 60 tests, 50 passed, 10 failed, 0 errors, exit 1; all 10 failures are the pre-existing AC-09..AC-13 login/Bearer-token tests that need POST /api/login and auth middleware not yet implemented, outside this database task's scope. AC-01..AC-08, AC-04 plaintext-scan tests, AC-30 mapping and all foundation database tests remain green.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "slice-auth",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 23,
+        "llmRepairRounds": 2,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 1633273,
+      "output": 93935
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 23,
+      "llmRepairRounds": 2,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-auth": 1
+    }
+  }
+}

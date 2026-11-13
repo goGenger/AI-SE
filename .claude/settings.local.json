@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '316,335p' /Users/shixianbao/Desktop/study/AI_SE/docs/233-*.md; echo \"=== 交付链描述 ===\"; grep -n \"交付链\\\\|staging\" /Users/shixianbao/Desktop/study/AI_SE/docs/233-*.md | head -20)",
+      "Bash(python3 -I -c \"import json;d=json.load\\(open\\('/Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/f1-frontend/run-1.json'\\)\\);print\\(json.dumps\\([{k:r.get\\(k\\) for k in \\('fixtureId','runIndex','chainCompleted','deliveredSuccess','stagingSegment','taskStatuses'\\)} for r in d['records']],ensure_ascii=False,indent=1\\)\\)\")"
+    ]
+  }
+}

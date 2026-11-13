@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-10-22T07:17:56.272Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "c1987c67-b0ec-4734-a238-f8dbefd7610c",
+      "workflowIds": [
+        "c1987c67-b0ec-4734-a238-f8dbefd7610c",
+        "8c771303-c8d6-48db-ac34-2066d90f0323",
+        "faa2b6e5-ae38-488c-b8c8-01a6fcc16e8d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 49,
+      "runCount": 49,
+      "taskStatuses": {
+        "SUCCESS": 47,
+        "FAILED": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 46816819,
+        "output": 623071
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 10156695,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "TIMEOUT": 1
+      },
+      "failureSummary": "已交付仓库根 Dockerfile 与 .dockerignore（后端文件，写入策略接受这两个路径）。Dockerfile：FROM node:22-alpine；WORKDIR /app；ENV NODE_ENV=production 与 COREPACK_ENABLE_DOWNLOAD_PROMPT=0；COPY package.json pnpm-lock.yaml 后 corepack enable && pnpm install --frozen-lockfile --prod --ignore-scripts；COPY --chown=node:node src ./src；RUN mkdir -p /data && chown -R node:node /data（切换用户前完成）；ENV DATA_DIR=/data；VOLUME [\\\"/data\\\"]；EXPOSE 3000；USER node（镜像内置非 root 用户 uid 1000，不为 root/0）；CMD [\\\"node\\\", \\\"src/server.js\\\"] 为 exec 形式，应用日志保持 fd1/fd2 直通，Dockerfile 内无任何 > / >> 文件重定向。.dockerignore 排除 node_modules、.pnpm-store、data、logs、*.log、.git、test、coverage 等，且不含 src、package.json、pnpm-lock.yaml 条目（build 自检硬性校验通过）。验证：node --test 17 例中 15 通过、2 失败；AC-26 与 AC-29 已转绿，AC-24/AC-25 的 Dockerfile 侧断言（FROM node:22 系、EXPOSE 3000、VOLUME /data、ENV DATA_DIR=/data、无日志文件重定向）全部满足，剩余两条失败的唯一原因是 README.md 仍未文档化 docker build -t taskboard . 与含 /data 挂载的 docker run，属文档类交付物；README.md 在本 run 的读写策略下不可读（allowed 仅 apps/server/, server/, backend/, packages/shared/, src/, test/, package.json），无法安全修改，且任务要求只改后端文件、README 不在本任务描述范围内。node src/scripts/lint.js 与 node src/scripts/build.js 均退出码 0，且 build 已无任何 Dockerfile/.dockerignore 相关提示。因此剩余工作属于文档任务，故报 REPLAN，fixTaskType=DOCUMENTATION。",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-tasks",
+      "taskVerificationDivergence": 7,
+      "verificationFailureCodes": {
+        "CHECK_TIMEOUT": 6
+      },
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 46816819,
+      "output": 623071
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 7,
+    "verificationFailureCodes": {
+      "CHECK_TIMEOUT": 6
+    },
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-tasks": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

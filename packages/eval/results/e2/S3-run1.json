@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T09:34:38.923Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "ed7e0632-1754-4abf-b3d2-5712ae7c06ba",
+      "workflowIds": [
+        "ed7e0632-1754-4abf-b3d2-5712ae7c06ba"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 6,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 53358,
+        "output": 10166
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 283822,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented src/csv.mjs exporting parseCsvLine(line) for the slice-1 subset, and confirmed it is the only changed file. Behavior: returns [] when typeof line !== 'string' (covers null, undefined, number, boolean, object, array, symbol with no exception) (FR-6); returns [] for the empty string (FR-4); otherwise a single-pass character scan splits on the comma only, preserving each field's leading/trailing whitespace verbatim with no trim (FR-1); the final field is always pushed so a trailing comma yields a trailing empty string (FR-5). No quoted-field logic (FR-2/FR-3) was added, no dependencies were introduced, and no build or lint configuration was changed. All eight listed acceptance criteria were verified directly against the module: 'a,b,c' to ['a','b','c']; ' a , b ' to [' a ',' b ']; 'a, b' to ['a',' b']; '' to []; 'a,' to ['a','']; ',a' to ['','a']; ',,' to ['','','']; and null/undefined/123/{}/[]/true/symbol each to [] without throwing. npm run build (node --check src/csv.mjs) exits 0 and npm run lint (node --check src/csv.mjs) exits 0. npm run test reports 2 passed / 1 failed, where the single failure is the seed test test/csv.test.mjs line 10 asserting FR-2 quoted-field behavior (parseCsvLine('a,\"b,c\",d')), which is explicitly out of scope for this slice and was flagged as a scope conflict by the T-2 design and the prior attempt. src/csv.mjs is the only modified file (git status: ' M src/csv.mjs')."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 53358,
+      "output": 10166
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

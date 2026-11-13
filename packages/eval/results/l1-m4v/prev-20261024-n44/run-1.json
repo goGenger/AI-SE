@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-10-24T05:58:50.567Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "b9751019-3216-4ba8-8191-9a4661661fd5",
+      "workflowIds": [
+        "b9751019-3216-4ba8-8191-9a4661661fd5",
+        "e412ed2d-e9aa-45e4-b0c1-d4abe4c0eb47",
+        "8c084944-029e-47df-8e81-d0dfa1738d78"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 42,
+      "runCount": 38,
+      "taskStatuses": {
+        "FAILED": 5,
+        "SUCCESS": 33,
+        "READY": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 34259979,
+        "output": 522869
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5258990,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "VERIFICATION_FAILED": 1,
+        "CI_FAILED": 3
+      },
+      "failureSummary": "Partial delivery only. The scaffold manifests and the three lightweight self-check scripts are in place and verified, but the task cannot be completed by this agent because the write policy rejects two named deliverables: src/server.js and test/smoke.test.js. Created: package.json (type=module, dependencies {}, packageManager pnpm@9.12.0, scripts start/test/lint/typecheck/build), pnpm-lock.yaml (lockfileVersion 9.0, empty root importer), scripts/lint.mjs, scripts/typecheck.mjs, scripts/build.mjs. Verified via tools: `node scripts/lint.mjs` exit 0, `node scripts/typecheck.mjs` exit 0 (with a WARN that start targets the not-yet-existing src/server.js), `node scripts/build.mjs` exit 0. Not delivered because the path is not writable: src/server.js (attempt rejected: \"Path is not writable: src/server.js\") and test/smoke.test.js (attempt rejected: \"Path is not writable: test/smoke.test.js\"). I did not relocate the server or the tests into an allowed directory such as bin/ or infrastructure/ and did not claim success for them, so the start/test criteria and every marker test for AC-01 through AC-13 remain unmet. The correct follow-up is an application-code task: BACKEND must create src/server.js (with the JSON 404 fallback, PORT default 3000 and single-line listen log) and test/smoke.test.js, after which the existing package.json scripts and self-checks work unchanged.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-ui-deploy-docs",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 4
+      },
+      "planningMetrics": {
+        "autoFixRounds": 5,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "FAILED",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 34259979,
+      "output": 522869
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "VERIFICATION_FAILED": 1,
+      "CI_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 4
+    },
+    "planningRepair": {
+      "autoFixRounds": 5,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-ui-deploy-docs": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

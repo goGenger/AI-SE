@@ -1,0 +1,26 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+allowBuilds:
+  esbuild: true
+  # vue-demi 的 postinstall 只是按当前 Vue 版本切换 lib 入口。本仓库为 Vue 3，
+  # 而该包随包发布的 lib/index.{mjs,cjs,d.ts} 本身已是 v3 版本（isVue3 = true，已核对），
+  # 因此无需执行其构建脚本：显式置为 false，避免 pnpm 每次安装都报 ERR_PNPM_IGNORED_BUILDS。
+  vue-demi: false
+minimumReleaseAgeExclude:
+  - '@types/node@22.20.1'
+  - '@typescript-eslint/eslint-plugin@8.70.0'
+  - '@typescript-eslint/parser@8.70.0'
+  - '@typescript-eslint/project-service@8.70.0'
+  - '@typescript-eslint/scope-manager@8.70.0'
+  - '@typescript-eslint/tsconfig-utils@8.70.0'
+  - '@typescript-eslint/type-utils@8.70.0'
+  - '@typescript-eslint/types@8.70.0'
+  - '@typescript-eslint/typescript-estree@8.70.0'
+  - '@typescript-eslint/utils@8.70.0'
+  - '@typescript-eslint/visitor-keys@8.70.0'
+  - typescript@6.0.3
+  - typescript-eslint@8.70.0
+  - '@lucide/vue@1.46.0'
+patchedDependencies:
+  '@langchain/openai@1.5.11': patches/@langchain__openai@1.5.11.patch

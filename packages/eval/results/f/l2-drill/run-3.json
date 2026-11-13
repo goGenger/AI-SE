@@ -1,0 +1,172 @@
+{
+  "drill": "F1-4 FX-14b L2 planning drill",
+  "requirementId": "a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53",
+  "ranAt": "2026-10-08T10:03:35.880Z",
+  "globalAcKeys": [
+    "AC-24",
+    "AC-25",
+    "AC-26",
+    "AC-29",
+    "AC-30"
+  ],
+  "workflowCountBefore": 18,
+  "workflowCountAfter": 18,
+  "sliceCount": 5,
+  "slices": [
+    {
+      "sliceKey": "s1",
+      "title": "工程骨架与数据持久化基础",
+      "order": 1,
+      "status": "PLANNED",
+      "planningVersion": 21,
+      "isFinal": false,
+      "frKeys": [
+        "FR-9",
+        "FR-7"
+      ],
+      "taskCount": 13,
+      "taskKeys": [
+        "S1-T01",
+        "S1-T02",
+        "S1-T03",
+        "S1-T04",
+        "S1-T05",
+        "S1-T06",
+        "S1-T07",
+        "S1-T08",
+        "S1-T09",
+        "S1-T10",
+        "S1-T11",
+        "S1-T12",
+        "S1-T13"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "s2",
+      "title": "健康端点、首页 UI 与容器运行形态",
+      "order": 2,
+      "status": "PLANNED",
+      "planningVersion": 22,
+      "isFinal": false,
+      "frKeys": [
+        "FR-8"
+      ],
+      "taskCount": 6,
+      "taskKeys": [
+        "T-AC21-TEST",
+        "T-AC22-TEST",
+        "T-DOCKERFILE-BUILD",
+        "T-HEALTH-BACKEND",
+        "T-HOME-FRONTEND",
+        "T-SLICE-REVIEW"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "s3",
+      "title": "用户注册与登录令牌",
+      "order": 3,
+      "status": "PLANNED",
+      "planningVersion": 23,
+      "isFinal": false,
+      "frKeys": [
+        "FR-1",
+        "FR-2"
+      ],
+      "taskCount": 12,
+      "taskKeys": [
+        "T1",
+        "T10",
+        "T11",
+        "T12",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "s4",
+      "title": "任务创建与列表搜索",
+      "order": 4,
+      "status": "PLANNED",
+      "planningVersion": 24,
+      "isFinal": false,
+      "frKeys": [
+        "FR-3",
+        "FR-4"
+      ],
+      "taskCount": 15,
+      "taskKeys": [
+        "T1",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "s5",
+      "title": "任务查询、更新、删除与数据隔离",
+      "order": 5,
+      "status": "PLANNED",
+      "planningVersion": 25,
+      "isFinal": true,
+      "frKeys": [
+        "FR-5",
+        "FR-6"
+      ],
+      "taskCount": 12,
+      "taskKeys": [
+        "BACKEND-S5-DELETE",
+        "BACKEND-S5-GET",
+        "BACKEND-S5-PATCH",
+        "BUILD-CI-S5",
+        "DATABASE-S5-TASK-REPO",
+        "DEPLOY-PRODUCTION-S5",
+        "DEPLOY-STAGING-S5",
+        "REVIEW-S5-ISOLATION",
+        "TEST-S5-AC30-CONTRACT",
+        "TEST-S5-DEPLOY-CONTRACT",
+        "TEST-S5-ITEM-API",
+        "VERIFY-STAGING-S5"
+      ],
+      "deliveryTaskCount": 4,
+      "globalAcRefs": [
+        "AC-24",
+        "AC-30",
+        "AC-25",
+        "AC-26",
+        "AC-29"
+      ]
+    }
+  ],
+  "finalSliceScale": {
+    "taskCount": 12,
+    "deliveryTaskCount": 4,
+    "frCount": 2,
+    "globalAcCount": 5
+  },
+  "violations": []
+}

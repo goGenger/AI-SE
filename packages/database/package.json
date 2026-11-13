@@ -1,0 +1,23 @@
+{
+  "name": "@ai-se/database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/workflow-engine build && pnpm --filter @ai-se/mcp build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/workflow-engine build && pnpm --filter @ai-se/mcp build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src",
+    "migrate": "pnpm run build && node dist/migrate.js"
+  },
+  "dependencies": {
+    "@ai-se/mcp": "workspace:*",
+    "@ai-se/shared": "workspace:*",
+    "@ai-se/workflow-engine": "workspace:*",
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@ai-se/tool-runtime": "workspace:*"
+  }
+}

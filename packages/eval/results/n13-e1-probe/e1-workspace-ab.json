@@ -1,0 +1,33 @@
+{
+  "cwd": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+  "acKeys": [
+    "AC-01"
+  ],
+  "checkTimeoutMs": 120000,
+  "windowMs": 180000,
+  "concurrency": "serial (--test-concurrency=1, emulates the --cpus 1 sandbox)",
+  "results": [
+    {
+      "variant": "A1-production",
+      "command": "npm run test -- --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' --test-timeout=20000 --test-concurrency=1",
+      "exited": true,
+      "code": 1,
+      "elapsedMs": 82057,
+      "tap": "# tests 29\n# suites 0\n# pass 25\n# fail 0\n# cancelled 4\n# duration_ms 81810.048125",
+      "leakedCount": 0,
+      "leaked": [],
+      "tail": "xit code 0 when all succeed\nok 27 - [FR-9.7][AC-1] runContract executes every step in order and reports exit code 0 when all succeed\n  ---\n  duration_ms: 2.640333\n  type: 'test'\n  ...\n# Subtest: [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything\nok 28 - [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything\n  ---\n  duration_ms: 36.452792\n  type: 'test'\n  ...\n# Subtest: [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile\nok 29 - [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile\n  ---\n  duration_ms: 744.196875\n  type: 'test'\n  ...\n1..29\n# tests 29\n# suites 0\n# pass 25\n# fail 0\n# cancelled 4\n# skipped 0\n# todo 0\n# duration_ms 81810.048125\n"
+    },
+    {
+      "variant": "A2-no-test-timeout",
+      "command": "npm run test -- --test-name-pattern '\\[AC-01\\]|\\[AC-1\\]' --test-concurrency=1",
+      "exited": false,
+      "code": null,
+      "elapsedMs": 180059,
+      "tap": "",
+      "leakedCount": 0,
+      "leaked": [],
+      "tail": "[taskboard] GET /ready\n# [taskboard] GET /ready\n# [taskboard] GET /ready\n# Subtest: [AC-01] health routes answer 200 JSON with no credentials and with junk credentials\nok 14 - [AC-01] health routes answer 200 JSON with no credentials and with junk credentials\n  ---\n  duration_ms: 29.619084\n  type: 'test'\n  ...\n# Subtest: [AC-01] the router exemption list contains exactly the health paths plus the home page\nok 15 - [AC-01] the router exemption list contains exactly the health paths plus the home page\n  ---\n  duration_ms: 0.148458\n  type: 'test'\n  ...\n# Subtest: [AC-01] non-GET methods and non-string path inputs never resolve to the health handler\nok 16 - [AC-01] non-GET methods and non-string path inputs never resolve to the health handler\n  ---\n  duration_ms: 0.074875\n  type: 'test'\n  ...\n"
+    }
+  ]
+}

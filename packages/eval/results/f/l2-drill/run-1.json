@@ -1,0 +1,153 @@
+{
+  "drill": "F1-4 FX-14b L2 planning drill",
+  "requirementId": "a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53",
+  "ranAt": "2026-10-08T09:00:00.598Z",
+  "globalAcKeys": [
+    "AC-24",
+    "AC-25",
+    "AC-26",
+    "AC-29",
+    "AC-30"
+  ],
+  "workflowCountBefore": 18,
+  "workflowCountAfter": 18,
+  "sliceCount": 4,
+  "slices": [
+    {
+      "sliceKey": "slice-1",
+      "title": "工程基座与运行形态",
+      "order": 1,
+      "status": "PLANNED",
+      "planningVersion": 9,
+      "isFinal": false,
+      "frKeys": [
+        "FR-8",
+        "FR-9"
+      ],
+      "taskCount": 10,
+      "taskKeys": [
+        "T-01",
+        "T-02",
+        "T-03",
+        "T-04",
+        "T-05",
+        "T-06",
+        "T-07",
+        "T-08",
+        "T-09",
+        "T-10"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "slice-2",
+      "title": "注册、登录与令牌鉴权",
+      "order": 2,
+      "status": "PLANNED",
+      "planningVersion": 10,
+      "isFinal": false,
+      "frKeys": [
+        "FR-1",
+        "FR-2",
+        "FR-7"
+      ],
+      "taskCount": 16,
+      "taskKeys": [
+        "S2-T01",
+        "S2-T02",
+        "S2-T03",
+        "S2-T04",
+        "S2-T05",
+        "S2-T06",
+        "S2-T07",
+        "S2-T08",
+        "S2-T09",
+        "S2-T10",
+        "S2-T11",
+        "S2-T12",
+        "S2-T13",
+        "S2-T14",
+        "S2-T15",
+        "S2-T16"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "slice-3",
+      "title": "任务创建、列表与搜索",
+      "order": 3,
+      "status": "PLANNED",
+      "planningVersion": 11,
+      "isFinal": false,
+      "frKeys": [
+        "FR-3",
+        "FR-4"
+      ],
+      "taskCount": 13,
+      "taskKeys": [
+        "TP-01",
+        "TP-02",
+        "TP-03",
+        "TP-04",
+        "TP-05",
+        "TP-06",
+        "TP-07",
+        "TP-08",
+        "TP-09",
+        "TP-10",
+        "TP-11",
+        "TP-12",
+        "TP-13"
+      ],
+      "deliveryTaskCount": 0,
+      "globalAcRefs": []
+    },
+    {
+      "sliceKey": "slice-4",
+      "title": "任务查询、更新、删除与数据隔离",
+      "order": 4,
+      "status": "PLANNED",
+      "planningVersion": 12,
+      "isFinal": true,
+      "frKeys": [
+        "FR-5",
+        "FR-6"
+      ],
+      "taskCount": 15,
+      "taskKeys": [
+        "T-01",
+        "T-02",
+        "T-03",
+        "T-04",
+        "T-05",
+        "T-06",
+        "T-07",
+        "T-08",
+        "T-09",
+        "T-10",
+        "T-11",
+        "T-12",
+        "T-13",
+        "T-14",
+        "T-15"
+      ],
+      "deliveryTaskCount": 4,
+      "globalAcRefs": [
+        "AC-24",
+        "AC-25",
+        "AC-26",
+        "AC-29",
+        "AC-30"
+      ]
+    }
+  ],
+  "finalSliceScale": {
+    "taskCount": 15,
+    "deliveryTaskCount": 4,
+    "frCount": 2,
+    "globalAcCount": 5
+  },
+  "violations": []
+}

@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-10-16T07:54:04.588Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "09eca545-e8a4-471b-8f23-443a3afe06ca",
+      "workflowIds": [
+        "09eca545-e8a4-471b-8f23-443a3afe06ca"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 12,
+      "runCount": 13,
+      "taskStatuses": {
+        "SUCCESS": 10,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 3,
+      "tokenUsage": {
+        "input": 5155550,
+        "output": 192334
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1822285,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "README task (T-10) complete. The repository-root README.md documents every required command and both environment variables, and its content is literally consistent with package.json and the PRD build contract. Verified against the sources the commands reference: package.json scripts (start=node src/index.js, test=node --test, lint/typecheck/build=node --check self-checks, dependencies empty), src/index.js (DEFAULT_PORT=3000; resolvePort falls back to 3000 when PORT is unset or invalid) and src/config.js (DEFAULT_DATA_DIR=data i.e. ./data; absolute DATA_DIR such as /data wins). Sections present: install (pnpm install --frozen-lockfile), start (pnpm start plus a PORT/DATA_DIR override example), test (pnpm test = node --test), lint/typecheck/build self-checks, build image (docker build -t taskboard .), run image (docker run -d --name taskboard -p 3000:3000 -v taskboard-data:/data taskboard), the six-step build contract, project layout, and persistence/security notes. The environment-variable table states PORT default 3000 and DATA_DIR default ./data (container /data, persisted volume). README.md is outside the sandbox file read/write allowlist, so its on-disk content was confirmed through git diff; no rewrite was needed because the file present in the working tree already satisfies all acceptance criteria. Note on tests: node --test is 18/19; the only failure is the pre-existing TDD integration test [AC-25] which expects POST /api/register to return 201 but gets 404 because the auth/task business routes belong to later slices, unrelated to and outside the scope of this README task.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "slice-1",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 6,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 16,
+        "llmRepairRounds": 5,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "VALIDATION_ERROR": 6
+        }
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 3,
+    "tokenUsage": {
+      "input": 5155550,
+      "output": 192334
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 6,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 16,
+      "llmRepairRounds": 5,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "slice-1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

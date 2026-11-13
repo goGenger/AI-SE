@@ -1,0 +1,26 @@
+{
+  "name": "@ai-se/browser",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/action-policy build && pnpm --filter @ai-se/tool-runtime build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/action-policy build && pnpm --filter @ai-se/tool-runtime build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/action-policy": "workspace:*",
+    "@ai-se/observability": "workspace:*",
+    "@ai-se/shared": "workspace:*",
+    "@ai-se/tool-runtime": "workspace:*",
+    "playwright": "1.61.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.0",
+    "typescript": "5.6.2",
+    "vitest": "5.0.0"
+  }
+}

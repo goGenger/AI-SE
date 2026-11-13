@@ -1,0 +1,88 @@
+=== N-8 PROBE (part 2): where does the usage blow-up come from? ===
+node 22.22.2   per-call usage: input=1000 output=200
+
+--- scenario A: the real AgentRunner / AgentGraph outer loop ---
+
+A maxIterations=50
+ rnd  inMsgs  inUsg  inUsgInputTokens   calls       returnedInputTokens   agentIt  toolCalls
+   1       2       0                 0       2                  1000       2  submit_result
+   2       4       1              1000       2                  1000       3  submit_result
+   3       6       2              2000       2                  1000       4  submit_result
+   4       8       3              3000       2                  1000       5  submit_result
+   5      10       4              4000       2                  1000       6  submit_result
+   6      12       5              5000       2                  1000       7  submit_result
+   7      14       6              6000       2                  1000       8  submit_result
+   8      16       7              7000       2                  1000       9  submit_result
+   9      18       8              8000       2                  1000      10  submit_result
+  10      20       9              9000       2                  1000      11  submit_result
+  11      22      10             10000       2                  1000      12  submit_result
+  12      24      11             11000       2                  1000      13  submit_result
+  13      26      12             12000       2                  1000      14  submit_result
+  14      28      13             13000       2                  1000      15  submit_result
+  15      30      14             14000       2                  1000      16  submit_result
+  16      32      15             15000       2                  1000      17  submit_result
+  17      34      16             16000       2                  1000      18  submit_result
+  18      36      17             17000       2                  1000      19  submit_result
+  19      38      18             18000       2                  1000      20  submit_result
+  20      40      19             19000       2                  1000      21  submit_result
+  21      42      20             20000       2                  1000      22  submit_result
+  22      44      21             21000       2                  1000      23  submit_result
+  23      46      22             22000       2                  1000      24  submit_result
+  24      48      23             23000       2                  1000      25  submit_result
+  25      50      24             24000       2                  1000      26  submit_result
+  26      52      25             25000       2                  1000      27  submit_result
+  27      54      26             26000       2                  1000      28  submit_result
+  28      56      27             27000       2                  1000      29  submit_result
+  29      58      28             28000       2                  1000      30  submit_result
+  30      60      29             29000       2                  1000      31  submit_result
+  31      62      30             30000       2                  1000      32  submit_result
+  32      64      31             31000       2                  1000      33  submit_result
+  33      66      32             32000       2                  1000      34  submit_result
+  34      68      33             33000       2                  1000      35  submit_result
+  35      70      34             34000       2                  1000      36  submit_result
+  36      72      35             35000       2                  1000      37  submit_result
+  37      74      36             36000       2                  1000      38  submit_result
+  38      76      37             37000       2                  1000      39  submit_result
+  39      78      38             38000       2                  1000      40  submit_result
+  40      80      39             39000       2                  1000      41  submit_result
+  41      82      40             40000       2                  1000      42  submit_result
+  42      84      41             41000       2                  1000      43  submit_result
+  43      86      42             42000       2                  1000      44  submit_result
+  44      88      43             43000       2                  1000      45  submit_result
+  45      90      44             44000       2                  1000      46  submit_result
+  46      92      45             45000       2                  1000      47  submit_result
+  47      94      46             46000       2                  1000      48  submit_result
+  48      96      47             47000       2                  1000      49  submit_result
+  49      98      48             48000       2                  1000      50  submit_result
+  rounds=49  gatewayCalls=98  state.iteration trail=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+  run: status=failed code=TOOL_ERROR iterations=50 reportedInputTokens=49000 trueInputTokens=98000
+  reported / true = 5.000e-1
+
+--- scenario B: consecutive provider.invoke rounds (n=8) ---
+
+ rnd  inMsgs  inUsg  inUsgInputTokens   calls       returnedInputTokens   linearPred  compoundPred
+   1       2       0                 0       2                  1000         1000           1000
+   2       3       1              1000       2                  1000         1000           2000
+   3       4       2              2000       2                  1000         1000           3000
+   4       5       3              3000       2                  1000         1000           4000
+   5       6       4              4000       2                  1000         1000           5000
+   6       7       5              5000       2                  1000         1000           6000
+   7       8       6              6000       2                  1000         1000           7000
+   8       9       7              7000       2                  1000         1000           8000
+  trueInputTokens (all gateway calls) = 16000
+
+--- scenario C: the inner deep agent's result message list (one round) ---
+  inputMessages=3  innerMessages=5  gatewayCalls=2
+ idx  class                 role        isAI  inputIndex  usageInputTokens  toolCalls       preview
+   0  SystemMessage          system         no            0                  -  -                Change only backend files. Val
+   1  HumanMessage           human          no            1                  -  -                probe task
+   2  AIMessage              ai            yes            2              12345  -                previous round answer
+   3  AIMessage              ai            yes           -1               1000  submit_result    
+   4  ToolMessage            tool           no           -1                  -  -                Error: Path is not readable: p
+  AIMessages with usage=2  agentUsages sum=13345  echoed(count=1, sum=12345)  own(sum=1000)
+  finalMessage is one of the caller's messages: false
+
+--- VERDICT ---
+  scenario B per-round match: tie, linear, linear, linear, linear, linear, linear, linear
+  N8-LINEAR      each round reports only its own inner usage; no compounding observed.
+  scenario C: caller's messages echoed back by reference = true

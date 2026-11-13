@@ -1,0 +1,7 @@
+{
+  "id": "S1",
+  "tier": "S",
+  "title": "实现 slugify 文本转 slug",
+  "requirementText": "实现 src/slugify.mjs 中的 slugify(text) 函数，把任意文本转成 URL 友好的 slug，规则：\n1) 转小写；\n2) 去掉首尾空白；\n3) 任何空白连续段（空格/制表/换行）转成一个连字符 -；\n4) 除 Unicode 字母与数字以及连字符外的其它字符也转成连字符（例如 _ . / 等）；\n5) 连续多个连字符合并成一个；\n6) 去掉首尾多余的连字符；\n7) 空串或只有空白/符号的输入返回空字符串 \"\"。\n保留 Unicode 字母与数字（例如中文\"标题\"要原样保留）。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": { "command": "node", "args": ["oracle.mjs"] }
+}

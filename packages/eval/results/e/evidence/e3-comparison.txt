@@ -1,0 +1,13 @@
+| batch | runs | trueSuccess(oracle) | reported | falsePositive | degradedRate | tokensIn | avgTime | failureModes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| B-summaryA (09-30 pass1) | 17 | 12/17 | 9/17 | 0/17 | 76.1% | 3.07M | 11.3min | - ; fixture-failures: L1/run: 切片 build-module 未被链式编排启动 | L1/run: 切片 build-module 未被链式编排启动 | L2/run: 切片 quality-gates 失败 | M1/run: 切片 slice-patch-todo 未被链式编排启动 | M1/run: 切片 slice-patch-todo 未被链式编排启动 | M2/run: 切片 slice-2 未被链式编排启动 | M2/run: 切片 slice-2 未被链式编排启动 |
+| B-summaryB (10-01 fixbatch) | 12 | 7/12 | 2/12 | 1/12 | 76.7% | 5.46M | 30.6min | TIMEOUTx8 |
+| B E1 baseline | 3 | 1/3 | 0/3 | 0/3 | 78.2% | 5.63M | 139.3min | TIMEOUTx12 |
+| C-6 E1 | 3 | 0/3 | 0/3 | 0/3 | 0.0% | 1.82M | 49.9min | VERIFICATION_FAILEDx1, TIMEOUTx5 |
+| E-2 round1 (old plans) | 24 | 6/24 | 0/24 | 0/24 | 0.0% | 1.90M | 8.6min | VERIFICATION_FAILEDx23, INVALID_AGENT_RESULTx2 |
+| E-2b (replanned) | 23 | 8/23 | 0/23 | 0/23 | 0.0% | 2.04M | 9.0min | VERIFICATION_FAILEDx25, INVALID_AGENT_RESULTx2, EMPTY_FINAL_ANSWERx3 ; fixture-failures: M3/planning: 规划失败：0194bf8d-7602-4c06-80c7-18324fc33e66 |
+| E-1 (E1 x3) | 3 | 1/3 | 0/3 | 0/3 | 0.0% | 0.94M | 36.0min | EMPTY_FINAL_ANSWERx2, TIMEOUTx6, VERIFICATION_FAILEDx1 |
+
+Notes: trueSuccess = oracle passed (external judge); falsePositive = reported success but oracle failed.
+B-summaryA includes 7 defect-era isolated runs; B-summaryB includes 1 false positive;
+C-6 run-3 Must 28/29 was a ghost snapshot (not reachable evidence); E-1 run-3 first attempt = fixture-level failure (preserved).

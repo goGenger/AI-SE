@@ -1,0 +1,111 @@
+
+===== 1/7 platform health (controlled instance :47557) =====
+GET /health -> 200
+GET /ready  -> 200
+
+===== 2/7 projects & requirements (real data via API) =====
+projects: 10
+ - [eval] S1
+ - [eval] E1
+ - [eval] S3
+ - [eval] S2
+ - [eval] M3
+ - [eval] M2
+
+===== 3/7 E-1 flagship: slice-1 fully SUCCESS + live E-0(a) red-light flip =====
+ task_key |   type   | status  
+----------+----------+---------
+ T-12     | REVIEW   | SUCCESS
+ T-13     | TEST     | SUCCESS
+ T-09     | BACKEND  | SUCCESS
+ T-10     | BACKEND  | SUCCESS
+ T-05     | BACKEND  | SUCCESS
+ T-01     | ANALYSIS | SUCCESS
+ T-04     | BACKEND  | SUCCESS
+ T-07     | BACKEND  | SUCCESS
+ T-06     | BACKEND  | SUCCESS
+ T-03     | TEST     | SUCCESS
+ T-14     | TEST     | SUCCESS
+ T-08     | BACKEND  | SUCCESS
+ T-02     | DESIGN   | SUCCESS
+ T-11     | FRONTEND | SUCCESS
+(14 rows)
+
+-- T-13 check verdict (expected flipped to pass = C-6 misfire fixed) --
+T-13|pass|true
+
+===== 4/7 AC traceability (FR -> AC -> test -> result -> evidence) =====
+total 30 | passed 0 | failed 0 | unverified 7 | noTest 23
+sample: AC-01 no-test | 健康端点 `/healthz`、`/health`、`/ready` 均 200 且 `status=ok`
+
+===== 5/7 delivery chain (D-5 drill: environments & deployment records) =====
+    name    |        endpoint        
+------------+------------------------
+ production | http://127.0.0.1:18081
+ staging    | http://127.0.0.1:18080
+(2 rows)
+
+ environment | operation |   status    |  commit  
+-------------+-----------+-------------+----------
+ staging     | ROLLBACK  | SUCCESS     | 2c4e474c
+ staging     | DEPLOY    | ROLLED_BACK | fea7e63e
+ production  | DEPLOY    | SUCCESS     | 2c4e474c
+ staging     | DEPLOY    | SUCCESS     | 2c4e474c
+ staging     | DEPLOY    | FAILED      | 420731e0
+(5 rows)
+
+
+===== 6/7 audit & verification trail (sample: the flipped task's full checks record) =====
+{
+    "mode": "enforce",
+    "checks": [
+        {
+            "name": "test",
+            "flaked": false,
+            "passed": true,
+            "command": "npm run test",
+            "attempts": [
+                {
+                    "exitCode": 0,
+                    "timedOut": false,
+                    "durationMs": 6932
+                }
+            ],
+            "exitCode": 0,
+            "expected": "pass",
+            "timedOut": false,
+            "acResults": {
+                "AC-01": "passed",
+                "AC-02": "passed",
+                "AC-03": "passed",
+                "AC-04": "passed",
+                "AC-05": "passed",
+                "AC-06": "passed",
+                "AC-07": "passed",
+                "AC-08": "passed",
+                "AC-09": "passed",
+                "AC-10": "passed",
+                "AC-11": "passed",
+                "AC-12": "passed",
+                "AC-13": "passed",
+
+===== 7/7 evidence index =====
+demo
+e-tonight-decisions.txt
+e0a-redlight-fix.txt
+e0b-timeout-termination.txt
+e1-results.txt
+e2-round1-findings.txt
+e2b-results.txt
+e3-comparison.txt
+e4-demo-capture.txt
+e4-demo-recording-guide.md
+-- D-phase delivery evidence --
+d1-sandbox-egress.txt
+d2-injection-redteam.txt
+d3-redaction-and-api-token.txt
+d4-binding-and-rehearsal.txt
+d5-delivery-chain.txt
+d6-rollback-drill.txt
+
+DEMO COMPLETE.

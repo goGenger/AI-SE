@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-10-14T14:20:33.103Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "ca6770d4-72d2-4199-93f1-d39c525b6090",
+      "workflowIds": [
+        "ca6770d4-72d2-4199-93f1-d39c525b6090",
+        "586262e2-11c2-416a-a502-7d4e32d5e3b6",
+        "e12f71c2-67c7-4e9f-aed5-252855b8473c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 24,
+      "runCount": 24,
+      "taskStatuses": {
+        "SUCCESS": 22,
+        "PENDING": 1,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 901475,
+        "output": 55021
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1853960,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "[AC-13] verified: pnpm build exits with status code 0 and its output contains no errors related to src/duration.mjs or the tests. Red first: the discriminating AC-13 assertion (parseDuration(\\\"1h30m\\\") === 5400000 against the build-gate subject) was executed against the pre-implementation baseline stub and failed with \\\"AssertionError ... Actual message: parseDuration 尚未实现\\\" (reproduced via node --test test/redcheck-ac13/test/ac13.red.test.mjs, exit code 1, 1 fail). Green: node --test test/ac13-build.test.mjs -> 4 tests, 4 pass, 0 fail; pnpm test (npm run test, node --test) -> 98 tests, 98 pass, 0 fail, 0 errors, so no test-file syntax errors. Build gate: npm run build -> exitCode 0, empty stderr, output only the script banner and the line node --check src/duration.mjs. Lint gate: npm run lint -> exitCode 0. No product code was modified (src/duration.mjs and package.json are unchanged); the only product-facing change is test code. fixTaskType: none - there were no failing gates to fix. The prior attempt was rejected as VACUOUS_TEST because its AC-13 assertions (package.json script shape and module import) also passed against the throw-only baseline stub; the suite now fails on that baseline, so it is discriminating.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-quality-gates",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 901475,
+      "output": 55021
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-quality-gates": 1
+    }
+  }
+}

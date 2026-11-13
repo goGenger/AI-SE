@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T09:40:11.119Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "3b0b773d-a8d5-49f0-8ac6-ec971ee9a532",
+      "workflowIds": [
+        "3b0b773d-a8d5-49f0-8ac6-ec971ee9a532"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 6,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 42923,
+        "output": 10089
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 210596,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and verified the slice-1 subset of parseCsvLine in src/csv.mjs (the only changed file; git shows M src/csv.mjs). The module is ESM (.mjs) and exports a named function parseCsvLine. Behavior: non-string input returns [] with no exception (FR-6/TS-5); empty string returns [] not [''] (FR-4/TS-3); otherwise a single-pass scan splits on the comma character preserving each field's leading/trailing whitespace verbatim with no trim (FR-1/TS-2); an unconditional final push always emits the last field so a trailing comma yields a trailing empty string (FR-5/TS-4). No quoted-field parsing was added (FR-2/FR-3 intentionally excluded), no new dependencies, and no changes to package.json or build/lint config. Direct behavior checks against the module passed 12 of 12 for the in-scope matrix: 'a,b,c', ' a , b ', 'a, b', '', 'a,', ',a', ',,', null, undefined, 123, {}, []. Build and lint both run node --check src/csv.mjs and exited 0. The only failing repository test is the pre-existing 'quoted field may contain commas' case in test/csv.test.mjs, which asserts out-of-scope FR-2 behavior and is a non-backend file outside this task's boundary."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 42923,
+      "output": 10089
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

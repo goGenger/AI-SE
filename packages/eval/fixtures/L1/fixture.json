@@ -1,0 +1,12 @@
+{
+  "id": "L1",
+  "tier": "L",
+  "title": "实现静态站点生成器（frontmatter + markdown-lite + 构建）",
+  "requirementText": "这是一个小型静态站点生成器，跨三个模块：src/frontmatter.mjs（已实现，解析 frontmatter，不要改动）、src/render.mjs（待实现 renderPage）、src/build.mjs（待实现 buildSite）。\n需要实现：\n1) renderPage(page)：page = { title, body }（body 是 markdown-lite 文本），返回完整 HTML 文档字符串：标题放进 <title> 与 <h1>；\n2) markdown-lite 规则（按行处理）：以 # 开头的行渲染成 <h2>（去掉 # 与首尾空白）；空行分段；其它连续行合并成一个 <p>（合并时用单个空格连接各行）；行内 [text](url) 渲染成 <a href=\"url\">text</a>；\n3) 所有插入 HTML 的文本（标题、段落文本、链接文字）都要做 HTML 转义（& < > \" '），链接的 url 只做属性转义；\n4) buildSite(contentDir, outDir)：读取 contentDir 下所有 .md 文件（按文件名排序），每个 <name>.md 生成 <outDir>/<name>.html（页面标题取 frontmatter.title，缺省用文件名），并确保 outDir 存在；返回生成的文件名数组。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": {
+    "command": "node",
+    "args": [
+      "oracle.mjs"
+    ]
+  }
+}

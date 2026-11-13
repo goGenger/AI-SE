@@ -1,0 +1,54 @@
+=== N-6 PROBE: outbound message shape (docs/172, PL-M13) ===
+node 22.22.2   bodies written to /Users/shixianbao/Desktop/study/AI_SE/packages/eval/results/n6-probe/captured-bodies.json
+
+--- request #1  scenario=A_initial  stream=false ---
+messages=2
+  role=system    content=array   reasoning=no   [{"type":"text","text":"Change only back
+  role=user      content=string  reasoning=no   probe task
+
+--- request #2  scenario=B_accumulate  stream=false ---
+messages=3
+  role=system    content=array   reasoning=no   [{"type":"text","text":"Change only back
+  role=user      content=string  reasoning=no   probe task
+  role=assistant content=string  reasoning=YES  A answer
+
+--- request #3  scenario=C_control  stream=false ---
+messages=3
+  role=system    content=array   reasoning=no   [{"type":"text","text":"Change only back
+  role=user      content=string  reasoning=no   probe task
+  role=assistant content=string  reasoning=YES  C answer
+
+--- request #4  scenario=G_real_read_file  stream=false ---
+messages=2
+  role=system    content=array   reasoning=no   [{"type":"text","text":"Change only back
+  role=user      content=string  reasoning=no   probe task
+
+--- request #5  scenario=G_real_read_file  stream=false ---
+messages=4
+  role=system    content=array   reasoning=no   [{"type":"text","text":"Change only back
+  role=user      content=string  reasoning=no   probe task
+  role=assistant content=string  reasoning=YES  
+  role=tool      content=string  reasoning=no        1	PROBE_FILE_LINE_ONE
+     2	PROBE_
+
+--- request #6  scenario=E_tool_array  stream=false ---
+messages=3
+  role=user      content=string  reasoning=no   probe task
+  role=assistant content=string  reasoning=no   
+  role=tool      content=string  reasoning=no   ["block-a","block-b"]
+
+=== INV-1 (error 1: reasoning_content round-trip) ===
+  B_accumulate (platform's own accumulation shape): reasoning_content PRESENT
+  C_control (field kept on the message): reasoning_content PRESENT
+
+=== INV-2 (error 2: tool message content must be a string) ===
+  no non-string tool content observed in this probe window
+
+=== scenarios that threw LOCALLY (no request left the process) ===
+  F_tool_object: message.content.flatMap is not a function
+
+=== VERDICT ===
+  INV-1: B_accumulate (platform's own accumulation shape): reasoning_content PRESENT
+  INV-1: C_control (field kept on the message): reasoning_content PRESENT
+  INV-2: not reachable from this probe (see raw bodies)
+===============================================

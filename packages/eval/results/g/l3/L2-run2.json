@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-10-14T21:20:29.521Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "cb8d650b-52df-4ec6-bd47-e5ef4bb087ae",
+      "workflowIds": [
+        "cb8d650b-52df-4ec6-bd47-e5ef4bb087ae",
+        "8e3992b8-0183-467a-9012-55be95af2d22",
+        "1664bbb5-19bf-45f9-a301-494fe7092bc6"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 50,
+      "runCount": 50,
+      "taskStatuses": {
+        "SUCCESS": 48,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 2788427,
+        "output": 99066
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 4812683,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Hardened the AC-10/AC-11/AC-12 delivery gate so it is genuinely red before implementation and green after, fixing the prior VACUOUS_TEST. Root cause of the prior verification failure: `npm run test` exits 0 even at the fixture baseline (the baseline's own test does not exercise the requirement), so a gate that only asserted \"pnpm test is green\" was vacuously satisfiable. Fix (test-only): [AC-10] now first runs an implementation-presence probe (real loadData/saveData round-trip); the baseline stub throws \"尚未实现\" so the probe fails pre-implementation (red) and passes post-implementation (green). [AC-11]/[AC-12] additionally assert an effective negative control (a syntax-broken temp file makes `node --check` exit non-zero), proving build/lint are not no-op checks. No product code was modified. RED evidence: `node --test tests/.redphase/checks/ac10-ac12.mjs` passes, showing the baseline stub makes the gate probe reject. GREEN: `pnpm test` = 119 tests, 119 pass, 0 fail, exit 0, with [AC-10]/[AC-11]/[AC-12] all ok; pnpm build and pnpm lint exit 0 with no error output. fixTaskType: none for product code (no product defect encountered); the remediation is a test-only change.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-3",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 6,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 2788427,
+      "output": 99066
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 6,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3": 1
+    }
+  }
+}

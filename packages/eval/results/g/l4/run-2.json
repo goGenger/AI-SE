@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-10-15T00:33:15.024Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "6e03149f-46f4-4fe7-8cf9-d4830ad20ddc",
+      "workflowIds": [
+        "6e03149f-46f4-4fe7-8cf9-d4830ad20ddc",
+        "e5d00888-bb96-4938-bd0e-c795f056fa2f"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 34,
+      "runCount": 33,
+      "taskStatuses": {
+        "SUCCESS": 27,
+        "READY": 1,
+        "PENDING": 5,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 2212604,
+        "output": 96767
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5006181,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "AUTH-BE-06 HMAC-SHA256 signed-token issuance and verification is delivered in src/auth.js (backend only; no source changes were needed because the existing implementation already satisfies every task acceptance criterion, and I re-verified it end to end). issueToken(userId, secret, opts) emits base64url(payload).base64url(HMAC-SHA256(payload)) where payload is JSON carrying sub (the userId as a string), iat and exp (unix seconds, default TTL 7 days). verifyToken(token, secret) validates structure first (token must be a non-empty string with exactly two segments, and BOTH the payload and signature segments must match the base64url alphabet), then recomputes the HMAC and compares it with crypto.timingSafeEqual (length mismatch rejected), and only then parses the payload and requires a non-empty sub and a non-expired exp; any tampered, truncated or empty token verifies to null and the authenticate() guard turns it into 401 UNAUTHORIZED via the shared error envelope. resolveTokenSecret gives precedence explicit secret > AUTH_SECRET env > a random 32-byte base64url key generated once and archived atomically (tmp file + fs.rename, mode 0600) at DATA_DIR/auth-secret.json, so tokens issued before a restart remain verifiable afterwards. Exported names and signatures (issueToken, verifyToken, extractBearerToken, resolveTokenSecret, createAuth, AuthError) are unchanged, so API contracts are preserved and trust-boundary input is validated before any storage or crypto work. Verified: pnpm lint exit 0 (25 checks); pnpm build exit 0 (35 checks incl. syntax validation of src/auth.js); the AC-scoped run pnpm test -- --test-name-pattern '[AC-09]|[AC-12]|[AC-13]' executes 21 tests with 20 pass / 1 fail / 0 errors - every AC-12 one-character-tamper test and every AC-13 truncation/empty-token test passes, plus the AC-09 correct-credentials case. The sole failure is NOT a backend defect and cannot be fixed from backend: test/ac-09-10-11-login-auth.test.js reuses one fixed fixture username across several cases but its registerFixture() helper asserts HTTP 201 on every call, so the second registration of the already-created account correctly returns 409 USERNAME_TAKEN (per AC-03/AC-05) and the assertion fails; the file is read-only for this task (write attempt returns 'Path is not writable'), and making register return 201 would violate AC-03. This is a test-authoring bug that requires a QA/TEST fix (the parallel test/ac-12-13-token-tamper-truncate.test.js already tolerates 201 or 409).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "slice-deploy-ui",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 2212604,
+      "output": 96767
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-deploy-ui": 1
+    }
+  }
+}

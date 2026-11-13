@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T17:30:10.128Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "6ee7943d-d8b8-4a63-a5d2-c2f077cf6d7b",
+      "workflowIds": [
+        "6ee7943d-d8b8-4a63-a5d2-c2f077cf6d7b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "READY": 2,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 142989,
+        "output": 16733
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 882839,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Authored test/persist.test.mjs: 9 AC-numbered unit tests for the FR1 persistence primitives in src/persist.mjs, one temp directory per test (mkdtemp under os.tmpdir) cleaned up via t.after. Coverage: [AC-01] loadData missing file returns exactly { items: [], nextId: 1 }; [AC-02] truncated and non-JSON content return the exact fallback; [AC-03] structurally invalid payloads (non-object number/string/null/array, items not array, nextId not number, nextId 0) return the exact fallback without throwing; [AC-04] valid content returns the exact persisted items and nextId; [AC-05] saveData creates a missing nested parent directory a/b/c; [AC-06] successful save leaves only the target file with no *.tmp and complete parseable JSON; [AC-07] a second saveData replaces the previous contents; [AC-08] saveData rejects with a real fs error code for an unwritable path; [AC-09] temp dirs are isolated under the OS temp root. Red phase was demonstrated without modifying product code by running the same AC tests against the original pre-implementation placeholder (loadData/saveData throwing '尚未实现') in an isolated scratch module: that run failed 9/9 (originally 8/9, because the first AC-08 only asserted some rejection and passed even on the placeholder; I strengthened it to require a real fs error code, after which AC-08 fails on the placeholder too). Against the real implementation the 9 FR1 tests pass and the whole repo suite is 17 pass / 0 fail, lint exits 0. All scratch red-phase files were removed; git status shows only test/persist.test.mjs from this task plus the pre-existing dependency-task diffs to src/persist.mjs and src/store.mjs, which I did not touch. No product code was changed."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 142989,
+      "output": 16733
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

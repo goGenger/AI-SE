@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-10-21T18:20:31.545Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "1a5b04ce-b34d-46da-aac0-0687f99a552e",
+      "workflowIds": [
+        "1a5b04ce-b34d-46da-aac0-0687f99a552e",
+        "77f93e16-bb5d-4c2d-8b65-be436dff1c2f",
+        "43c41623-eb23-437a-9378-62a6fc8eb33a",
+        "3f5c0f0f-9821-412d-b6f4-7fd45e173ca2",
+        "3e8785a3-8081-48a3-af74-5c843224c1a6"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 56,
+      "runCount": 56,
+      "taskStatuses": {
+        "SUCCESS": 53,
+        "FAILED": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 69405851,
+        "output": 856782
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 12080145,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 1,
+        "LLM_ERROR": 1,
+        "EMPTY_FINAL_ANSWER": 1
+      },
+      "failureSummary": "Read-only review of the persistence and password-storage implementation (src/config/data-dir.mjs, src/storage/json-store.mjs, src/security/password.mjs, src/password-hasher.mjs, src/server.mjs, test/ac-04-persistence.test.mjs). Verified: DATA_DIR is resolved once (env value, default ./data, absolute) with mkdir -p; db.json is the single data file; writes go to a dot-prefixed sibling temp file (mode 0600, fsync attempted) then fs.rename, serialised per file path so concurrent saves cannot interleave and reload after restart recovers the same data; the password module uses scrypt with a fresh 16-byte salt per password, a self-describing scrypt$v1$N=..,r=..,p=..,k=..$salt$hash descriptor, canonical base64url validation, length-equality guard before crypto.timingSafeEqual, fail-closed false on malformed input, zeroed buffers, and error strings that contain no secret or hash; server logging is single-line JSON on stdout with only data dir path, file path and record counts, and error responses return a generic message without echoing credentials. However the AC-04 suite is still red: npm test (node --test) reports 3 tests, 0 passed, 3 failed, all failing at store-module discovery ('store module is missing; expected one of: src/store.mjs, ...'). The repository contains src/storage/json-store.mjs but no src/store.mjs facade with insertUser/getUserById/listUsers, so no persisted-user write path exists and AC-04 cannot pass. npm run lint (20 checks) and npm run typecheck (16 checks) pass. Because the required fix is new backend product code under src/, the reviewer did not modify any file (reviewers are read-only); this needs a BACKEND task.",
+      "chainCompleted": true,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-5-ui-deploy",
+      "taskVerificationDivergence": 16,
+      "verificationFailureCodes": {
+        "CHECK_TIMEOUT": 11
+      },
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 3,
+        "llmRepairRounds": 2,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": true
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 69405851,
+      "output": 856782
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 1,
+      "LLM_ERROR": 1,
+      "EMPTY_FINAL_ANSWER": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 16,
+    "verificationFailureCodes": {
+      "CHECK_TIMEOUT": 11
+    },
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 3,
+      "llmRepairRounds": 2,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-5-ui-deploy": 1
+    },
+    "stagingDeliveryRate": 1
+  }
+}

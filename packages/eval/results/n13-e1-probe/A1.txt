@@ -1,0 +1,260 @@
+TAP version 13
+1..0
+# Subtest: src/tests/auth-username-anchor.test.mjs
+ok 1 - src/tests/auth-username-anchor.test.mjs
+  ---
+  duration_ms: 89.41825
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/auth-validation.test.mjs
+ok 2 - src/tests/auth-validation.test.mjs
+  ---
+  duration_ms: 396.041875
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/baseline.test.mjs
+ok 3 - src/tests/baseline.test.mjs
+  ---
+  duration_ms: 428.601708
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/engineering-contract.test.mjs
+ok 4 - src/tests/engineering-contract.test.mjs
+  ---
+  duration_ms: 411.657166
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+ok 5 - [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 106.904834
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+ok 6 - [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 2.0985
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+ok 7 - [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 1.251958
+  type: 'test'
+  ...
+# Subtest: [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+ok 8 - [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+  ---
+  duration_ms: 8.697125
+  type: 'test'
+  ...
+# Subtest: [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+ok 9 - [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+  ---
+  duration_ms: 2.000375
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+ok 10 - [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+  ---
+  duration_ms: 54.907416
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+ok 11 - [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+  ---
+  duration_ms: 14.404583
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# Subtest: [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+ok 12 - [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+  ---
+  duration_ms: 4.824292
+  type: 'test'
+  ...
+# [taskboard] HEAD /healthz
+# [taskboard] HEAD /health
+# [taskboard] HEAD /ready
+# Subtest: [AC-01] HEAD probes answer 200 with the JSON headers and no body
+ok 13 - [AC-01] HEAD probes answer 200 with the JSON headers and no body
+  ---
+  duration_ms: 4.13375
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+ok 14 - [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+  ---
+  duration_ms: 44.302292
+  type: 'test'
+  ...
+# Subtest: [AC-01] the router exemption list contains exactly the health paths plus the home page
+ok 15 - [AC-01] the router exemption list contains exactly the health paths plus the home page
+  ---
+  duration_ms: 0.205625
+  type: 'test'
+  ...
+# Subtest: [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+ok 16 - [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+  ---
+  duration_ms: 0.080583
+  type: 'test'
+  ...
+# Subtest: src/tests/login-contract.test.mjs
+not ok 8 - src/tests/login-contract.test.mjs
+  ---
+  duration_ms: 100006.625542
+  type: 'test'
+  location: '/private/tmp/n13-e1/run/src/tests/login-contract.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 100000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: src/tests/register-concurrency.test.mjs
+not ok 9 - src/tests/register-concurrency.test.mjs
+  ---
+  duration_ms: 100006.845583
+  type: 'test'
+  location: '/private/tmp/n13-e1/run/src/tests/register-concurrency.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 100000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: src/tests/register-contract.test.mjs
+not ok 10 - src/tests/register-contract.test.mjs
+  ---
+  duration_ms: 100004.337708
+  type: 'test'
+  location: '/private/tmp/n13-e1/run/src/tests/register-contract.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 100000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..0
+# Subtest: src/tests/selfcheck-exit-semantics.test.mjs
+ok 11 - src/tests/selfcheck-exit-semantics.test.mjs
+  ---
+  duration_ms: 61.643959
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/server-bootstrap.test.mjs
+ok 12 - src/tests/server-bootstrap.test.mjs
+  ---
+  duration_ms: 57.519084
+  type: 'test'
+  ...
+# Subtest: src/tests/token-integrity.test.mjs
+not ok 13 - src/tests/token-integrity.test.mjs
+  ---
+  duration_ms: 100002.808292
+  type: 'test'
+  location: '/private/tmp/n13-e1/run/src/tests/token-integrity.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 100000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..0
+# Subtest: src/tests/token-issuance-guards.test.mjs
+ok 14 - src/tests/token-issuance-guards.test.mjs
+  ---
+  duration_ms: 60.336458
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/token-service.test.mjs
+ok 15 - src/tests/token-service.test.mjs
+  ---
+  duration_ms: 58.777917
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/user-store.test.mjs
+ok 16 - src/tests/user-store.test.mjs
+  ---
+  duration_ms: 60.64275
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the contract plan lists the five frozen-lockfile steps in the documented order
+ok 26 - [FR-9.7][AC-1] the contract plan lists the five frozen-lockfile steps in the documented order
+  ---
+  duration_ms: 3.814083
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] runContract executes every step in order and reports exit code 0 when all succeed
+ok 27 - [FR-9.7][AC-1] runContract executes every step in order and reports exit code 0 when all succeed
+  ---
+  duration_ms: 3.78275
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything
+ok 28 - [FR-9.7][AC-1] the CLI --list flag prints the ordered plan without executing anything
+  ---
+  duration_ms: 52.100709
+  type: 'test'
+  ...
+# Subtest: [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile
+ok 29 - [FR-9.7][AC-1] the CLI runs the real five-step contract here and exits 0 with a frozen lockfile
+  ---
+  duration_ms: 822.872084
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 25
+# fail 0
+# cancelled 4
+# skipped 0
+# todo 0
+# duration_ms 100434.587166

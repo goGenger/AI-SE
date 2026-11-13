@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:06:42.347Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "9c71c6a0-7201-49ce-8e4b-58e5dc8ac609",
+      "workflowIds": [
+        "9c71c6a0-7201-49ce-8e4b-58e5dc8ac609"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 7,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 45547,
+        "output": 8005
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 264522,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented the slice-1 basic logic for parseCsvLine in src/csv.mjs as a named ES-module export. The function body is a single return expression: typeof line === \\\"string\\\" ? line.split(\\\",\\\") : []. Non-string inputs (null, undefined, 123, true, {}) return [] without throwing; string inputs are split on comma with fields passed through verbatim, so leading/trailing whitespace is preserved (no trim) and consecutive commas yield empty-string fields. No quote parsing, escape handling, trim calls, helpers, or new dependencies were added. Only the backend file src/csv.mjs was modified, preserving the API contract (single parameter line, named export, string[] return)."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 45547,
+      "output": 8005
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

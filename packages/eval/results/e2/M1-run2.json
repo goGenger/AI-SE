@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:15:28.675Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "dd1dc85d-fadd-4fc6-b1c3-b83801b17dce",
+      "workflowIds": [
+        "dd1dc85d-fadd-4fc6-b1c3-b83801b17dce"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 3,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 75124,
+        "output": 6570
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 474108,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "TEST task complete. test/store.test.mjs holds 6 AC-numbered tests naming their criteria: [AC-01] update title-only, [AC-02] update done-only, [AC-03] update both fields -- each asserting only the provided fields changed and that the returned object equals the full updated todo; [AC-04] update with a nonexistent id (doesNotThrow, result null); [AC-05] remove existing id (doesNotThrow, get returns null and list omits the item); [AC-06] remove nonexistent id (doesNotThrow, store unchanged). Existing test/app.test.mjs assertions were not touched, no test framework or dependency was added, and src/store.mjs (T1 product code) was not modified by me. Red-first was demonstrated by running the real test/store.test.mjs against the un-implemented HEAD store (throwing placeholders) and observing pass 0 / fail 6 with errors 'update not implemented' and 'remove not implemented'; the implementation was then restored byte-identical (md5 2d8ece7d2c2145ba5864ec7208b35c48 before and after). Green run: npm test -> tests 8, pass 8, fail 0, errors 0 (2 pre-existing app tests plus the 6 new AC tests). npm run lint exit 0 and npm run build exit 0 (both node --check on app.mjs/store.mjs/serve.mjs). The literal acceptance commands pnpm test / pnpm lint / pnpm build cannot run in this sandbox because pnpm is not installed (sh: pnpm: not found, exit 127); the same package.json script bodies executed via npm all pass, so there is no code regression. This environmental gap is the only unmet literal item; fixTaskType is INFRA."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 75124,
+      "output": 6570
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# D-4 证据：E1 绑仓 + 部署环境 + 引导脚本 + 看护项复核（2026-10-07）
+
+## 演练仓库（夹具零改动）
+- 种子源：`packages/eval/fixtures/E1/reference/`（副本，非改动）——夹具目录 114 文件，`package.json` mtime `Sep 29 20:16:42 2026`（副本前快照）。
+- bare：`/Users/shixianbao/Desktop/study/ai-se-eval/repos/e1-taskboard.git`
+- 工作克隆：`/Users/shixianbao/Desktop/study/ai-se-eval/repos/e1-taskboard-workspace`
+- 首次提交：`420731e0ef5a33803d14686a10b8e102f30e9f32`（"seed: e1 reference"，作者 AI-SE Drill）；`origin = file:///…/e1-taskboard.git`（fetch/push 均配）。
+
+## 绑仓（API）
+- `PUT /api/projects/f72e8999-…/repository` → `{"repository":"file:///Users/shixianbao/Desktop/study/ai-se-eval/repos/e1-taskboard.git"}` → 200，project.repository 已更新（updatedAt 2026-10-07T04:56:04Z）。
+
+## 部署环境（API，端口 18080/18081 事前确认空闲）
+- staging：id `945babdd-7ab7-43c1-83d4-1f099df01983`，endpoint `http://127.0.0.1:18080`，configuration `{containerName:"ai-se-e1-staging", hostPort:18080, containerPort:3000}`。
+- production：id `c21ea957-85ae-444e-a786-885d88a9136c`，endpoint `http://127.0.0.1:18081`，configuration `{containerName:"ai-se-e1-production", hostPort:18081, containerPort:3000}`。
+
+## 演练引导脚本（落点偏差记录）
+- 任务书预计落点 `packages/eval/scripts/e1-delivery-drill.ts`；实测 **eval 包无 workspace 依赖、无法解析 `@ai-se/database`**（probe: `ERR_MODULE_NOT_FOUND`）→ 落点调整为 **`apps/server/scripts/e1-delivery-drill.ts`**（server 具备全部依赖；不改 eval 包依赖树）。ASCII 净、`status/seed/run1/run2` 四命令可用。
+- 播种结果：requirement `616bca59-272c-4cf0-b38d-b752c03027b6`（"Delivery drill (D-4/N6)"）；plan v1 = 4 任务（CI → DEPLOY-STAGING → VERIFY-STAGING → DEPLOY-PRODUCTION）；plan v2 = 2 任务（CI → DEPLOY-STAGING）。
+
+## 受控实例（D 代码）
+- 47557 重启：pid **50798**（旧 33162 已 kill）；启动命令 `PORT=47557 PLANNING_MODE=two-level SUBMIT_RESULT_MODE=tool`（`VERIFICATION_GATE` 缺省 off）；日志 `/tmp/d-server-47557.log`；`/health` 200、`/ready` db+redis ok。
+
+## 看护项复核（docs/115 §B-1 转记）
+- 服务进程 PATH 含 node v22.22.2 与可解析 pnpm：`which pnpm → /Users/shixianbao/.nvm/versions/node/v22.22.2/bin/pnpm`，`pnpm --version → 12.3.4`（以服务进程实际 PATH 探测）。
+- 宿主机六步链复跑（同一 PATH）：git rev-parse `420731e…` → `pnpm install --frozen-lockfile` → `lint` → `typecheck` → `test`（28/28 通过）→ `build`（check ok）→ `docker build`（sha256:4455f649112ad4695a720dea2c4376b000141d4cd0695b6ecfaf82e568f5eb7e）→ **SIX_STEPS_OK**。
+- 备注：rehearsal 镜像 `ai-se-e1-drill-rehearsal` 待收尾统一清理。

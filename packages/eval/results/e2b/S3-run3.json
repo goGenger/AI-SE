@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:12:38.720Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "2cfec506-1514-466d-962d-0b12a573ae7b",
+      "workflowIds": [
+        "2cfec506-1514-466d-962d-0b12a573ae7b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 7,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 50362,
+        "output": 8515
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 234139,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Slice-1 parseCsvLine is implemented in src/csv.mjs exactly as designed: a named ES module export that returns [] immediately when typeof line !== 'string' (no throw for null, undefined, 123, true, {}), otherwise returns line.split(','), preserving each field's leading/trailing whitespace and producing empty-string fields for consecutive or trailing commas. No quote parsing, escaping, trim, or new dependencies were added, honoring the slice scope. Build (node --check src/csv.mjs) and lint both exit 0. All slice-1 acceptance criteria verifiably pass. The full suite shows 1 pass / 2 fail; both failures are explicitly out-of-scope for slice-1 (quoted-field parsing FR-2 and empty-line guard FR-4), previously documented as known risks by design task T2 and deferred to their dedicated slices, so no in-scope work remains."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 50362,
+      "output": 8515
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-10-19T03:21:02.053Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "bf51cf12-112a-43b9-9186-3f8f4f0fc9b2",
+      "workflowIds": [
+        "bf51cf12-112a-43b9-9186-3f8f4f0fc9b2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 24,
+      "runCount": 16,
+      "taskStatuses": {
+        "FAILED": 7,
+        "PENDING": 6,
+        "SUCCESS": 9,
+        "READY": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 13108221,
+        "output": 259263
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 4090348,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 7
+      },
+      "failureSummary": "Implemented the HTTP server, configuration bootstrap, shared JSON/error-envelope helpers, method+path router, and health endpoints as requested, wiring them into src/server.js while preserving the existing register-slice API contract and behavior. New modules: src/config.mjs (PORT default 3000 with range validation, DATA_DIR default ./data with blank/NUL rejection, ensureDataDir creates the directory on startup via recursive mkdir, loadConfig/ensureDataDir/bootstrap exports), src/http/responses.mjs (JSON_CONTENT_TYPE application/json, sendJson, errorEnvelope {error:{code,message}}, sendError, sendNoContent), src/http/router.mjs (createRouter with per-method route table, static literal matching plus ':param' support, decoded params, json 404 NOT_FOUND on unmatched method/path), src/health.mjs (HEALTH_PATHS /healthz,/health,/ready, isHealthPath, healthPayload, handleHealth returning 200 {\"status\":\"ok\"} with no auth and no DATA_DIR dependency), and src/server.js (createServer/getConfig/startServer, main-module guard, stdout-only startup log, no third-party dependencies). Zero new dependencies; all logging stays on stdout. Verification: node --test -> 42 tests, 35 passed, 7 failed, 0 errors; the 3 [AC-01] health tests all pass (exit codes and exact-body assertions validated via the spawned-server helper using temp DATA_DIR and random PORT). The 7 failures are [AC-04] persistence and [AC-06] concurrency tests owned by not-yet-implemented slices; npm run lint passed (17 modules scanned). npm run build fails inside another slice's script, not in these modules: it tries to read /workspace/workspace/src/server.js (double workspace prefix), which is outside my allowed file set.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1",
+      "taskVerificationDivergence": 7,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 7,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 13108221,
+      "output": 259263
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 7
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 7,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 7,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

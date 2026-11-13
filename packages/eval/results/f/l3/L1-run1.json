@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-10-12T03:56:12.013Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "d95cf7c5-70b9-437a-a176-0b277ce5a624",
+      "workflowIds": [
+        "d95cf7c5-70b9-437a-a176-0b277ce5a624"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 14,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 7
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 242370,
+        "output": 13411
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 559474,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented escapeHtml and escapeAttribute in src/render.mjs per AC-05, together with the render-page helpers they support (renderInline, renderMarkdownLite, renderPage), since every AC-05 test exercises the escaping through renderPage. escapeHtml coerces non-string input at the trust boundary and replaces & first, then < > \\\" and ' with &amp; &lt; &gt; &quot; &#39;, using only String.prototype.replace with regex-escaped literals (no third-party dependency). escapeAttribute applies the same ampersand-first escaping to URL values so a URL cannot break out of a double-quoted href attribute. renderPage preserves the documented API contract (single page object, returns a complete HTML document string; escapeHtml, escapeAttribute, renderPage are named exports) and safely handles null/non-object page and null/non-string title/body. Only the backend file src/render.mjs was changed; no test files were touched. Verified: node --test test/render.ac05.test.mjs reports 7 tests, 7 passed, 0 failed, 0 errors (all T-05 AC-05 tests green); npm run build and npm run lint both exit 0. The full npm run test reports 31 tests, 29 passed, 2 failed, 0 errors. The two residual failures are outside this backend slice: (1) test/build.test.mjs still fails because buildSite in src/build.mjs remains an unimplemented stub owned by a separate task; (2) one assertion in the T-06 combined test test/render.combined.test.mjs line 164 is mutually unsatisfiable with line 157 of the same test and cannot be made green by any spec-compliant escapeAttribute, so it requires a QA-side test fix.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "render-page",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 242370,
+      "output": 13411
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "render-page": 1
+    }
+  }
+}

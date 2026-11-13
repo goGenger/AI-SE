@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-10-20T16:30:09.554Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "8b4f3640-a3df-430b-91ac-6cffc18cc8d1",
+      "workflowIds": [
+        "8b4f3640-a3df-430b-91ac-6cffc18cc8d1",
+        "4da40ec1-4f88-4bbb-ab8e-14a990dfa27a",
+        "c2a3bf91-5552-4012-b411-bee085ac314d",
+        "ce294d85-d156-4a53-9baf-a98d55e5eb68"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 52,
+      "runCount": 51,
+      "taskStatuses": {
+        "SUCCESS": 46,
+        "FAILED": 5,
+        "WAITING_APPROVAL": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 71374431,
+        "output": 853834
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 6191154,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented the scrypt password hashing unit at src/auth/passwords.mjs (new backend file). hashPassword(password) derives a 64-byte key with node:crypto scrypt (N=16384, r=8, p=1, maxmem bounded), a fresh 16-byte cryptographically random per-user salt from crypto.randomBytes, and returns a frozen record containing exactly {algorithm, salt, hash} with base64url fields and a self-describing algorithm identifier (scrypt:N=16384,r=8,p=1), so cost parameters can be raised later without invalidating stored records. serializeCredential/parseCredential provide the single-string storage form algorithm|salt|hash with strict base64url and parameter validation; verifyPassword uses crypto.timingSafeEqual, returns false (never throws) for wrong, empty, non-string or oversized passwords so a login handler can answer INVALID_CREDENTIALS, and throws a fixed-message PasswordHashError (no secret values, no cause) only for corrupt stored records. Inputs are validated at the trust boundary: password must be a UTF-8 string of 1-1024 bytes, salt 8-64 bytes, key 16-128 bytes, algorithm parameters must be a power-of-two cost within memory limits, and non-canonical base64url is rejected. The module performs no console output and stores, returns or logs no plaintext password or plaintext-derived value; its returned record is the only persistable shape. Added src/test/password-hashing.test.mjs (5 new [AC-04] node:test cases) proving with an independent node:crypto scrypt derivation that the stored hash is the real scrypt output for the stored salt, that salts differ per hash, that records contain only algorithm/salt/hash, serialization round-trips, corrupt records and tampered hashes are rejected without echoing secrets, and no console output occurs. Also added the module to the typecheck self-check's expected-exports contract in src/tools/typecheck.mjs. Verification: node --test src/test/password-hashing.test.mjs 5/5 pass; npm run lint, typecheck (8 modules) and build exit 0. The full node --test run is 30 pass / 19 fail, where all 19 failures are the pre-existing registration suites (AC-02/03/05/06/07/08 and the e2e AC-04 persistence cases) failing with HTTP 404 NOT_FOUND because POST /api/register is not implemented yet; that endpoint and the user store are outside this task's scope and none of those read-only test files were modified. No existing assertion was weakened, relaxed or deleted.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-runtime-deployment-docs",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "FAILED",
+        "deploy": "FAILED",
+        "verify": "FAILED",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 71374431,
+      "output": 853834
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-runtime-deployment-docs": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,88 @@
+=== N-8 PROBE (part 2): where does the usage blow-up come from? ===
+node 22.22.2   per-call usage: input=1000 output=200
+
+--- scenario A: the real AgentRunner / AgentGraph outer loop ---
+
+A maxIterations=50
+ rnd  inMsgs  inUsg  inUsgInputTokens   calls       returnedInputTokens   agentIt  toolCalls
+   1       2       0                 0       2                  1000       2  submit_result
+   2       4       1              1000       2                  2000       3  submit_result
+   3       6       2              3000       2                  4000       4  submit_result
+   4       8       3              7000       2                  8000       5  submit_result
+   5      10       4             15000       2                 16000       6  submit_result
+   6      12       5             31000       2                 32000       7  submit_result
+   7      14       6             63000       2                 64000       8  submit_result
+   8      16       7            127000       2                128000       9  submit_result
+   9      18       8            255000       2                256000      10  submit_result
+  10      20       9            511000       2                512000      11  submit_result
+  11      22      10           1023000       2               1024000      12  submit_result
+  12      24      11           2047000       2               2048000      13  submit_result
+  13      26      12           4095000       2               4096000      14  submit_result
+  14      28      13           8191000       2               8192000      15  submit_result
+  15      30      14          16383000       2              16384000      16  submit_result
+  16      32      15          32767000       2              32768000      17  submit_result
+  17      34      16          65535000       2              65536000      18  submit_result
+  18      36      17         131071000       2             131072000      19  submit_result
+  19      38      18         262143000       2             262144000      20  submit_result
+  20      40      19         524287000       2             524288000      21  submit_result
+  21      42      20        1048575000       2            1048576000      22  submit_result
+  22      44      21        2097151000       2            2097152000      23  submit_result
+  23      46      22        4194303000       2            4194304000      24  submit_result
+  24      48      23        8388607000       2            8388608000      25  submit_result
+  25      50      24       16777215000       2           16777216000      26  submit_result
+  26      52      25       33554431000       2           33554432000      27  submit_result
+  27      54      26       67108863000       2           67108864000      28  submit_result
+  28      56      27      134217727000       2          134217728000      29  submit_result
+  29      58      28      268435455000       2          268435456000      30  submit_result
+  30      60      29      536870911000       2          536870912000      31  submit_result
+  31      62      30     1073741823000       2         1073741824000      32  submit_result
+  32      64      31     2147483647000       2         2147483648000      33  submit_result
+  33      66      32     4294967295000       2         4294967296000      34  submit_result
+  34      68      33     8589934591000       2         8589934592000      35  submit_result
+  35      70      34    17179869183000       2        17179869184000      36  submit_result
+  36      72      35    34359738367000       2        34359738368000      37  submit_result
+  37      74      36    68719476735000       2        68719476736000      38  submit_result
+  38      76      37   137438953471000       2       137438953472000      39  submit_result
+  39      78      38   274877906943000       2       274877906944000      40  submit_result
+  40      80      39   549755813887000       2       549755813888000      41  submit_result
+  41      82      40  1099511627775000       2      1099511627776000      42  submit_result
+  42      84      41  2199023255551000       2      2199023255552000      43  submit_result
+  43      86      42  4398046511103000       2      4398046511104000      44  submit_result
+  44      88      43  8796093022207000       2      8796093022208000      45  submit_result
+  45      90      44  17592186044415000       2     17592186044416000      46  submit_result
+  46      92      45  35184372088831000       2     35184372088832000      47  submit_result
+  47      94      46  70368744177663000       2     70368744177664000      48  submit_result
+  48      96      47  140737488355327000       2    140737488355328000      49  submit_result
+  49      98      48  281474976710655000       2    281474976710656000      50  submit_result
+  rounds=49  gatewayCalls=98  state.iteration trail=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+  run: status=failed code=TOOL_ERROR iterations=50 reportedInputTokens=562949953421311000 trueInputTokens=98000
+  reported / true = 5.744e+12
+
+--- scenario B: consecutive provider.invoke rounds (n=8) ---
+
+ rnd  inMsgs  inUsg  inUsgInputTokens   calls       returnedInputTokens   linearPred  compoundPred
+   1       2       0                 0       2                  1000         2000           2000
+   2       3       1              1000       2                  2000         2000           4000
+   3       4       2              3000       2                  4000         2000           6000
+   4       5       3              7000       2                  8000         2000           8000
+   5       6       4             15000       2                 16000         2000          10000
+   6       7       5             31000       2                 32000         2000          12000
+   7       8       6             63000       2                 64000         2000          14000
+   8       9       7            127000       2                128000         2000          16000
+  trueInputTokens (all gateway calls) = 16000
+
+--- scenario C: the inner deep agent's result message list (one round) ---
+  inputMessages=3  innerMessages=5  gatewayCalls=2
+ idx  class                 role        isAI  inputIndex  usageInputTokens
+   0  SystemMessage          system         no            0                  -
+   1  HumanMessage           human          no            1                  -
+   2  AIMessage              ai            yes            2              12345
+   3  AIMessage              ai            yes           -1               1000
+   4  ToolMessage            tool           no           -1                  -
+  AIMessages with usage=2  agentUsages sum=13345  echoed(count=1, sum=12345)  own(sum=1000)
+  finalMessage is one of the caller's messages: false
+
+--- VERDICT ---
+  scenario B per-round match: neither, linear, neither, compound, neither, neither, neither, neither
+  N8-MIXED/INCONCLUSIVE  rounds do not match either prediction cleanly; read the table.
+  scenario C: caller's messages echoed back by reference = true

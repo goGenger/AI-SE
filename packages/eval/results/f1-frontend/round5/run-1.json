@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-10-29T12:16:14.097Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "f25c0039-6c02-4642-a344-d32d8a7402b0",
+      "workflowIds": [
+        "f25c0039-6c02-4642-a344-d32d8a7402b0"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 16,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 13,
+        "FAILED": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 19226036,
+        "output": 379300
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 5541619,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 2,
+        "TIMEOUT": 1
+      },
+      "failureSummary": "Reviewed the TaskBoard deliverable against the PRD testid table, data-done contract, network/script contract and the AC-01..AC-24 test coverage. Gates re-run by me all exit 0: pnpm lint (20 source files, no problems), pnpm typecheck (vue-tsc --noEmit), pnpm test (7 files / 36 tests / 36 passed / 0 failed / 0 errors), pnpm build (33 modules, dist/). pnpm start was launched after the build and bound exactly to http://127.0.0.1:4173/ via 'vite preview --host 127.0.0.1 --strictPort --port ${PORT:-4173}' (process stayed up until the tool timeout). pnpm install --frozen-lockfile and a curl of / could not be executed because the sandbox tools enforce a script-only policy (run_command is not exposed to me), so those two checks are static only: pnpm-lock.yaml is committed and every dependency is pinned to an exact version. testid audit: 21 of the 22 PRD table rows are implemented with exact literal data-testid values and no binding/dynamic form (:data-testid never occurs; the lint scan rejects braces); data-done on task-item is bound only as task.done ? 'true' : 'false' and completion is not expressed by text or CSS class. One PRD row is NOT implemented: the new-task dialog title input carries no data-testid at all (only class/id/aria-label), even though the PRD table has a dedicated row for it and the lint allow-list already holds a third canonical entry. AC-07/AC-08/AC-10 type into that field and the platform UI boundary only matches data-testid=\"...\", so the hidden browser oracle cannot target it; the read-only unit spec hides the gap with a dialog.find(\"input, textarea\") fallback. Network audit clean: the only fetch calls live in src/api/tasks.ts and every URL is built from import.meta.env.VITE_API_BASE; no /__mock/ in src (only mock-server.mjs itself), no hardcoded host:port in src, no CDN/remote font/tracking (index.html has no external link, style.css uses a system-ui font stack), mock-server.mjs untouched, no server-side code added. Test hygiene: no .skip and no .only anywhere in tests/, and every Must AC (AC-01..AC-20) plus the Should ACs (AC-21..AC-24) has at least one AC-numbered test, all passing. AC-22/AC-23/AC-24 evidence is jsdom + stylesheet analysis only (no layout engine), which is acceptable for Should criteria but not a real-browser proof. Because one hard PRD contract row (the dialog title input testid) is still unimplemented, the change does not fully satisfy the review criteria and the remaining fix belongs in frontend component code.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 3
+      },
+      "planningMetrics": {
+        "autoFixRounds": 4,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 19226036,
+      "output": 379300
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 2,
+      "TIMEOUT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 3
+    },
+    "planningRepair": {
+      "autoFixRounds": 4,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

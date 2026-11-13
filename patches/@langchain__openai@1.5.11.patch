@@ -1,0 +1,38 @@
+diff --git a/dist/converters/completions.cjs b/dist/converters/completions.cjs
+index b0a8f7ce127653f50576c47148904741ff3ea840..162dc47d42d8c2cee957b999ba0374358d4b699a 100644
+--- a/dist/converters/completions.cjs
++++ b/dist/converters/completions.cjs
+@@ -585,11 +585,14 @@ const convertMessagesToCompletionsMessageParams = ({ messages, model }) => {
+ 		};
+ 		if (message.name != null) completionParam.name = message.name;
+ 		if (message.additional_kwargs.function_call != null) completionParam.function_call = message.additional_kwargs.function_call;
++		if (typeof message.additional_kwargs.reasoning_content === "string" && message.additional_kwargs.reasoning_content.length > 0 && completionParam.role === "assistant") completionParam.reasoning_content = message.additional_kwargs.reasoning_content;
+ 		if (_langchain_core_messages.AIMessage.isInstance(message) && !!message.tool_calls?.length) completionParam.tool_calls = message.tool_calls.map(_langchain_core_output_parsers_openai_tools.convertLangChainToolCallToOpenAI);
+ 		else {
+ 			if (message.additional_kwargs.tool_calls != null) completionParam.tool_calls = message.additional_kwargs.tool_calls;
+ 			if (_langchain_core_messages.ToolMessage.isInstance(message) && message.tool_call_id != null) completionParam.tool_call_id = message.tool_call_id;
+ 		}
++		if (completionParam.role === "assistant" && Array.isArray(completionParam.tool_calls) && completionParam.tool_calls.length > 0 && typeof completionParam.reasoning_content !== "string") completionParam.reasoning_content = "";
++		if (completionParam.role === "tool" && typeof completionParam.content !== "string") completionParam.content = Array.isArray(completionParam.content) && completionParam.content.every((block) => block && block.type === "text" && typeof block.text === "string") ? completionParam.content.map((block) => block.text).join("\n") : JSON.stringify(completionParam.content);
+ 		if (message.additional_kwargs.audio && typeof message.additional_kwargs.audio === "object" && "id" in message.additional_kwargs.audio) return [completionParam, {
+ 			role: "assistant",
+ 			audio: { id: message.additional_kwargs.audio.id }
+diff --git a/dist/converters/completions.js b/dist/converters/completions.js
+index e6ff3b9ca6f3a0ae8cba25f8e8b8e952327ad48b..4b355de75a0f1025ba45e37e61fc19b4dea78dc8 100644
+--- a/dist/converters/completions.js
++++ b/dist/converters/completions.js
+@@ -585,11 +585,14 @@ const convertMessagesToCompletionsMessageParams = ({ messages, model }) => {
+ 		};
+ 		if (message.name != null) completionParam.name = message.name;
+ 		if (message.additional_kwargs.function_call != null) completionParam.function_call = message.additional_kwargs.function_call;
++		if (typeof message.additional_kwargs.reasoning_content === "string" && message.additional_kwargs.reasoning_content.length > 0 && completionParam.role === "assistant") completionParam.reasoning_content = message.additional_kwargs.reasoning_content;
+ 		if (AIMessage.isInstance(message) && !!message.tool_calls?.length) completionParam.tool_calls = message.tool_calls.map(convertLangChainToolCallToOpenAI);
+ 		else {
+ 			if (message.additional_kwargs.tool_calls != null) completionParam.tool_calls = message.additional_kwargs.tool_calls;
+ 			if (ToolMessage.isInstance(message) && message.tool_call_id != null) completionParam.tool_call_id = message.tool_call_id;
+ 		}
++		if (completionParam.role === "assistant" && Array.isArray(completionParam.tool_calls) && completionParam.tool_calls.length > 0 && typeof completionParam.reasoning_content !== "string") completionParam.reasoning_content = "";
++		if (completionParam.role === "tool" && typeof completionParam.content !== "string") completionParam.content = Array.isArray(completionParam.content) && completionParam.content.every((block) => block && block.type === "text" && typeof block.text === "string") ? completionParam.content.map((block) => block.text).join("\n") : JSON.stringify(completionParam.content);
+ 		if (message.additional_kwargs.audio && typeof message.additional_kwargs.audio === "object" && "id" in message.additional_kwargs.audio) return [completionParam, {
+ 			role: "assistant",
+ 			audio: { id: message.additional_kwargs.audio.id }

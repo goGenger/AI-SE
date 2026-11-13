@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-28T09:17:16.303Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "5f95f003-5fde-4252-9842-7d05245db3ba",
+      "workflowIds": [
+        "5f95f003-5fde-4252-9842-7d05245db3ba",
+        "e2bb1ae6-7fb2-4641-af26-7caa63f995db"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 28,
+      "runCount": 26,
+      "taskStatuses": {
+        "SUCCESS": 21,
+        "FAILED": 4,
+        "RUNNING": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 28751849,
+        "output": 529448
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1687950,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3,
+        "TOOL_ERROR": 1
+      },
+      "failureSummary": "Implemented the FR-2 create-task slice in frontend files only, wiring the dialog, the composable and the API client together; all four issue states (loading/list, empty, error, success) plus the create-task states were exercised by tests. Changes: (1) src/composables/useTasks.ts gained the createTask slice — trims the title (blank never reaches the network, AC-07), guards against double submit, flips saving=true for the whole POST (AC-10), appends the task returned by the 201 (AC-08), and captures 500/network failures into saveError instead of rejecting (AC-09, AC-20). (2) src/api/tasks.ts createTask documented and hardened: it posts {title} to VITE_API_BASE/api/tasks and now also rejects when the 201 body has no task object. (3) New src/components/NewTaskDialogView.ts owns the dialog markup and the exact PRD test ids (new-task-dialog, ta[REDACTED], form-error, save-task-button with disabled while saving, cancel-task-button); new src/components/NewTaskDialog.vue is the SFC form of the dialog (v-model:title, formError, saving, save/cancel events) wrapping that same implementation. (4) src/TaskBoard.ts now uses useTasks().createTask and renders the shared dialog view; save() trims then validates (form-error, zero POST), closes and clears only after a 201, and keeps the dialog open with the typed title preserved on failure. Deliverable-path notes: src/App.vue was intentionally NOT modified — it already mounts the shell that owns this flow (test/app-entry.spec.ts requires exactly one TaskBoard occurrence in App.vue), and adding a second copy of the dialog test ids there would break the single-match expectations of the acceptance oracle; the App->TaskBoard integration point is therefore unchanged but verified. Also, src/TaskBoard.ts renders NewTaskDialogView.ts rather than importing NewTaskDialog.vue, because vitest.config.ts (outside my writable paths) does not invoke the Vue SFC plugin, so a .vue import from TaskBoard would make the existing read-only specs fail to transform; the SFC is type-checked by vue-tsc and shares the identical component, so no test id or behaviour is duplicated or lost. Verification: npm run test = 14 files / 97 tests passed (84 pre-existing untouched, 13 new), npm run typecheck exit 0, npm run build exit 0. No existing test assertion was weakened, relaxed or deleted; no backend or mock-server change.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-create-task",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 5,
+        "llmRepairRounds": 2,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 28751849,
+      "output": 529448
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3,
+      "TOOL_ERROR": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 5,
+      "llmRepairRounds": 2,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-create-task": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

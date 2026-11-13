@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-10-23T05:58:28.924Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "7b9f6e53-8de2-4b99-b886-83082bfd0ad4",
+      "workflowIds": [
+        "7b9f6e53-8de2-4b99-b886-83082bfd0ad4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 11,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 3,
+        "PENDING": 8
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 1201269,
+        "output": 41050
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 397951,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Scaffolded the Node.js 22 zero-runtime-dependency pnpm project. Added package.json (empty dependencies/devDependencies, type module, engines node >=22, scripts start/test/lint/typecheck/build), a lockfileVersion 9.0 pnpm-lock.yaml with an empty importer for --frozen-lockfile support, src/config.js (PORT default 3000 with strict integer/range validation, DATA_DIR default ./data normalised to an absolute path, HOST default 0.0.0.0, loadConfig(env) for testability), src/logger.js (one line per record, info/debug to stdout, warn/error to stderr, secret redaction for password/token/authorization/cookie/signature patterns, no file writes, bounded depth/length, never throws), plus src/index.js (minimal Node stdlib HTTP entry so the start script is runnable and PORT/DATA_DIR are actually consumed) and src/scripts/check.js implementing the lightweight lint/typecheck/build self-checks. All gates pass locally: pnpm lint, pnpm typecheck, pnpm test (node --test, 0 failures) and pnpm build each exit 0. Note: the test/ directory is not writable in this workspace, so no test file could be added here; node --test with zero test files exits 0 in Node 22 (verified), so pnpm test is green, and the AC-numbered test suite is the follow-up TEST task.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-1-foundation",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 1201269,
+      "output": 41050
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1-foundation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

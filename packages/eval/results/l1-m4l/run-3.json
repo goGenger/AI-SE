@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-19T09:58:28.268Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "c169a177-658a-44f3-931b-db3c819ebe55",
+      "workflowIds": [
+        "c169a177-658a-44f3-931b-db3c819ebe55"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 10,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 3,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 5217840,
+        "output": 130118
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1266799,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Implemented the DATA_DIR runtime configuration and the JSON atomic persistence storage layer using only Node.js standard library (node:fs, node:fs/promises, node:path, node:crypto). Added src/schema.js as the declarative single source of truth for the persisted documents (users table columns id/username/usernameLower/passwordAlgorithm/passwordSalt/passwordHash/createdAt/updatedAt per the DATABASE spec, plus tasks columns), with whitelist-based record normalizers so unknown or plaintext fields can never reach disk, case-insensitive username keys, record builders that refuse to persist password material without algorithm+salt+hash, and username lookup/index helpers. Added src/migrations.js with an ordered append-only migration registry and migrateState(), which reads schemaVersion (defaulting to 0 for legacy documents), upgrades step by step, is idempotent at the current version, rejects documents written by a newer schema, and reports whether the file changed. Rewrote src/store.js as JsonStore: it resolves dataDir to an absolute path, creates DATA_DIR recursively, verifies it is a directory and read/write accessible, probes writability, cleans up stale temp files left by crashed writers, and loads the whole state from DATA_DIR/db.json on every start (missing file means empty state; corrupt JSON raises a clear error instead of silently discarding records; a migrated document is rewritten once atomically). Writes go to a unique same-directory temp file that is fsync'ed and then renamed over the target, with a serialized write chain so concurrent persists cannot interleave, and temp files are removed if the rename fails. Added durable insert/replace/remove helpers that roll back the in-memory change when the write fails. Extended src/config.js with ensureDataDir() (mkdir + stat + access + write probe) and wired it into src/index.js so startup fails fast with a clear message when DATA_DIR is unusable. DATA_DIR resolution is unchanged in behaviour: unset or blank means ./data relative to cwd, explicit values are resolved relative to cwd. Added database test files src/test/schema.test.js (schema columns, normalization, plaintext stripping, record builders, migration ordering, migration upgrade/idempotency/newer-version rejection) and extended src/test/store.test.js (AC-04 plaintext scan, DATA_DIR default/override/writability, restart reload on the same DATA_DIR, atomic write with no temp leftovers, serialized concurrent persists, stale temp cleanup, legacy file migration rewrite, corrupt file rejection, durable helpers, invalid dataDir). All 19 database test cases pass, pnpm run lint and pnpm run typecheck exit 0. The only remaining failures in the full suite are the two pre-existing QA [AC-04] HTTP tests in src/test/ac04-persistence.test.js, which require POST /api/register from the backend slice and are outside this task's file scope.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S2",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 5217840,
+      "output": 130118
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S2": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-07T17:13:23.873Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "74634612-173c-40bb-887d-ef070ab72966",
+      "workflowIds": [
+        "74634612-173c-40bb-887d-ef070ab72966"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 8,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "READY": 2,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 122451,
+        "output": 17815
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 814857,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added test/persist.test.mjs with 8 AC-numbered tests for the FR1 persistence primitives in src/persist.mjs. Each test uses its own isolated temp directory via mkdtemp and cleans up in t.after. Coverage: [AC-01] loadData on a missing file returns exactly { items: [], nextId: 1 }; [AC-02] loadData on truncated/invalid JSON returns the empty fallback and does not throw; [AC-03] loadData on structurally invalid payloads (number, string, null, array, items not an array, nextId not a number, nextId null) each returns exactly { items: [], nextId: 1 }; [AC-04] loadData returns the exact persisted items and nextId for valid content; [AC-05] saveData creates a missing nested parent directory (nested/deeper/data.json) and round-trips; [AC-06] saveData leaves no temp file behind (target dir contains only data.json); [AC-07] a second saveData replaces previous contents and loadData returns the new data; [AC-08] saveData propagates an error for an unwritable path and leaves no temp files. Every corruption case asserts the exact fallback { items: [], nextId: 1 }. I demonstrated the red state first using a scratch stub of the pre-implementation module (the placeholder throws \"loadData/saveData 尚未实现\"): tests in the red state were 8 run / 0 passed / 8 failed. The earlier AC-08 passed vacuously against the placeholder because assert.rejects accepted any thrown error, so I strengthened it to require a real filesystem error code (typeof error.code === string), after which all 8 tests failed in red. I then removed the scratch harness and ran the tests against the real implementation: test/persist.test.mjs is 8 passed, 0 failed, 0 errors; full npm test is 9 passed, 0 failed (includes the pre-existing app test); npm run lint and npm run build are clean. No product code was modified. fixTaskType: NONE."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 122451,
+      "output": 17815
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "generatedAt": "2026-10-16T19:37:05.522Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "dc47181d-1f99-47f7-a75e-9567de342c7e",
+      "workflowIds": [
+        "dc47181d-1f99-47f7-a75e-9567de342c7e",
+        "c601a002-278d-4858-aee1-ba335610b48a",
+        "24be60f8-7ae6-4eee-b3a3-8b75af9abfd8",
+        "370073af-71fe-4854-9da4-cb67d4f016c4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 58,
+      "runCount": 53,
+      "taskStatuses": {
+        "SUCCESS": 47,
+        "READY": 4,
+        "FAILED": 1,
+        "PENDING": 6
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 32295611,
+        "output": 692847
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 6000270,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "EMPTY_FINAL_ANSWER": 1
+      },
+      "failureSummary": "Delivered a complete, contract-correct container image definition (node:22-alpine; corepack + \"pnpm install --frozen-lockfile\"; COPY app; ENV DATA_DIR=/data; RUN mkdir -p /data && chown -R node:node /app /data; EXPOSE 3000; VOLUME [\"/data\"]; explicit non-root USER node (UID 1000); exec-form CMD [\"pnpm\",\"start\"] with no > or >> redirect) plus build/run/restart docs, and re-confirmed it byte-for-byte at backend/Dockerfile, server/Dockerfile, apps/server/Dockerfile. The task still cannot be completed as specified: the graded suites (test/container-contract.test.js, container-nonroot-contract.test.js, container-logs-contract.test.js, restart-persistence.test.js) resolve ROOT=/workspace and read /workspace/Dockerfile and /workspace/README.md, but this run's write policy rejects every repository-root deployment path. I verified this directly this run: write_file to /Dockerfile, /README.md, /.dockerignore, /docker/Dockerfile were each rejected with \"Path is not writable: ... (allowed: apps/server/, server/, backend/, src/, and project manifests/configs at the repository root (package.json, pnpm-lock.yaml, tsconfig*.json, .gitignore, ...))\", while /backend/Dockerfile was accepted (rewritten with identical content, no net change). Container contract run: 24 tests, 10 passed, 14 failed, 0 errors — all 14 failures are exactly the missing /workspace/Dockerfile (AC-24 x4, AC-25 x2, AC-26 x5, AC-29 x3); every behavioural case (health reachability, DATA_DIR confinement, restart persistence, stdout-only logging, secret-leak guards) passes, so there is no functional regression. Unblocking requires a plan/scope change (grant repo-root write scope for Dockerfile + README.md, or map backend/ to the repository root during assembly); the already-delivered backend/Dockerfile is byte-compatible with all four static audits.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": true,
+      "sliceReached": "S4-deploy-ui",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 2,
+      "verificationUnavailableByType": {
+        "DATABASE": 2
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 22,
+        "llmRepairRounds": 3,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "PENDING",
+        "deploy": "PENDING",
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 32295611,
+      "output": 692847
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "EMPTY_FINAL_ANSWER": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 1,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 2,
+    "verificationUnavailableByType": {
+      "DATABASE": 2
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 22,
+      "llmRepairRounds": 3,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S4-deploy-ui": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-10-09T03:47:29.806Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "c7004ef7-ace8-4afa-b61d-662fdcac13e3",
+      "workflowIds": [
+        "c7004ef7-ace8-4afa-b61d-662fdcac13e3"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 74176,
+        "output": 9447
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 277400,
+      "errorTypes": {},
+      "failureSummary": "Ran pnpm test, pnpm build, and pnpm lint for slice-1. AC-11 (build) passes: pnpm build exits 0 with no errors. AC-12 (lint) passes: pnpm lint exits 0 with no errors. AC-10 (test) fails: pnpm test exits 1; node --test reports 8 tests, 6 passed, 2 failed. The 5 slice-1 AC tests in test/slugify.slice-1.test.mjs (AC-01, AC-02, AC-03, AC-08, AC-09) are all green, but two pre-existing assertions in test/slugify.test.mjs at lines 5 and 9 still fail: slugify('Hello World') and slugify('  Hello  World  ') are expected to be 'hello-world' but return 'hello world' and 'hello  world', because slice-1 intentionally does not implement internal whitespace-to-hyphen conversion, symbol-to-hyphen conversion, hyphen collapsing, or hyphen trimming. Because AC-10 requires the pnpm test gate to pass, AC-10 is not satisfied.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-3",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 1710,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 1141,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "VALIDATION_ERROR": 1710
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 74176,
+      "output": 9447
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 1710,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 1141,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "slice-3": 1
+    }
+  }
+}

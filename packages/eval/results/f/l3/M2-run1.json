@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-10-12T02:10:06.493Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "4da14e4d-68fd-4404-b21f-27213fb039ea",
+      "workflowIds": [
+        "4da14e4d-68fd-4404-b21f-27213fb039ea",
+        "8a81337d-1729-4ab4-9d27-1f69a6e26224"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 20,
+      "runCount": 21,
+      "taskStatuses": {
+        "SUCCESS": 17,
+        "PENDING": 2,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 808793,
+        "output": 54445
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1701000,
+      "errorTypes": {},
+      "failureSummary": "Backend deliverable for T5 is complete and in place in src/render.mjs; no further backend-only change can move the task's test gate, which is blocked by an unsatisfiable assertion in a QA-authored test. Verified in this run: npm run build exit 0, npm run lint exit 0, npm run test = 89 tests, 72 pass, 16 skipped, 1 fail, 0 errors. renderTable assembles the header row, separator row and data rows in order and joins them with a single '\\n' (no trailing newline, no blank lines); when table.rows is empty only the header row and the separator row are emitted. Cells are normalized through toInlineCell (newline -> <br>, | -> \\|, trim), column widths come from computeColumnWidths (max(3, converted length incl. header)), and every column including the last is right-padded. Separator markers are left=:---, right=---:, center=:--:, none=--- with --- fallback when align is missing/non-array/out-of-range/unknown. Trust-boundary inputs are handled defensively (null table/options, non-array headers/rows/align, short or non-array data rows treated as empty cells). src/parse.mjs is untouched and the existing exports/API contract are preserved; buildSeparatorRow is additive only. All AC-01 (row structure, '\\n' join, no trailing newline) and AC-06 (empty rows -> exactly two lines) renderTable tests pass, as do AC-02..AC-05, AC-08 and AC-09. The single remaining failure is line 73/79 of test/renderTable.cellsAndSeparator.ac02ac05.test.mjs: input { headers: [\"\\na\"], rows: [[\" | \"]] } is a single-column table, but computeColumnWidths is asserted to deepEqual [4,3]. At the same time the frozen T1 contract in test/computeColumnWidths.test.mjs asserts widths.length === headers.length, and col0's converted header \\\"<br>a\\\" has 5 characters, so the correct value is [5]. No conformant renderTable or computeColumnWidths can return [4,3] for that input; the defect is a test-side expectation, and fixing it is outside the backend-only change scope of this task. The two ACs owned by this task (AC-01, AC-06) and the instruction to not modify src/parse.mjs are satisfied.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 7,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 808793,
+      "output": 54445
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 7,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

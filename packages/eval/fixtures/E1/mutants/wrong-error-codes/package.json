@@ -1,0 +1,13 @@
+{
+  "name": "taskboard",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.3.4",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test",
+    "lint": "node scripts/check.mjs",
+    "typecheck": "node scripts/check.mjs",
+    "build": "node scripts/check.mjs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@ai-se/workflow-engine",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/shared": "workspace:*"
+  }
+}

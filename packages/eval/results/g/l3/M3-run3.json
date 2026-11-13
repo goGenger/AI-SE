@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-10-14T18:08:29.879Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "21d3bbd5-2888-41c3-8560-513a5d946c16",
+      "workflowIds": [
+        "21d3bbd5-2888-41c3-8560-513a5d946c16"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 13,
+      "runCount": 13,
+      "taskStatuses": {
+        "SUCCESS": 10,
+        "READY": 1,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 348764,
+        "output": 14841
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 434518,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "Ran the project lint and verified AC-11 (pnpm lint completes without errors). The lint script is `node --check src/merge.mjs && node --check src/cli.mjs`. `npm run lint`/`pnpm lint` exited 0 with empty stderr, and the AC-11 regression test test/ac11-lint.test.mjs (spawns `pnpm lint`, asserts exit 0 and empty stderr) passes 1/1. No product code was modified. Prior verification failure recorded: check 'test' expected 'fail' but got exit 0 (VACUOUS_TEST); root cause is that lint here is a syntax-only check (`node --check`) whose target at HEAD is a valid-syntax stub (`throw new Error(...)`), so an AC-11 test cannot be red before implementation. fixTaskType: TEST (re-plan AC-11 verification), or CONFIG if a real linter is added.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "edge-immutability-validation",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 4
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 348764,
+      "output": 14841
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 4
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "edge-immutability-validation": 1
+    }
+  }
+}

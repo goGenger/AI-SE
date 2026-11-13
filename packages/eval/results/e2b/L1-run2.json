@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T16:20:08.735Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "b7dea11a-c023-43ae-9b1c-71003b4c6545",
+      "workflowIds": [
+        "b7dea11a-c023-43ae-9b1c-71003b4c6545"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 6,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 53618,
+        "output": 6404
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 216953,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and exported escapeHtmlText and escapeAttributeUrl in src/render.mjs and wired them into renderPage/renderMarkdownLite. escapeHtmlText replaces &, <, >, \" and ' with &amp;, &lt;, &gt;, &quot;, &#39; in a single regex pass (no double-escaping; input not mutated). escapeAttributeUrl escapes only attribute-breaking characters (& -> &amp;, \" -> &quot;) and preserves /, ?, =, :, # and other URL characters verbatim; it is never applied to text and text escaping is never applied to URLs. All dynamically inserted text (title in <title> and <h1>, heading text, paragraph text, link text) goes through escapeHtmlText. Only src/render.mjs (a backend file) was changed; src/frontmatter.mjs, src/build.mjs and src/cli.mjs are untouched and API signatures/exports are preserved. Verification: helper-level assertions all pass (five-char escaping, single-pass no double-escape, URL preserves / ? = : #, URL escapes only & and \", input not mutated), the renderPage unit test passes, and npm run build plus npm run lint (node --check over all four sources) exit 0. The single remaining failing test is buildSite in test/build.test.mjs because src/build.mjs is still a stub; that belongs to the separate buildSite slice and is outside this task's scope."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 53618,
+      "output": 6404
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-10-22T19:42:19.239Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "8882142c-a961-4685-8ed1-8b96887c23cc",
+      "workflowIds": [
+        "8882142c-a961-4685-8ed1-8b96887c23cc",
+        "45d4a115-fc83-4e25-9c9f-5f4030fa0192",
+        "9b2c7c7a-337d-4387-97c6-983565e84688",
+        "790253df-ef3c-4df1-b3f5-b3e7eb7b9510"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 55,
+      "runCount": 55,
+      "taskStatuses": {
+        "SUCCESS": 51,
+        "FAILED": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 82941722,
+        "output": 837555
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 8175678,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 3,
+        "CI_FAILED": 1
+      },
+      "failureSummary": "Reviewed the foundation slice against the requirement, architecture/technical specs and the slice acceptance criteria. AC-04 evidence is solid: server/store.js persists one JSON document under DATA_DIR (path.resolve of DATA_DIR, recursively created), writes via temp file plus fsync plus rename, and createUser() stores only a self-describing scrypt hash from server/password.js (fresh 16-byte salt, N=16384,r=8,p=1); store/password tests scan every file under DATA_DIR and find no plaintext password (5 named [AC-04] tests). AC-21 evidence is solid: GET / returns 200 text/html; charset=utf-8 from server/app.js and server/home-page.js contains exactly the four required data-testid hooks (home-title, task-list, search-input, new-task-button), covered by 5 named [AC-21] tests. Health endpoints /healthz, /health, /ready return 200 {\\\"status\\\":\\\"ok\\\"} from createDefaultRouter, and logging goes only to process.stdout/process.stderr with structural and textual redaction (password, token, authorization, secret, signing key), the request logger logs only the bounded pathname (never the query string), and the Dockerfile starts with exec-form CMD so no output redirection exists. Dockerfile review: FROM node:22-alpine, fixed non-root user taskboard UID/GID 10001, /data and /app chowned before VOLUME /data, USER taskboard before CMD, EXPOSE 3000, ENV DATA_DIR=/data. README documents install (pnpm install --frozen-lockfile), start (pnpm start), test (pnpm test), lint/typecheck/build, docker build -t taskboard ., docker run with -v taskboard-data:/data and -p 3000:3000, restart/persistence and non-root verification. No third-party runtime dependency: dependencies is {} and every server/test import is node: or relative (verified additionally by the pnpm lint/typecheck selfcheck per the QA gate). I re-ran pnpm test: 10/10 pass, 0 fail, 0 skipped. However the review cannot approve: AC-30 (Must) requires at least one test whose name contains the AC number for every Must AC of this slice, and AC-01, AC-24, AC-25, AC-26 and AC-29 have no such test anywhere (grep for AC-01/AC-24/AC-25/AC-26/AC-29 finds only comments in server/app.js; server/scripts/selfcheck.mjs does not read Dockerfile or README at all). Additionally the AC-22 optional browser-render hook is absent and undocumented: no gated/skipped hook, no README note, no mention of AC-22 in any file. The required fix is confined to test files (AC-named contract tests plus a skipped browser hook), so this is a TEST follow-up rather than a product-code defect; the implementation itself meets AC-04, AC-21, the health endpoints, stdout logging, non-root container and README documentation.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-tasks-crud-isolation",
+      "taskVerificationDivergence": 4,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 4
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "FAILED",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 82941722,
+      "output": 837555
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 3,
+      "CI_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 4,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 4
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-tasks-crud-isolation": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

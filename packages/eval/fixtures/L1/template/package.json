@@ -1,0 +1,10 @@
+{
+  "name": "fixture-l1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/render.mjs && node --check src/build.mjs && node --check src/frontmatter.mjs && node --check src/cli.mjs",
+    "lint": "node --check src/render.mjs && node --check src/build.mjs && node --check src/frontmatter.mjs && node --check src/cli.mjs"
+  }
+}

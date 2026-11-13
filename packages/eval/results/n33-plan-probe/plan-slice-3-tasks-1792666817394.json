@@ -1,0 +1,605 @@
+{
+  "probedAt": "2026-10-22T11:00:17.394Z",
+  "durationMs": 183455,
+  "verdict": "VERIFY-PRESENT",
+  "inputs": {
+    "requirementId": "a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53",
+    "sliceKey": "slice-3-tasks",
+    "analysisId": "a30f30cc-64f5-4b31-9bbb-9b3d5bbaba53",
+    "acceptanceCriteria": 30,
+    "deliveryConfigured": true,
+    "deliveryEnvironment": "staging"
+  },
+  "tasks": [
+    {
+      "id": "task-3-01",
+      "title": "任务切片契约对齐分析：错误码、字段白名单与隔离语义",
+      "description": "依据需求分析、功能规格（FR-3/4/5/6）、技术规格（TR-3-01..TR-3-11）、API 规格与数据库规格，输出实现约定：1) 任务公开字段与内部 ownerId 字段的边界（响应必须剥离 ownerId）；2) 各接口严格字段白名单（POST: title,dueDate；PATCH: title,dueDate,done）；3) 错误码映射表（VALIDATION_ERROR / TITLE_INVALID / DATE_INVALID / UNKNOWN_FIELD / UNAUTHORIZED / NOT_FOUND）；4) 越权与不存在必须共用同一 404 NOT_FOUND 分支，状态码与错误码、响应结构完全一致；5) title 按 Unicode 码点计数与 dueDate 分量回比校验算法；6) 路由分发规则（/api/tasks 与 /api/tasks/:id）。产出为计划内共享的实现约定说明，供后续测试与实现任务直接引用。",
+      "type": "ANALYSIS",
+      "priority": "HIGH",
+      "dependencies": [],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "产出任务公开字段清单与 ownerId 内部字段边界说明，明确所有响应剥离 ownerId",
+        "产出 POST/PATCH 严格字段白名单与 5 类错误码映射表，与 API 规格逐条一致",
+        "产出隔离语义说明：他人任务 GET/PATCH/DELETE 与不存在任务返回完全相同的 404 NOT_FOUND",
+        "产出 title 码点计数与 YYYY-MM-DD 真实日期校验（拒绝 2026-02-30、2026-13-01）的算法约定"
+      ],
+      "sourceSpecTypes": [
+        "REQUIREMENT_ANALYSIS",
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API",
+        "DATABASE"
+      ]
+    },
+    {
+      "id": "task-3-02",
+      "title": "工程骨架与 package.json 脚本脚手架（零运行时依赖）",
+      "description": "创建 pnpm 工程骨架：package.json（dependencies 为空，明确 scripts: start=启动服务并读取 PORT 默认 3000、test=node --test、lint、typecheck、build 均为退出码 0 的轻量自检脚本）、pnpm-lock.yaml、.gitignore（忽略 ./data）、src/ 目录骨架、DATA_DIR 默认值配置读取占位。本任务为脚本提供者，必须先于所有 TEST 任务完成，使 node --test 与 lint/typecheck/build 可用。",
+      "type": "BACKEND",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-01"
+      ],
+      "estimatedComplexity": 4,
+      "acceptanceCriteria": [
+        "package.json 存在且 dependencies 为空对象，devDependencies 不引入运行时依赖",
+        "package.json 提供 start、test、lint、typecheck、build 五个脚本；test 为 node --test",
+        "pnpm-lock.yaml 已提交，可支撑 pnpm install --frozen-lockfile",
+        "start 脚本读取环境变量 PORT，未设置时使用 3000",
+        "lint、typecheck、build 脚本执行后退出码为 0",
+        "src/ 骨架与 DATA_DIR（默认 ./data）读取配置占位存在"
+      ],
+      "providesScripts": [
+        "start",
+        "test",
+        "lint",
+        "typecheck",
+        "build"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ]
+    },
+    {
+      "id": "task-3-03",
+      "title": "测试：创建任务与 title/dueDate 校验（[AC-14][AC-15][AC-16][AC-17][AC-18]）",
+      "description": "使用 node --test 与标准库断言编写创建任务测试：真实启动 HTTP 服务、注册登录获取令牌后调用 POST /api/tasks。用例名称必须包含 [AC-14]、[AC-15]、[AC-16]、[AC-17]、[AC-18]。覆盖：正常创建 201 且 done=false、dueDate 回显；恰好 100 码点通过 / 101 码点返回 400 TITLE_INVALID；首尾空格被去除保存 / 全空白返回 400 TITLE_INVALID；含中文与 emoji 的标题原样返回；2026-02-30、2026-13-01、格式错误的 dueDate 返回 400 DATE_INVALID；请求体未知字段返回 400 UNKNOWN_FIELD；无令牌返回 401 UNAUTHORIZED。同时断言响应任务对象不含 ownerId 等内部字段。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 4,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-14] 的用例：正常创建返回 201，task.done 为 false，dueDate 按提交值回显",
+        "存在名称含 [AC-15] 的用例：100 码点通过，101 码点返回 400 TITLE_INVALID",
+        "存在名称含 [AC-16] 的用例：首尾空格被去除后保存，全空白标题返回 400 TITLE_INVALID",
+        "存在名称含 [AC-17] 的用例：中文与 emoji 标题原样返回",
+        "存在名称含 [AC-18] 的用例：dueDate 为 2026-02-30、2026-13-01、格式错误均返回 400 DATE_INVALID",
+        "用例断言创建成功响应不包含 ownerId 等内部字段",
+        "测试仅使用 node --test 与标准库断言，不新增运行时依赖"
+      ],
+      "acKeys": [
+        "AC-14",
+        "AC-15",
+        "AC-16",
+        "AC-17",
+        "AC-18"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-04",
+      "title": "测试：任务列表与 q 搜索（含恶意字符）（[AC-23]）",
+      "description": "编写 GET /api/tasks 测试，用例名称包含 [AC-23]：两个用户各创建任务后，A 的列表只包含 A 的任务（不含 B 的 ownerId 或 B 的任务内容）；提供 q 时按 title 大小写不敏感子串过滤且结果仍限本人任务；q 为引号、分号、' OR 1=1 -- 等恶意字符时返回 200 且不产生 5xx；无令牌访问返回 401 UNAUTHORIZED。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-23] 的用例：列表仅返回本人任务，不包含他人任务",
+        "用例断言 q 过滤为大小写不敏感子串匹配且仅作用于本人任务 title",
+        "用例断言 q 含引号、分号、SQL 片段等任意字符时响应不为 5xx",
+        "用例断言无有效令牌访问列表返回 401 UNAUTHORIZED"
+      ],
+      "acKeys": [
+        "AC-23"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-05",
+      "title": "测试：任务查询、更新与删除（[AC-19][AC-20][AC-28]）",
+      "description": "编写 GET/PATCH/DELETE /api/tasks/:id 测试，用例名称包含 [AC-19]、[AC-20]、[AC-28]。覆盖：GET 本人任务返回 200 与任务对象；PATCH 含未知字段返回 400 UNKNOWN_FIELD；PATCH title/done 生效并 200 回显、随后 GET 可见已更新且 updatedAt 刷新；PATCH 非法 title 返回 400 TITLE_INVALID、非法 dueDate 返回 400 DATE_INVALID、done 非布尔返回 400 VALIDATION_ERROR；DELETE 本人任务返回 204 且列表消失；重复删除返回 404 NOT_FOUND；GET/PATCH/DELETE 不存在的 id 返回 404 NOT_FOUND；无令牌返回 401 UNAUTHORIZED。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 4,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-19] 的用例：PATCH 含未知字段返回 400 UNKNOWN_FIELD",
+        "存在名称含 [AC-20] 的用例：PATCH title/done 生效并 200 回显，再次 GET 可见更新后的值",
+        "存在名称含 [AC-28] 的用例：DELETE 本人任务返回 204 且列表消失，重复删除返回 404 NOT_FOUND",
+        "用例覆盖非法 title/非法 dueDate/非布尔 done 分别返回 400 TITLE_INVALID/DATE_INVALID/VALIDATION_ERROR",
+        "用例覆盖 GET/PATCH/DELETE 不存在任务返回 404 NOT_FOUND 与无令牌返回 401 UNAUTHORIZED"
+      ],
+      "acKeys": [
+        "AC-19",
+        "AC-20",
+        "AC-28"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-06",
+      "title": "测试：多用户数据隔离与存在性不泄露（[AC-27]）",
+      "description": "编写隔离测试，用例名称包含 [AC-27]：用户 A 创建任务，用户 B 对 A 的任务执行 GET/PATCH/DELETE 均返回 404 NOT_FOUND，且错误码与响应结构同“不存在的任务 id”；随后用 A 的令牌 GET 该任务，断言内容未被改动、未被删除；断言 B 的列表不含 A 的任务；断言不存在 403 状态码或任何泄露存在性的字段/消息。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-27] 的用例：B 对 A 的任务 GET/PATCH/DELETE 全部返回 404 且 code 为 NOT_FOUND",
+        "用例断言 B 越权 PATCH/DELETE 后 A 的任务内容与存在性未变",
+        "用例断言越权响应与访问不存在任务 id 的响应状态码与错误码完全一致",
+        "用例断言 B 的任务列表不包含 A 的任务，且响应中不出现 403"
+      ],
+      "acKeys": [
+        "AC-27"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-07",
+      "title": "测试：部署静态契约（非 root、VOLUME /data、stdout 日志、持久化）（[AC-24][AC-25][AC-26][AC-29]）",
+      "description": "编写部署静态契约测试（不真正起容器），用例名称包含 [AC-24]、[AC-25]、[AC-26]、[AC-29]：解析 Dockerfile 断言基于 node 镜像、存在非 root USER 指令（USER 不为 root）、声明 VOLUME /data、CMD/ENTRYPOINT 启动服务且日志输出到 stdout（无重定向到文件的写法）；解析服务代码断言 DATA_DIR 从环境变量读取且默认 ./data、数据写入采用临时文件 + rename 原子方式以保证重启后保留；扫描代码与日志输出路径断言不打印明文密码或密钥。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-24] 的测试：断言 Dockerfile 基于 node 镜像且启动命令可运行服务",
+        "存在名称含 [AC-25] 的测试：断言数据目录读取 DATA_DIR、默认 ./data 且写入为临时文件 + rename 原子方式",
+        "存在名称含 [AC-26] 的测试：断言 Dockerfile 存在非 root 的 USER 指令",
+        "存在名称含 [AC-29] 的测试：断言代码/日志输出中不出现明文密码或签名密钥",
+        "测试为静态契约断言，可在无 Docker 守护进程的 CI 中运行"
+      ],
+      "acKeys": [
+        "AC-24",
+        "AC-25",
+        "AC-26",
+        "AC-29"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ]
+    },
+    {
+      "id": "task-3-08",
+      "title": "测试：测试命名覆盖与 README 命令契约（[AC-30]）",
+      "description": "编写元测试，用例名称包含 [AC-30]：扫描 test 目录下所有测试文件名称，断言除 AC-22 与 AC-30 自身外，本切片関連的每条 Must AC（AC-14..AC-20、AC-23、AC-27、AC-28、AC-24、AC-25、AC-26、AC-29）至少出现一次形如 [AC-xx] 的编号；同时断言 README.md 存在且包含 install / start / test / build 镜像 / run 镜像 五类命令片段。",
+      "type": "TEST",
+      "priority": "MEDIUM",
+      "dependencies": [
+        "task-3-02"
+      ],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "存在名称含 [AC-30] 的用例：扫描测试名并断言 AC-14..AC-20、AC-23、AC-24、AC-25、AC-26、AC-27、AC-28、AC-29 均被某个测试名引用",
+        "用例断言 README.md 存在且包含安装、启动、测试、构建镜像、运行镜像命令片段",
+        "用例仅依赖 Node 标准库读写文件，不新增依赖"
+      ],
+      "acKeys": [
+        "AC-30"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL"
+      ]
+    },
+    {
+      "id": "task-3-09",
+      "title": "实现：任务校验模块与错误映射（字段白名单、码点计数、真实日期）",
+      "description": "实现 src/ 下可复用的任务校验模块与错误映射器：按接口定义严格字段白名单（POST 允许 title,dueDate；PATCH 允许 title,dueDate,done），出现未定义字段返回 400 UNKNOWN_FIELD；title 缺失/全空白/去首尾空格后码点长度 <1 或 >100 返回 400 TITLE_INVALID，使用 Array.from 等码点方式计数而非 UTF-16 length；dueDate 按 YYYY-MM-DD 分量解析并回比（拒绝 2026-02-30、2026-13-01 等自动进位）否则 400 DATE_INVALID；done 非布尔返回 400 VALIDATION_ERROR；所有失败统一经错误封套 {\"error\":{\"code\",\"message\"}} 输出，仅使用 PRD 允许的错误码。",
+      "type": "BACKEND",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-03",
+        "task-3-05"
+      ],
+      "estimatedComplexity": 6,
+      "acceptanceCriteria": [
+        "校验模块对 POST/PATCH 分别执行字段白名单，未定义字段返回 400 UNKNOWN_FIELD",
+        "title 使用 Unicode 码点计数，100 码点通过、101 码点返回 400 TITLE_INVALID，且保存前去首尾空格",
+        "dueDate 按年月日分量解析并回比，2026-02-30、2026-13-01 与格式错误返回 400 DATE_INVALID",
+        "done 非布尔值返回 400 VALIDATION_ERROR",
+        "所有校验失败统一输出错误封套且仅使用允许的错误码集合"
+      ],
+      "acKeys": [
+        "AC-15",
+        "AC-16",
+        "AC-17",
+        "AC-18",
+        "AC-19"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-10",
+      "title": "实现：任务仓库（DATA_DIR 原子 JSON 存储 + ownerId 联合查询）",
+      "description": "实现任务仓库：记录含内部 ownerId 与公开字段 id(UUID)、title、dueDate、done、createdAt、updatedAt（ISO 8601）；在 DATA_DIR（默认 ./data）下持久化，写入采用临时文件 + rename 原子方式，保证重启后可读；提供按 ownerId 过滤的列表查询、按 (id AND ownerId) 的单条查询/更新/删除；对外返回前剥离 ownerId。搜索过滤在内存中对 title 做大小写不敏感子串匹配，不拼接任何查询语句，任意 q 字符均按普通字符串处理。",
+      "type": "DATABASE",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-04",
+        "task-3-06"
+      ],
+      "estimatedComplexity": 7,
+      "acceptanceCriteria": [
+        "任务记录持久化于 DATA_DIR，写入使用临时文件 + rename 原子方式，进程重启后可重新读取",
+        "提供按 ownerId 的列表查询，以及按 (id AND ownerId) 的查询/更新/删除接口；他人任务与不存在任务均返回未命中",
+        "对外返回的任务对象不含 ownerId 等内部字段",
+        "q 过滤使用大小写不敏感子串比较且不拼接查询语句，任意字符不引发 5xx",
+        "id 使用 UUID，时间字段为 ISO 8601 字符串，dueDate 为 YYYY-MM-DD 或 null"
+      ],
+      "acKeys": [
+        "AC-23",
+        "AC-27"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "DATABASE",
+        "API"
+      ]
+    },
+    {
+      "id": "task-3-11",
+      "title": "实现：任务路由与处理器（创建/列表搜索/查询/更新/删除 + 404 隔离）",
+      "description": "实现任务路由与处理器并接入既有 Bearer 令牌鉴权：POST /api/tasks 创建（201 {task}，done=false，dueDate 回显，标题中文与 emoji 原样返回）；GET /api/tasks 列表与可选 q 搜索（200 {items}，仅本人任务，q 大小写不敏感子串，恶意字符不 5xx）；GET /api/tasks/:id（200 {task}）；PATCH /api/tasks/:id（200 {task}，刷新 updatedAt）；DELETE /api/tasks/:id（204 空响应体）。所有单条操作使用 (id AND ownerId) 联合定位，未命中或属于他人统一返回 404 NOT_FOUND，不修改任何记录；路由需正确区分 /api/tasks 与 /api/tasks/:id；缺失/篡改/截断令牌返回 401 UNAUTHORIZED。",
+      "type": "BACKEND",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-03",
+        "task-3-04",
+        "task-3-05",
+        "task-3-06",
+        "task-3-09",
+        "task-3-10"
+      ],
+      "estimatedComplexity": 8,
+      "acceptanceCriteria": [
+        "POST /api/tasks 成功返回 201 与 {task}，done 为 false，dueDate 按提交回显，中文与 emoji 标题原样返回",
+        "GET /api/tasks 返回 200 与 {items}，仅含本人任务，q 为大小写不敏感子串过滤且恶意字符不产生 5xx",
+        "GET/PATCH /api/tasks/:id 成功返回 200 与 {task}，PATCH 刷新 updatedAt 且省略字段保持不变",
+        "DELETE /api/tasks/:id 成功返回 204 空响应体，重复删除返回 404 NOT_FOUND",
+        "所有单条操作按 (id AND ownerId) 定位，他人任务与不存在任务返回完全一致的 404 NOT_FOUND 且不改动数据",
+        "缺失、篡改或截断令牌访问任一任务接口返回 401 UNAUTHORIZED",
+        "路由正确区分 /api/tasks 与 /api/tasks/:id"
+      ],
+      "acKeys": [
+        "AC-14",
+        "AC-17",
+        "AC-20",
+        "AC-23",
+        "AC-27",
+        "AC-28"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API",
+        "ARCHITECTURE"
+      ]
+    },
+    {
+      "id": "task-3-12",
+      "title": "实现：容器运行形态（Dockerfile 非 root、VOLUME /data、stdout 日志、DATA_DIR）",
+      "description": "实现部署产物：Dockerfile 基于 node:22-alpine，安装 pnpm 后以 --frozen-lockfile 安装并在镜像内提供启动命令；创建非 root 用户（USER 指令为非 root）并确保对 /data 可写；声明 VOLUME /data，运行期 DATA_DIR=/data、PORT 可配置；应用日志仅输出到 stdout/stderr，不重定向到文件，且不打印明文密码或签名密钥；添加 .dockerignore。",
+      "type": "BACKEND",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-07",
+        "task-3-11"
+      ],
+      "estimatedComplexity": 5,
+      "acceptanceCriteria": [
+        "Dockerfile 基于 node 镜像，docker build -t taskboard . 可成功构建",
+        "Dockerfile 含非 root 的 USER 指令，且该用户对 /data 可写",
+        "Dockerfile 声明 VOLUME /data，运行期 DATA_DIR 指向 /data",
+        "应用日志输出到 stdout/stderr，无重定向到文件的配置，日志不包含明文密码或签名密钥",
+        ".dockerignore 存在，排除 data/、node_modules/ 等非必要内容"
+      ],
+      "acKeys": [
+        "AC-24",
+        "AC-25",
+        "AC-26",
+        "AC-29"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ]
+    },
+    {
+      "id": "task-3-13",
+      "title": "实现：README 与命令文档（安装/启动/测试/构建镜像/运行镜像）",
+      "description": "编写 README.md：文档化 pnpm install --frozen-lockfile、pnpm lint、pnpm typecheck、pnpm test、pnpm build、pnpm start（PORT 与 DATA_DIR 说明）、docker build -t taskboard .、docker run（挂载 /data 数据卷、端口映射）等全部命令；说明错误码集合、鉴权头与数据目录约束，确保 AC-30 的命令可执行性。",
+      "type": "BACKEND",
+      "priority": "MEDIUM",
+      "dependencies": [
+        "task-3-08",
+        "task-3-12"
+      ],
+      "estimatedComplexity": 3,
+      "acceptanceCriteria": [
+        "README.md 存在且包含安装、启动、测试、构建镜像、运行镜像五类命令",
+        "README 说明 PORT 与 DATA_DIR 环境变量及 /data 数据卷用法",
+        "README 说明鉴权头 Authorization: Bearer <token> 与错误封套格式",
+        "README 中记录的命令与 package.json 脚本名称一致"
+      ],
+      "acKeys": [
+        "AC-30"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "FUNCTIONAL"
+      ]
+    },
+    {
+      "id": "task-3-14",
+      "title": "评审：隔离语义、错误封套一致性与脚本/文档一致性",
+      "description": "对照需求 AC 与技术规格评审本切片实现：逐条核对 AC-14..AC-20、AC-23、AC-27、AC-28 的测试与实现对应关系；确认越权与不存在共用 404 NOT_FOUND 分支、无 403、响应不含 ownerId；确认错误封套仅使用允许的错误码；确认 title 码点计数与 dueDate 分量回比实现正确；确认 package.json 脚本、Dockerfile 与 README 一致；输出评审结论与阻塞项清单。",
+      "type": "REVIEW",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-11",
+        "task-3-12",
+        "task-3-13"
+      ],
+      "estimatedComplexity": 4,
+      "acceptanceCriteria": [
+        "评审记录逐条覆盖 AC-14..AC-20、AC-23、AC-24..AC-29、AC-30 的实现与测试对应关系",
+        "确认不存在 403 分支、越权响应与不存在响应完全一致、响应不含 ownerId",
+        "确认所有错误响应使用允许的错误码集合与统一错误封套",
+        "确认 package.json 脚本、Dockerfile、README 三者一致且无阻塞项（或阻塞项已记录并回流修复）"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API",
+        "ARCHITECTURE"
+      ]
+    },
+    {
+      "id": "task-3-15",
+      "title": "CI：安装、lint、typecheck、测试与构建流水线",
+      "description": "执行六步构建契约：pnpm install --frozen-lockfile → pnpm lint → pnpm typecheck → pnpm test → pnpm build → docker build -t taskboard .，全部通过后作为交付门禁。CI 任务不修改业务逻辑，仅执行与报告。",
+      "type": "BUILD",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-14"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "pnpm install --frozen-lockfile 成功且在干净环境可复现",
+        "pnpm lint、pnpm typecheck、pnpm test、pnpm build 依次退出码为 0",
+        "docker build -t taskboard . 成功",
+        "任一环节失败时输出可定位的失败信息并阻断后续部署"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "CI"
+      }
+    },
+    {
+      "id": "task-3-16",
+      "title": "部署：Staging 环境部署（DATA_DIR 数据卷持久化）",
+      "description": "将 CI 通过的镜像部署到 staging 环境：以 PORT 与 DATA_DIR=/data 启动容器，挂载持久化数据卷，确保健康端点 /healthz、/health、/ready 返回 200 与 {\"status\":\"ok\"}，日志输出到 stdout 供采集。",
+      "type": "DEPLOY",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-15"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "staging 容器成功启动且健康端点返回 200 与 status=ok",
+        "DATA_DIR=/data 数据卷已挂载，容器以非 root 用户运行",
+        "容器日志通过 stdout 可被采集且不含明文密码或密钥"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "DEPLOY",
+        "environment": "staging"
+      }
+    },
+    {
+      "id": "task-3-17",
+      "title": "验证：Staging 环境端到端冒烟验证",
+      "description": "在 staging 环境执行端到端冒烟：注册/登录获取令牌，创建任务（校验边界与中文 emoji），列表与 q 搜索，查询/更新/删除本人任务，使用另一用户越权 GET/PATCH/DELETE 断言 404 NOT_FOUND 且目标任务未变，并确认容器重启后任务仍可读取、日志不含明文密码。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-16"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "staging 冒烟覆盖创建、列表与搜索、查询、更新、删除全链路且全部通过",
+        "越权访问在 staging 返回 404 NOT_FOUND 且目标任务未被改动",
+        "staging 容器重启后同一用户可登录且任务仍在",
+        "staging 日志扫描不含明文密码或密钥"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ],
+      "delivery": {
+        "action": "VERIFY",
+        "environment": "staging"
+      }
+    },
+    {
+      "id": "task-3-18",
+      "title": "部署：Production 环境发布（人工审批）",
+      "description": "在 staging 验证通过后，将同一镜像发布到 production：以非 root 用户运行、挂载 /data 持久化数据卷、日志输出 stdout、PORT 按环境配置；发布由 Workflow Engine 人工审批把关。",
+      "type": "DEPLOY",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-17"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "production 容器以非 root 用户运行并挂载 /data 数据卷",
+        "生产健康端点返回 200 与 status=ok",
+        "生产日志输出到 stdout 且不含明文密码或密钥",
+        "发布动作经 Workflow Engine 人工审批后执行"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "DEPLOY",
+        "environment": "production"
+      }
+    }
+  ],
+  "delivery": [
+    {
+      "id": "task-3-15",
+      "title": "CI：安装、lint、typecheck、测试与构建流水线",
+      "description": "执行六步构建契约：pnpm install --frozen-lockfile → pnpm lint → pnpm typecheck → pnpm test → pnpm build → docker build -t taskboard .，全部通过后作为交付门禁。CI 任务不修改业务逻辑，仅执行与报告。",
+      "type": "BUILD",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-14"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "pnpm install --frozen-lockfile 成功且在干净环境可复现",
+        "pnpm lint、pnpm typecheck、pnpm test、pnpm build 依次退出码为 0",
+        "docker build -t taskboard . 成功",
+        "任一环节失败时输出可定位的失败信息并阻断后续部署"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "CI"
+      }
+    },
+    {
+      "id": "task-3-16",
+      "title": "部署：Staging 环境部署（DATA_DIR 数据卷持久化）",
+      "description": "将 CI 通过的镜像部署到 staging 环境：以 PORT 与 DATA_DIR=/data 启动容器，挂载持久化数据卷，确保健康端点 /healthz、/health、/ready 返回 200 与 {\"status\":\"ok\"}，日志输出到 stdout 供采集。",
+      "type": "DEPLOY",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-15"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "staging 容器成功启动且健康端点返回 200 与 status=ok",
+        "DATA_DIR=/data 数据卷已挂载，容器以非 root 用户运行",
+        "容器日志通过 stdout 可被采集且不含明文密码或密钥"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "DEPLOY",
+        "environment": "staging"
+      }
+    },
+    {
+      "id": "task-3-17",
+      "title": "验证：Staging 环境端到端冒烟验证",
+      "description": "在 staging 环境执行端到端冒烟：注册/登录获取令牌，创建任务（校验边界与中文 emoji），列表与 q 搜索，查询/更新/删除本人任务，使用另一用户越权 GET/PATCH/DELETE 断言 404 NOT_FOUND 且目标任务未变，并确认容器重启后任务仍可读取、日志不含明文密码。",
+      "type": "TEST",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-16"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "staging 冒烟覆盖创建、列表与搜索、查询、更新、删除全链路且全部通过",
+        "越权访问在 staging 返回 404 NOT_FOUND 且目标任务未被改动",
+        "staging 容器重启后同一用户可登录且任务仍在",
+        "staging 日志扫描不含明文密码或密钥"
+      ],
+      "sourceSpecTypes": [
+        "FUNCTIONAL",
+        "TECHNICAL",
+        "API"
+      ],
+      "delivery": {
+        "action": "VERIFY",
+        "environment": "staging"
+      }
+    },
+    {
+      "id": "task-3-18",
+      "title": "部署：Production 环境发布（人工审批）",
+      "description": "在 staging 验证通过后，将同一镜像发布到 production：以非 root 用户运行、挂载 /data 持久化数据卷、日志输出 stdout、PORT 按环境配置；发布由 Workflow Engine 人工审批把关。",
+      "type": "DEPLOY",
+      "priority": "HIGH",
+      "dependencies": [
+        "task-3-17"
+      ],
+      "estimatedComplexity": 2,
+      "acceptanceCriteria": [
+        "production 容器以非 root 用户运行并挂载 /data 数据卷",
+        "生产健康端点返回 200 与 status=ok",
+        "生产日志输出到 stdout 且不含明文密码或密钥",
+        "发布动作经 Workflow Engine 人工审批后执行"
+      ],
+      "sourceSpecTypes": [
+        "TECHNICAL",
+        "ARCHITECTURE"
+      ],
+      "delivery": {
+        "action": "DEPLOY",
+        "environment": "production"
+      }
+    }
+  ]
+}

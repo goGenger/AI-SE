@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-10-05T16:31:29.007Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "d89cf950-54b1-4ca2-9a64-fcf480f991fe",
+      "workflowIds": [
+        "d89cf950-54b1-4ca2-9a64-fcf480f991fe",
+        "c0b4de67-6d80-4259-a692-fa7fa9d214cc",
+        "b38dc0fb-3fc0-4af8-814c-f5084414b4c3",
+        "b23f536a-289b-4a88-b5b6-4ebcabea38f0"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 60,
+      "runCount": 63,
+      "taskStatuses": {
+        "SUCCESS": 56,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 50,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 3593818,
+        "output": 115191
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 14735332,
+      "errorTypes": {
+        "TIMEOUT": 5
+      },
+      "failureSummary": "Ran the QA verification. The static contract file test/ac-dockerfile-contract.test.js exists and passes (6/6), the AC-30 audit passes (3/3), and the full `node --test` suite is 227 passed / 0 failed / 0 errors, so nothing is red. However the task's acceptance criteria are only partially satisfied by the assertions actually present, so the deliverable cannot be marked complete. Gaps: (1) AC-24 only asserts FROM node plus an install and a start command; it never asserts Dockerfile existence nor the rest of the docker build input set (.dockerignore, package.json, pnpm-lock.yaml, src/server.js) as a completeness check. (2) AC-25 asserts only the Dockerfile VOLUME /data; it does NOT assert that README's docker run example mounts a data volume at /data and sets DATA_DIR=/data. (3) AC-26 is fully covered (non-root USER plus /data ownership and user/group creation). (4) AC-29 asserts only that the Dockerfile has no log redirection; it does NOT assert application logging goes to stdout rather than a file, nor scan Dockerfile/README/example commands for plaintext password or secret constants. This agent's sandbox is read-only, so the missing assertions could not be added and a follow-up test task is required."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.7936507936507936,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 3593818,
+      "output": 115191
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "TIMEOUT": 5
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

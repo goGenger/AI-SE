@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T10:52:35.229Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "9fe02fb9-26ba-47dd-aa75-f0605b9bfe12",
+      "workflowIds": [
+        "9fe02fb9-26ba-47dd-aa75-f0605b9bfe12"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 66845,
+        "output": 7071
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 437069,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added/updated test/render.test.mjs with 5 AC-numbered tests for the renderTable skeleton, demonstrated fail-first, and ran the canonical suite green. Fail-first evidence: the exact AC assertions were bound to a deliberately incomplete stub (header row only - no separator, no data rows) in temporary files test/.tmp-red.test.mjs and test/.tmp-red-stub.mjs; node --test test/.tmp-red.test.mjs exited 1 with all 4 tests failing: [AC-01] line count 1 !== 4; [AC-02] actual | A | B | vs expected | A | B |\\n| --- | --- |\\n| 1 | 2 |\\n| 3 | 4 |; [AC-03] TypeError Cannot read properties of undefined (reading 'replace') because line index 1 is undefined; [AC-04] line count 1 !== 2. Both temp files were then deleted (test dir now contains only parse.test.mjs and render.test.mjs) and no product code was modified; git status shows only the pre-existing task-2 change to src/render.mjs and the new untracked test/render.test.mjs. Final canonical run via npm run test (script is node --test) reports tests 6, pass 6, fail 0, cancelled 0, skipped 0, including the pre-existing parse test, so src/parse.mjs behavior is unchanged. Coverage: AC-01 output line count equals 2 + table.rows.length with order header row, separator row, then data rows in rows order; AC-02 single \\n join with no trailing newline and no blank line; AC-03 separator column count equals table.headers.length and every cell is ---; AC-04 rows: [] yields exactly two lines (header + separator) joined by \\n; AC-05 assertions stay on the baseline separator and do not depend on options.align variants (out of scope for this slice). Note: the literal command pnpm test cannot run in this sandbox (sh: 1: pnpm: not found, exit 127); the equivalent package.json test script (node --test) was executed and passes."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 66845,
+      "output": 7071
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

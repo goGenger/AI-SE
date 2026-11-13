@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-11-01T05:40:08.491Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "d4acf71a-c881-48d2-9b08-733c6b95f14a",
+      "workflowIds": [
+        "d4acf71a-c881-48d2-9b08-733c6b95f14a",
+        "a6da397c-7547-46e6-af6b-6f8439555a70",
+        "a6ddb98e-9abd-4e40-9cb2-69c5d7f32938",
+        "4ed2d279-303c-4e55-adbe-7918e6a76e00"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 29,
+      "runCount": 29,
+      "taskStatuses": {
+        "SUCCESS": 26,
+        "FAILED": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 30757901,
+        "output": 515528
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 7894215,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "Reviewed slice-4 (lifecycle and resilience, FR-4 / AC-16..AC-20) against the PRD contracts. Verdict: APPROVED, no blocking issues.\n\nContract checks (all pass):\n1. data-testid names: every emitted name is one of the 21 PRD names and none is invented - app-title and loading-indicator (App.vue), error-banner and retry-button (ErrorBanner.vue), search-input and filter-all/filter-active/filter-done (TaskFilters.vue), task-count and new-task-button (TaskToolbar.vue), task-list/empty-state/no-results (TaskList.vue), task-item/task-title/task-done-toggle/task-delete-button (TaskItem.vue), new-task-dialog/task-title-input/form-error/save-task-button/cancel-task-button (NewTaskDialog.vue).\n2. data-done: TaskItem binds :data-done=\\\"isDone ? 'true' : 'false'\\\" with isDone = task.done === true, so the attribute is always present and exactly \\\"true\\\"/\\\"false\\\" (no truthy coercion, no missing attribute).\n3. Transport: fetch exists in exactly two modules, src/api/tasks.ts (store: GET list, PATCH, DELETE) and src/api/tasksApi.ts (create). Both build URLs from import.meta.env.VITE_API_BASE read once at module scope (API_BASE strips trailing slashes), no file/config read at runtime, no hardcoded host or port in shipped code, PATCH sends JSON { done }, DELETE resolves only on 204 and rejects on 404/other. src/lint.mjs enforces no /__mock/ and no CDN references and passes. No frontend code calls /__mock/* (only the mock server, comment text, the lint rule and test assertions mention it).\n4. task-count: App passes tasks.length (the unfiltered source array) to TaskToolbar, which renders it as a bare number; search/filter never change it, store.deleteTask removes by id from the source array after a 204, so the count decrements by exactly one, and a 404/5xx leaves the row and the count untouched.\n5. First-load 500 and retry: store.loadTasks sets loading, clears error, catches the rejection into error and always clears loading in finally; App renders ErrorBanner (with nested retry-button when error !== null) and hides the list while an error is set; retry() clears error, sets loading and re-enters the same plain /api/tasks load path, so a successful retry removes the banner and renders rows. Verified by tests that count exactly two GETs.\n6. Console cleanliness: no console.error/console.log in application source (only in unused tooling scripts src/lint.mjs, src/start.mjs, src/typecheck.mjs, which are not imported by main.ts); every store action wraps its await in try/catch, TaskItem re-enables its own control in finally, and App uses void on actions that never reject. Tests spy on console.error plus process unhandledRejection and window unhandledrejection across load, first-load 500, retry, toggle, rejected PATCH, rejected DELETE and delete success.\n7. Unchanged inputs: package.json differs only in the lint and test scripts (dependencies/devDependencies untouched); pnpm-lock.yaml and mock-server.mjs are unmodified per git status.\n\nAC coverage (each Must criterion has both tests and implementation):\nAC-16: 12 AC-marked tests (lifecycle-integration 2, lifecycle-toggle 3, task-item-row 3, task-store 2, task-api-client 2) against TaskItem.vue, taskStore.toggleDone and api/tasks.ts patchTask.\nAC-17: 5 AC-marked tests (lifecycle-integration 1, lifecycle-toggle 1, task-item-row 1, task-store 1, taskboard-container 1) against the PATCH + server-returned task reconciliation and the fresh-mount reload path.\nAC-18: 16 AC-marked tests (lifecycle-delete 6, taskboard-container 2, task-store 2, task-item-row 2, task-api-client 3, lifecycle-integration 1) against api/tasks.ts deleteTask (204-only), taskStore.deleteTask and the source-length task-count.\nAC-19: 14 AC-marked tests (lifecycle-error-retry 4, taskboard-container 3, task-store 3, task-api-client 2, lifecycle-integration 1, first-load-resilience 1) against ErrorBanner.vue, taskStore.loadTasks/retry and the App wiring.\nAC-20: 16 AC-marked tests (lifecycle-console 8, lifecycle-integration 4, task-api-client 2, task-store 1, first-load-resilience 1) against the store try/catch blocks, TaskItem finally re-enable and the absence of console.error.\n\nVerification run: npm run test => 22 files / 125 tests passed, 0 failed, 0 errors, exit 0; npm run lint => exit 0 (38 files); npm run typecheck => exit 0. I did not rebuild dist or run the browser oracle (out of scope for a read-only review).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-4-lifecycle-resilience",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {
+        "SURFACE_MISSING": 6
+      },
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 30757901,
+      "output": 515528
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {
+      "SURFACE_MISSING": 6
+    },
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4-lifecycle-resilience": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

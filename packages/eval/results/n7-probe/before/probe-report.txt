@@ -1,0 +1,16 @@
+=== N-7 probe: outer AgentGraph step ceiling ===
+maxIterations requested : 50
+status                  : failed
+error code              : UNKNOWN_ERROR
+error message           : Recursion limit of 25 reached without hitting a stop condition. You can increase the limit by setting the "recursionLimit" config key.
+agentNode executions    : 13   (= provider invocations = loop iterations)
+toolsNode executions    : 12
+approx. supersteps      : 26   (agentNode + toolsNode + START)
+iterations reported     : 0
+bound tools             : 11
+events                  : 39
+
+--- VERDICT ---
+N7-PRESENT  the graph stopped at LangGraph's default recursionLimit (25),
+            not at the platform guard (50). UNKNOWN_ERROR is the
+            framework's error, not the platform's TOOL_ERROR.

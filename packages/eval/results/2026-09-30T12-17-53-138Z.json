@@ -1,0 +1,585 @@
+{
+  "generatedAt": "2026-09-30T12:17:53.138Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L1",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "23f0416d-5703-4c7a-89d6-237d6dd3b0d2",
+      "workflowIds": [
+        "23f0416d-5703-4c7a-89d6-237d6dd3b0d2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L1/run-1",
+      "taskCount": 8,
+      "runCount": 8,
+      "taskStatuses": {
+        "SUCCESS": 6,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 152463,
+        "output": 9446
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 449663,
+      "errorTypes": {},
+      "failureSummary": "Ran the local quality gate from the workspace root. pnpm is not installed in the sandbox (sh: pnpm: not found, exit 127), so the identical npm scripts declared in package.json were used. pnpm lint equivalent (npm run lint): PASS, exit 0, node --check on all four src files with no output. pnpm build equivalent (npm run build): PASS, exit 0, all four src files parse without syntax errors including src/render.mjs and src/build.mjs. pnpm test equivalent (npm test): FAIL, exit 2, 14 tests run, 13 passed, 1 failed. The single failure is test 2 'buildSite 把 content 下的 md 生成 html' in test/build.test.mjs, failing with Error: buildSite 尚未实现 thrown from src/build.mjs:2 because buildSite is still a stub. That failure is not a render.mjs defect. All 13 other tests pass, including the pre-existing 'renderPage 产出含标题的 HTML' case and 12 FR-1/FR-2/FR-3 cases in test/render.test.mjs, so the render module meets its quality gate. git status shows only ' M src/render.mjs' plus untracked test/render.test.mjs, confirming src/frontmatter.mjs and all other modules are unmodified. Overall acceptance criterion 'pnpm test 全部通过' is not met, and the required fix lies outside this task's allowed file scope (src/render.mjs), so a separate build-module fix task is required."
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 2,
+      "workflowId": "eb85c995-e594-46dd-9274-4039eba520c2",
+      "workflowIds": [
+        "eb85c995-e594-46dd-9274-4039eba520c2",
+        "a30b9761-66b2-4d1e-b986-c4c8e12b875d"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-2",
+      "taskCount": 17,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 14,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 11,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 391956,
+        "output": 39492
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1786653,
+      "errorTypes": {},
+      "failureSummary": "Ran the full suite in the sandbox: node --test reports 33/33 pass, 0 fail; npm run build (node --check on all four src files) exits 0. Baseline (HEAD) and current src/app.mjs differ only by the awaited save() calls, and the GET /items, POST /items and DELETE /items/:id branches are otherwise byte-identical, so the currently present tests confirm no regression. However the T7 deliverable is an authored FR7 regression suite that freezes the pre-change wire contract and replays it with a --data file: the sandbox is read-only for this role, so writing test/fr7-regression.test.mjs was rejected with \"Path is not writable\" (probe writes to /test and /tmp were also rejected; no writable artifact dir exists). The repo still contains only test/app.test.mjs, test/app-persist.test.mjs and test/persist.test.mjs, so FR7 is not independently pinned. Additionally a real contract defect exists in src/app.mjs: the DELETE handler ties 204 to persistence success (save().then(204).catch(500 {'error':'persist failed'})), unlike POST/PUT which swallow persistence errors, so a persistence failure changes the pre-change DELETE status from 204 to 500, contradicting FR7 and TR-04/TR-05."
+    },
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 3,
+      "workflowId": "65e37761-2195-4068-84f9-ce6a12032171",
+      "workflowIds": [
+        "65e37761-2195-4068-84f9-ce6a12032171",
+        "f7165ca7-3849-4f7e-a5b3-cc193a15bc30"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-3",
+      "taskCount": 17,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 14,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 370610,
+        "output": 33389
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1622238,
+      "errorTypes": {},
+      "failureSummary": "Attempted to add a dedicated self-contained test file (test/persistence.test.mjs) importing createAppFromFile, plus an import edit to test/app.test.mjs. Every write was rejected with \"Path is not writable\" for the workspace test dir, a probe file under the workspace root, and a probe under /tmp, so the deliverable (new startup-load / write-through persistence tests) could not be authored by this agent. No product code was modified. Verified: npm test exits 0 with 31/31 pass, 0 fail; grep for createAppFromFile across test/ returns no matches, confirming the required coverage is absent."
+    },
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "69e37f96-6cf4-470a-a8ad-539306220d9c",
+      "workflowIds": [
+        "69e37f96-6cf4-470a-a8ad-539306220d9c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 3,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 1,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 61184,
+        "output": 5834
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 221710,
+      "errorTypes": {},
+      "failureSummary": "Reviewed src/store.mjs update/remove (git diff a/src/store.mjs) against FR-4, FR-5, TR-1..TR-5 and the ARCHITECTURE contract, plus the committed suite. Verified locally: pnpm test falls back to npm (pnpm not found) and passes 2/2 pre-existing tests; pnpm lint and pnpm build (same node --check script) each exit 0; the createStore export shape and add/list/get bodies are unchanged; no throwing placeholders for update/remove remain. Implementation is functionally correct: update finds the todo, returns the updated object, and returns null (no throw) for a missing id; remove uses Map.delete and never throws for a missing id. However the slice is NOT approved: acceptance criterion 5 / TR-5 is unmet because no committed test exercises update/remove (only 2 HTTP tests exist), and update merges all own patch keys except id rather than only declared title/done, which exceeds TR-1 and allows a __proto__ key to mutate the item prototype."
+    },
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "73e58e09-63c9-4799-a0e5-ebefbd53c1a7",
+      "workflowIds": [
+        "73e58e09-63c9-4799-a0e5-ebefbd53c1a7"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 4,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 2,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 56531,
+        "output": 4423
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 241590,
+      "errorTypes": {},
+      "failureSummary": "Ran the suite and inspected the workspace. pnpm test resolves to node --test and executes only test/parse.test.mjs: tests 1, pass 1, fail 0, exit code 0; pnpm build and pnpm lint both exit 0. A grep for renderTable under test/ returns NO_RENDER_TESTS, so none of the required renderTable cases exist (row count 2 + rows.length with header/separator/data ordering, single-newline joining with no trailing newline or blank line, separator cell count equal to headers.length with every cell '---', empty rows yielding exactly two lines, and non-reliance on options.align). The target file test/render.test.mjs could not be authored: write_file returned Path is not writable for /test/render.test.mjs, /workspace/test/render.test.mjs and test/render.test.mjs, and edit_file likewise refused test/parse.test.mjs. The sandbox shell can create files under test/, but the only sandbox shell available to me is run_unit_test, which is a test runner and must not be used for file authoring. No product code was changed: git status shows only the pre-existing src/render.mjs modification from task-2, and src/parse.mjs is untouched. fixTaskType is TEST."
+    },
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "7f7733e7-a2d9-4e0b-8add-2db38a29f4f5",
+      "workflowIds": [
+        "7f7733e7-a2d9-4e0b-8add-2db38a29f4f5",
+        "051a6300-fc2a-4945-bc4f-40b47d8783b6",
+        "a5b8a45e-ea7d-4dd3-b029-fead84e798b2"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 16,
+      "runCount": 16,
+      "taskStatuses": {
+        "SUCCESS": 16
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 10,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 294703,
+        "output": 28795
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1040341,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 2,
+      "workflowId": "7e5b1121-ad1d-4215-b150-a2c513335c55",
+      "workflowIds": [
+        "7e5b1121-ad1d-4215-b150-a2c513335c55",
+        "a221120e-e670-41e9-a3f9-d03631dcc91f"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-2",
+      "taskCount": 10,
+      "runCount": 11,
+      "taskStatuses": {
+        "SUCCESS": 8,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 211647,
+        "output": 21068
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 691523,
+      "errorTypes": {},
+      "failureSummary": "Could not author the FR-2/FR-6 slice tests: the workspace is read-only for this agent. edit_file on test/merge.test.mjs and write_file for a new test/merge-arrays-fallback.test.mjs both failed with \"Path is not writable\". Grep confirms zero FR-2 and FR-6 references in test/*.mjs; the current file ends after 17 FR-1/FR-3/FR-4/FR-5 tests plus one non-mutation test. The existing suite run via the package.json test script body (node --test) passes 17/17 with exit 0, and build/lint (node --check src/merge.mjs and src/cli.mjs) pass with exit 0. The literal acceptance command pnpm test fails with exit 127 because pnpm is not installed (sh: 1: pnpm: not found). Product code src/merge.mjs already implements wholesale array replacement and deep-copied non-plain-object fallback per the prior T3 probe, so no src change is needed; only the test additions are missing because writes are blocked."
+    },
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 3,
+      "workflowId": "ffa1308a-1330-4602-9b6c-a2402c50eaca",
+      "workflowIds": [
+        "ffa1308a-1330-4602-9b6c-a2402c50eaca",
+        "cfe64b56-09ff-470d-aa1e-811cb06ef4ef",
+        "f163e72f-0269-4555-9d3a-3f76b777ba13"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-3",
+      "taskCount": 16,
+      "runCount": 17,
+      "taskStatuses": {
+        "SUCCESS": 16
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 14,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 343371,
+        "output": 26558
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1222534,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "bad70aef-c928-48af-94b5-f0e5e0bf892a",
+      "workflowIds": [
+        "bad70aef-c928-48af-94b5-f0e5e0bf892a",
+        "8240ce36-0693-4765-9ef7-c92145508f5b"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 10,
+      "runCount": 11,
+      "taskStatuses": {
+        "SUCCESS": 10
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 8,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 172458,
+        "output": 23379
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 544635,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 2,
+      "workflowId": "c0403c8e-f671-4fca-ad5b-45dd035bf2b5",
+      "workflowIds": [
+        "c0403c8e-f671-4fca-ad5b-45dd035bf2b5",
+        "c7ab17a4-eedc-4c33-916e-0332baab0156"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-2",
+      "taskCount": 10,
+      "runCount": 10,
+      "taskStatuses": {
+        "SUCCESS": 10
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 8,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 175964,
+        "output": 15567
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 490762,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 3,
+      "workflowId": "ec052eb6-d56a-4c9b-ad83-b84576683f57",
+      "workflowIds": [
+        "ec052eb6-d56a-4c9b-ad83-b84576683f57"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-3",
+      "taskCount": 5,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 4,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 64814,
+        "output": 9673
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 244185,
+      "errorTypes": {},
+      "failureSummary": "Could not add the FR-1..FR-5 unit tests: every workspace write path is denied to this agent. write_file and edit_file both fail with \"Path is not writable\" for /test/slugify.test.mjs, a relative test/probe.txt, /tmp/probe.txt and /workspace/probe.txt, so no test file can be created or extended. Current slice state: pnpm test is not runnable in this sandbox (exit 127, \"sh: 1: pnpm: not found\"), while the underlying gate node --test succeeds with 3 tests, 3 passed, 0 failed, 0 errors. Coverage is insufficient for this task: test/slugify.test.mjs contains only 3 tests (\"Hello World\", \"  Hello  World  \" and \"\") and is missing FR-1 (HELLO/Title), FR-2 tab/newline trimming, FR-3 multiple spaces/tab/newline, FR-4 underscore/dot/slash plus hyphen preservation (abc-def), FR-5 double/triple hyphen collapse, the Unicode case slugify(\"标题 123\") === \"标题-123\", and FR-key traceability in test names/grouping. The src/slugify.mjs implementation itself satisfies all FR-1..FR-5 acceptance values when exercised (dependency T-2 reported 16/16 matches), so the remaining work is test authoring, which this agent is not permitted to perform in the sandbox."
+    },
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "38e6d850-ce4d-47a0-b489-0a4368202b7c",
+      "workflowIds": [
+        "38e6d850-ce4d-47a0-b489-0a4368202b7c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 5,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 5
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 4,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 82550,
+        "output": 74577
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 628138,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 2,
+      "workflowId": "be41ea5f-31ab-433f-82b1-ef09ae9be8cb",
+      "workflowIds": [
+        "be41ea5f-31ab-433f-82b1-ef09ae9be8cb"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-2",
+      "taskCount": 5,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 5
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 93968,
+        "output": 11639
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 423256,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 3,
+      "workflowId": "b2a5d183-63b0-4db6-9875-cecf37cd4737",
+      "workflowIds": [
+        "b2a5d183-63b0-4db6-9875-cecf37cd4737"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-3",
+      "taskCount": 5,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 5
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 5,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 93539,
+        "output": 11148
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 374442,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "59cb48e7-fd51-4698-9001-524fa70a97bc",
+      "workflowIds": [
+        "59cb48e7-fd51-4698-9001-524fa70a97bc",
+        "1b470b9e-f41c-447f-946b-b123eeecca6c"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 12,
+      "runCount": 12,
+      "taskStatuses": {
+        "SUCCESS": 12
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 11,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 196287,
+        "output": 19315
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 623415,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 2,
+      "workflowId": "c86bdb45-8b1b-424b-a697-939c9c0872c5",
+      "workflowIds": [
+        "c86bdb45-8b1b-424b-a697-939c9c0872c5",
+        "91066698-5032-4e41-9558-958c7e6beeca"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-2",
+      "taskCount": 12,
+      "runCount": 13,
+      "taskStatuses": {
+        "SUCCESS": 12
+      },
+      "reportedSuccess": true,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 12,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 229987,
+        "output": 20437
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 591480,
+      "errorTypes": {},
+      "failureSummary": null
+    },
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 3,
+      "workflowId": "45b93a55-bfdc-45aa-8859-97dfc3aa1b38",
+      "workflowIds": [
+        "45b93a55-bfdc-45aa-8859-97dfc3aa1b38"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-3",
+      "taskCount": 6,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "READY": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 2,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 74341,
+        "output": 11423
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 312417,
+      "errorTypes": {},
+      "failureSummary": "Blocked by a read-only workspace: could not add the requested slice-1 unit tests. Every write attempt was rejected with 'Path is not writable' (tried /test/csv.test.mjs, /test/probe-tmp.txt, /workspace/test/csv.test.mjs via write_file and edit_file), so the acceptance criteria requiring new tests for whitespace preservation, all-spaces field, trailing comma, leading/consecutive commas and non-string inputs are NOT met, and test/csv.test.mjs still holds only the 3 pre-existing tests. Ran the suite gate: 'pnpm test' exits 127 with 'sh: 1: pnpm: not found'; the equivalent 'npm test' (package.json script 'node --test') runs 3 tests, 2 pass, 1 fail, 0 skipped, 0 cancelled. The single failure is the out-of-scope quoted-field test '引号包裹的字段可含逗号' at test/csv.test.mjs:9-10 (ERR_ASSERTION deepStrictEqual): expected ['a','b,c','d'] from 'a,\"b,c\",d' but actual ['a','\"b','c\"','d']. That assertion targets FR-2/FR-3, which this slice is explicitly told not to cover, so the suite cannot go green within slice-1 without relocating that assertion. Product code src/csv.mjs was not modified."
+    }
+  ],
+  "failures": [
+    {
+      "fixtureId": "L1",
+      "stage": "run",
+      "message": "切片 build-module 未被链式编排启动"
+    },
+    {
+      "fixtureId": "L1",
+      "stage": "run",
+      "message": "切片 build-module 未被链式编排启动"
+    },
+    {
+      "fixtureId": "L2",
+      "stage": "run",
+      "message": "切片 quality-gates 失败"
+    },
+    {
+      "fixtureId": "M1",
+      "stage": "run",
+      "message": "切片 slice-patch-todo 未被链式编排启动"
+    },
+    {
+      "fixtureId": "M1",
+      "stage": "run",
+      "message": "切片 slice-patch-todo 未被链式编排启动"
+    },
+    {
+      "fixtureId": "M2",
+      "stage": "run",
+      "message": "切片 slice-2 未被链式编排启动"
+    },
+    {
+      "fixtureId": "M2",
+      "stage": "run",
+      "message": "切片 slice-2 未被链式编排启动"
+    }
+  ],
+  "summary": {
+    "runs": 17,
+    "trueSuccessRate": 0.7058823529411765,
+    "reportedSuccessRate": 0.5294117647058824,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0.7607361963190185,
+    "humanInterventions": 14,
+    "tokenUsage": {
+      "input": 3066373,
+      "output": 366163
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 9,
+        "trueSuccessRate": 0.7777777777777778,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 5,
+        "trueSuccessRate": 0.6,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 3,
+        "trueSuccessRate": 0.6666666666666666,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

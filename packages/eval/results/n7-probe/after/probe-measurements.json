@@ -1,0 +1,13 @@
+{
+  "maxIterations": 50,
+  "status": "failed",
+  "errorCode": "TOOL_ERROR",
+  "errorMessage": "Agent reached max iterations",
+  "agentNodeRuns": 50,
+  "toolsNodeRuns": 50,
+  "approxSupersteps": 101,
+  "reportedIterations": 50,
+  "boundTools": 11,
+  "eventCount": 152,
+  "verdict": "N7-FIXED"
+}

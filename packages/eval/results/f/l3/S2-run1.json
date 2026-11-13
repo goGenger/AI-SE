@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-10-09T04:11:13.952Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S2",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "e5f43db1-66fc-42be-b91b-9742fc6498c6",
+      "workflowIds": [
+        "e5f43db1-66fc-42be-b91b-9742fc6498c6",
+        "a64f61ed-6b1b-4f9d-9200-1599c7d60440"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S2/run-1",
+      "taskCount": 14,
+      "runCount": 10,
+      "taskStatuses": {
+        "SUCCESS": 8,
+        "FAILED": 1,
+        "PENDING": 5
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 337237,
+        "output": 28035
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1089204,
+      "errorTypes": {},
+      "failureSummary": "Implemented parseDuration in src/duration.mjs as a named export with a single text parameter, per FR-2 and technical specs T-1..T-9. Trust boundary: a typeof guard rejects every non-string input so nothing can throw; then the input is trimmed. A unit-less pure-integer branch returns the value as milliseconds. Otherwise one regex with alternation ms before h/m/s (longest-match, case-insensitive) scans integer+unit fragments; the gaps between fragments and the whole trimmed string must be whitespace-only and fully covered, else null. Conversion table h=3600000, m=60000, s=1000, ms=1; fragments are multiplied and summed to a number; duplicate-unit fragments return null. No third-party parser and no new build config. npm run build and npm run lint pass. npm test reports 34 of 35 subtests passing; the single failure is a contradictory assertion at test/duration.test.mjs:120 that asserts parseDuration(\\\"1ms10s30m1h\\\") === 5410500 while the spec-conformant sum is 1 + 10000 + 1800000 + 3600000 = 5410001. The sibling assertions on lines 118-119 use the 500ms fragment for that same 5410500 value, so line 120 is a test-data typo (1ms should be 500ms). No spec-conformant parser can satisfy line 120 without breaking lines 118-119. Because the harness scope is backend files only, neither the parser nor any test file was modified; the remaining work is a TEST task that corrects test/duration.test.mjs:120 so the suite can go green.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-2-unit-parsing",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 337237,
+      "output": 28035
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2-unit-parsing": 1
+    }
+  }
+}

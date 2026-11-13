@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:00:15.795Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S3",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "545ed93c-36d3-4a13-8f9f-6f6d7ada93db",
+      "workflowIds": [
+        "545ed93c-36d3-4a13-8f9f-6f6d7ada93db"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S3/run-1",
+      "taskCount": 7,
+      "runCount": 4,
+      "taskStatuses": {
+        "SUCCESS": 2,
+        "FAILED": 1,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 45141,
+        "output": 8283
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 160915,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and verified slice-1 of parseCsvLine in src/csv.mjs. The file is an ES module with a named export parseCsvLine(line): it returns [] immediately when typeof line !== \"string\" (no throw for null/undefined/number/boolean/object), and for string input returns line.split(\",\"), preserving each field's leading/trailing whitespace with no trim and yielding empty-string fields for consecutive commas. It contains no quote parsing, escape handling, trim calls, loops, helpers, or new dependencies; only src/csv.mjs was modified (confirmed via git diff; the working tree change is exactly this function). Build (npm run build -> node --check src/csv.mjs) exits 0 and lint (npm run lint -> node --check src/csv.mjs) exits 0. node --test runs the 3 repo tests: 1 pass, 2 fail with 0 errors. The 2 failures are the FR-2 quoted-field test (parseCsvLine('a,\\\"b,c\\\",d') expected ['a','b,c','d'], got ['a','\\\"b','c\\\"','d']) and the FR-4 empty-line test (parseCsvLine('') expected [], got ['']); both exercise behavior explicitly excluded from this slice's task description and deferred to their later FR-2/FR-4 slices by the T2 design, so they are out of scope here. All FR-1/FR-6 acceptance criteria for this slice are met and pass."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 45141,
+      "output": 8283
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

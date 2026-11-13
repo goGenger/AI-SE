@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T11:10:51.930Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "1ac69184-64b5-47b6-9025-cda5d05762a9",
+      "workflowIds": [
+        "1ac69184-64b5-47b6-9025-cda5d05762a9"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 5,
+      "runCount": 3,
+      "taskStatuses": {
+        "SUCCESS": 1,
+        "FAILED": 1,
+        "PENDING": 3
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 47700,
+        "output": 6127
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 203423,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Implemented and verified mergeConfig in src/merge.mjs (backend only). The prior attempt failed anti-tamper because it added cases to the protected file test/merge.test.mjs; this run restored that file to its original content (git status now shows only src/merge.mjs modified). The module is an ESM named export mergeConfig(base, override) with an isPlainObject predicate (non-null, non-array) and a deepClone helper. Per key: base keys are deep-cloned into a fresh result; override values that are undefined are skipped so the base value is preserved and keys absent from base are omitted (FR-3); null is assigned (FR-4); arrays and primitives are replaced directly (FR-5/FR-2); when both same-key values are plain objects it recurses and assigns the new merged object (FR-1). Non-plain-object roots return a deep clone of override (deep clone of base when override is undefined). No mutation of either argument. Verification: npm run test 2/2 pass, npm run build exit 0, npm run lint exit 0. pnpm is not installed in the sandbox so the underlying node scripts were exercised via npm."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 47700,
+      "output": 6127
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

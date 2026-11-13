@@ -1,0 +1,7 @@
+{
+  "id": "S2",
+  "tier": "S",
+  "title": "实现 parseDuration 时长解析",
+  "requirementText": "实现 src/duration.mjs 中的 parseDuration(text)，把时长字符串解析成毫秒数（number），规则：\n1) 支持单位 h（小时）、m（分钟）、s（秒）、ms（毫秒），可组合，例如 \"1h30m\" → 5400000；\n2) 单位大小写不敏感，片段之间允许空格，例如 \"1H 30M\" 同样有效；\n3) 无单位的纯数字按毫秒处理，例如 \"500\" → 500；\n4) 无法解析的输入（空串、未知单位、负数、小数、重复同单位片段等）返回 null，不抛异常。\n完成后 `pnpm test` 必须全部通过，且 `pnpm build`、`pnpm lint` 无错误。",
+  "oracle": { "command": "node", "args": ["oracle.mjs"] }
+}

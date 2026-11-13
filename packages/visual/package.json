@@ -1,0 +1,18 @@
+{
+  "name": "@ai-se/visual",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/observability": "workspace:*",
+    "@ai-se/shared": "workspace:*",
+    "zod": "4.5.4"
+  }
+}

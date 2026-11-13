@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-10-12T02:59:45.030Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "fe691def-cf39-4362-9d1d-e59d53bf91d9",
+      "workflowIds": [
+        "fe691def-cf39-4362-9d1d-e59d53bf91d9",
+        "f2c6b5a9-4bbc-43e9-b08f-6bf61799ef11"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 17,
+      "runCount": 12,
+      "taskStatuses": {
+        "SUCCESS": 10,
+        "FAILED": 1,
+        "READY": 2,
+        "PENDING": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 443275,
+        "output": 28449
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 939325,
+      "errorTypes": {},
+      "failureSummary": "Delivered test/merge.fallback.test.mjs with 18 tests named [AC-07] and [AC-08], covering non-plain-object fallback (array/null/undefined/primitive base or override, and undefined override returning a deep copy of base) plus immutability and deep-copy independence (result not reference-equal to inputs, nested result mutations do not touch inputs, post-call input mutations do not change the result, inputs stay deep-equal to pre-call snapshots, deep-frozen inputs accepted). Run: pnpm test -> full suite 61 tests, 61 pass, 0 fail, 0 errors; the 18 new tests all pass. pnpm build exit 0 and pnpm lint exit 0. No product code was modified. BLOCKER: the mandated tests-first red run cannot be demonstrated live, because the working tree already contains a complete mergeConfig implementation (uncommitted change left by a prior IMPLEMENT slice) while the committed HEAD baseline of src/merge.mjs is a stub that throws 'mergeConfig 尚未实现'. pnpm test therefore returns green and the workflow red-light check reports VACUOUS_TEST (expected fail, got exit 0). Producing red would require editing product code, which this QA task is forbidden to do. The slice as scheduled cannot satisfy the red-light criterion; the workflow should run this TEST slice against the pre-implementation baseline (or order TEST before IMPLEMENT), then re-apply the implementation. The tests themselves are correct and non-vacuous: against the HEAD stub every one of the 18 tests would fail with 'Error: mergeConfig 尚未实现'.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "merge-fallback-immutability",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 2,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": false,
+        "failureCodes": {
+          "PLANNING_ERROR": 2
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 443275,
+      "output": 28449
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 2,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "merge-fallback-immutability": 1
+    }
+  }
+}

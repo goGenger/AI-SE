@@ -1,0 +1,10 @@
+{
+  "name": "fixture-m2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/render.mjs && node --check src/parse.mjs",
+    "lint": "node --check src/render.mjs && node --check src/parse.mjs"
+  }
+}

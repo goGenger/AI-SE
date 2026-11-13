@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-10-18T06:27:27.678Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "0a1f807d-933d-45db-a6eb-beb23dae57dd",
+      "workflowIds": [
+        "0a1f807d-933d-45db-a6eb-beb23dae57dd",
+        "4e9185ca-945f-4554-ab81-0235098bf168",
+        "92fb71b2-8702-4cc0-bccb-b64fabeaf4e7",
+        "1ea935ca-4ce1-4be5-be8e-b0eb5f09be21"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 42,
+      "runCount": 47,
+      "taskStatuses": {
+        "SUCCESS": 41,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 49539263,
+        "output": 799688
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 7044002,
+      "errorTypes": {
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Reviewed slice-4 (FR-3 create + FR-4 list/search) for AC coverage and 5xx risk. Result: NOT APPROVED because project-wide pnpm test is NOT green. node --test full suite = 145 tests, 144 passed, 1 failed, 0 errors; the single failure is FR-9.6 [AC-30] in test/contract.test.js:189, which asserts every test title carries an FR-x.y/AC-xx identifier and is tripped by two top-level titles inside THIS slice own file: test/task-create.test.js:491 ('regression POST /api/tasks rejects undefined body fields with 400 UNKNOWN_FIELD') and :515 ('regression POST /api/tasks without a valid Bearer token returns 401 UNAUTHORIZED'). So the criterion 'run pnpm test, whole slice green, names parse out AC-14..AC-18 and AC-23' is only half met. All six required identifiers DO resolve in current titles: AC-14 (task-create:289), AC-15 (:323), AC-16 (:385), AC-17 (:419), AC-18 (:452), AC-23 (four top-level tests in ta[REDACTED].test.js:302/393/462/497). Both slice files are green in isolation: task-create 31/31 and ta[REDACTED] 33/33 (combined node --test --test-reporter=dot exit 0, 64 subtests). Boundary coverage is complete: AC-15 has 3 subtests (exactly-100 accepted, 101 rejected 400 TITLE_INVALID, padded-100 trimmed accepted); AC-16 has 3 (trim '  Alpha  ' -> 'Alpha', spaces-only rejected, tabs/newlines-all-whitespace rejected); AC-17 has 2 (CJK+emoji round-trip, ZWJ emoji round-trip, no U+FFFD); AC-18 has 8 (2026-02-30, 2026-13-01, 2026-2-3, 2026/02/28, 2025-02-29, 2026-04-31 rejected; 2026-02-28, 2024-02-29 accepted). Malicious q probing is covered by the green AC-23 fuzz test (16 hostile raw query strings: double/single quote, semicolon, SQL fragment, SQL keyword fragment, encoded+raw percent, malformed %E0%A4%A, lone %, emoji, CJK, regex metachars, NUL/control chars, 5000-char, empty value, bare q) each asserted status < 500 and, when 200, a caller-only items envelope with no cross-user title leakage. Implementation corroborates: src/http/taskListHandler.js decodes q tolerantly (decodeURIComponent with raw-literal fallback on URIError, '+' as space), filters with title.toLowerCase().includes(q.toLowerCase()) (never RegExp/SQL), scopes ownership only from ctx.userId, projects via toPublicTask, and wraps parse/filter/serialize in try/catch. No CI, staging/production deployment or delivery-chain task exists: no .github, no workflow, no Dockerfile/compose/deploy script in the tree (the token Dockerfile appears only as a documented README command required by FR-9.4). Blocking item remains the AC-30 naming regression on the two slice-authored regression titles.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-4",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 49539263,
+      "output": 799688
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-4": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

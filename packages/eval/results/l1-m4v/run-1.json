@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-26T14:00:50.507Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "e3924b7a-8113-40b4-bf17-b3bec38c45b4",
+      "workflowIds": [
+        "e3924b7a-8113-40b4-bf17-b3bec38c45b4",
+        "456534db-fadb-4e0b-b1e4-8846c8596b52",
+        "aeb85f1e-4cba-4a4e-bb97-43576279337b",
+        "3a665bd1-685d-4bc0-8fc6-ac8f10b819ac",
+        "3fbcfad8-cec8-48ae-8fba-a3122d206325"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 54,
+      "runCount": 54,
+      "taskStatuses": {
+        "SUCCESS": 50,
+        "FAILED": 4
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 2,
+      "tokenUsage": {
+        "input": 72138775,
+        "output": 823925
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 9752452,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2,
+        "REPLAN_REQUESTED": 2
+      },
+      "failureSummary": "Delivered the zero-dependency Node 22 pnpm skeleton for the TaskBoard auth slice and made it meet AC-01..AC-13. Added src/tokens.js (HMAC-SHA256 bearer tokens with timingSafeEqual verification), completed src/server.js with POST /api/login, bearer enforcement on /api/tasks (401 UNAUTHORIZED for missing, tampered or truncated tokens), startServer()/resolveTokenSecret()/runMain() and a direct-invocation guard so src/server.js is itself a runnable HTTP entry point, and reduced src/index.js to a compatibility entry that delegates to runMain(). Extended test/smoke.test.js with marker tests [AC-01] through [AC-13]. All project scripts pass: pnpm lint, pnpm typecheck, pnpm build exit 0 and pnpm test reports 67 tests, 66 pass, 0 fail, 1 skipped (the optional AC-22 headless check), so the previously green suite stayed green.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "engineering-docs-test-coverage",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": "SUCCESS",
+        "delivered": true
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 2,
+    "tokenUsage": {
+      "input": 72138775,
+      "output": 823925
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2,
+      "REPLAN_REQUESTED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "engineering-docs-test-coverage": 1
+    },
+    "stagingDeliveryRate": 1
+  }
+}

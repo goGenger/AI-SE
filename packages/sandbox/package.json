@@ -1,0 +1,21 @@
+{
+  "name": "@ai-se/sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/observability build && tsc -p tsconfig.json",
+    "build:image": "docker build -t ai-se-sandbox:22-pnpm9 ${PREWARM_PACKAGES:+--build-arg \"PREWARM_PACKAGES=$PREWARM_PACKAGES\"} .",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/observability build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/observability": "workspace:*",
+    "pino": "10.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-10-22T11:12:51.017Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "E1",
+      "tier": "E1",
+      "runIndex": 1,
+      "workflowId": "d797ad48-5e08-4307-b609-e1c5960c0561",
+      "workflowIds": [
+        "d797ad48-5e08-4307-b609-e1c5960c0561",
+        "bd7842e2-0126-408a-bb4c-66ea7e94524a",
+        "4f061d31-5daf-41c0-a948-c6952c45a62a"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/E1/run-1",
+      "taskCount": 57,
+      "runCount": 57,
+      "taskStatuses": {
+        "SUCCESS": 51,
+        "FAILED": 6
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 46013200,
+        "output": 660919
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 12290054,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 6
+      },
+      "failureSummary": "Added test/deploy-contract.test.js: four node --test cases named [AC-24], [AC-25], [AC-26], [AC-29] that parse Dockerfile and README.md with fs.readFileSync plus regexes only (no docker CLI, no shell, no daemon). AC-24 checks Dockerfile exists, every FROM (and the final runtime stage) is a node:22 family image, EXPOSE 3000, and README documents docker build -t taskboard .; AC-25 checks VOLUME /data, ENV DATA_DIR=/data, and a README docker run line with a -v/--volume or --mount target of /data; AC-26 checks a USER instruction exists and its value (including the effective last USER) is not root/0/root:root; AC-29 checks no log redirection to files (>.log/.txt/.out, /var/log/, /data/, while ignoring 2>&1 and comment lines) in Dockerfile or README, no credential literals in ENV/ARG or docker run -e, no test-only password/signing-key literals, no plaintext password assignment or test-looking secret literal in shipped code/config, and no runtime writing its own .log file. Written tests-first: no implementation existed, so all four failed on the first run with 'Dockerfile must exist at the repository root, expected path: Dockerfile' (4 tests, 0 pass, 4 fail, exit code 1). I did not write any product code: Dockerfile and the real README deployment docs are still missing (README.md is still the workspace placeholder), which is why the suite stays red. pnpm typecheck (node src/scripts/typecheck.js) still exits 0 over 10 files, confirming the new test file is syntactically valid. The red state needs a BACKEND/deployment task to add Dockerfile and README build/run commands; no test-file change is required.",
+      "chainCompleted": true,
+      "deliveredSuccess": true,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-3-tasks",
+      "taskVerificationDivergence": 4,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 1,
+      "verificationUnavailableByType": {
+        "DATABASE": 1
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 6
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "SUCCESS",
+        "deploy": "SUCCESS",
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 46013200,
+      "output": 660919
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 6
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "E1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 1,
+    "deliveredSuccessRate": 1,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 4,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 1,
+    "verificationUnavailableByType": {
+      "DATABASE": 1
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 6
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-3-tasks": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

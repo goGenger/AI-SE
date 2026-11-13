@@ -1,0 +1,139 @@
+{
+  "generatedAt": "2026-10-30T09:24:26.776Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "a5ff836b-45ee-41b8-970b-bf33b95ff593",
+      "workflowIds": [
+        "a5ff836b-45ee-41b8-970b-bf33b95ff593"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 19,
+      "runCount": 3,
+      "taskStatuses": {
+        "FAILED": 3,
+        "PENDING": 16
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 2368931,
+        "output": 91361
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1301181,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 3
+      },
+      "failureSummary": "TaskBoard 前端骨架已落地（仅改前端文件）：package.json 脚本校准为 start=vite preview --host 127.0.0.1 --port ${PORT:-4173} --strictPort、build=vite build、test=vitest run、lint/typecheck=既有 vue-tsc 实现；dependencies/devDependencies 与 pnpm-lock.yaml 未改动（未新增/删除/改版本），pnpm-lock.yaml 未触碰。新增 src/env.d.ts（ImportMetaEnv.VITE_API_BASE）、src/api/tasks.ts（仅以 import.meta.env.VITE_API_BASE 为基址的 GET/POST/PATCH/DELETE 客户端，无硬编码主机端口、无外部请求、失败均 reject 且被组件捕获）、src/App.vue（TaskBoard 全量 UI：app-title/loading-indicator/error-banner/retry-button/search-input/filter-*/task-count/task-list/task-item+data-done/task-title/task-done-toggle/task-delete-button/empty-state/no-results/new-task-button/new-task-dialog/task-title-input/save-task-button/cancel-task-button/form-error），src/main.ts 仍 createApp(App).mount('#app')。新增 src/App.smoke.spec.ts，24 个用例全部带 [AC-01]…[AC-24] 标记，覆盖加载/错误/空/成功四态及新建、校验、筛选、搜索叠加、完成、删除、重试、无 console.error、Tab 顺序、暗色 token。未能落地两个被写策略拒绝的交付路径：/index.html 与 /scripts/lint.mjs、/scripts/typecheck.mjs（沙箱可写范围仅 apps/web、web、frontend、src、测试文件与根级 manifests/configs）。package.json 未被允许写入 scripts/ 下的文件，因此 lint/typecheck 沿用夹具既有 vue-tsc 实现（任务允许“沿用夹具已有实现”）。另外沙箱未安装 node_modules 且安装命令被 script-only 策略阻断，故 pnpm build/test/lint/typecheck/start 无法在本次会话内实际执行验证。",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "S1",
+      "taskVerificationDivergence": 3,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 3,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 7,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": null,
+        "deploy": null,
+        "verify": null,
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 2368931,
+      "output": 91361
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 3,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 3,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 7,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "S1": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

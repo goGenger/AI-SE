@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-10-07T15:54:40.205Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M3",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "d529ca26-4a51-4460-8176-c2793d5a8587",
+      "workflowIds": [
+        "d529ca26-4a51-4460-8176-c2793d5a8587"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M3/run-1",
+      "taskCount": 5,
+      "runCount": 5,
+      "taskStatuses": {
+        "SUCCESS": 3,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 88948,
+        "output": 18186
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 583312,
+      "errorTypes": {},
+      "failureSummary": "Authored and ran the FR-6/FR-7 unit tests for slice-1 in test/merge.fr6-fr7.test.mjs: 9 tests named by acceptance criterion, [AC-01]..[AC-09]. Coverage: base not a plain object (array, null) returns override deep clone; override not a plain object (array, null) returns null/override deep clone; override === undefined returns base deep clone; deep-clone independence (mutating returned nested objects/arrays does not change sources); input immutability (base and override unchanged before/after, incl. nested values); repeated-call consistency. Ran the project test script npm test, whose definition is exactly node --test: 11/11 pass (9 new + 2 pre-existing), 0 fail, 0 errors, exit 0. The literal pnpm test cannot run: pnpm is not installed (exit 127, sh: 1: pnpm: not found) and corepack cannot download it offline (EAI_AGAIN registry.npmjs.org); npm test executes the identical underlying command. No product code was modified. Blocker requiring re-plan: the enforce verification declares expected=fail for the test check (TDD red-light), but src/merge.mjs was already implemented by dependency task T-003, so the new AC tests pass immediately and the red state cannot be shown without editing product code, which this task forbids. Requesting re-plan: either order test authoring before the implementation task, or relax the red-light expectation for TEST tasks whose dependency already shipped the feature."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 88948,
+      "output": 18186
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

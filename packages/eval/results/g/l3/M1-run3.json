@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-10-14T15:40:39.682Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "ba142a27-81f5-4398-a2ff-a0b74f6f6cd1",
+      "workflowIds": [
+        "ba142a27-81f5-4398-a2ff-a0b74f6f6cd1",
+        "7f0b53f3-1670-45e3-802e-5160e5fc38d0"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 16,
+      "runCount": 20,
+      "taskStatuses": {
+        "SUCCESS": 15,
+        "FAILED": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 4,
+      "tokenUsage": {
+        "input": 409267,
+        "output": 33869
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1157407,
+      "errorTypes": {
+        "INVALID_AGENT_RESULT": 1
+      },
+      "failureSummary": "Ran `pnpm lint` -> exit 0, no errors, so AC-11 is satisfied. Ran `pnpm test` -> 43 pass / 0 fail, confirming the AC-08 GET/POST regression suite (10 tests) and the PATCH/DELETE/store suites stay green. Reviewed the diff (src/app.mjs, src/store.mjs plus the four new test files). AC-08 is intact: the diff only inserts PATCH and DELETE branches after the existing POST /todos block and before the fallback 404, so the GET /todos and POST /todos branches are byte-for-byte unchanged and all AC-08 assertions pass. However AC-06 is NOT implemented: the GET /todos handler (src/app.mjs lines 13-16) still responds unconditionally with { items: store.list() } and never reads url.searchParams (grep for \"searchParams\" across src returns no matches), so ?done=true and ?done=false are ignored and both return every todo. There is also no AC-06-numbered test anywhere in test/ (grep for \"AC-06\" and \"done=true\" returns no matches). Because a Must acceptance criterion for this slice is unmet and the \"every Must AC has an AC-numbered test\" rule is violated, the review is not approved.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "S2",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 3,
+        "verification": 0,
+        "agent": 1
+      },
+      "planningMetrics": {
+        "autoFixRounds": 6,
+        "llmRepairRounds": 3,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": false,
+        "failureCodes": {
+          "VALIDATION_ERROR": 3
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 4,
+    "tokenUsage": {
+      "input": 409267,
+      "output": 33869
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "INVALID_AGENT_RESULT": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 3,
+      "verification": 0,
+      "agent": 1
+    },
+    "planningRepair": {
+      "autoFixRounds": 6,
+      "llmRepairRounds": 3,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 0
+    },
+    "sliceReachedDistribution": {
+      "S2": 1
+    }
+  }
+}

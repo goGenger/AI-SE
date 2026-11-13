@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-10-14T19:55:00.482Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "L2",
+      "tier": "L",
+      "runIndex": 1,
+      "workflowId": "7ea0a44d-ff24-4e97-bc8a-6ab622d67872",
+      "workflowIds": [
+        "7ea0a44d-ff24-4e97-bc8a-6ab622d67872"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/L2/run-1",
+      "taskCount": 14,
+      "runCount": 15,
+      "taskStatuses": {
+        "SUCCESS": 11,
+        "FAILED": 1,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 500144,
+        "output": 22384
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1393856,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1,
+        "EMPTY_FINAL_ANSWER": 2
+      },
+      "failureSummary": "Implemented the read-only GET /stats route in src/app.mjs (backend-only change). It responds 200 with JSON { count, doneCount } where count = store.list().length (total entries) and doneCount = items whose done flag is strictly true. It performs no persistence (never calls save()/persist) and never mutates the store; it is matched exactly on method GET + pathname /stats, so existing GET /items, POST /items, PUT /items/:id, DELETE /items/:id and the generic 404 fallback are unchanged. Build and lint (node --check) both exit 0. Scoped AC-08 run is 14/15: every AC-08 case passes except one self-contradictory expectation at test/app.stats.ac08.test.mjs:179 (seeds a 2-item store, PUTs id 1, then expects count 1). PUT overwrites exactly one entry so count must remain 2 per AC-08; the sibling case at line 218 expects count 2 after an equivalent PUT. No backend change can satisfy both, and the task requires changing only backend files and preserving API contracts, so the implementation follows the acceptance criteria and the defective test is reported for its owner.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-1",
+      "taskVerificationDivergence": 1,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 1,
+        "agent": 2
+      },
+      "planningMetrics": {
+        "autoFixRounds": 1,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 500144,
+      "output": 22384
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1,
+      "EMPTY_FINAL_ANSWER": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 1,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 1,
+      "agent": 2
+    },
+    "planningRepair": {
+      "autoFixRounds": 1,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-1": 1
+    }
+  }
+}

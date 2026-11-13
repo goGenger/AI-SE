@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-09-29T05:12:21.542Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "S1",
+      "tier": "S",
+      "runIndex": 1,
+      "workflowId": "86052d80-b4c9-41cf-9300-5ed47de23c97",
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/S1/run-1",
+      "taskCount": 7,
+      "taskStatuses": {
+        "SUCCESS": 7
+      },
+      "reportedSuccess": true,
+      "oraclePassed": false,
+      "falsePositive": true,
+      "parseRecoveryRuns": 6,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 0,
+        "output": 0
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 564580,
+      "errorTypes": {},
+      "failureSummary": null
+    }
+  ],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 1,
+    "falsePositiveRate": 1,
+    "parseRecoveryRate": 0.8571428571428571,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 0,
+      "output": 0
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 1
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

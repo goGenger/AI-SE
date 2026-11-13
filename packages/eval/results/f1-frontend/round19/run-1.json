@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-11-03T06:08:36.333Z",
+  "baseUrl": "http://127.0.0.1:47558",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false,
+    "autonomyLevel": "L1",
+    "deployFailureStrategy": "ROLLBACK"
+  },
+  "records": [
+    {
+      "fixtureId": "F1",
+      "tier": "F1",
+      "runIndex": 1,
+      "workflowId": "fdbb8462-f72e-43f0-98b7-0e79a7e6887c",
+      "workflowIds": [
+        "fdbb8462-f72e-43f0-98b7-0e79a7e6887c",
+        "c45bf5b2-1eff-46bf-8375-cef700c29609",
+        "70046ebd-0429-486e-873e-0d0f7748dd47",
+        "cf13bd8c-ef94-4aec-a095-9ef39b796a0c",
+        "7b60231b-9c87-4a8a-9b3d-1ff68ae973ad"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/F1/run-1",
+      "taskCount": 57,
+      "runCount": 55,
+      "taskStatuses": {
+        "SUCCESS": 45,
+        "FAILED": 10,
+        "PENDING": 2
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 56823574,
+        "output": 902719
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 13248427,
+      "incompleteWorkflows": 0,
+      "errorTypes": {
+        "REPLAN_REQUESTED": 2,
+        "VERIFICATION_FAILED": 4,
+        "EMPTY_FINAL_ANSWER": 1,
+        "CI_FAILED": 3
+      },
+      "failureSummary": "Added the requested AC-numbered Vitest suite at test/app-title-and-loading.spec.ts: test '[AC-01] 打开 / 后 data-testid=\\\"app-title\\\" 可见且文本非空' mounts App with a stubbed fetch and asserts the element exists, isVisible() is true and its trimmed text length is greater than 0; test '[AC-02] 首屏加载期间出现 data-testid=\\\"loading-indicator\\\"，数据到达后消失' stubs global fetch with a manually resolvable promise so the initial GET /api/tasks stays pending, asserts exactly one request to a URL containing /api/tasks, asserts the loading indicator exists and isVisible(), then resolves the held response, flushes, and asserts the loading indicator is gone. Both names carry their markers and both files are discovered by pnpm test (the run lists test/app-title-and-loading.spec.ts). However the suite cannot execute: pnpm test uses the repo-root vitest.config.ts, which registers only test.environment = jsdom and never registers @vitejs/plugin-vue, so every .vue import dies at transform time with 'Failed to parse source for import analysis because the content contains invalid JS syntax. Install @vitejs/plugin-vue to handle .vue files.' (file /workspace/src/App.vue:27:9). That is exactly the import/syntax failure the task forbids, not the intended behavioural failure, so the acceptance criterion 'Tests fail only on the intended missing behavior, not on import/syntax errors' cannot be met from test files alone. WRITE POLICY NOTE: I attempted to make the minimal toolchain fix (add plugins: [vue()] to /vitest.config.ts, plugin already in devDependencies) and the write was rejected with 'Path is not writable: vitest.config.ts (allowed: test/, tests/, __tests__/, and test files anywhere)'. I did not touch any product code, package.json dependencies or the lockfile. The tool policy also rejects any non-script command, so the pre-existing test/vitest.config.ts (vue plugin, include src/ and test/) could not be used either: 'pnpm exec vitest run --config test/vitest.config.ts ...' and 'pnpm test --config ...' were both blocked with 'run_unit_test is blocked by script-only policy'. Because the same transform error also kills the pre-existing SFC suites (src/App.spec.ts, test/app.spec.ts, test/list.spec.ts), pnpm test cannot exit 0 for this project at all until vitest.config.ts registers the vue plugin. The tests themselves are written and complete; only the harness configuration is blocking execution, and that lives outside a test-only task, hence REPLAN with fixTaskType FRONTEND.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "slice-5-usability-polish",
+      "taskVerificationDivergence": 4,
+      "verificationFailureCodes": {},
+      "verificationUnavailable": 0,
+      "verificationUnavailableByType": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 4,
+        "agent": 6
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      },
+      "stagingSegment": {
+        "ci": "FAILED",
+        "deploy": "PENDING",
+        "verify": "PENDING",
+        "delivered": false
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 56823574,
+      "output": 902719
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "REPLAN_REQUESTED": 2,
+      "VERIFICATION_FAILED": 4,
+      "EMPTY_FINAL_ANSWER": 1,
+      "CI_FAILED": 3
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "F1": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 4,
+    "verificationFailureCodes": {},
+    "verificationUnavailable": 0,
+    "verificationUnavailableByType": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 4,
+      "agent": 6
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-5-usability-polish": 1
+    },
+    "stagingDeliveryRate": 0
+  }
+}

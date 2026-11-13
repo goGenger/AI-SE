@@ -1,0 +1,221 @@
+{
+  "maxIterations": 50,
+  "scenarioA": {
+    "name": "A_baseline",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 6,
+    "status": "succeeded",
+    "iterations": 4,
+    "finalAnswerPreview": "",
+    "iterationTrail": [
+      2,
+      3,
+      4
+    ],
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "scenarioB": {
+    "name": "B_counterfactual",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 6,
+    "status": "succeeded",
+    "iterations": 4,
+    "finalAnswerPreview": "",
+    "iterationTrail": [
+      2,
+      3,
+      4
+    ],
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "scenarioC": {
+    "name": "C_framework_default",
+    "rounds": [
+      {
+        "round": 1,
+        "inputMessages": 2,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 2,
+        "inputMessages": 4,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      },
+      {
+        "round": 3,
+        "inputMessages": 6,
+        "gatewayCallsInRound": 2,
+        "returnedToolCalls": [],
+        "additionalKwargKeys": [
+          "function_call"
+        ],
+        "contentPreview": "",
+        "contentEmpty": true
+      }
+    ],
+    "gatewayCalls": 6,
+    "status": "succeeded",
+    "iterations": 4,
+    "finalAnswerPreview": "",
+    "iterationTrail": [],
+    "backendResults": [
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      },
+      {
+        "toolName": "read_file",
+        "success": true,
+        "dataPreview": "{\"path\":\"package.json\",\"content\":\"PROBE_FILE_LINE_ONE\\nPROBE"
+      }
+    ],
+    "customToolNames": [
+      "git_status",
+      "git_diff",
+      "run_unit_test",
+      "run_lint",
+      "run_build",
+      "submit_result"
+    ]
+  },
+  "verdict": {
+    "aSpins": false,
+    "aAllRoundsAfterFirstMadeZeroModelCalls": false,
+    "bRemovesSpin": false,
+    "cIsFrameworkRecursionLimit": false
+  }
+}

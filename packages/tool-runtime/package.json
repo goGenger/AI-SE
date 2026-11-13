@@ -1,0 +1,23 @@
+{
+  "name": "@ai-se/tool-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/sandbox build && tsc -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm --filter @ai-se/shared build && pnpm --filter @ai-se/observability build && pnpm --filter @ai-se/sandbox build && tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@ai-se/observability": "workspace:*",
+    "@ai-se/sandbox": "workspace:*",
+    "@ai-se/shared": "workspace:*",
+    "pino": "10.3.1",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1"
+  }
+}

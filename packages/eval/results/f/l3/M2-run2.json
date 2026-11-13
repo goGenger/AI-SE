@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-10-12T02:27:47.971Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M2",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "d3eb3fde-ed37-43e2-a9b6-665cb6f0c109",
+      "workflowIds": [
+        "d3eb3fde-ed37-43e2-a9b6-665cb6f0c109"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M2/run-1",
+      "taskCount": 14,
+      "runCount": 14,
+      "taskStatuses": {
+        "SUCCESS": 9,
+        "READY": 3,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 381012,
+        "output": 21698
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 938240,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 2
+      },
+      "failureSummary": "AC-08 local quality gate verified green. Ran the literal AC command `pnpm build` -> exit 0, zero errors, zero warnings (script: `node --check src/render.mjs && node --check src/parse.mjs`); `pnpm lint` also exits 0; full suite `npm run test` is 30/30 pass, 0 fail, 0 errors. The slice-1 helpers (toInlineCell, padRight, computeColumnWidths) do not break the build: both build-checked modules parse and link, and the package barrel src/index.mjs links them. Red-first: against the pre-slice-1 baseline (HEAD src/render.mjs had only the renderTable stub and no helper exports) the [AC-08] export/link assertions are RED - demonstrated live with a probe that failed with actual 'undefined' vs expected 'function'. I fixed the prior VACUOUS_TEST finding by rewriting test/build.gate.test.mjs so EVERY assertion depends on the slice-1 implementation (the old file had two assertions - typeof renderTable and typeof parseTable - that passed even on the stub); reverting src/render.mjs to the stub now turns the whole AC-08 gate red, so it is non-vacuous. Also added test/_redfirst_probe.test.mjs which locks both the red baseline and the green current state. No product code was modified by me (git shows src/render.mjs as modified from dependency work plus only untracked test files). fixTaskType: NONE (no build errors to hand back).",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": false,
+      "scopeViolation": false,
+      "sliceReached": "slice-2",
+      "taskVerificationDivergence": 2,
+      "verificationFailureCodes": {
+        "VACUOUS_TEST": 4
+      },
+      "failureLayers": {
+        "planning": 0,
+        "verification": 2,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 7,
+        "llmRepairRounds": 1,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": false,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 381012,
+      "output": 21698
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 2
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 0,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 2,
+    "verificationFailureCodes": {
+      "VACUOUS_TEST": 4
+    },
+    "failureLayers": {
+      "planning": 0,
+      "verification": 2,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 7,
+      "llmRepairRounds": 1,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 0,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "slice-2": 1
+    }
+  }
+}

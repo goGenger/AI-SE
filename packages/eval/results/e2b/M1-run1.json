@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-10-07T14:24:39.412Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "ceb0bfe8-92c5-421b-8053-2168e906ffb4",
+      "workflowIds": [
+        "ceb0bfe8-92c5-421b-8053-2168e906ffb4"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 6,
+      "runCount": 6,
+      "taskStatuses": {
+        "SUCCESS": 4,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": false,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 1,
+      "tokenUsage": {
+        "input": 99412,
+        "output": 9993
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 486751,
+      "errorTypes": {
+        "VERIFICATION_FAILED": 1
+      },
+      "failureSummary": "Added test/store.test.mjs with 10 AC-numbered store unit tests (AC-S1-1..AC-S1-5 plus regression). Coverage: title-only, done-only and combined title+done partial updates (AC-S1-1); patch-absent fields id/untouched title+done preserved, including an empty patch {} (AC-S1-2); update return value deep-equals store.get and store.list entry (AC-S1-3); update and remove on a missing id return falsy without throwing (AC-S1-4); remove deletes the target, remaining items stay readable via get/list, and a second remove is falsy without throwing (AC-S1-5); plus regression assertions on existing list/create (add/get/list, auto-increment ids, empty list, get miss -> null). Red-first evidence: the identical assertions run against a scratch copy of the pre-implementation placeholder store yielded 9 fail / 1 pass, all failures being 'update/remove 尚未实现'; the scratch copy lived only in sandbox /tmp and was removed. Green: full node --test suite is 12 tests / 12 pass / 0 fail / 0 errors. npm run build and npm run lint both exit 0. No product code was modified by this task (the src/store.mjs update/remove implementation is pre-existing from BACKEND T3/T4). Note: pnpm is not installed in the sandbox, so the literal 'pnpm test' cannot be executed; package.json test maps to node --test, run here via npm test (identical script)."
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 0,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 1,
+    "tokenUsage": {
+      "input": 99412,
+      "output": 9993
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {
+      "VERIFICATION_FAILED": 1
+    },
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    }
+  }
+}

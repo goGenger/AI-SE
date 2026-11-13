@@ -1,0 +1,45 @@
+
+=== N-6 GATEWAY RULE PROBE (docs/181, PL-M17) ===
+endpoint=https://opencode.ai/zen/go/v1 model=deepseek-v4.1-flash
+outcomes written to packages/eval/results/n6-gateway-rule-probe-after/gateway-rule-outcomes.json
+
+R0_sanity
+  expectation: accepted (the endpoint works at all)
+  result: 200 reply=""
+
+R1_no_reasoning
+  expectation: the production shape - expected REJECTED if the rule is active now
+  result: 200 reply=""
+
+R2_empty_reasoning
+  expectation: remedy candidate 1: reasoning_content = ""
+  result: 200 reply="done"
+
+R3_blank_reasoning
+  expectation: remedy candidate 2: reasoning_content = " "
+  result: 200 reply=""
+
+R4_real_reasoning
+  expectation: control: a non-empty reasoning_content - expected accepted
+  result: 200 reply=""
+
+R5_orphan_tool_msg
+  expectation: remedy candidate 3: tool_calls dropped, tool result kept
+  result: 200 reply=""
+
+R6_drop_pair
+  expectation: remedy candidate 4: tool_calls AND tool result dropped
+  result: 200 reply="@@Read src/probe.txt"
+
+R7_platform_converter
+  expectation: the platform's own converter, after the fix - expected accepted
+  result: 200 reply="done"
+
+=== VERDICT ===
+  the rule is ACTIVE right now if R1 is rejected and R4 is accepted: R1=200 R4=200
+  every remedy candidate that came back 200 is a shape the gateway accepts.
+
+=== RULE WINDOW (the only place R7 counts as evidence) ===
+  the rule did NOT fire in 20 consecutive rounds, so this window proves nothing
+  about the fix. Re-run the probe later; do not read R7's status as a pass.
+===============================================

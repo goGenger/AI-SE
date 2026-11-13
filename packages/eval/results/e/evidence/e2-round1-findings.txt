@@ -1,0 +1,43 @@
+# E-2 round 1 findings (2026-10-07) — 24 runs, all blocked at one task each
+
+## Headline
+24/24 runs completed (no batch failures); oracle pass 6/24 (M3 x3, S2 x3); reportedSuccess
+0/24; falsePositive 0/24. EVERY run stopped its chain at exactly one FAILED task.
+Weekly tokens for the batch: 7.63M -> 9.53M (~1.9M for 24 runs; S ~80K/run).
+
+## Failure modes (24 FAILED tasks across 24 workflows)
+A. red-light on TEST tasks — 14 runs (S1 T4, S2 task-3 x2, M1 T2, M2 task-3, L2 T6).
+   Sub-case A1 (S1): markers [FR-001] — parseAcResults only recognized AC-\d+ =>
+   acResults empty => E-0(a) flip could not fire. FIXED same day (generic bracketed
+   [PREFIX-N] extraction + canonical key compare; see e0a evidence).
+   Sub-case A2 (M1/M2/L2/S2): markers [AC-xx] parse fine, but the PRE-N3 plans carry
+   NO acKeys and no sibling AC-marked test results => no implementation evidence =>
+   fail-closed red-light stands (by design; era mismatch, see protocol note).
+B. BACKEND "checks failed: test" — 6 runs (L1 T3 x3, S3 T-3 x3). Legitimate: the task's
+   test check runs the FULL suite; not-yet-implemented later-task features fail it
+   (e.g. L1 T3: "renderPage/buildSite 尚未实现" belong to T5). Agent left stubs;
+   gate correctly failed it. Note: check is full-suite and cannot pass until all
+   same-slice implementers finish (over-broad for incremental slices — registered).
+C. "protected test files modified" — 3 runs (M3 T2 x3): BACKEND task modified
+   test/merge.test.mjs (pre-existing protected file) => anti-tamper blocked.
+   Working as designed (anti-cheat); registered as agent-behavior finding.
+D. INVALID_AGENT_RESULT / no reason — 1 run (S2 run3 task-3): agent-level failure
+   without verification verdict; registered.
+
+## Protocol discoveries
+- Reusing pre-N3 plans leaves task input.acKeys empty => the E-0(a) evidence face is
+  inert (fail-closed). For the P0 re-test round 2 (E-2b) fixtures are REPLANNED
+  (fresh plans under current code) so planning-layer features (acKeys, validators)
+  are exercised — matches B-4's method (plans were fresh-at-the-time there too).
+- eval harness bug: `--replan` posted /analyze WITHOUT {regenerate:true}; server
+  early-returns for ANALYZED requirements (planningService.ts:228) => silent no-op.
+  FIXED in packages/eval/src/harness.ts + 2 new tests (harness.test.ts, 24 total).
+  Verified live: E-2b S1 run1 replanned (gate-1 approval 1cde29e2, plan v4 / 12 tasks).
+- S1's fresh plan (created by current code) is IMPLEMENT-THEN-TEST (T3 BACKEND ->
+  T4/T5 TEST), i.e. N4's test-first ordering did not materialize in this plan.
+  The E-0(a) flip is designed to tolerate this (evidence-based). Registered for
+  planner-side review (out of E-0 scope).
+
+## Round 2 (E-2b) launched
+results/e2b/, script e2b-sml-split.sh (--replan on run 1 per fixture), same guard.
+Round 1 raw data preserved in results/e2/ for the record.

@@ -1,0 +1,10 @@
+{
+  "name": "fixture-m1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/app.mjs && node --check src/store.mjs && node --check src/serve.mjs",
+    "lint": "node --check src/app.mjs && node --check src/store.mjs && node --check src/serve.mjs"
+  }
+}

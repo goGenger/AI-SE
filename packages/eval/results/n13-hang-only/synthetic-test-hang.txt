@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: hang.test.mjs
+not ok 1 - hang.test.mjs
+  ---
+  duration_ms: 5008.269
+  type: 'test'
+  location: '/private/var/folders/lr/9nvdlt1x3fdchg9p65rj19rm0000gn/T/n13-hangonly-iJRdHA/G2/hang.test.mjs:1:1'
+  failureType: 'testTimeoutFailure'
+  error: 'test timed out after 5000ms'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 0
+# cancelled 1
+# skipped 0
+# todo 0
+# duration_ms 5017.676584

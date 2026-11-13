@@ -1,0 +1,152 @@
+TAP version 13
+1..0
+# Subtest: src/tests/auth-username-anchor.test.mjs
+ok 1 - src/tests/auth-username-anchor.test.mjs
+  ---
+  duration_ms: 133.589167
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/auth-validation.test.mjs
+ok 2 - src/tests/auth-validation.test.mjs
+  ---
+  duration_ms: 512.368167
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/baseline.test.mjs
+ok 3 - src/tests/baseline.test.mjs
+  ---
+  duration_ms: 507.954875
+  type: 'test'
+  ...
+1..0
+# Subtest: src/tests/engineering-contract.test.mjs
+ok 4 - src/tests/engineering-contract.test.mjs
+  ---
+  duration_ms: 511.32975
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+ok 5 - [AC-01] GET /healthz responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 159.59025
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+ok 6 - [AC-01] GET /health responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 3.240209
+  type: 'test'
+  ...
+# Subtest: [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+ok 7 - [AC-01] GET /ready responds 200 with the JSON body {"status":"ok"}
+  ---
+  duration_ms: 3.091417
+  type: 'test'
+  ...
+# Subtest: [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+ok 8 - [AC-01] all three health endpoints answer 200 status ok on the same isolated instance
+  ---
+  duration_ms: 5.759542
+  type: 'test'
+  ...
+# Subtest: [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+ok 9 - [AC-01] the service under test runs on an ephemeral port with an isolated temporary DATA_DIR
+  ---
+  duration_ms: 2.6835
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+ok 10 - [AC-01] hostile query strings never move a health probe off the 200 JSON contract
+  ---
+  duration_ms: 88.118584
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+ok 11 - [AC-01] duplicate or bogus Authorization headers cannot turn a probe into 401
+  ---
+  duration_ms: 16.621167
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# Subtest: [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+ok 12 - [AC-01] probe responses declare a JSON content type, an exact length and no redirect
+  ---
+  duration_ms: 5.501709
+  type: 'test'
+  ...
+# [taskboard] HEAD /healthz
+# [taskboard] HEAD /health
+# [taskboard] HEAD /ready
+# Subtest: [AC-01] HEAD probes answer 200 with the JSON headers and no body
+ok 13 - [AC-01] HEAD probes answer 200 with the JSON headers and no body
+  ---
+  duration_ms: 5.649334
+  type: 'test'
+  ...
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /healthz
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /health
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# [taskboard] GET /ready
+# Subtest: [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+ok 14 - [AC-01] health routes answer 200 JSON with no credentials and with junk credentials
+  ---
+  duration_ms: 70.003375
+  type: 'test'
+  ...
+# Subtest: [AC-01] the router exemption list contains exactly the health paths plus the home page
+ok 15 - [AC-01] the router exemption list contains exactly the health paths plus the home page
+  ---
+  duration_ms: 2.491042
+  type: 'test'
+  ...
+# Subtest: [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+ok 16 - [AC-01] non-GET methods and non-string path inputs never resolve to the health handler
+  ---
+  duration_ms: 0.103208
+  type: 'test'
+  ...

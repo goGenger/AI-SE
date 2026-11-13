@@ -1,0 +1,10 @@
+{
+  "name": "fixture-l2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/store.mjs && node --check src/app.mjs && node --check src/persist.mjs && node --check src/cli.mjs",
+    "lint": "node --check src/store.mjs && node --check src/app.mjs && node --check src/persist.mjs && node --check src/cli.mjs"
+  }
+}

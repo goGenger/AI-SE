@@ -1,0 +1,240 @@
+{
+  "generatedAt": "2026-10-19T01:21:17.623Z",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 2,
+    "failureStrategy": "REPLAN",
+    "allowRetry": true,
+    "allowReplan": true,
+    "approvalRequired": false
+  },
+  "variants": {
+    "p0": {
+      "label": "P0 single-layer rescue (control)",
+      "workflowStatus": "SUCCESS",
+      "errorCode": null,
+      "errorMessage": null,
+      "executedAttempts": 3,
+      "executed": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "result": "failed"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "result": "succeeded"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "result": "succeeded"
+        }
+      ],
+      "tasks": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "RUNTIME",
+          "resolvedByTaskKey": "T-01-REPLAN-1"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        }
+      ],
+      "resolutionChain": "T-01:FAILED -> T-01-REPLAN-1:SUCCESS",
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_FAILED",
+        "REPLAN_STARTED",
+        "TASK_CREATED",
+        "REPLAN_COMPLETED",
+        "TASK_COMPLETED",
+        "WORKFLOW_COMPLETED"
+      ]
+    },
+    "p1": {
+      "label": "P1 second-layer rescue (N-12 shape)",
+      "workflowStatus": "FAILED",
+      "errorCode": "WORKFLOW_TASK_FAILED",
+      "errorMessage": "Workflow contains unresolved failed tasks",
+      "executedAttempts": 5,
+      "executed": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "result": "failed"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "result": "succeeded"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "result": "failed"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-DEBUG-2",
+          "type": "DEBUG",
+          "result": "succeeded"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-REPLAN-2",
+          "type": "BACKEND",
+          "result": "succeeded"
+        }
+      ],
+      "tasks": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "RUNTIME",
+          "resolvedByTaskKey": "T-01-REPLAN-1"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": "T-01-REPLAN-1-REPLAN-2"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-DEBUG-2",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-REPLAN-2",
+          "type": "BACKEND",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        }
+      ],
+      "resolutionChain": "T-01:FAILED -> T-01-REPLAN-1:FAILED -> T-01-REPLAN-1-REPLAN-2:SUCCESS",
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_FAILED",
+        "REPLAN_STARTED",
+        "TASK_CREATED",
+        "REPLAN_COMPLETED",
+        "TASK_COMPLETED",
+        "WORKFLOW_FAILED"
+      ]
+    },
+    "p2": {
+      "label": "P2 chain ends in failure (reverse control)",
+      "workflowStatus": "FAILED",
+      "errorCode": "WORKFLOW_TASK_FAILED",
+      "errorMessage": "Task failed: Retry Retry Implement the slice-1 API surface",
+      "executedAttempts": 5,
+      "executed": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "result": "failed"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "result": "succeeded"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "result": "failed"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-DEBUG-2",
+          "type": "DEBUG",
+          "result": "succeeded"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-REPLAN-2",
+          "type": "BACKEND",
+          "result": "failed"
+        }
+      ],
+      "tasks": [
+        {
+          "taskKey": "T-01",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "RUNTIME",
+          "resolvedByTaskKey": "T-01-REPLAN-1"
+        },
+        {
+          "taskKey": "T-01-DEBUG-1",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        },
+        {
+          "taskKey": "T-01-REPLAN-1",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": "T-01-REPLAN-1-REPLAN-2"
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-DEBUG-2",
+          "type": "DEBUG",
+          "status": "SUCCESS",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        },
+        {
+          "taskKey": "T-01-REPLAN-1-REPLAN-2",
+          "type": "BACKEND",
+          "status": "FAILED",
+          "origin": "DYNAMIC",
+          "resolvedByTaskKey": null
+        }
+      ],
+      "resolutionChain": "T-01:FAILED -> T-01-REPLAN-1:FAILED -> T-01-REPLAN-1-REPLAN-2:FAILED",
+      "eventTypes": [
+        "WORKFLOW_STARTED",
+        "TASK_STARTED",
+        "TASK_FAILED",
+        "REPLAN_STARTED",
+        "TASK_CREATED",
+        "REPLAN_COMPLETED",
+        "TASK_COMPLETED",
+        "WORKFLOW_FAILED"
+      ]
+    }
+  },
+  "findings": {
+    "P0_INVARIANT_SUCCESS": true,
+    "P2_INVARIANT_FAILED": true,
+    "N12_REPRODUCED": true
+  }
+}

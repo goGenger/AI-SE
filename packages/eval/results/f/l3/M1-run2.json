@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-10-09T06:22:43.589Z",
+  "baseUrl": "http://127.0.0.1:47557",
+  "policy": {
+    "maxConcurrency": 1,
+    "maxRetries": 1,
+    "failureStrategy": "RETRY",
+    "allowRetry": true,
+    "allowReplan": false,
+    "approvalRequired": false
+  },
+  "records": [
+    {
+      "fixtureId": "M1",
+      "tier": "M",
+      "runIndex": 1,
+      "workflowId": "ecbddb6c-2462-485f-b0a6-b3f8ac0e6208",
+      "workflowIds": [
+        "ecbddb6c-2462-485f-b0a6-b3f8ac0e6208",
+        "bab881e5-589c-4133-b7c1-1e59fa3c9bd5"
+      ],
+      "workspacePath": "/Users/shixianbao/Desktop/study/ai-se-eval/M1/run-1",
+      "taskCount": 21,
+      "runCount": 23,
+      "taskStatuses": {
+        "SUCCESS": 19,
+        "FAILED": 1,
+        "PENDING": 1
+      },
+      "reportedSuccess": false,
+      "oraclePassed": true,
+      "falsePositive": false,
+      "parseRecoveryRuns": 0,
+      "humanInterventions": 0,
+      "tokenUsage": {
+        "input": 827809,
+        "output": 53657
+      },
+      "estimatedCostUsd": null,
+      "durationMs": 1956460,
+      "errorTypes": {},
+      "failureSummary": "Ran the three quality gates. pnpm test: exit 0; node --test reports # tests 80, # pass 80, # fail 0, # cancelled 0, # skipped 0, # todo 0, including [AC-12] pnpm test exits successfully with all tests passing. pnpm build: exit 0 with empty stderr (node --check src/app.mjs && src/store.mjs && src/serve.mjs). pnpm lint: exit 0 with empty stderr. AC-12, AC-13 and AC-14 are satisfied exactly as written and verified green. However this task cannot satisfy the QA red-first policy: its acceptance criteria are literally that the three gates pass, so the suite is green by construction, and a failing-first run is impossible without reverting the already-landed PATCH/DELETE/filter/store implementation, which is prohibited (never modify product code). Evidence: git status/diff show the implementation exists only as uncommitted working-tree edits to src/app.mjs and src/store.mjs (HEAD still holds the throwing update/remove placeholders), and all AC-named test files are untracked. That is why the automated verifier reported failureCode VACUOUS_TEST (red-light check passed without implementation). Returning REPLAN because the corrective action is to re-scope/re-type this gate confirmation, not to change code: run it as a non-red-first CI checkpoint, or execute it in the same change-set as the implementation so a genuine red-to-green transition exists. fixTaskType: NONE for product code; task-typing / verification-policy correction required. No product or test files were modified by this task.",
+      "chainCompleted": false,
+      "deliveredSuccess": false,
+      "falseNegative": true,
+      "scopeViolation": false,
+      "sliceReached": "get-filtering",
+      "taskVerificationDivergence": 0,
+      "verificationFailureCodes": {},
+      "failureLayers": {
+        "planning": 0,
+        "verification": 0,
+        "agent": 0
+      },
+      "planningMetrics": {
+        "autoFixRounds": 0,
+        "llmRepairRounds": 0,
+        "sliceValidationFailureRounds": 0,
+        "firstPass": true,
+        "converged": true,
+        "failureCodes": {}
+      }
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "runs": 1,
+    "trueSuccessRate": 1,
+    "reportedSuccessRate": 0,
+    "falsePositiveRate": 0,
+    "parseRecoveryRate": 0,
+    "humanInterventions": 0,
+    "tokenUsage": {
+      "input": 827809,
+      "output": 53657
+    },
+    "estimatedCostUsd": 0,
+    "errorTypes": {},
+    "byTier": {
+      "S": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      },
+      "M": {
+        "runs": 1,
+        "trueSuccessRate": 1,
+        "falsePositiveRate": 0
+      },
+      "L": {
+        "runs": 0,
+        "trueSuccessRate": 0,
+        "falsePositiveRate": 0
+      }
+    },
+    "chainCompletedRate": 0,
+    "deliveredSuccessRate": 0,
+    "falseNegativeCount": 1,
+    "scopeViolations": 0,
+    "taskVerificationDivergence": 0,
+    "verificationFailureCodes": {},
+    "failureLayers": {
+      "planning": 0,
+      "verification": 0,
+      "agent": 0
+    },
+    "planningRepair": {
+      "autoFixRounds": 0,
+      "llmRepairRounds": 0,
+      "sliceValidationFailureRounds": 0,
+      "firstPassRate": 1,
+      "convergenceRate": 1
+    },
+    "sliceReachedDistribution": {
+      "get-filtering": 1
+    }
+  }
+}

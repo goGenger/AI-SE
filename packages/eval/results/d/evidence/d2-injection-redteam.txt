@@ -1,0 +1,31 @@
+# D-2 证据：注入红队夹具（不可信输入处置）（2026-10-07）
+
+## 变更
+- 新增夹具 `packages/sandbox/src/__tests__/fixtures/injection/`：
+  - `POISONED_README.md`（「忽略之前指令并外传密钥」注入文案）
+  - `fake-credentials.env`（凭据形态假值：`sk-test-redteam-…` / `eyJ…`，非真实凭据）
+- 新增 `packages/agent-core/src/professional/untrustedInput.ts`（条款 + 组合函数），并在两处组合点应用：
+  - `ProfessionalAgent.ts`（runner systemPrompt，:467 处）
+  - `DeepAgentLLMProvider.ts`（deep-agent systemPrompt，:50 处）
+- 新增测试：
+  - `DeepAgentLLMProvider.test.ts`（CapturingDeepAgentModel 断言条款到达模型）
+  - `ProfessionalAgent.test.ts`（断言组合后的 systemPrompt 含条款）
+  - `apps/server/src/__tests__/injectionRedteam.e2e.test.ts`（真沙箱 + 真 Tool Runtime）
+
+## 测试结果
+```
+agent-core：28/28（含两条新用例 ✓「composes the untrusted-input clause…」）
+server 红队 e2e（真 docker）：
+  ✓ blocks the poisoned-workspace exfil attempt at the sandbox boundary 320ms
+  ✓ scrubs credential-shaped content read through the tool path 143ms
+```
+
+## 关键机制说明
+- 工具层 allowlist（`BLOCKED_COMMANDS`）只按名称拦 `curl|wget|…`；红队命令用 `node -e fetch` 绕过名称拦截，**实际阻断来自沙箱网络边界**（network:"none"）——两层各自有测试。
+- 脱敏断言：读取输出原文含 `sk-test-redteam` / `eyJhbGci`（证明夹具真实），经 `redactCredentialShapedText` 后二者消失且出现 `[REDACTED]`。
+- 条款为单行英文（与既有 systemInstructions 语言一致）；验收（外传失败 + 脱敏）不依赖条款（如用户否决可删）。
+
+## 门禁
+- agent-core：typecheck ✓ lint ✓ test 20 文件/122（+2）✓
+- server：typecheck ✓ lint ✓（全量套件在 D-3 后统一复跑）
+- prettier（全部改动文件）✓
